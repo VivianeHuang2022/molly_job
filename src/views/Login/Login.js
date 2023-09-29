@@ -1,7 +1,7 @@
 import React from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import './Login.css';
+import '../Login/Login.css'
 
 
 

@@ -3,10 +3,12 @@
     border: 1px solid #d9d9d9;
     border-radius: 0 50px 0 0; 
     padding: 20px;
-    width: 95%;
+    width: 93%;
     height: 100%; 
+    left: 0;
     position: absolute; 
-    right: 5%; /* 距离左边 10% */
+    top: 0;
+    right: 7%; /* 距离左边 10% */
     display: flex;          /* 使用flexbox */
     align-items: center;     /* 垂直居中 */
  }

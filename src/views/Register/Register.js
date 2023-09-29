@@ -1,7 +1,7 @@
 import React from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
-import './Register.css';
+import { Button,Form, Input } from "antd";
+import '../Register/Register.css'
 import logoImage from '../../assets/images/Logo.PNG'; 
 
 

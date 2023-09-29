@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Register from './views/Register/Register';
+// import {HashRouter} from 'react-router-dom'
+// import MRouter from './router/MRouter';
+// import Login from './views/Login/Login';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -10,6 +14,9 @@ root.render(
     {/* <Login /> */}
     {/* <App/> */}
     <Register/>
+    {/* <HashRouter>
+      <MRouter></MRouter>
+    </HashRouter> */}
   </React.StrictMode>
 );
 
