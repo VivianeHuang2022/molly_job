@@ -1,10 +1,13 @@
+import { Button, Checkbox } from 'antd';
 import './App.css';
-import Login from './views/Login/Login';
 
 function App() {
   return (
     <div>
-      <Login></Login>
+    <div className="test">
+      <Button type='primary'> test</Button>
+      <Checkbox></Checkbox>
+    </div>
     </div>
   );
 }
