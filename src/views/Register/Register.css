@@ -1,20 +1,18 @@
 .containerStyle {
     background-color: white;
     border: 1px solid #d9d9d9;
-    border-radius: 40px 0 0 0; 
+    border-radius: 0 50px 0 0; 
     padding: 20px;
     width: 95%;
-    height: 90%; 
+    height: 100%; 
     position: absolute; 
-    top: 10%; /* 距离上边 10% */
-    left: 5%; /* 距离左边 10% */
+    right: 5%; /* 距离左边 10% */
     display: flex;          /* 使用flexbox */
-    justify-content: center; /* 水平居中 */
     align-items: center;     /* 垂直居中 */
  }
 
  .backgroundLayer {
-    background-image: url('/src/assets/images/Login_Page.PNG');
+    background-image: url('/src/assets/images/SignUp_page.PNG');
     background-size: cover;
     position: fixed;          /* 固定定位，使背景覆盖整个屏幕 */
     top: 0;                   /* 从顶部开始 */
@@ -23,16 +21,20 @@
     bottom: 0;                /* 延伸到底部 */
     z-index: -1;              /* 保证背景位于内容下面 */
   }
+  .logo{
+    height: 500px;
+    width: 500px;
+    margin: 0 300px 0 300px;
+  }
 
   .formStyle{
     padding: 10px;
     width: 25%;
     height: 60%;
+    margin: 0 0 0 300px;
     }
     .title{
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
       /* padding: 20px; */
       margin: 0 0 40px -10px;

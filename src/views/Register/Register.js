@@ -1,11 +1,12 @@
 import React from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import './Login.css';
+import './Register.css';
+import logoImage from '../../assets/images/Logo.PNG'; 
 
 
 
-export default function Login() {
+export default function Register() {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
@@ -15,8 +16,8 @@ export default function Login() {
       <div className="containerStyle" >
         <div className="formStyle">
           <div className="title">
-            <div className="largeText">Login</div>
-            <div className="smallText">Sign in to continue</div>
+            <div className="largeText">Create New Account</div>
+            <div className="smallText">Already registered? Login</div>
           </div>
           <Form
             name="normal_login"
@@ -47,16 +48,6 @@ export default function Login() {
               />
             </Form.Item>
             <Form.Item>
-              <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
-              </Form.Item>
-
-              <a className="login-form-forgot" href="">
-                Forgot password
-              </a>
-            </Form.Item>
-
-            <Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -64,11 +55,13 @@ export default function Login() {
                 onMouseOver={e => e.currentTarget.style.backgroundColor = 'gray'}
                 onMouseOut={e => e.currentTarget.style.backgroundColor = 'black'}
               >
-                Log in
+                Sign up
               </Button>
-              Or <a className="login-form-register" href="">register now!</a>
             </Form.Item>
           </Form>
+        </div>
+        <div>
+          <img src={logoImage} alt="logo" className="logo"></img>
         </div>
       </div>
     </div>
