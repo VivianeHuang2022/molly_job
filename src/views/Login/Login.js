@@ -1,7 +1,8 @@
 import React from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import '../Login/Login.css'
+import styles from '../Login/Login.module.css';
+import { Link } from "react-router-dom";
 
 
 
@@ -11,10 +12,10 @@ export default function Login() {
   };
 
   return (
-    <div className="backgroundLayer">
-      <div className="containerStyle" >
-        <div className="formStyle">
-          <div className="title">
+    <div className={styles.backgroundLayer}>
+      <div className={styles.containerStyle}>
+        <div className={styles.formStyle}>
+          <div className="titleBox">
             <div className="largeText">Login</div>
             <div className="smallText">Sign in to continue</div>
           </div>
@@ -50,10 +51,7 @@ export default function Login() {
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
-
-              <a className="login-form-forgot" href="">
-                Forgot password
-              </a>
+              <Link className="login-form-forgot" to="/resetpassword">Forgot password</Link>
             </Form.Item>
 
             <Form.Item>
@@ -66,7 +64,7 @@ export default function Login() {
               >
                 Log in
               </Button>
-              Or <a className="login-form-register" href="">register now!</a>
+              Or <Link className="login-form-register" to="/register">register now!</Link>
             </Form.Item>
           </Form>
         </div>

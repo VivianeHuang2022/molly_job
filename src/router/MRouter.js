@@ -1,10 +1,12 @@
-import React from 'react'
+import React,{Suspense} from 'react'
 import {Navigate, useRoutes} from 'react-router-dom'
-import Login from '../views/Login/Login'
-import Register from '../views/Register/Register'
+const Login = React.lazy(()=>import('../views/Login/Login'))
+const Register = React.lazy(()=>import('../views/Register/Register'))
+const ResetPassword = React.lazy(()=>import('../views/ResetPassword/ResetPassword'))
+
 
 export default function MRouter() {
-    const element = useRoutes([
+    const routes  = useRoutes([
         {
             path:"/",
             element:<Navigate to="/login"/>
@@ -17,6 +19,14 @@ export default function MRouter() {
             path:"/register",
             element:<Register/>
         }
+        ,
+        {
+            path:"/resetpassword",
+            element:<ResetPassword/>
+        }
 ])
-  return element
+  return <Suspense fallback={<div>Loading...</div>}>
+            {routes}
+        </Suspense>
+  
 }
