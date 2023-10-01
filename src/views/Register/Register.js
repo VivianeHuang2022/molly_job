@@ -1,50 +1,44 @@
 import React from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input} from "antd";
 import styles from "../Register/Register.module.css";
 import logoImage from "../../assets/images/Logo.PNG";
-import { Link, useNavigate  } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { registerRequset } from "../../utils/api";
 
 export default function Register() {
   const navigate = useNavigate();
-  const onFinish = async (values) => {
+  const onFinish = async (formData) => {
     try {
-      let{Email,password} = values
-    const res ={
-      email:Email,
-      pwd:password
-    }
-    const response = await axios({
-      method: 'post',      
-      url: '/api/Register/RegisterByEamil',  
-      data: res,       
-      headers: {           
-          'Content-Type': 'application/json',
-          'accept': '*/*',
-          //'Authorization': 'Bearer YOUR_TOKEN_HERE'  // 例如：在这里放置Bearer token (如果需要)
-      },
-      timeout: 5000,       
-      // ... 其他配置
-     });
-    //成功之后跳转到Login界面
-    if (response.status === 200) {
-      alert(`Registration successful for ${Email}!`);
-      navigate('/login');
-    }
+      let { email, password } = formData;
+      const request = {
+        email: email,
+        pwd: password,
+      };
+      const result = await registerRequset(request);
+      //成功之后跳转到Login界面
+      if (result.status === 200) {
+        alert(result.data.msg);
+        navigate("/login");
+      }else{
+        alert("unknown error!")
+      }
     } catch (error) {
       if (error.response) {
-        if(error.response.status===400&error.response.data.code===1001){
-          alert(`${values.Email} Already Exists!`);
-          navigate('/login');
+        if (
+          (error.response.status === 400) &
+          (error.response.data.code === 1001)
+        ) {
+          alert(error.response.data.msg);
+          navigate("/login");
+        } else {
+          alert(`Error:${error.message}`);
         }
-    } else if (error.request) {
-        console.log(error.request);
-    } else {
-        console.log('Error', error.message);
+      } else {
+        alert(`Error:${error.message}`);
+      }
     }
-    }
-    }
+  };
 
   return (
     <div className={styles.backgroundLayer}>
@@ -63,7 +57,7 @@ export default function Register() {
             onFinish={onFinish}
           >
             <div className="smallSubText">EMAIL</div>
-            <Form.Item name="Email" rules={[{ required: true, type: "email" }]}>
+            <Form.Item name="email" rules={[{ required: true, type: "email" }]}>
               <Input
                 prefix={<MailOutlined className="site-form-item-icon" />}
                 placeholder="Email"
