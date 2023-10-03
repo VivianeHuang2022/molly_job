@@ -11,6 +11,7 @@ export default function Login() {
   const navigate = useNavigate();
   const rememberEmail = localStorage.getItem("email")
   const rememberPassword = localStorage.getItem("password")
+  //输入完成请求后端
   const onFinish = async (formData) => {
     let{email,password,remember} = formData
     const request ={
@@ -39,7 +40,7 @@ export default function Login() {
       }
     } catch (error) {
       if (error.response) {
-        if(error.response.status===400&error.response.data.code===1002){
+        if(error.response.status===404&error.response.data.code===1006){
           alert(error.response.data.msg);
         }
         else{

@@ -1,10 +1,17 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .login-form-button{
     color: white;
     background-color: black;
     margin: 0 10px 0 0;
     height: 45px;
     width: 130px;
-    font-size: 16px;
+    font-size: 20px;
   }
   .login-form-button:hover{
     background-color: #d9d9d9;
@@ -31,13 +38,13 @@ justify-content: center;
 } */
 
 :where(.css-dev-only-do-not-override-pr0fja).ant-form label {
-font-size: 16px;
+font-size: 20px;
 }
 
 .login-form-forgot, .login-form-register {
 text-decoration: underline; /* 添加下划线 */
 color: black;
-font-size: 16px;
+font-size: 20px;
 }
 
 :where(.css-dev-only-do-not-override-pr0fja) a:hover {

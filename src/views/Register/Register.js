@@ -8,6 +8,7 @@ import { registerRequset } from "../../utils/api";
 
 export default function Register() {
   const navigate = useNavigate();
+  //输入完成向后端发起请求
   const onFinish = async (formData) => {
     try {
       let { email, password } = formData;

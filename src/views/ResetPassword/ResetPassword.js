@@ -13,16 +13,20 @@ export default function ResetPassword() {
   const emailRef = useRef(null);
   const pwdRef = useRef(null);
 
+  //向后端请求验证码
   const handleGetCode = async () => {
     const emailValue = emailRef.current.input.value; // 获取email输入框的值
     const pwdValue = pwdRef.current.input.value; // 获取email输入框的值
     if (!emailValue) {
       setEmailError("Please input your Email!");
-      return;
-    } 
+    } else{
+      setEmailError(null)
+    }
     if (!pwdValue) {
       setPwdError("Please input your Password!");
-      return;
+    }
+    else{
+      setPwdError(null)
     } 
     try {
       const request = {
@@ -50,7 +54,7 @@ export default function ResetPassword() {
 
   };
 
-
+  //带上验证码，重置密码
   const onFinish = async (formData) => {
     console.log("Received values of form: ", formData);
     let{email,password,captcha} = formData

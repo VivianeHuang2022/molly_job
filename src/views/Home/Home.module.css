@@ -1,0 +1,64 @@
+.backgroudStyle{
+    background: linear-gradient(to right, white 70%, rgb(203, 202, 202) 30%);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.containerStyle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100vh;
+    width: 95%;
+}
+
+
+.listStyle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 13%;
+}
+
+
+
+/* .containerStyle > div:first-child {
+    flex: 1;
+}
+
+.containerStyle > div:last-child {
+    flex: 1.5;
+} */
+.buttonStyle{
+    padding: 20px;
+    font-size: 30px;
+    margin:20px;
+    border-radius: 80px;
+    border: none;
+    width: 300px;
+    color: white;
+    cursor: pointer;
+}
+
+.topTitle{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.title{
+    font-weight: bold;
+    font-size: 80px;
+}
+
+.showImg{
+    max-width: 80%;
+    height: 90%;
+    width: auto;
+    margin-top: 3%;
+    /* margin-right: 3%; */
+}
