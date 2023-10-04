@@ -84,3 +84,24 @@ export const resetPasswordRequest = async(request)=>{
         throw error;
     }
 }
+
+export const uploadResumePost = async(request)=>{
+    try {
+        const response = await axios({
+            method: 'post',      
+            url: '/api/UploadResumePost/UploadResumeFile',  
+            data: request,       
+            headers: {           
+                'Content-Type': 'multipart/form-data',
+                'accept': '*/*',
+                //'Authorization': 'Bearer YOUR_TOKEN_HERE'  // 例如：在这里放置Bearer token (如果需要)
+            },
+            timeout: 10000,       
+            // ... 其他配置
+           });
+
+           return response
+    } catch (error) {
+        throw error;
+    }
+}

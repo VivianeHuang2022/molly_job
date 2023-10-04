@@ -13,6 +13,12 @@ const texts ={
     homeTexts:{
         studyTitle:"YOUR UNIVERSITY GUIDE",
         careerTitle:"YOUR CAREER GUIDE",
+    },
+    modalTexts:{
+        interviewTitle:"Interview now!",
+        uploadTitle:"Upload from resume",
+        interviwContent:"Through this mock interview, our AI mentors meticulously simulate interview scenarios, providing invaluable insights into your strengths and areas for improvement.",
+        uploadContent:"With the resume, our AI experts use a strategic approach, highlighting your achievements,skills,and qualifications in a format which captures the attention of hiring managers."
     }
 
     }

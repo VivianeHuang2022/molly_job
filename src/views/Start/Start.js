@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logoImage from "../../assets/images/Logo.PNG";
 import styles from './Start.module.css'
 import texts from '../texts';
 import studyingAbroadIcon from '../../assets/images/Studying_abroad.PNG'
 import jobMentoringIcon from '../../assets/images/Job_mentoring.PNG'
-import { useNavigate } from 'react-router-dom';
+import ModalComponent from './Modal';
 
 export default function Start() {
-  const navigate = useNavigate()
-    const handleJumpToHome = (id)=>{
-      navigate(`/home/${id}`)
-    }
+
+  const [showModal, setShowModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const handleJumpToHome = (id)=>{
+    // navigate(`/home/${id}`)
+    setSelectedId(id); 
+    setShowModal(true);
+  }
+  // const closeModal = () => {
+  //   setShowModal(false);
+  // }
   return (
     <div>
         <img src={logoImage} alt="logo" className={styles.logo}></img>
@@ -32,6 +39,7 @@ export default function Start() {
         <div className={styles.footLine}>
           {texts.startTexts.footLine}
         </div>
+        {showModal && <ModalComponent id={selectedId}/>}
     </div>
   )
 }
