@@ -15,6 +15,7 @@ const texts ={
         careerTitle:"YOUR CAREER GUIDE",
     },
     modalTexts:{
+        title:"Update your info or let's Chat!",
         interviewTitle:"Interview now!",
         uploadTitle:"Upload from resume",
         interviwContent:"Through this mock interview, our AI mentors meticulously simulate interview scenarios, providing invaluable insights into your strengths and areas for improvement.",

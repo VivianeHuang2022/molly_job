@@ -85,11 +85,13 @@ export const resetPasswordRequest = async(request)=>{
     }
 }
 
-export const uploadResumePost = async(request)=>{
+export const uploadResumePost = async(request,uId,typeId)=>{
+    const postUrl = `/api/UploadResumePost/UploadResumeFile?uId=${uId}&${typeId}`
+    console.log(postUrl)
     try {
         const response = await axios({
             method: 'post',      
-            url: '/api/UploadResumePost/UploadResumeFile',  
+            url: postUrl,  
             data: request,       
             headers: {           
                 'Content-Type': 'multipart/form-data',

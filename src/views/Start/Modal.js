@@ -23,9 +23,9 @@ function ModalComponent({id}) {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('uId', uId);
+    // formData.append('uId', uId);
     try {
-      const result = await uploadResumePost(formData)
+      const result = await uploadResumePost(formData,uId,id)
       if(result.status===200)
       {
         alert(result.data.msg)
@@ -58,10 +58,10 @@ function ModalComponent({id}) {
     <div className={styles.modal}>
       <div className={styles.modalContent}>
         <div className={styles.titleContainer}>
-          Update your info or let's Chat!
+          {texts.modalTexts.title}
         </div>
         <div className={styles.contentContainer}>
-          <div onClick={() => handleJumpToHome()}>
+          <div onClick={() => handleJumpToHome(id)}>
             <img className={styles.imgIcon} src={InterviewIcon} alt="i_icon" />
             <div className={styles.subTitle}>
               {texts.modalTexts.interviewTitle}
