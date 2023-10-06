@@ -5,6 +5,11 @@ import NotFound from '../components/NotFound'
 import Start from '../views/Start/Start'
 import HomeTest from '../views/Home/HomeTest'
 import Home from '../views/Home/Home'
+import Layout from '../views/Layout/Layout'
+import Interview from '../views/Selector/Interview/JobInterview'
+import CoverLetter from '../views/Selector/CoverLetter/CoverLetter'
+import Resume from '../views/Selector/Resume/Resume'
+import JobMatch from '../views/Selector/Match/JobMatch'
 const Login = React.lazy(()=>import('../views/Login/Login'))
 const Register = React.lazy(()=>import('../views/Register/Register'))
 const ResetPassword = React.lazy(()=>import('../views/ResetPassword/ResetPassword'))
@@ -42,6 +47,16 @@ export default function MRouter() {
         {
             path:"/hometest",
             element:localStorage.getItem("token")?<HomeTest/>:<Unauthorized/>
+        },
+        {
+            path:"/layout",
+            element:<Layout/>,
+            children:[
+                { path: 'interview', element: <Interview /> },
+                { path: 'resume', element: <Resume /> },
+                { path: 'coverletter', element: <CoverLetter /> },
+                { path: 'jobmatch', element: <JobMatch /> },
+              ]
         }
         ,
         {

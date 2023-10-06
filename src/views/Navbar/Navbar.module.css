@@ -1,0 +1,44 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: white;
+    color: black;
+  }
+    
+  .menuItem {
+    flex: 1;
+    text-align: center;
+    font-size: 25px;
+    color: gray;
+    cursor: pointer;
+    position: relative;
+  }
+  .active {
+    color: black;
+    font-weight: bold;
+    /* text-decoration: none;
+    border-bottom: 5px solid black; */
+    padding-bottom: 15px;
+  }
+  .active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    /* width: calc(100% - 200px);  */
+    width: calc(30%); 
+    height: 5px;  /* 下划线的厚度 */
+    background-color: black;
+    transform: translateX(-50%);  /* 使下划线居中 */
+  }
+
+  .logo,.subLogo{
+    height: 100px;
+    width: 100px;
+}
+.logo{
+    margin: 20px 0 0 20px;
+}
+
