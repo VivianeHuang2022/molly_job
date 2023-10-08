@@ -1,5 +1,5 @@
 import logoImage from "../../assets/images/Logo.PNG";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import {Avatar, Dropdown, Menu } from "antd";
 import { UserOutlined } from "@ant-design/icons";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar(props) {
     const navigate = useNavigate();
-    const [activeItem, setActiveItem] = useState("interview");
+    const [activeItem, setActiveItem] = useState("");
     const [hoveredItem, setHoveredItem] = useState(null);
     const handleToInterviewPage = () => {
         setActiveItem("Interview");
@@ -27,6 +27,10 @@ function Navbar(props) {
         setActiveItem("Match");
         navigate('jobmatch')
     };
+
+    useEffect(()=>{
+      setActiveItem("Interview")
+    },[])
 
   return (
     <div>

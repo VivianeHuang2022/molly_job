@@ -1,17 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Input, Button, List } from 'antd';
-import { SendOutlined } from '@ant-design/icons';
-import './JobInterview.css'
+import { Button, List } from 'antd';
+import { SendOutlined,SlackSquareOutlined, UserOutlined} from '@ant-design/icons';
+import styles from './JobInterview.module.css';
+import JobInterviewInput from '../../../components/AntdStyleComponent/JobInterviewInput'
+import JobInterviewList from '../../../components/AntdStyleComponent/JobInterviewList'
+
+const userListItem ={
+    justifyContent: 'flex-end'
+}
+const botListItem ={
+    justifyContent: 'flex-start'
+}
+
 
 function JobInterview() {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([{ text: "how can i help you?", sender: 'bot' }]);
     const [inputValue, setInputValue] = useState('');
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
-
     useEffect(scrollToBottom, [messages]);
 
     const handleSubmit = (e) => {
@@ -24,46 +33,39 @@ function JobInterview() {
         // For demo purpose, we just echo back the message
         // Replace with actual API call to your chatbot backend
         setTimeout(() => {
-            setMessages([...messages, { text: inputValue, sender: 'bot' }]);
+            setMessages(messages=>[...messages, { text: "how can i help you?", sender: 'bot' }]);
         }, 1000);
     };
 
     return (
-      <div style={{ display: 'flex', flexDirection:'column', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
-        <div>
-          <div style={{fontSize:'30px', fontWeight:'bold',textAlign:"center"}}>
-          Start your Interview!
-          </div>
-          <div style={{fontSize:'20px',textAlign:"center"}}>
-          Choose your dream career and start interview!
-          </div>
-          
+      <div className={styles.containerStyle}>
+        <div className={styles.titleStyle}>
+          <div>Start your Interview!</div>
+          <div>Choose your dream career and start interview!</div>
         </div>
-        <div style={{ width: 600 }}>
-            <List
+        <div className={styles.formStyle}>
+            <JobInterviewList
                 dataSource={messages}
                 renderItem={message => (
-                    <List.Item style={{ justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>
-                        <div style={{
-                            padding: '8px 12px',
-                            borderRadius: '12px',
-                            background: message.sender === 'user' ? '#e9e9e9' : '#d9d9d9'
-                        }}>
+                    <List.Item style={message.sender === 'user'?userListItem:botListItem}>
+                        {message.sender === 'bot' && <SlackSquareOutlined className={styles.iconStyle} />}
+                        <div 
+                        className={message.sender === 'user'?styles.userMsg : styles.botMsg}>
                             {message.text}
                         </div>
+                        {message.sender === 'user' && <UserOutlined className={styles.iconStyle} />}
                     </List.Item>
                 )}
-                style={{ maxHeight: 600, overflowY: 'auto', marginBottom: 16 }}
             />
             <div ref={messagesEndRef}></div>
-            <Input
-                className="custom-input"
+        </div>
+        <div className={styles.formStyle}>
+        <JobInterviewInput
                 size='large'
                 value={inputValue}
                 onChange={e => setInputValue(e.target.value)}
                 placeholder="Send a message"
                 onPressEnter={handleSubmit}
-                style={{fontSize:'20px'}}
                 addonAfter={
                     <Button style={{background:'black'}} type="primary" icon={<SendOutlined />} onClick={handleSubmit}></Button>
                 }

@@ -1,0 +1,57 @@
+.containerStyle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.titleStyle > div {
+    text-align: center;
+}
+
+.titleStyle > div:first-child {
+    font-size: 50px;
+    font-weight: bold;
+}
+.titleStyle{
+    padding: 20px 10px;
+}
+.titleStyle > div:last-child {
+    font-size: 20px;
+    padding: 20px 10px;
+    color: gray;
+}
+.iconStyle{
+    font-size: 30px;
+}
+
+.userMsg,.botMsg{
+    padding: 5px 8px;
+    border-radius: 12px;
+    font-size: 25px;
+}
+
+.formStyle{
+    width: 800px;
+    max-height: 700px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.formStyle::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.userMsg {
+    background: black;
+    color: white;
+}
+
+.botMsg {
+    background: #d9d9d9;
+    color: black;
+}
+
+
+
