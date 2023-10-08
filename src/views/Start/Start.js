@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import logoImage from "../../assets/images/Logo.PNG";
 import styles from './Start.module.css'
 import texts from '../texts';
@@ -6,18 +6,16 @@ import studyingAbroadIcon from '../../assets/images/Studying_abroad.PNG'
 import jobMentoringIcon from '../../assets/images/Job_mentoring.PNG'
 import ModalComponent from './Modal';
 
-export default function Start() {
 
+export default function Start() {
   const [showModal, setShowModal] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const handleJumpToHome = (id)=>{
-    // navigate(`/home/${id}`)
     setSelectedId(id); 
     setShowModal(true);
+
   }
-  // const closeModal = () => {
-  //   setShowModal(false);
-  // }
+
   return (
     <div>
         <img src={logoImage} alt="logo" className={styles.logo}></img>

@@ -1,5 +1,5 @@
 // ModalComponent.js
-import React from "react";
+import React,{useContext} from "react";
 import styles from "./Modal.module.css";
 import InterviewIcon from "../../assets/images/interview_icon.PNG";
 import UploadIcon from "../../assets/images/upload_icon.PNG";
@@ -7,11 +7,13 @@ import texts from "../texts";
 import { useNavigate } from "react-router-dom";
 import uniqueId from "./GenerateUId";
 import { uploadResumePost } from "../../utils/api";
+import AlertContext from '../../components/AlertProvider/AlertContext';
 
 function ModalComponent({id}) {
   const uId = uniqueId;
   const fileInputRef = React.createRef();
   const navigate = useNavigate();
+  const { showAlertMessage } = useContext(AlertContext);
   const handleJumpToHome = (id) => {
     navigate(`/home/${id}`);
   };
@@ -28,7 +30,8 @@ function ModalComponent({id}) {
       const result = await uploadResumePost(formData,uId,id)
       if(result.status===200)
       {
-        alert(result.data.msg)
+        //alert(result.data.msg)
+        showAlertMessage(result.data.msg,'success')
         navigate(`/home/${id}`);
       }
     } catch (error) {

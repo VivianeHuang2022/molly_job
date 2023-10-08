@@ -1,12 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useContext } from "react";
 import { LockOutlined, MailOutlined,SafetyCertificateOutlined } from "@ant-design/icons";
 import { Button, Col, Form, Input, Row } from "antd";
 import styles from "../Register/Register.module.css";
 import logoImage from "../../assets/images/Logo.PNG";
 import { Link,useNavigate} from "react-router-dom";
 import { getVerificationCode, resetPasswordRequest } from "../../utils/api";
+import AlertContext from '../../components/AlertProvider/AlertContext';
 
 export default function ResetPassword() {
+  const { showAlertMessage } = useContext(AlertContext);
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState(null);
   const [pwdError, setPwdError] = useState(null);
@@ -35,20 +37,16 @@ export default function ResetPassword() {
       }
       const result = await getVerificationCode(request)
       if (result.status === 200) {
-        alert(result.data.msg)
+        console.log(result.data.msg)
+        showAlertMessage("Success",result.data.msg,"success")
       }else{
-        alert("unknown error!")
+        showAlertMessage("Error","unknown error!","error")
       }
     } catch (error) {
       if (error.response) {
-        if(error.response.status===404&error.response.data.code===1005){
-          alert(error.response.data.msg);
-        }
-        else{
-          alert(`Error:${error.message}`)
-        }
+        showAlertMessage("Error",error.response.data.msg,"error")
       } else {
-        alert(`Error:${error.message}`)
+        showAlertMessage("Error", error.message,"error")
       }
     }
 
@@ -66,20 +64,15 @@ export default function ResetPassword() {
     try {
       const result = await resetPasswordRequest(request)
     if (result.status === 200) {
-      alert(result.data.msg)
+      showAlertMessage("Success",result.data.msg,"success")
       navigate("/login");
     }
     else{
-      alert("unknown error!")
+      showAlertMessage("Error","unknown error!","error")
     }
     } catch (error) {
       if (error.response) {
-        if(error.response.status===404&error.response.data.code===1006){
-          alert(error.response.data.msg);
-        }
-        else{
-          alert(`Error:${error.message}`)
-        }
+        showAlertMessage("Warning",error.response.data.msg,"warning")
       } else {
         alert(`Error:${error.message}`)
       }

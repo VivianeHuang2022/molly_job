@@ -1,14 +1,16 @@
-import React from "react";
+import React,{useContext} from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import styles from '../Login/Login.module.css';
 import { Link, useNavigate } from "react-router-dom";
 import { loginRequset } from "../../utils/api";
+import AlertContext from '../../components/AlertProvider/AlertContext';
 
 
 
 export default function Login() {
   const navigate = useNavigate();
+  const { showAlertMessage } = useContext(AlertContext);
   const rememberEmail = localStorage.getItem("email")
   const rememberPassword = localStorage.getItem("password")
   //输入完成请求后端
@@ -30,24 +32,22 @@ export default function Login() {
       const result = await loginRequset(request)
       //成功之后跳转到Login界面
       if (result.status === 200) {
-        navigate('/home');
+        showAlertMessage("Success",result.data.msg,"success")
+        navigate('/start');
         const token = result.data.msg
         //把token存在localStorage中
         localStorage.setItem('token', token);
       }
       else{
-        alert("unknown error!")
+        //alert("unknown error!")
+        showAlertMessage("Error","unknown error!","error")
       }
     } catch (error) {
       if (error.response) {
-        if(error.response.status===404&error.response.data.code===1006){
-          alert(error.response.data.msg);
-        }
-        else{
-          alert(`Error:${error.message}`)
-        }
+        showAlertMessage("Warning",error.response.data.msg,"warning")
     } else {
-      alert(`Error:${error.message}`)
+      // alert(`Error:${error.message}`)
+      showAlertMessage("Error",error.message,"error")
     }
     }
   };

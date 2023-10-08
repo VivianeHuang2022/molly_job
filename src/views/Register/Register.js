@@ -1,12 +1,14 @@
-import React from "react";
+import React,{useContext} from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Form, Input} from "antd";
 import styles from "../Register/Register.module.css";
 import logoImage from "../../assets/images/Logo.PNG";
 import { Link, useNavigate } from "react-router-dom";
 import { registerRequset } from "../../utils/api";
+import AlertContext from '../../components/AlertProvider/AlertContext';
 
 export default function Register() {
+  const { showAlertMessage } = useContext(AlertContext);
   const navigate = useNavigate();
   //输入完成向后端发起请求
   const onFinish = async (formData) => {
@@ -19,24 +21,24 @@ export default function Register() {
       const result = await registerRequset(request);
       //成功之后跳转到Login界面
       if (result.status === 200) {
-        alert(result.data.msg);
+        showAlertMessage("Success",result.data.msg,"success")
         navigate("/login");
       }else{
-        alert("unknown error!")
+        showAlertMessage("Error","unknown error!","error")
       }
     } catch (error) {
       if (error.response) {
-        if (
-          (error.response.status === 400) &
-          (error.response.data.code === 1001)
-        ) {
-          alert(error.response.data.msg);
+        if ((error.response.data.code === 1001)) 
+        {
+          showAlertMessage("Warning",error.response.data.msg,"warning")
           navigate("/login");
-        } else {
-          alert(`Error:${error.message}`);
         }
+        if ((error.response.data.code === 1007)) 
+        {
+          showAlertMessage("Error",error.response.data.msg,"error")
+        } 
       } else {
-        alert(`Error:${error.message}`);
+        showAlertMessage("Error", error.message,"error")
       }
     }
   };

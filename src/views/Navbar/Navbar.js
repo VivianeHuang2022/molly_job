@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar(props) {
     const navigate = useNavigate();
-    const [activeItem, setActiveItem] = useState("");
+    const [activeItem, setActiveItem] = useState("interview");
     const [hoveredItem, setHoveredItem] = useState(null);
     const handleToInterviewPage = () => {
         setActiveItem("Interview");

@@ -1,10 +1,3 @@
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 .login-form-button{
     color: white;
     background-color: black;
@@ -12,6 +5,7 @@ html, body {
     height: 45px;
     width: 130px;
     font-size: 20px;
+    cursor: pointer;
   }
   .login-form-button:hover{
     background-color: #d9d9d9;

@@ -1,0 +1,28 @@
+.customModal .ant-modal-content {
+    box-shadow: none;
+    background-color: transparent;
+
+  }
+  .customModal{
+    position: fixed;  
+    top: 0;
+  }
+  
+  .customModal .ant-modal-header,
+  .customModal .ant-modal-footer {
+    display: none;
+  }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  .fade-out {
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
