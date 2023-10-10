@@ -1,13 +1,28 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,useLocation } from 'react-router-dom'
 
 export default function Question(props) {
+  const childrenCount = props.Count;
+    console.log(childrenCount)
     const navigate = useNavigate()
+    const location = useLocation();
     const handleToNext=()=>{
-        navigate("questionp2")
+
+      const currentQNumber = parseInt(location.pathname.split('/q')[1], 10);
+      if (currentQNumber < childrenCount) {
+          const nextQ = "q" + (currentQNumber + 1);
+          navigate(`/generalq/${nextQ}`);
+      }
+      if(currentQNumber===childrenCount){
+        navigate("/layout");
+      }
     }
     const handlToLast=()=>{
-        navigate("questionp1")
+      const currentQNumber = parseInt(location.pathname.split('/q')[1], 10);
+      if (currentQNumber > 1) {
+          const lastQ = "q" + (currentQNumber - 1);
+          navigate(`/generalq/${lastQ}`);
+      }
     }
   return (
     <div>

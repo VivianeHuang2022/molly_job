@@ -11,9 +11,10 @@ import CoverLetter from '../views/Selector/CoverLetter/CoverLetter'
 import Resume from '../views/Selector/Resume/Resume'
 import JobMatch from '../views/Selector/Match/JobMatch'
 import GeneralQ from '../views/Selector/GeneralQ/GeneralQ'
-import QuestionP1 from '../views/Selector/GeneralQ/QuestionP1'
-import QuestionP2 from '../views/Selector/GeneralQ/QuestionP2'
-import QuestionP3 from '../views/Selector/GeneralQ/QuestionP3'
+import Q1 from '../views/Selector/GeneralQ/Q1'
+import Q2 from '../views/Selector/GeneralQ/Q2'
+import Q3 from '../views/Selector/GeneralQ/Q3'
+import { LoadingOutlined} from '@ant-design/icons';
 
 const Login = React.lazy(()=>import('../views/Login/Login'))
 const Register = React.lazy(()=>import('../views/Register/Register'))
@@ -21,6 +22,19 @@ const ResetPassword = React.lazy(()=>import('../views/ResetPassword/ResetPasswor
 
 
 export default function MRouter() {
+
+    const generalQChildrenRoutes = [
+        {
+          index: true,
+          element: <Navigate to="q1" replace />
+        },
+        { path: 'q1', element: <Q1 /> },
+        { path: 'q2', element: <Q2 /> },
+        { path: 'q3', element: <Q3 /> },
+        // ... other child routes
+      ];
+      
+
     const routes  = useRoutes([
         {
             path:"/",
@@ -69,17 +83,9 @@ export default function MRouter() {
         }
         ,
         {
-            path:"/generalq",
-            element:<GeneralQ/>,
-            children:[
-                { 
-                    index: true, 
-                    element: <Navigate to="questionp1" replace />
-                },
-                { path: 'questionp1', element: <QuestionP1 /> },
-                { path: 'questionp2', element: <QuestionP2 /> },
-                { path: 'questionp3', element: <QuestionP3 /> },
-              ]
+            path: "/generalq",
+            element: <GeneralQ childRoutes={generalQChildrenRoutes} />,
+            children: generalQChildrenRoutes
         }
         ,
         {
@@ -87,7 +93,7 @@ export default function MRouter() {
             element:<NotFound/>
         }
 ])
-  return <Suspense fallback={<div>Loading...</div>}>
+  return <Suspense fallback={<LoadingOutlined />}>
             {routes}
         </Suspense>
   
