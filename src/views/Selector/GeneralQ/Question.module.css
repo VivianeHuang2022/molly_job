@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px;
+}
+
+/* .footer{
+    margin: 20px;
+} */
+
+.btnLast,.btnNext{
+    border: none;
+    color: white;
+    font-size: 20px;
+    margin: 50px 10px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btnLast{
+    background-color: gray;
+}
+
+.btnNext{
+    background-color: black;
+}

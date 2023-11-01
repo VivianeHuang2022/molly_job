@@ -8,7 +8,7 @@ import careerShowImg from '../../assets/images/careerShowImg.png'
 export default function Home() {
   const navigate = useNavigate()
   const handlToGeneralQ = ()=>{
-    navigate("/generalq")
+    navigate("/layout")
   }
     const{Id} = useParams()
   return (

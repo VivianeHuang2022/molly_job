@@ -11,9 +11,11 @@ import CoverLetter from '../views/Selector/CoverLetter/CoverLetter'
 import Resume from '../views/Selector/Resume/Resume'
 import JobMatch from '../views/Selector/Match/JobMatch'
 import GeneralQ from '../views/Selector/GeneralQ/GeneralQ'
-import Q1 from '../views/Selector/GeneralQ/Q1'
-import Q2 from '../views/Selector/GeneralQ/Q2'
-import Q3 from '../views/Selector/GeneralQ/Q3'
+import Page1 from '../views/Selector/GeneralQ/Page1'
+import Page2 from '../views/Selector/GeneralQ/Page2'
+import Page3 from '../views/Selector/GeneralQ/Page3'
+import Page4 from '../views/Selector/GeneralQ/Page4'
+import Page5 from '../views/Selector/GeneralQ/Page5'
 import { LoadingOutlined} from '@ant-design/icons';
 
 const Login = React.lazy(()=>import('../views/Login/Login'))
@@ -26,11 +28,13 @@ export default function MRouter() {
     const generalQChildrenRoutes = [
         {
           index: true,
-          element: <Navigate to="q1" replace />
+          element: <Navigate to="page1" replace />
         },
-        { path: 'q1', element: <Q1 /> },
-        { path: 'q2', element: <Q2 /> },
-        { path: 'q3', element: <Q3 /> },
+        { path: 'page1', element: <Page1 /> },
+        { path: 'page2', element: <Page2 /> },
+        { path: 'page3', element: <Page3 /> },
+        { path: 'page4', element: <Page4 /> },
+        { path: 'page5', element: <Page5 /> }
         // ... other child routes
       ];
       
@@ -73,7 +77,12 @@ export default function MRouter() {
             children:[
                 { 
                     index: true, 
-                    element: <Navigate to="interview" replace />
+                    element: <Navigate to="generalq" replace />
+                },
+                { 
+                    path: "generalq",
+                    element: <GeneralQ childRoutes={generalQChildrenRoutes} />,
+                    children: generalQChildrenRoutes
                 },
                 { path: 'interview', element: <Interview /> },
                 { path: 'resume', element: <Resume /> },
@@ -82,12 +91,12 @@ export default function MRouter() {
               ]
         }
         ,
-        {
-            path: "/generalq",
-            element: <GeneralQ childRoutes={generalQChildrenRoutes} />,
-            children: generalQChildrenRoutes
-        }
-        ,
+        // {
+        //     path: "/generalq",
+        //     element: <GeneralQ childRoutes={generalQChildrenRoutes} />,
+        //     children: generalQChildrenRoutes
+        // }
+        // ,
         {
             path:"*",
             element:<NotFound/>
