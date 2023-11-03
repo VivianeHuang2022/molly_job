@@ -3,24 +3,20 @@ import texts from '../../texts'
 import QInput from '../../../components/QInput/QInput'
 import style from './Page.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { updateFormData } from '../../../redux/slice'; // 导入你的 action
+import { updateFormData, dataSaveHandle } from '../../../redux/slice'; // 导入你的 action
 
 export default function  Page1(props) {
-  const dispatch = useDispatch();
-  var formData = useSelector((state) => state.formData); 
-  formData = JSON.parse(localStorage.getItem('formData')) || {};
 
+  const dispatch = useDispatch();
+  var formData = useSelector((state) => state.formDataQP1); 
 
   // 使用 dispatch 更新 Redux Store
   const handleInputChange = (name, value) => {
-    dispatch(updateFormData({ [name]: value }));
-
-    const storedFormData = JSON.parse(localStorage.getItem('formData')) || {};
-
-    const updatedFormData = { ...storedFormData, [name]: value };
-
-    localStorage.setItem('formData', JSON.stringify(updatedFormData));
+    dispatch(updateFormData({pNum:1, payload: { [name]: value }}));
+    //本地数据处理
+    dataSaveHandle(name, value, 1)
   };
+
   return (
     <div className={style.container}>
       <div className={style.title}>{texts.GeberalQ.Page1.Q_title}</div>

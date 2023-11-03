@@ -2,12 +2,15 @@ import React,{useEffect, useState} from 'react'
 import texts from '../../texts'
 // import QInput from '../../../components/QInput/QInput'
 import style from './Page.module.css'
+import {useSelector,useDispatch } from 'react-redux';
+import { updateFormData, dataSaveHandle } from '../../../redux/slice'; // 导入你的 action
 
 export default function Page5() {
   const [activeButton, setActiveButton] = useState(null);
+  var formData = useSelector((state) => state.formDataQP5); 
   useEffect(()=>{
-    setActiveButton(0)
-  },[])
+    setActiveButton(formData.years)
+  },[formData])
   return (
     <div className={style.container}>
       <div className={style.title}>{texts.GeberalQ.Page5.Q_title}</div>
@@ -29,8 +32,12 @@ export default function Page5() {
 
 function CircleButton({ index, activeButton, setActiveButton }) {
   const isActive = index === activeButton;
+  const dispatch = useDispatch();
   const handleClick = () => {
     setActiveButton(index);
+    const name = 'years'
+    dispatch(updateFormData({pNum:5, payload: { [name]: index }}));
+    dataSaveHandle(name, index, 5)
   };
   return (
     <button
