@@ -5,15 +5,16 @@
     padding: 50px;
 }
 
-/* .footer{
-    margin: 20px;
-} */
+.footer{
+    display: flex;
+    justify-content: space-between;
+}
 
 .btnLast,.btnNext{
     border: none;
     color: white;
     font-size: 20px;
-    margin: 50px 10px;
+    margin: 50px 100px;
     padding: 10px 30px;
     border-radius: 20px;
     cursor: pointer;
@@ -21,8 +22,10 @@
 
 .btnLast{
     background-color: gray;
+    text-align: left;
 }
 
 .btnNext{
     background-color: black;
+    text-align: right;
 }

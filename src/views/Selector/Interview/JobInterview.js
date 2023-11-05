@@ -4,6 +4,7 @@ import { SendOutlined,SlackSquareOutlined, UserOutlined} from '@ant-design/icons
 import styles from './JobInterview.module.css';
 import JobInterviewInput from '../../../components/AntdStyleComponent/JobInterviewInput'
 import JobInterviewList from '../../../components/AntdStyleComponent/JobInterviewList'
+import { Link } from 'react-router-dom';
 
 const userListItem ={
     justifyContent: 'flex-end'
@@ -59,17 +60,18 @@ function JobInterview() {
             />
             <div ref={messagesEndRef}></div>
         </div>
-        <div className={styles.formStyle}>
-        <JobInterviewInput
-                size='large'
-                value={inputValue}
-                onChange={e => setInputValue(e.target.value)}
-                placeholder="Send a message"
-                onPressEnter={handleSubmit}
-                addonAfter={
-                    <Button style={{background:'black'}} type="primary" icon={<SendOutlined />} onClick={handleSubmit}></Button>
-                }
-            />
+        <div className={styles.inputStyle}>
+            <div className={styles.textStyle}>Click here to generate your <Link to='/layout/coverletter' style={{color:'black'}}>cover letter</Link> or <Link to='/layout/resume' style={{color:'black'}}>resume</Link></div>
+            <JobInterviewInput
+                    size='large'
+                    value={inputValue}
+                    onChange={e => setInputValue(e.target.value)}
+                    placeholder="Send a message"
+                    onPressEnter={handleSubmit}
+                    addonAfter={
+                        <Button style={{background:'black'}} type="primary" icon={<SendOutlined />} onClick={handleSubmit}></Button>
+                    }
+                />
         </div>
         </div>
     );

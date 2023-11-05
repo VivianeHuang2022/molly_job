@@ -1,21 +1,21 @@
 import React,{useEffect, useState} from 'react'
-import texts from '../../texts'
+import texts from '../../../texts'
 // import QInput from '../../../components/QInput/QInput'
-import style from './Page.module.css'
+import style from './JobPage.module.css'
 import {useSelector,useDispatch } from 'react-redux';
-import { updateFormData, dataSaveHandle } from '../../../redux/slice'; // 导入你的 action
+import { updateFormData, dataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 
-export default function Page5() {
+export default function JobPage5() {
   const [activeButton, setActiveButton] = useState(null);
   var formData = useSelector((state) => state.formDataQP5); 
   useEffect(()=>{
-    setActiveButton(formData.years)
+    const defaultIndex = formData.years>6?6:formData.years
+    setActiveButton(defaultIndex)
   },[formData])
   return (
     <div className={style.container}>
-      <div className={style.title}>{texts.GeberalQ.Page5.Q_title}</div>
-      <div className={style.subTitle}>{texts.GeberalQ.Page5.Q_Notification}</div>
-      {/* <QInput title={texts.GeberalQ.Page5.Q_Notification}/> */}
+      <div className={style.title}>{texts.GeberalQ.JobPage.Page5.Q_title}</div>
+      <div className={style.subTitle}>{texts.GeberalQ.JobPage.Page5.Q_Notification}</div>
       <div className={style.buttonContainer}>
         {Array(7).fill().map((_, index) => (
           <CircleButton
@@ -45,7 +45,7 @@ function CircleButton({ index, activeButton, setActiveButton }) {
       className={style.circleButton}
       onClick={handleClick}
     >
-      {index===6?index-1 +'+':index}
+      {index>5?index-1 +'+':index}
     </button>
   );
 }

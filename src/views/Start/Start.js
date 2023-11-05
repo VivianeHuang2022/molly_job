@@ -12,8 +12,8 @@ export default function Start() {
   const [selectedId, setSelectedId] = useState(null);
   const handleJumpToHome = (id)=>{
     setSelectedId(id); 
+    localStorage.setItem("topicId",id)
     setShowModal(true);
-
   }
 
   return (

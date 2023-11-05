@@ -4,12 +4,33 @@ import styles from "./Navbar.module.css";
 import {Avatar, Dropdown, Menu } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import items from "./items";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 function Navbar(props) {
     const navigate = useNavigate();
+    const location = useLocation();
     const [activeItem, setActiveItem] = useState("");
     const [hoveredItem, setHoveredItem] = useState(null);
+
+    const updateActiveItemBasedOnPath = (path) => {
+      switch(path) {
+          case '/layout/interview':
+              setActiveItem("Interview");
+              break;
+          case '/layout/resume':
+              setActiveItem("Resume");
+              break;
+          case '/layout/coverletter':
+              setActiveItem("Cover Letter");
+              break;
+          case '/layout/jobmatch':
+              setActiveItem("Match");
+              break;
+          default:
+              setActiveItem("Interview");
+      }
+  }
+
     const handleToInterviewPage = () => {
         setActiveItem("Interview");
         navigate('interview')
@@ -27,15 +48,18 @@ function Navbar(props) {
         setActiveItem("Match");
         navigate('jobmatch')
     };
+    const backToStart = () => {
+      navigate('/start')
+  };
 
-    useEffect(()=>{
-      setActiveItem("Interview")
-    },[])
+    useEffect(() => {
+      updateActiveItemBasedOnPath(location.pathname);
+    }, [location]);
 
   return (
     <div>
     <div className={styles.navbar}>
-      <img src={logoImage} className={styles.logo} alt="logo" />
+      <img src={logoImage} className={styles.logo} alt="logo" onClick={backToStart}/>
 
       <div
         className={`${styles.menuItem} ${
@@ -47,19 +71,19 @@ function Navbar(props) {
       </div>
       <div
         className={`${styles.menuItem} ${
-          activeItem === "Resume" ? styles.active : ""
-        }`}
-        onClick={handleToResumePage}
-      >
-        Resume
-      </div>
-      <div
-        className={`${styles.menuItem} ${
           activeItem === "Cover Letter" ? styles.active : ""
         }`}
         onClick={handleToCoverLetterPage}
       >
         Cover Letter
+      </div>
+      <div
+        className={`${styles.menuItem} ${
+          activeItem === "Resume" ? styles.active : ""
+        }`}
+        onClick={handleToResumePage}
+      >
+        Resume
       </div>
       <div
         className={`${styles.menuItem} ${

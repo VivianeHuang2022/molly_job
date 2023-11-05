@@ -33,6 +33,9 @@ function ModalComponent({id}) {
         //alert(result.data.msg)
         showAlertMessage(result.data.msg,'success')
         navigate(`/home/${id}`);
+        //此处需要把是否上传CV本地记录一下
+        //localStorage.setItem('cvIsUpload', true);
+        //去到home界面之后，点击Interview,Cover Letter 还是Resume的时候是否判断是否已经上传，因为需要CV内容对general question进行自动填写
       }
     } catch (error) {
       if (error.response) {

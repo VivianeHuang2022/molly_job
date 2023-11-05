@@ -1,11 +1,11 @@
 import React from 'react'
-import texts from '../../texts'
-import QInput from '../../../components/QInput/QInput'
-import style from './Page.module.css'
+import texts from '../../../texts'
+import QInput from '../../../../components/QInput/QInput'
+import style from './JobPage.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { updateFormData, dataSaveHandle } from '../../../redux/slice'; // 导入你的 action
+import { updateFormData, dataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 
-export default function Page4() {
+export default function JobPage4() {
 
   const dispatch = useDispatch();
   var formData = useSelector((state) => state.formDataQP4); 
@@ -18,25 +18,25 @@ export default function Page4() {
 
   return (
     <div className={style.container}>
-      <div className={style.title}>{texts.GeberalQ.Page4.Q_title}</div>
+      <div className={style.title}>{texts.GeberalQ.JobPage.Page4.Q_title}</div>
       <QInput 
-        title={texts.GeberalQ.Page4.Q_Backgrund} 
+        title={texts.GeberalQ.JobPage.Page4.Q_Backgrund} 
         type="text" size="50px" 
-        placeholder={texts.GeberalQ.Page4.Q_Backgrund_PH}
+        placeholder={texts.GeberalQ.JobPage.Page4.Q_Backgrund_PH}
         value = {formData.background||''}
         onChange={(e)=>handleInputChange('background',e.target.value)}
       />
       <QInput 
-        title={texts.GeberalQ.Page4.Q_Action} 
+        title={texts.GeberalQ.JobPage.Page4.Q_Action} 
         type="text" size="150px" 
-        placeholder={texts.GeberalQ.Page4.Q_Action_PH}
+        placeholder={texts.GeberalQ.JobPage.Page4.Q_Action_PH}
         value = {formData.action||''}
         onChange={(e)=>handleInputChange('action',e.target.value)}
       />
       <QInput 
-        title={texts.GeberalQ.Page4.Q_Result} 
+        title={texts.GeberalQ.JobPage.Page4.Q_Result} 
         type="text" size="80px" 
-        placeholder={texts.GeberalQ.Page4.Q_Result_PH}
+        placeholder={texts.GeberalQ.JobPage.Page4.Q_Result_PH}
         value = {formData.result||''}
         onChange={(e)=>handleInputChange('result',e.target.value)}
       />
