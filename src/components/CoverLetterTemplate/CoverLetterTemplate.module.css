@@ -1,9 +1,10 @@
-.cover-letter-container {
+.coverLetterContainer {
     width: 40%; /* Adjust as needed */
     padding: 20px;
     box-shadow: 5px 5px 15px rgba(73, 72, 72, 0.3);
+    max-height: 100%;
   }
-  .cover-letter-content{
+  .coverLetterContent{
     border: 3px solid;
     border-image-slice: 1;
     border-width: 3px;
@@ -11,35 +12,45 @@
     padding: 5px 100px;
   }
 
-  .cover-letter-page{
+  .coverLetterPage{
     font-family: Arial, sans-serif;
 
   }
   
-  .cover-letter-header {
+  .coverLetterHeader {
     text-align: left;
+    margin-bottom: 0px;
   }
   
-  .cover-letter-header h1 {
+  .coverLetterHeader h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 1.5em;
   }
-  
-  .cover-letter-contact p {
+  .coverLetterHeader p {
     margin: 5px 0;
+    font-size: 1em;
+  }
+  .coverLetterContact p {
+    margin: 2px 0;
+    font-size: 1em;
   }
   
-  .cover-letter-body {
+  .coverLetterBody {
     text-align: left;
-    margin-top: 20px;
+    margin-top: 10px;
+    font-size: 0.8em;
+  }
+
+  .coverLetterBody p{
+    margin: 5px 0
   }
   
-  .cover-letter-footer {
+  .coverLetterFooter {
     text-align: center;
     margin-top: 30px;
   }
   
-  .cover-letter-footer button {
+  .coverLetterFooter button {
     background-color: black;
     color: white;
     border: none;

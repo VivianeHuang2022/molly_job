@@ -69,7 +69,6 @@ const texts ={
             PgaeTitle:"ANSWER THE QUESTIONS",
             Page1:{
                 P1Q1:"WHERE IS YOUR DREAM COUNTRY?",
-                P1Q1_PH:"*US",
                 P1Q1_Options:["*US","*US2","*US3","*US4","*US5"],
                 P1Q2:"WHERE IS YOUR DREAM UNIVERSITY?",
                 P1Q2_PH:"*Havard",
@@ -77,21 +76,21 @@ const texts ={
             },
             Page2:{
                 P2Q1:"WHAT IS YOUR LOCATION NOW?",
-                P2Q1_PH:"*China",
+                P2Q1_Options:["*China","*China1","*China2","*China3","*China4"],
                 P2Q2:"WHICH COLLEGE DID YOU STUDY IN?",
-                P2Q2_PH:"*Wuhan College",
+                P2Q2_Options:["*Wuhan College","*Wuhan College1","*Wuhan College2","*Wuhan College3","*Wuhan College4"],
             },
             Page3:{
                 P3Q1:"WAHT MAJOR DO YOU WANT TO APPLY FOR?",
-                P3Q1_PH:"*Automation",
+                P3Q1_Options:["*Automation","*Automation1","*Automation2","*Automation3","*Automation4"],
                 P3Q2:"WHICH DEGREE DO YOU WANT TO APLLY FOR?",
-                P3Q2_PH:"*MASTER",
+                P3Q2_Options:["*Bachelor","*MASTER","*Doctor"],
             },
             Page4:{
                 P4Q1:"WAHT'S YOUR MAJOR NOW?",
-                P4Q1_PH:"*Automation",
+                P4Q1_Options:["*Automation","*Automation1","*Automation2","*Automation3","*Automation4"],
                 P4Q2:"WAHT'S YOUR HIGHEST DEGREE NOW?",
-                P4Q2_PH:"*MASTER",
+                P4Q2_Options:["*Bachelor","*MASTER","*Doctor"],
             },
             Page5:{
                 P5Q1:"WAHT'S YOUR MAJOR NOW?",

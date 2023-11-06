@@ -28,7 +28,7 @@ const StdPage1= React.lazy(()=>import('../views/Selector/GeneralQ/StdPage/StdPag
 const StdPage2= React.lazy(()=>import('../views/Selector/GeneralQ/StdPage/StdPage2'))
 const StdPage3= React.lazy(()=>import('../views/Selector/GeneralQ/StdPage/StdPage3'))
 const StdPage4= React.lazy(()=>import('../views/Selector/GeneralQ/StdPage/StdPage4'))
-const StdPage5= React.lazy(()=>import('../views/Selector/GeneralQ/StdPage/StdPage5'))
+// const StdPage5= React.lazy(()=>import('../views/Selector/GeneralQ/StdPage/StdPage5'))
 
 
 export default function MRouter() {
@@ -54,7 +54,7 @@ export default function MRouter() {
         { path: 'page2', element: <StdPage2 /> },
         { path: 'page3', element: <StdPage3 /> },
         { path: 'page4', element: <StdPage4 /> },
-        { path: 'page5', element: <StdPage5 /> }
+        // { path: 'page5', element: <StdPage5 /> }
         // ... other child routes
       ];
       

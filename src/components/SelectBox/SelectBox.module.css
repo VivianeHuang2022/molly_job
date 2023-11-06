@@ -1,0 +1,63 @@
+
+.selectBoxContainer {
+    display: flex; /* 让输入框和按钮并排 */
+    border: 1px solid #000; /* 边框颜色设置为黑色，如图所示 */
+    border-radius: 10px; /* 根据设计调整边框圆角 */
+    overflow: hidden; /* 防止内部元素破坏边框的圆角效果 */
+    width: 300px;
+  }
+  
+  .selectBoxInput {
+    flex: 1; /* 输入框填满容器 */
+    border: none; /* 去除输入框边框 */
+    padding: 10px; /* 输入框内部空间 */
+    color: #000; /* 文本颜色为黑色 */
+    background-color: #fff; /* 背景颜色为白色 */
+  }
+  
+  .selectBoxButton {
+    background: black;
+    border: none; /* 去除按钮边框 */
+    color: white; /* 文本颜色为白色 */
+    padding: 10px 15px; /* 根据设计调整按钮的内边距，确保按钮为方形或符合设计要求 */
+    cursor: pointer; /* 鼠标悬浮时变为手形指针 */
+  }
+  
+  .selectBoxButton .anticon {
+    color: white; /* 确保图标颜色为白色 */
+  }
+  
+  /* 去除输入框和按钮获得焦点时的默认轮廓 */
+  .selectBoxInput:focus,
+  .selectBoxButton:focus {
+    outline: none;
+  }
+  
+  /* 如有需要，添加其他悬浮状态等的样式 */
+
+  .selectBoxOptions {
+    margin-top: 5px;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    width: 300px;
+    /* max-height: 50px; */
+    margin: 0;
+    /* overflow: hidden;
+    list-style-type: none !important; */
+  }
+  
+  .selectBoxOption {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .selectBoxOption:hover {
+    color: white;
+    background-color: black; /* 鼠标悬浮时的背景色 */
+  }
+  
+  /* 其他样式保持不变 */
+  
+  
