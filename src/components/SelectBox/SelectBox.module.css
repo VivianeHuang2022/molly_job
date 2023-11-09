@@ -44,8 +44,7 @@
     width: 300px;
     /* max-height: 50px; */
     margin: 0;
-    /* overflow: hidden;
-    list-style-type: none !important; */
+    overflow:none;
   }
   
   .selectBoxOption {

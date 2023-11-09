@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const getInitialFormData = (pNum) => {
   const storedFormData = localStorage.getItem('formDataQP'+pNum);
-  return storedFormData ? JSON.parse(storedFormData) : {};
+  return storedFormData ? JSON.parse(storedFormData) : pNum===5?{"years":0}:{};
 };
 
 export const dataSaveHandle = (name, value, pNum)=>{

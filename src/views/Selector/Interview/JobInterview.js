@@ -4,7 +4,7 @@ import { SendOutlined,SlackSquareOutlined, UserOutlined} from '@ant-design/icons
 import styles from './JobInterview.module.css';
 import JobInterviewInput from '../../../components/AntdStyleComponent/JobInterviewInput'
 import JobInterviewList from '../../../components/AntdStyleComponent/JobInterviewList'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 const userListItem ={
     justifyContent: 'flex-end'
@@ -15,9 +15,13 @@ const botListItem ={
 
 
 function JobInterview() {
-    const [messages, setMessages] = useState([{ text: "how can i help you?", sender: 'bot' }]);
+    const navigate = useNavigate();
+    const topicId = localStorage.getItem("topicId");
+    const [messages, setMessages] = useState([{ text: "Hello, I'm a interview robot! Let's start interview!", sender: 'bot' },{ text: topicId==="1"?"Why do you want to apply this major?":"Why do you want to apply for this position?", sender: 'bot' }]);
     const [inputValue, setInputValue] = useState('');
     const messagesEndRef = useRef(null);
+    const QuestionList = topicId==="1"?["Why do you choose the university?","Why do you choose this country?"]:["Tell me your expericence please","What's your biggest issue that you met in your expericence","Do you have any questions?"]
+    const [index, setIndex] = useState(0);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -34,8 +38,13 @@ function JobInterview() {
         // For demo purpose, we just echo back the message
         // Replace with actual API call to your chatbot backend
         setTimeout(() => {
-            setMessages(messages=>[...messages, { text: "how can i help you?", sender: 'bot' }]);
+            setMessages(messages=>[...messages, { text: QuestionList[index], sender: 'bot' }]);
+            setIndex(index+1)
+            if (index===2) {
+                navigate("/layout/coverletter")
+            }
         }, 1000);
+        
     };
 
     return (

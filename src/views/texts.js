@@ -69,28 +69,28 @@ const texts ={
             PgaeTitle:"ANSWER THE QUESTIONS",
             Page1:{
                 P1Q1:"WHERE IS YOUR DREAM COUNTRY?",
-                P1Q1_Options:["*US","*US2","*US3","*US4","*US5"],
+                P1Q1_Options:["*USA","*Germany","*Australia","*Denmark","*Belgium","*..."],
                 P1Q2:"WHERE IS YOUR DREAM UNIVERSITY?",
                 P1Q2_PH:"*Havard",
-                P1Q2_Options:["*Havard1","*Havard2","*Havard3","*Havard3","*Havard4"]
+                P1Q2_Options:["*TU Berlin","*TU Munich","*TU Dresden","*TU Achen","*TU Hannover","*..."]
             },
             Page2:{
                 P2Q1:"WHAT IS YOUR LOCATION NOW?",
-                P2Q1_Options:["*China","*China1","*China2","*China3","*China4"],
+                P2Q1_Options:["*Beijing","*Wuhan","*Shanghai","*Nanjing","*Guangzhou","*..."],
                 P2Q2:"WHICH COLLEGE DID YOU STUDY IN?",
-                P2Q2_Options:["*Wuhan College","*Wuhan College1","*Wuhan College2","*Wuhan College3","*Wuhan College4"],
+                P2Q2_Options:["*Wuhan College","*Peiking university","*Shanghai Jiao Tong University","*Tsinghua University","*Nanjing University","*..."],
             },
             Page3:{
                 P3Q1:"WAHT MAJOR DO YOU WANT TO APPLY FOR?",
-                P3Q1_Options:["*Automation","*Automation1","*Automation2","*Automation3","*Automation4"],
+                P3Q1_Options:["*Electric Automation","*Mechanical Engineering","*Electrical Engineering","*Computer Engineering","*Software Engineering","*..."],
                 P3Q2:"WHICH DEGREE DO YOU WANT TO APLLY FOR?",
-                P3Q2_Options:["*Bachelor","*MASTER","*Doctor"],
+                P3Q2_Options:["*Bachelor","*Master","*Doctor"],
             },
             Page4:{
                 P4Q1:"WAHT'S YOUR MAJOR NOW?",
-                P4Q1_Options:["*Automation","*Automation1","*Automation2","*Automation3","*Automation4"],
+                P4Q1_Options:["*Electric Automation","*Mechanical Engineering","*Electrical Engineering","*Computer Engineering","*Software Engineering","*..."],
                 P4Q2:"WAHT'S YOUR HIGHEST DEGREE NOW?",
-                P4Q2_Options:["*Bachelor","*MASTER","*Doctor"],
+                P4Q2_Options:["*Bachelor","*Master","*Doctor","*..."],
             },
             Page5:{
                 P5Q1:"WAHT'S YOUR MAJOR NOW?",

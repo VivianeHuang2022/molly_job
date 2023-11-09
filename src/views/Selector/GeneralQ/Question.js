@@ -32,7 +32,7 @@ export default function Question(props) {
     <div className={style.container}>
       {props.children}
       <div className={style.footer}>
-        <button className={style.btnLast} onClick={handlToLast}>Last</button>
+        <button className={style.btnLast} onClick={handlToLast}>Back</button>
         <button className={style.btnNext} onClick={handleToNext}>Next</button>
       </div>
     </div>
