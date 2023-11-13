@@ -5,15 +5,17 @@ import texts from '../texts';
 import studyingAbroadIcon from '../../assets/images/Studying_abroad.PNG'
 import jobMentoringIcon from '../../assets/images/Job_mentoring.PNG'
 import ModalComponent from './Modal';
+import { useNavigate } from "react-router-dom";
 
 
 export default function Start() {
   const [showModal, setShowModal] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const navigate = useNavigate();
   const handleJumpToHome = (id)=>{
     setSelectedId(id); 
     localStorage.setItem("topicId",id)
-    setShowModal(true);
+    id===2?setShowModal(true):navigate('/home/1');
   }
 
   return (

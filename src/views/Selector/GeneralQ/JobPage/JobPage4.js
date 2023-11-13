@@ -28,14 +28,14 @@ export default function JobPage4() {
       />
       <QInput 
         title={texts.GeberalQ.JobPage.Page4.Q_Action} 
-        type="text" size="150px" 
+        type="text" size="70px" 
         placeholder={texts.GeberalQ.JobPage.Page4.Q_Action_PH}
         value = {formData.action||''}
         onChange={(e)=>handleInputChange('action',e.target.value)}
       />
       <QInput 
         title={texts.GeberalQ.JobPage.Page4.Q_Result} 
-        type="text" size="80px" 
+        type="text" size="60px" 
         placeholder={texts.GeberalQ.JobPage.Page4.Q_Result_PH}
         value = {formData.result||''}
         onChange={(e)=>handleInputChange('result',e.target.value)}

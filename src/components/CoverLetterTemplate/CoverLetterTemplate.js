@@ -1,61 +1,70 @@
-import React from 'react'
-import {PhoneOutlined,MailOutlined,LinkedinOutlined } from "@ant-design/icons";
+import React, { useState,useEffect } from 'react';
+import { getCoverLetterPdf } from "../../utils/api";
 import styles from './CoverLetterTemplate.module.css'
+// import './CoverLetterTemplateNew.css'
+import {Document,Page,pdfjs } from 'react-pdf';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import { Link } from 'react-router-dom';
+// import { PDFViewer, Page} from '@react-pdf/renderer';
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.js",
+  import.meta.url
+).toString();
 
 export default function CoverLetterTemplate() {
+    const [pdfFile, setPdfFile] = useState(null);
+    const [numPages, setNumPages] = useState(null);
+    const fetchPdf = async () => {
+        try {
+            const response = await getCoverLetterPdf();
+            const file = new Blob(
+              [response.data], 
+              {type: 'application/pdf'}
+            );
+            const fileURL = URL.createObjectURL(file);
+            setPdfFile(fileURL);
+        } catch (error) {
+            console.error("Error fetching PDF: ", error);
+        }
+    };
+      const onDocumentLoadSuccess = ({ numPages }) => {
+        setNumPages(numPages);
+      };
+  
+      useEffect(()=>{
+        fetchPdf()
+      },[])
   return (
     <div className={styles.coverLetterContainer}>
-        <div className={styles.coverLetterPage}>
         <div className={styles.coverLetterContent}>
-            <header className={styles.coverLetterHeader}>
-                <h1>Lawley</h1>
-                <p style={{color:'orange'}}>Marketing Student</p>
-            </header>
-
-            <section className={styles.coverLetterContact}>
-                <p><PhoneOutlined style={{color:"orange"}}/> 0123456789</p>
-                <p><MailOutlined style={{color:"orange"}}/> freedie@email.com</p>
-                <p><LinkedinOutlined style={{color:"orange"}}/> linkedin.com/in/freddie-torres</p>
-            </section>
-
-            <article className={styles.coverLetterBody}>
-                <p>Dear Admissions Committee,</p>
-                <p>
-                I am writing to express my enthusiastic interest in pursuing [Name of the Program] at Technische Universität Dresden. With a robust foundation in [Your Field/Subject of Undergraduate Study] from [Your University's Name], coupled with my dedication to furthering my expertise in [Specific Topic/Area related to TU Dresden's program], I am eager to immerse myself in the dynamic and innovative environment that TU Dresden is renowned for.
-                {/* Add the rest of the text content here */}
-                </p>
-                <p>
-                What particularly attracts me to TU Dresden is its commitment to research excellence and its reputation as one of the leading universities in [the specific field or research area]. The possibility to work with distinguished faculty members such as [Professors' Names, if any in particular], and to engage with the cutting-edge research being conducted at [specific research institute or laboratory at TU Dresden] aligns perfectly with my professional aspirations and academic interests.
-                {/* Add the rest of the text content here */}
-                </p><p>
-                Throughout my academic and professional journey, I have continuously sought out challenges that enhance my skills and knowledge. [Include a brief example of an academic or professional challenge you faced and how you overcame it, tying it to the skills or knowledge relevant to the program at TU Dresden.] My goal is to contribute to [specific research area or project at TU Dresden], leveraging my previous experience with [mention any particular technique, theory, or project you have worked on that is relevant].
-                {/* Add the rest of the text content here */}
-                </p><p>
-                Furthermore, studying in Germany, especially at TU Dresden, is an opportunity for significant personal growth. It is not only about gaining a degree but also about immersing myself in a culture renowned for its engineering excellence and academic rigor. I am particularly excited about the prospect of collaborating with peers from diverse cultural and professional backgrounds, which is a cornerstone of the learning environment at TU Dresden.
-                {/* Add the rest of the text content here */}
-                </p>
-                <p>
-                I am convinced that the [Name of the Program] is the next logical step for my academic journey and a pivotal milestone towards achieving my career objectives. I look forward to contributing my unique perspectives to the TU Dresden community while gaining insights and experiences that can only be found at a university of such international standing.
-                {/* Add the rest of the text content here */}
-                </p>
-                <p>
-                Thank you for considering my application. I am eager to hopefully join the ranks of TU Dresden's accomplished alumni and to contribute to the vibrant academic community.
-                {/* Add the rest of the text content here */}
-                </p>
-                <p>
-                Warm regards,
-                </p>
-                <p>
-                [Your Name]
-                </p>
-            </article>
-
-            <footer className={styles.coverLetterFooter}>
-                <button>Change Template</button>
-                <button>Regenerate</button>
-            </footer>
-            </div>
+        {pdfFile && (
+          // <PDFViewer width='100%' height='100%'>
+          //   <Page
+          //   file={pdfFile}
+          //   scale={1.0}
+          //   pageNumber={1}
+          //   width='100%'
+          //   height='100%'/>
+          // </PDFViewer>
+            <Document
+            file={pdfFile}
+            onLoadSuccess={onDocumentLoadSuccess}
+            >
+            {Array.from(new Array(numPages), (el, index) => (
+                <Page 
+                key={`page_${index + 1}`} 
+                pageNumber={index + 1} 
+                renderTextLayer={false}
+                // width='100%'
+                // height='60%'
+                >
+                  {console.log(el)}
+                </Page>
+            ))}
+            </Document>
+        )}
         </div>
+        <div className={styles.coverLetterFooter}><button>CHANGE TEMPLATE</button> OR <Link to='/layout/resume' style={{color:'blue'}}>CREATE RESUME</Link></div>
       </div>
   )
 }

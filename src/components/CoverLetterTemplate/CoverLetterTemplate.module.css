@@ -1,6 +1,6 @@
 .coverLetterContainer {
-    width: 40%; /* Adjust as needed */
-    padding: 20px;
+    width: 33%; /* Adjust as needed */
+    padding: 10px;
     box-shadow: 5px 5px 15px rgba(73, 72, 72, 0.3);
     max-height: 100%;
   }
@@ -9,13 +9,10 @@
     border-image-slice: 1;
     border-width: 3px;
     border-image-source: linear-gradient(to left,#e0cda7,#b3a884);
-    padding: 5px 100px;
+    padding: 5px 5px;
+    overflow: auto;
   }
 
-  .coverLetterPage{
-    font-family: Arial, sans-serif;
-
-  }
   
   .coverLetterHeader {
     text-align: left;
@@ -46,16 +43,15 @@
   }
   
   .coverLetterFooter {
+    all: unset;
     text-align: center;
-    margin-top: 30px;
-    background: white;
   }
   
   .coverLetterFooter button {
     background-color: black;
     border-radius: 10px;
     color: white;
-    margin: 0 20px;
+    margin: 10px 20px;
     border: none;
     padding: 10px 20px;
     cursor: pointer;

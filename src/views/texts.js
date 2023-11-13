@@ -43,13 +43,16 @@ const texts ={
                 R_Description_PH:" - Designing and developing software solutions.\n- Collaborating with product managers, designers, and other engineers.\n - Participating in code reviews and providing feedback.\n- Debugging and resolving software defects.\n- Maintaining and improving existing software systems.\n- Contributing to the overall software development process."
             },
             Page3:{
-                Q_title:"WHAT IS YOUR TOP 3 STRENGTHS",
+                Q_title:"WHAT IS YOUR TOP 3 SKILLS",
                 TOP1:"TOP1",
                 TOP1_PH:"Analytical",
                 TOP2:"TOP2",
                 TOP2_PH:"Detail-oriented",
                 TOP3:"TOP3",
-                TOP3_PH:"Strategic"
+                TOP3_PH:"Strategic",
+                Skills:[['Python', 'Java', 'C++'], ['Agile,Scrum', 'Version Control'], 
+                ['Web Development', 'Database SQL', 'Data Structure'], 
+                ['Computer Vision', 'NLP Algorithm']]
             },
             Page4:{
                 Q_title:"WHAT IS YOUR BIGGEST ACHIEVEMENT",
@@ -93,7 +96,7 @@ const texts ={
                 P4Q2_Options:["*Bachelor","*Master","*Doctor","*..."],
             },
             Page5:{
-                P5Q1:"WAHT'S YOUR MAJOR NOW?",
+                P5Q1:"WHAT IS YOUR ACADEMIC BACKGROUND AND HOW DOES ITALIGN WITH THE PROGRAM YOU'RE APPLYING TO?",
                 P5Q1_PH:"*Automation",
                 P5Q2:"WAHT'S YOUR HIGHEST DEGREE NOW?",
                 P5Q2_PH:"*MASTER",

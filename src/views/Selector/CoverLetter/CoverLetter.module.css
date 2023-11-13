@@ -1,6 +1,7 @@
 .container{
     display: flex;
     justify-content: center;
+    max-height:75vh;
 }
 
 .downloadContainer{

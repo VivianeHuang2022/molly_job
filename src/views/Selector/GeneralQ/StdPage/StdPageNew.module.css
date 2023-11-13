@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 10px; */
+}
+
+.QContainer{
+    font-size: 40px;
+    width: 50%;
+    padding:2%;
+    margin:0 5%;
+    /* padding-right: 3%;
+    padding-left: 3%; */
+    /* text-align: center; */
+}
+
+.Acontainer{
+    background-image: url('/src/assets/images/Answer_Bg_Img.png');
+    background-size: cover;
+    width: 50%;
+    font-size: 20px;
+    padding: 3%;
+    margin: 0 5% 0 5%;
+}
+
+.BorderStyle{
+    font-size: 25px;
+    margin: 2%;
+    /* padding: 2%; */
+    /* padding-bottom: 15%; */
+}
+
+.inputKeyWords{
+    all:unset;
+    width: 200px;
+    border: none;
+    font-size: 20px;
+    color: rgb(32, 206, 232);
+}
+
+.inputKeyWords::placeholder{
+    color: rgb(32, 206, 232);
+}
+
+/* 
+.inputKeyWords:focus {
+    border-color: rgb(32, 206, 232); 
+} */
+

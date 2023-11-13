@@ -5,6 +5,8 @@
     padding: 10px 30px;
     background-color: white;
     color: black;
+    position: sticky;
+    top: 0;
   }
     
   .menuItem {
