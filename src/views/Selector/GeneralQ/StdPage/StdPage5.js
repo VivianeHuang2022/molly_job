@@ -23,8 +23,9 @@ export default function StdPage5() {
       <div className={styles.QContainer}>
         {texts.GeberalQ.StdPage.Page5.P5Q1}
       </div>
-      <div className={styles.Acontainer}>
+      <div className={styles.AcontainerBgImg}>
         {/* <div className={styles.BorderStyle}> */}
+        <div className={styles.Acontainer} >
         "I am eager to pursue my bachelor's degree at [
           <input 
             style={inputStyle}
@@ -58,6 +59,7 @@ export default function StdPage5() {
             onChange={handleChange}
             />], make it an ideal place for me to embark on my undergraduate journey."
         {/* </div> */}
+        </div>
       </div>
     </div>
   )

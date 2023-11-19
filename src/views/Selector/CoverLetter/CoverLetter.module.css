@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     max-height:75vh;
+    
 }
 
 .downloadContainer{
@@ -9,7 +10,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+    padding: 10px;
+    width: 30%;
+    margin-left: 5px;
 }
 
 .imgPdfStyle{

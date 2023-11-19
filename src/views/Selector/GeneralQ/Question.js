@@ -16,7 +16,8 @@ export default function Question(props) {
       navigate(`/layout/generalq/${nextQ}`);
     }
     if (currentQNumber === childrenCount) {
-      navigate("/layout/interview");
+      // navigate("/layout/interview");
+      navigate("/layout/coverletter");
     }
 
 

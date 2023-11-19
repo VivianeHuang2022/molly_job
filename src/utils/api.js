@@ -108,8 +108,29 @@ export const uploadResumePost = async(request,uId,typeId)=>{
     }
 }
 
-export const getCoverLetterPdf = async()=>{
-    const postUrl = '/api/CoverLetter/GetCoverLetterPdf'
+export const downloadCoverLetterPdf = async()=>{
+    const postUrl = '/api/CoverLetter/DownloadCoverLetterPdf'
+    try {
+        const response = await axios({
+            method: 'get',      
+            url: postUrl,
+            responseType: 'blob', // Important    
+            headers: {           
+                // 'Content-Type': 'multipart/form-data',
+                'accept': '*/*',
+            },
+            timeout: 10000,       
+            // ... 其他配置
+           });
+
+           return response
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getCoverLetterImg = async(uId,countId)=>{
+    const postUrl = `/api/CoverLetter/GetCoverLetterImg?uId=${uId}&countId=${countId}`
     try {
         const response = await axios({
             method: 'get',      

@@ -1,10 +1,11 @@
 .container{
-    width: 100%;    /* 视口宽度 */
-    height: 50%;   /* 视口高度 */
-    overflow: hidden; 
+    background-image: url('/src/assets/images/resume_coming_soon.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 .container img {
     width: 100%;
-    height: 50%;
-    object-fit: cover; /* 保持图片的比例，同时完全覆盖容器 */
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
