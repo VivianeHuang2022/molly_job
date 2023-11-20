@@ -2,9 +2,9 @@ import React from 'react'
 import style from './QInput.module.css'
 
 export default function QInput(props) {
-  const { title, type, placeholder, size, value, onChange } = props;
+  const { title, type, placeholder, size, value, onChange,marB } = props;
   return (
-    <div className={style.container}>
+    <div className={style.container} style={marB&&{marginBottom:marB}}>
         <div className={style.title}>{title}</div>
         {type?(
         <textarea 

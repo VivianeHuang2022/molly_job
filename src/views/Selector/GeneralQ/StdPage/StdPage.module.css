@@ -3,7 +3,30 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    /* gap: 10px; */
+    gap: 10px;
+}
+.subContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.title:only-child{
+    margin: 20px;
+}
+
+.title{
+    font-size: 20px;
+    align-content: center;
+    width: auto;
+    gap: 20px;
+    
+}
+
+.qInputSpacing{
+    margin-bottom: 20px;
 }
 
 .componentStyle{

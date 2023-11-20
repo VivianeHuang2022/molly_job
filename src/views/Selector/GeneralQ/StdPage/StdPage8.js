@@ -3,7 +3,7 @@ import texts from '../../../texts'
 import styles from './StdPageNew.module.css'
 
 
-export default function StdPage2() {
+export default function StdPage8() {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (event) => {
@@ -21,37 +21,31 @@ export default function StdPage2() {
   return (
     <div className={styles.container}>
       <div className={styles.QContainer}>
-        {texts.GeberalQ.StdPage.Page2.P2Q1}
+        {texts.GeberalQ.StdPage.Page8.P8Q1}
       </div>
       <div className={styles.AcontainerBgImg}>
         {/* <div className={styles.BorderStyle}> */}
         <div className={styles.Acontainer} >
-        "I am enthusiastic about pursuing my [
+        "I am proficient in [
           <input 
-            style={{width:'220px'}}
+            style={{width:'180px'}}
             className={styles.inputMustKeyWords} 
-            placeholder='Bachelor, Master, Phd'
+            placeholder='German or English '
             onChange={handleChange}
             />
-            ] degree at [
+            ] having completed my undergraduate studies in English-medium instruction. Furthermore, I have taken the [
               <input 
-            style={{width:'380px'}}
+            style={{width:'490px',fontSize:'19px'}}
             className={styles.inputMustKeyWords}
-            placeholder='the University Name under Application'
+            placeholder='German and English Language Proficiency Test Name'
             onChange={handleChange}
-            />]in Germany due to its distinguished reputation in[
-              <input 
-            style={{width:'340px'}}
-            className={styles.inputMustKeyWords}
-            placeholder='mention the relevant field of study'
-            onChange={handleChange}
-            />]. Additionally, the university's diverse and inclusive academic environment and its location in [
+            />] and achieved [
               <input 
             style={{width:'100px'}}
             className={styles.inputMustKeyWords}
-            placeholder="City Name"
+            placeholder='your score'
             onChange={handleChange}
-            />] make it an ideal place for me to further my studies and research."
+            />]. This language proficiency, in conjunction with my strong communication skills, ensures my ability to actively participate in all aspects of the program at University.""
         {/* </div> */}
         </div>
       </div>

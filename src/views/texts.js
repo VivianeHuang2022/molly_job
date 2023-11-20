@@ -69,37 +69,55 @@ const texts ={
             }    
         },
         StdPage:{
-            PgaeTitle:"ANSWER THE QUESTIONS",
+            PgaeTitle:"ANSWER THE QUESTIONS TO GET THE COVER LETTER",
             Page1:{
                 P1Q1:"WHERE IS YOUR DREAM COUNTRY?",
+                P1Q1_PH:"Germany",
                 P1Q1_Options:["*USA","*Germany","*Australia","*Denmark","*Belgium","*..."],
                 P1Q2:"WHERE IS YOUR DREAM UNIVERSITY?",
-                P1Q2_PH:"*Havard",
-                P1Q2_Options:["*TU Berlin","*TU Munich","*TU Dresden","*TU Achen","*TU Hannover","*..."]
+                P1Q2_PH:"TU Berlin",
+                P1Q2_Options:["*TU Berlin","*TU Munich","*TU Dresden","*TU Achen","*TU Hannover","*..."],
+                P1Q3:"WHTA DEGREE YOU ARE APPLYING FOR",
+                P1Q3_PH:"Master"
             },
             Page2:{
+                P2Q1:"WHY ARE YOU INTERESTED IN STUDYING AT THE SPECIFIC UNIVERSITY IN GERMANY?",
+            },
+            Page3:{
+                P3Q1:"WHAT IS YOUR ACADEMIC BACKGROUND AND HOW DOES ITALIGN WITH THE PROGRAM YOU'RE APPLYING TO?",
+            },
+            Page4:{
+                P4Q1:"CAN YOU PROVIDE EXAMPLE OF YOUR ACADEMIC OR RESEARCH ACHIEVEMENTS THAT DEMONSTRATE YOUR POTENTIAL FOR SUCCESS IN THE PROGRAM?",
+            },
+            Page5:{
+                P5Q1:"WHAT RELEVANT EXPERIENCE AND SKILLS MAKE YOU A STRONG CANDIDATE FOR THE PROGRAM?",
+            },
+            Page6:{
+                P6Q1:"HOW DO YOUR ACADEMIC AND RESEARCH INTERESTS MATCH THE PROGRAM's CURRICULUM?",
+            },
+            Page7:{
+                P7Q1:"WHAT ARE YOUR LONG-TERM CAREER GOALS, AND HOW DOES THIS PROGRAM FIT INTO YUUR CAREER PATH?",
+            },
+            Page8:{
+                P8Q1:"WHAT LANGUAGE PROFICIENCY DO YOU HAVE, AND HAVE YOU TAKEN ANY LANGUAGE PROFICIENCY TESTS?",
+            },
+            Page22:{
                 P2Q1:"WHAT IS YOUR LOCATION NOW?",
                 P2Q1_Options:["*Beijing","*Wuhan","*Shanghai","*Nanjing","*Guangzhou","*..."],
                 P2Q2:"WHICH COLLEGE DID YOU STUDY IN?",
                 P2Q2_Options:["*Wuhan College","*Peiking university","*Shanghai Jiao Tong University","*Tsinghua University","*Nanjing University","*..."],
             },
-            Page3:{
+            Page33:{
                 P3Q1:"WAHT MAJOR DO YOU WANT TO APPLY FOR?",
                 P3Q1_Options:["*Electric Automation","*Mechanical Engineering","*Electrical Engineering","*Computer Engineering","*Software Engineering","*..."],
                 P3Q2:"WHICH DEGREE DO YOU WANT TO APLLY FOR?",
                 P3Q2_Options:["*Bachelor","*Master","*Doctor"],
             },
-            Page4:{
+            Page44:{
                 P4Q1:"WAHT'S YOUR MAJOR NOW?",
                 P4Q1_Options:["*Electric Automation","*Mechanical Engineering","*Electrical Engineering","*Computer Engineering","*Software Engineering","*..."],
                 P4Q2:"WAHT'S YOUR HIGHEST DEGREE NOW?",
                 P4Q2_Options:["*Bachelor","*Master","*Doctor","*..."],
-            },
-            Page5:{
-                P5Q1:"WHAT IS YOUR ACADEMIC BACKGROUND AND HOW DOES ITALIGN WITH THE PROGRAM YOU'RE APPLYING TO?",
-                P5Q1_PH:"*Automation",
-                P5Q2:"WAHT'S YOUR HIGHEST DEGREE NOW?",
-                P5Q2_PH:"*MASTER",
             }
         }
         

@@ -3,7 +3,7 @@ import texts from '../../../texts'
 import styles from './StdPageNew.module.css'
 
 
-export default function StdPage5() {
+export default function StdPage6() {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (event) => {
@@ -21,43 +21,43 @@ export default function StdPage5() {
   return (
     <div className={styles.container}>
       <div className={styles.QContainer}>
-        {texts.GeberalQ.StdPage.Page5.P5Q1}
+        {texts.GeberalQ.StdPage.Page6.P6Q1}
       </div>
       <div className={styles.AcontainerBgImg}>
         {/* <div className={styles.BorderStyle}> */}
         <div className={styles.Acontainer} >
-        "I have gained practical experience through internships and research projects, where I further developed my analytical, problem-solving, and teamwork skills. My internships at [
+        "The program at [
           <input 
-            style={{width:'280px'}}
+            style={{width:'160px'}}
             className={styles.inputKeyWords} 
-            placeholder='Previous Internship Company'
+            placeholder='University Name'
             onChange={handleChange}
             />
-            ]allowed me to work on real-world projects, enhancing my proficiency in [
+            ] aligns seamlessly with my academic interests, especially in courses like [specific courses or research areas] that fuel my passion for [
               <input 
-            style={{width:'220px'}}
+            style={{width:'180px'}}
             className={styles.inputKeyWords}
-            placeholder='mention relevant skills'
+            placeholder='academic interests'
             onChange={handleChange}
-            />]. Additionally, I am proficient in relevant [
+            />]. I'm inspired by the university's academic excellence and faculty expertise, particularly [
               <input 
-            style={{width:'120px'}}
+            style={{width:'155px'}}
             className={styles.inputKeyWords}
-            placeholder='specific field'
+            placeholder='Professor Name'
             onChange={handleChange}
-            />], such as [
+            />] in [
               <input 
-            style={{width:'200px'}}
+            style={{width:'250px'}}
             className={styles.inputKeyWords}
-            placeholder="skills: like languages"
+            placeholder="Professor's Research Area"
             onChange={handleChange}
-            />] and I have hands-on experience with [
+            />] These elements, combined with research opportunities, resonate with my career goals, and I'm eager to advance my expertise in [
               <input 
-            style={{width:'310px'}}
+            style={{width:'210px'}}
             className={styles.inputKeyWords}
-            placeholder="mention relevant software/tools"
+            placeholder="the major you applied"
             onChange={handleChange}
-            />]. These experiences have equipped me with the skills required to the program and contribute to research and academic endeavors."
+            />]."
         {/* </div> */}
         </div>
       </div>

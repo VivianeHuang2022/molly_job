@@ -3,7 +3,7 @@ import texts from '../../../texts'
 import styles from './StdPageNew.module.css'
 
 
-export default function StdPage2() {
+export default function StdPage7() {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (event) => {
@@ -21,37 +21,31 @@ export default function StdPage2() {
   return (
     <div className={styles.container}>
       <div className={styles.QContainer}>
-        {texts.GeberalQ.StdPage.Page2.P2Q1}
+        {texts.GeberalQ.StdPage.Page7.P7Q1}
       </div>
       <div className={styles.AcontainerBgImg}>
         {/* <div className={styles.BorderStyle}> */}
         <div className={styles.Acontainer} >
-        "I am enthusiastic about pursuing my [
+        "My long-term career goal is to [
           <input 
-            style={{width:'220px'}}
+            style={{width:'370px'}}
             className={styles.inputMustKeyWords} 
-            placeholder='Bachelor, Master, Phd'
+            placeholder='describe your career or academic goal'
             onChange={handleChange}
             />
-            ] degree at [
+            ] and I firmly believe that the study from the university will play a pivotal role in achieving this objective. The program's focus on [
               <input 
-            style={{width:'380px'}}
-            className={styles.inputMustKeyWords}
-            placeholder='the University Name under Application'
+            style={{width:'270px'}}
+            className={styles.inputKeyWords}
+            placeholder='mention program strengths'
             onChange={handleChange}
-            />]in Germany due to its distinguished reputation in[
+            />] will provide me with the expertise required to excel in my desired career field. I am excited to harness the knowledge and network I will gain during my studies to make a meaningful impact in the [
               <input 
-            style={{width:'340px'}}
-            className={styles.inputMustKeyWords}
-            placeholder='mention the relevant field of study'
+            style={{width:'375px'}}
+            className={styles.inputKeyWords}
+            placeholder='your intended career or academic field'
             onChange={handleChange}
-            />]. Additionally, the university's diverse and inclusive academic environment and its location in [
-              <input 
-            style={{width:'100px'}}
-            className={styles.inputMustKeyWords}
-            placeholder="City Name"
-            onChange={handleChange}
-            />] make it an ideal place for me to further my studies and research."
+            />] and contribute to the academic community.""
         {/* </div> */}
         </div>
       </div>

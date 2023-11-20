@@ -12,7 +12,7 @@ export default function CoverLetterTemplate() {
   const uId = localStorage.getItem("uId");
 
   const changeTemplate = async () => {
-    setCountId(prevCount => (prevCount >= 4 ? 1 : prevCount + 1));
+    setCountId(prevCount => (prevCount >= 6 ? 1 : prevCount + 1));
     console.log(countId);
     const response = await getCoverLetterImg(uId,countId);
     const file = new Blob([response.data], { type: "image/jpeg" });

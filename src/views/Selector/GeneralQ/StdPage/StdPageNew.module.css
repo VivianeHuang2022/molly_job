@@ -1,12 +1,10 @@
 .container{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    /* gap: 10px; */
+    /* gap: 20px; */
 }
 
 .QContainer{
-    font-size: 40px;
+    font-size: 35px;
     width: 50%;
     padding:2%;
     margin:0 5%;
@@ -38,16 +36,28 @@
     /* padding-bottom: 15%; */
 }
 
+.inputMustKeyWords{
+    all:unset;
+    width: 200px;
+    border: none;
+    font-size: 20px;
+    color: red;
+}
+
+.inputMustKeyWords::placeholder{
+    color: red;
+}
+
 .inputKeyWords{
     all:unset;
     width: 200px;
     border: none;
     font-size: 20px;
-    color: rgb(32, 206, 232);
+    color: green;
 }
 
 .inputKeyWords::placeholder{
-    color: rgb(32, 206, 232);
+    color: green;
 }
 
 /* 
