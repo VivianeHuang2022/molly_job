@@ -20,6 +20,7 @@ export default function StdPage1() {
       <div className={styles.title}>{texts.GeberalQ.StdPage.PgaeTitle}</div>
       <QInput 
         marB="20px"
+        name = "dremU"
         title={texts.GeberalQ.StdPage.Page1.P1Q1} 
         placeholder = {texts.GeberalQ.StdPage.Page1.P1Q1_PH}
         // value = {formData.title||''}
@@ -27,12 +28,14 @@ export default function StdPage1() {
         />
       <QInput
         marB="20px" 
+        name = "dremC"
         title={texts.GeberalQ.StdPage.Page1.P1Q2}
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q2_PH}
         // value={formData.company || ''}
         onChange={(e) => handleInputChange('company', e.target.value)}/>
       <QInput
-        marB="20px" 
+        marB="20px"
+        name = "dremD" 
         title={texts.GeberalQ.StdPage.Page1.P1Q3} 
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q3_PH}
         // value={formData.description || ''}

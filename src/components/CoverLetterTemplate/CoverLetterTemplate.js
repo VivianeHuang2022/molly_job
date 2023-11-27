@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { getCoverLetterImg} from "../../utils/api";
 import styles from "./CoverLetterTemplate.module.css";
 import "./CoverLetterTemplateNew.css";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import { Link } from "react-router-dom";
+// import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+// import { Link } from "react-router-dom";
 
 
 export default function CoverLetterTemplate() {
@@ -43,10 +43,11 @@ export default function CoverLetterTemplate() {
         )}
       </div>
       <div className={styles.coverLetterFooter}>
-        <button onClick={changeTemplate}>CHANGE TEMPLATE</button> OR{" "}
-        <Link to="/layout/resume" style={{ color: "blue" }}>
+        <button onClick={changeTemplate}>Change Template</button> 
+        <button onClick={changeTemplate}>Switch to German</button> 
+        {/* <Link to="/layout/resume" style={{ color: "blue" }}>
           CREATE RESUME
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

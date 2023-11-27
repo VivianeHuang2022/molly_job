@@ -17,6 +17,9 @@ export default function Home() {
   const handleToResume = ()=>{
     navigate("/layout/resume")
   }
+  const handleToUniGuide =()=>{
+    window.location.href = 'https://stu-de.org/';
+  }
   const{Id} = useParams()
 
   return (
@@ -29,7 +32,7 @@ export default function Home() {
             <button 
               className={styles.buttonStyle} 
               style={Id==="1"?{background:"gray"}:{background:"darkgray"}}
-              onClick={handleToGeneralQ}>Interview</button>
+              onClick={handleToGeneralQ}>{Id==="1"?"Program Match":"Interview"}</button>
             <button 
               className={styles.buttonStyle}
               style={Id==="1"?{background:"darkgray"}:{background:"saddlebrown"}}
@@ -38,6 +41,10 @@ export default function Home() {
               className={styles.buttonStyle}
               style={{background:"black"}}
               onClick={handleToResume}>Resume</button>
+            {Id==="1"&&<button 
+              className={styles.buttonStyle}
+              style={{background:"#0097b2"}}
+              onClick={handleToUniGuide}>Uni Guide</button>}
         </div>
         <img src={Id==="1"?studyShowImg:careerShowImg} alt='showImg' className={styles.showImg}
         style={Id==="2"?{marginRight:"3%"}:null}></img>

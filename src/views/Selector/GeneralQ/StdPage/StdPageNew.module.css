@@ -16,7 +16,17 @@
 .Acontainer{
     font-size: 20px;
     padding: 10px;
+    /* text-align: center; */
 }
+
+.contentEditableDiv {
+    white-space: pre-wrap;
+    border: none; /* 移除边框 */
+  }
+  
+  .contentEditableDiv:focus {
+    outline: none; /* 聚焦时不显示边框或轮廓 */
+  }
 
 .AcontainerBgImg{
     background-image: url('/src/assets/images/Answer_Bg_Img.png');

@@ -33,7 +33,7 @@ function Navbar(props) {
 
     const handleToInterviewPage = () => {
         setActiveItem("Interview");
-        navigate('interview')
+        localStorage.getItem("topicId")==="1"?navigate("/layout"):navigate('interview');
     };
     const handleToResumePage = () => {
         setActiveItem("Resume");
@@ -67,7 +67,7 @@ function Navbar(props) {
         }`}
         onClick={handleToInterviewPage}
       >
-        Interview
+        {localStorage.getItem("topicId")==="1"?"Program Match":"Interview"}
       </div>
       <div
         className={`${styles.menuItem} ${

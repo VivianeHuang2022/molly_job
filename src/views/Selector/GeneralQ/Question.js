@@ -1,27 +1,30 @@
-import React from "react";
+import React, { useContext, useState,useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import style from "./Question.module.css";
+import { InputContext, InputProvider } from './Context'; 
 
 
 export default function Question(props) {
+
+
   const childrenCount = props.Count;
   
   const navigate = useNavigate();
   const location = useLocation();
 
+
   const handleToNext = () => {
     const currentQNumber = parseInt(location.pathname.split("/page")[1], 10);
-    if (currentQNumber < childrenCount) {
-      const nextQ = "page" + (currentQNumber + 1);
-      navigate(`/layout/generalq/${nextQ}`);
-    }
-    if (currentQNumber === childrenCount) {
-      // navigate("/layout/interview");
-      navigate("/layout/coverletter");
-    }
-
-
+      if (currentQNumber < childrenCount) {
+        const nextQ = "page" + (currentQNumber + 1);
+        navigate(`/layout/generalq/${nextQ}`);
+      }
+      if (currentQNumber === childrenCount) {
+        // navigate("/layout/interview");
+        navigate("/layout/coverletter");
+      }
   };
+
   const handlToLast = () => {
     const currentQNumber = parseInt(location.pathname.split("/page")[1], 10);
     if (currentQNumber > 1) {
@@ -34,7 +37,7 @@ export default function Question(props) {
       {props.children}
       <div className={style.footer}>
         <button className={style.btnLast} onClick={handlToLast}>Back</button>
-        <button className={style.btnNext} onClick={handleToNext}>Next</button>
+        <button className={style.btnNext} type="submit" onClick={handleToNext}>Next</button>
       </div>
     </div>
   );
