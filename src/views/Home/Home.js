@@ -32,7 +32,7 @@ export default function Home() {
             <button 
               className={styles.buttonStyle} 
               style={Id==="1"?{background:"gray"}:{background:"darkgray"}}
-              onClick={handleToGeneralQ}>{Id==="1"?"Program Match":"Interview"}</button>
+              onClick={handleToGeneralQ}>{Id==="1"?"Application Guide":"Interview"}</button>
             <button 
               className={styles.buttonStyle}
               style={Id==="1"?{background:"darkgray"}:{background:"saddlebrown"}}

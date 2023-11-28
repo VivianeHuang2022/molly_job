@@ -67,7 +67,7 @@ function Navbar(props) {
         }`}
         onClick={handleToInterviewPage}
       >
-        {localStorage.getItem("topicId")==="1"?"Program Match":"Interview"}
+        {localStorage.getItem("topicId")==="1"?"Application Guide":"Interview"}
       </div>
       <div
         className={`${styles.menuItem} ${

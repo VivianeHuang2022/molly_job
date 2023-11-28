@@ -3,17 +3,17 @@ import texts from '../../../texts'
 import QInput from '../../../../components/QInput/QInput'
 import style from './JobPage.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { updateFormData, dataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
+import { updateJobData, jobDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 
 export default function JobPage4() {
 
   const dispatch = useDispatch();
-  var formData = useSelector((state) => state.formDataQP4); 
+  var formData = useSelector((state) => state.jobDataQP4); 
 
   // 使用 dispatch 更新 Redux Store
   const handleInputChange = (name, value) => {
-    dispatch(updateFormData({pNum:4, payload: { [name]: value }}));
-    dataSaveHandle(name, value, 4)
+    dispatch(updateJobData({pNum:4, payload: { [name]: value }}));
+    jobDataSaveHandle(name, value, 4)
   };
 
   return (

@@ -1,10 +1,33 @@
 import React, { useEffect, useRef} from 'react';
 import texts from '../../../texts'
 import styles from './StdPageNew.module.css'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 
 export default function StdPage2() {
+
+  //为了数据状态的持久化，数据必须存在本地
+  var formData = useSelector((state) => state.stdDataQP2); 
+  console.log(formData.drDegree);
+  console.log(formData.drUni);
+  console.log(formData.drStdField);
+  console.log(formData.drCity);
   const textRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const handleDataSave = () => {
+    const names = ["drDegree", "drUni", "drStdField", "drCity"];
+    console.log("come in");
+    names.forEach(name => {
+      const span = textRef.current.querySelector(`span[name="${name}"]`);
+      if (span) {
+        const data = span.innerText.replace('[', '').replace(']', '').trim();
+        dispatch(updateStdData({pNum: 2, payload: { [name]: data }}));
+        // 本地数据处理
+        stdDataSaveHandle(name, data, 2);
+      }
+    });
+  };
 
   const handleClearText = (event) => {
     event.target.innerText = '[ ';
@@ -47,29 +70,31 @@ export default function StdPage2() {
       <div className={styles.AcontainerBgImg}>
         <div className={styles.Acontainer} >
         <div
+        id="infoArea"
         className={styles.contentEditableDiv}
         ref={textRef}
         contentEditable
         style={{ 
           whiteSpace: 'pre-wrap'
         }}
-      >
+        onInput={handleDataSave}
+        >
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">"I am enthusiastic about pursuing my </span>
         </span>
-        <span style={{color:'red'}} onDoubleClick={handleClearText}>[ Bachelor, Master, Phd ]</span>
+        <span name="drDegree" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.drDegree||"Bachelor, Master, Phd"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
         <span type="No"> degree at </span>
         </span>
-        <span style={{color:'red'}} onDoubleClick={handleClearText}>[ the University Name under Application ]</span>
+        <span name="drUni" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.drUni||"the University Name under Application"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
         <span type="No"> in Germany due to its distinguished reputation in </span>
         </span>
-        <span style={{color:'red'}} onDoubleClick={handleClearText}>[ mention the relevant field of study ]</span>
+        <span name="drStdField" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.drStdField||"mention the relevant field of study"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
         <span type="No">. Additionally, the university's diverse and inclusive academic environment and its location in </span>
         </span>
-        <span style={{color:'red'}} onDoubleClick={handleClearText}>[ City Name ]</span>
+        <span name="drCity" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.drCity||"City Name"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
         <span type="No"> make it an ideal place for me to further my studies and research." </span>
         </span>

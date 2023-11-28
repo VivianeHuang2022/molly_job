@@ -1,56 +1,119 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const getInitialFormData = (pNum) => {
-  const storedFormData = localStorage.getItem('formDataQP'+pNum);
-  return storedFormData ? JSON.parse(storedFormData) : pNum===5?{"years":0}:{};
+//job初始化数据
+const getInitialJobData = (pNum) => {
+  const storedJobData = localStorage.getItem('jobDataQP'+pNum);
+  return storedJobData ? JSON.parse(storedJobData) : pNum===5?{"years":0}:{};
 };
 
-export const dataSaveHandle = (name, value, pNum)=>{
+//std初始化数据
+const getInitialStdData = (pNum) => {
+  const storedStdData = localStorage.getItem('stdDataQP'+pNum);
+  return storedStdData?JSON.parse(storedStdData):{};
+};
 
-  const storedFormData = JSON.parse(localStorage.getItem('formDataQP'+pNum)) || {};
+//job数据存储
+export const jobDataSaveHandle = (name, value, pNum)=>{
 
-    const updatedFormData = { ...storedFormData, [name]: value };
+  const storedJobData = JSON.parse(localStorage.getItem('jobDataQP'+pNum)) || {};
 
-    localStorage.setItem('formDataQP'+pNum, JSON.stringify(updatedFormData));
+    const updatedJobData = { ...storedJobData, [name]: value };
+
+    localStorage.setItem('jobDataQP'+pNum, JSON.stringify(updatedJobData));
 }
 
-export const formSlice = createSlice({
-  name: 'form',
+//std数据存储
+export const stdDataSaveHandle = (name, value, pNum)=>{
+
+  const storedStdData = JSON.parse(localStorage.getItem('stdDataQP'+pNum)) || {};
+
+    const updatedStdData = { ...storedStdData, [name]: value };
+
+    localStorage.setItem('stdDataQP'+pNum, JSON.stringify(updatedStdData));
+}
+
+export const dataSlice = createSlice({
+  name: 'localData',
   initialState: {
-    formDataQP1: getInitialFormData(1),
-    formDataQP2: getInitialFormData(2),
-    formDataQP3: getInitialFormData(3),
-    formDataQP4: getInitialFormData(4),
-    formDataQP5: getInitialFormData(5),
+    jobDataQP1: getInitialJobData(1),
+    jobDataQP2: getInitialJobData(2),
+    jobDataQP3: getInitialJobData(3),
+    jobDataQP4: getInitialJobData(4),
+    jobDataQP5: getInitialJobData(5),
+    stdDataQP1: getInitialStdData(1),
+    stdDataQP2: getInitialStdData(2),
+    stdDataQP3: getInitialStdData(3),
+    stdDataQP4: getInitialStdData(4),
+    stdDataQP5: getInitialStdData(5),
+    stdDataQP6: getInitialStdData(6),
+    stdDataQP7: getInitialStdData(7),
+    stdDataQP8: getInitialStdData(8),
+    stdDataQP9: getInitialStdData(9),
   },
   reducers: {
-    updateFormData(state, action) {
+    updateJobData(state, action) {
       const { pNum, payload } = action.payload; 
       // console.log(pNum)
       // console.log(payload)
       switch(pNum){
         case 1:
-          state.formDataQP1 = { ...state.formDataQP1, ...payload };
+          state.jDataQP1 = { ...state.jobDataQP1, ...payload };
           break;
         case 2:
-          state.formDataQP2 = { ...state.formDataQP2, ...payload };
+          state.jobDataQP2 = { ...state.jobDataQP2, ...payload };
           break;
         case 3:
-          state.formDataQP3 = { ...state.formDataQP3, ...payload};
+          state.jobDataQP3 = { ...state.jobDataQP3, ...payload};
           break;
         case 4:
-          state.formDataQP4 = { ...state.formDataQP4, ...payload };
+          state.jobDataQP4 = { ...state.jobDataQP4, ...payload };
           break;
         case 5:
-          state.formDataQP5 = { ...state.formDataQP5, ...payload };
+          state.jobDataQP5 = { ...state.jobDataQP5, ...payload };
           break;
         default:
-          state.formDataQP1 = { ...state.formDataQP1, ...payload };
+          state.jobDataQP1 = { ...state.jobDataQP1, ...payload };
       }
-    }
+    },
+    updateStdData(state, action) {
+      const { pNum, payload } = action.payload; 
+      // console.log(pNum)
+      // console.log(payload)
+      switch(pNum){
+        case 1:
+          state.stdDataQP1 = { ...state.stdDataQP1, ...payload };
+          break;
+        case 2:
+          state.stdDataQP2 = { ...state.stdDataQP2, ...payload };
+          break;
+        case 3:
+          state.stdDataQP3 = { ...state.stdDataQP3, ...payload};
+          break;
+        case 4:
+          state.stdDataQP4 = { ...state.stdDataQP4, ...payload };
+          break;
+        case 5:
+          state.stdDataQP5 = { ...state.stdDataQP5, ...payload };
+          break;
+        case 6:
+          state.stdDataQP6 = { ...state.stdDataQP6, ...payload };
+          break;
+        case 7:
+          state.stdDataQP7 = { ...state.stdDataQP7, ...payload };
+          break;
+        case 8:
+          state.stdDataQP8 = { ...state.stdDataQP8, ...payload };
+          break;
+        case 9:
+          state.stdDataQP9 = { ...state.stdDataQP9, ...payload };
+          break;
+        default:
+            break;
+      }
+    },
   },
 });
 
-export const { updateFormData } = formSlice.actions;
-export default formSlice.reducer;
+export const { updateJobData,updateStdData } = dataSlice.actions;
+export default dataSlice.reducer;
 

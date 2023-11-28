@@ -3,16 +3,17 @@ import texts from '../../../texts'
 import styles from './StdPage.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import QInput from '../../../../components/QInput/QInput'
+import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 // import SelectBox from '../../../../components/SelectBox/SelectBox'
 
 export default function StdPage1() {
   const dispatch = useDispatch();
-  // var formData = useSelector((state) => state.formDataQP1); 
+  var formData = useSelector((state) => state.stdDataQP1); 
     // 使用 dispatch 更新 Redux Store
     const handleInputChange = (name, value) => {
-      // dispatch(updateFormData({pNum:1, payload: { [name]: value }}));
-      // //本地数据处理
-      // dataSaveHandle(name, value, 1)
+      dispatch(updateStdData({pNum:1, payload: { [name]: value }}));
+      //本地数据处理
+      stdDataSaveHandle(name, value, 1)
     };
 
   return (
@@ -20,26 +21,23 @@ export default function StdPage1() {
       <div className={styles.title}>{texts.GeberalQ.StdPage.PgaeTitle}</div>
       <QInput 
         marB="20px"
-        name = "dremU"
         title={texts.GeberalQ.StdPage.Page1.P1Q1} 
         placeholder = {texts.GeberalQ.StdPage.Page1.P1Q1_PH}
-        // value = {formData.title||''}
-        onChange={(e)=>handleInputChange('title',e.target.value)}
+        value = {formData.drCountry||''}
+        onChange={(e)=>handleInputChange('drCountry',e.target.value)}
         />
       <QInput
         marB="20px" 
-        name = "dremC"
         title={texts.GeberalQ.StdPage.Page1.P1Q2}
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q2_PH}
-        // value={formData.company || ''}
-        onChange={(e) => handleInputChange('company', e.target.value)}/>
+        value={formData.drUni || ''}
+        onChange={(e) => handleInputChange('drUni', e.target.value)}/>
       <QInput
         marB="20px"
-        name = "dremD" 
         title={texts.GeberalQ.StdPage.Page1.P1Q3} 
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q3_PH}
-        // value={formData.description || ''}
-        onChange={(e) => handleInputChange('description', e.target.value)}
+        value={formData.apDegree || ''}
+        onChange={(e) => handleInputChange('apDegree', e.target.value)}
         />
     </div>
   )

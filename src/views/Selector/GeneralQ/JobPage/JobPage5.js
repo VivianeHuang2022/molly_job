@@ -3,11 +3,11 @@ import texts from '../../../texts'
 // import QInput from '../../../components/QInput/QInput'
 import style from './JobPage.module.css'
 import {useSelector,useDispatch } from 'react-redux';
-import { updateFormData, dataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
+import { updateJobData, jobDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 
 export default function JobPage5() {
   const [activeButton, setActiveButton] = useState(null);
-  var formData = useSelector((state) => state.formDataQP5); 
+  var formData = useSelector((state) => state.jobDataQP5); 
   useEffect(()=>{
     const defaultIndex = formData.years>6?6:formData.years
     setActiveButton(defaultIndex)
@@ -36,8 +36,8 @@ function CircleButton({ index, activeButton, setActiveButton }) {
   const handleClick = () => {
     setActiveButton(index);
     const name = 'years'
-    dispatch(updateFormData({pNum:5, payload: { [name]: index }}));
-    dataSaveHandle(name, index, 5)
+    dispatch(updateJobData({pNum:5, payload: { [name]: index }}));
+    jobDataSaveHandle(name, index, 5)
   };
   return (
     <button
