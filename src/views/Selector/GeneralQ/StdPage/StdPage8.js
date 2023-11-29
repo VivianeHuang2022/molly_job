@@ -1,10 +1,26 @@
 import React, { useRef, useEffect} from 'react';
 import texts from '../../../texts'
 import styles from './StdPageNew.module.css'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 
 export default function StdPage8() {
+  var formData = useSelector((state) => state.stdDataQP8); 
   const textRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const handleDataSave = () => {
+    const names = ["didLan", "didTest", "didScore"];
+    names.forEach(name => {
+      const span = textRef.current.querySelector(`span[name="${name}"]`);
+      if (span) {
+        const data = span.innerText.replace('[', '').replace(']', '').trim();
+        dispatch(updateStdData({pNum: 8, payload: { [name]: data }}));
+        // 本地数据处理
+        stdDataSaveHandle(name, data, 8);
+      }
+    });
+  };
 
   const handleClearText = (event) => {
     event.target.innerText = '[ ';
@@ -54,19 +70,20 @@ export default function StdPage8() {
         style={{ 
           whiteSpace: 'pre-wrap'
         }}
+        onInput={handleDataSave}
         >
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">"I am proficient in </span>
           </span>
-          <span style={{color:'red'}} onDoubleClick={handleClearText}>[ German or English ]</span>
+          <span name="didLan" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.didLan||"German or English"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> having completed my undergraduate studies in English-medium instruction. Furthermore, I have taken the </span>
           </span>
-          <span style={{color:'red'}} onDoubleClick={handleClearText}>[ German and English Language Proficiency Test Name ]</span>
+          <span name="didTest" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.didTest||"German and English Language Proficiency Test Name"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> and achieved </span>
           </span>
-          <span style={{color:'red'}} onDoubleClick={handleClearText}>[ your score ]</span>
+          <span name="didScore" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.didScore||"your score"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">. This language proficiency, in conjunction with my strong communication skills, ensures my ability to actively participate in all aspects of the program at University." </span>
           </span>

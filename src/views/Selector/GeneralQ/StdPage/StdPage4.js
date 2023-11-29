@@ -1,11 +1,27 @@
 import React, { useRef,useEffect } from 'react';
 import texts from '../../../texts'
 import styles from './StdPageNew.module.css'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 
 export default function StdPage4() {
   
+  var formData = useSelector((state) => state.stdDataQP4); 
   const textRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const handleDataSave = () => {
+    const names = ["getProject", "getConference", "getAwards", "getCompetitions", "getSkills", "curCourses", "getResearch"];
+    names.forEach(name => {
+      const span = textRef.current.querySelector(`span[name="${name}"]`);
+      if (span) {
+        const data = span.innerText.replace('[', '').replace(']', '').trim();
+        dispatch(updateStdData({pNum: 4, payload: { [name]: data }}));
+        // 本地数据处理
+        stdDataSaveHandle(name, data, 4);
+      }
+    });
+  };
 
   const handleClearText = (event) => {
     event.target.innerText = '[ ';
@@ -55,31 +71,32 @@ export default function StdPage4() {
         style={{ 
           whiteSpace: 'pre-wrap'
         }}
+        onInput={handleDataSave}
         >
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">"During my studies, I had the opportunity to engage in a research project focused on </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ describe the project ]</span>
+          <span name="getProject" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getProject||"describe the project"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> This research endeavor culminated in a published paper in </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ mention the journal or conference ]</span>
+          <span name="getConference" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getConference||"mention the journal or conference"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> , and I was honored with the </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ mention any awards or recognition ]</span>
+          <span name="getAwards" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getAwards||"mention any awards or recognition"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> for my contributions. Furthermore, I have been involved in </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ mention volunteer work or competitions ]</span>
+          <span name="getCompetitions" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getCompetitions||"mention volunteer work or competitions"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> , which enriched my practical understanding of </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ specific research area or skill relevant to the volunteer work/competition ]</span>
+          <span name="getSkills" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getSkills||"specific research area or skill relevant to the volunteer work/competition"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> . These experiences have not only expanded my knowledge in </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ specific research area ]</span>
+          <span name="getResearch" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getResearch||"specific research area"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> but have also reinforced my commitment to pursuing advanced studies and making significant contributions to the field." </span>
           </span>

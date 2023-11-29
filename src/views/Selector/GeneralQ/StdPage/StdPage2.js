@@ -8,10 +8,6 @@ export default function StdPage2() {
 
   //为了数据状态的持久化，数据必须存在本地
   var formData = useSelector((state) => state.stdDataQP2); 
-  console.log(formData.drDegree);
-  console.log(formData.drUni);
-  console.log(formData.drStdField);
-  console.log(formData.drCity);
   const textRef = useRef(null);
   const dispatch = useDispatch();
 

@@ -1,10 +1,26 @@
 import React, { useRef,useEffect } from 'react';
 import texts from '../../../texts'
 import styles from './StdPageNew.module.css'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 
 export default function StdPage7() {
+  var formData = useSelector((state) => state.stdDataQP7); 
   const textRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const handleDataSave = () => {
+    const names = ["myGoal", "proStrenghths", "myCareer"];
+    names.forEach(name => {
+      const span = textRef.current.querySelector(`span[name="${name}"]`);
+      if (span) {
+        const data = span.innerText.replace('[', '').replace(']', '').trim();
+        dispatch(updateStdData({pNum: 7, payload: { [name]: data }}));
+        // 本地数据处理
+        stdDataSaveHandle(name, data, 7);
+      }
+    });
+  };
 
   const handleClearText = (event) => {
     event.target.innerText = '[ ';
@@ -55,19 +71,20 @@ export default function StdPage7() {
         style={{ 
           whiteSpace: 'pre-wrap'
         }}
+        onInput={handleDataSave}
         >
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">"My long-term career goal is to </span>
           </span>
-          <span style={{color:'red'}} onDoubleClick={handleClearText}>[ describe your career or academic goal ]</span>
+          <span name="myGoal" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.myGoal||"describe your career or academic goal"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> and I firmly believe that the study from the university will play a pivotal role in achieving this objective. The program's focus on </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ mention program strengths ]</span>
+          <span name="proStrenghths" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.proStrenghths||"mention program strengths"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> will provide me with the expertise required to excel in my desired career field. I am excited to harness the knowledge and network I will gain during my studies to make a meaningful impact in the </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ your intended career or academic field ]</span>
+          <span name="myCareer" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.myCareer||"your intended career or academic field"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> and contribute to the academic community." </span>
           </span>

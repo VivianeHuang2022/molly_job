@@ -1,10 +1,26 @@
 import React, { useRef,useEffect } from 'react';
 import texts from '../../../texts'
 import styles from './StdPageNew.module.css'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 
 export default function StdPage6() {
+  var formData = useSelector((state) => state.stdDataQP6); 
   const textRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const handleDataSave = () => {
+    const names = ["profUni", "profInterests", "profName", "profResearch", "profMajor"];
+    names.forEach(name => {
+      const span = textRef.current.querySelector(`span[name="${name}"]`);
+      if (span) {
+        const data = span.innerText.replace('[', '').replace(']', '').trim();
+        dispatch(updateStdData({pNum: 6, payload: { [name]: data }}));
+        // 本地数据处理
+        stdDataSaveHandle(name, data, 6);
+      }
+    });
+  };
 
   const handleClearText = (event) => {
     event.target.innerText = '[ ';
@@ -54,27 +70,28 @@ export default function StdPage6() {
         style={{ 
           whiteSpace: 'pre-wrap'
         }}
+        onInput={handleDataSave}
         >
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">"The program at </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ University Name ]</span>
+          <span name="profUni" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profUni||"University Name"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> aligns seamlessly with my academic interests, especially in courses like [specific courses or research areas] that fuel my passion for </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ academic interests ]</span>
+          <span name="profInterests" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profInterests||"academic interests"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> . I'm inspired by the university's academic excellence and faculty expertise, particularly </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ Professor Name ]</span>
+          <span name="profName" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profName||"Professor Name"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> in </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ Professor's Research Area ]</span>
+          <span name="profResearch" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profResearch||"Professor's Research Area"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> These elements, combined with research opportunities, resonate with my career goals, and I'm eager to advance my expertise in </span>
           </span>
-          <span style={{color:'green'}} onDoubleClick={handleClearText}>[ the major you applied ]</span>
+          <span name="profMajor" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profMajor||"the major you applied"} ]</span>
         </div>
         </div>
       </div>
