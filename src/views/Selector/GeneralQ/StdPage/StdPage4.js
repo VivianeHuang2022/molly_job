@@ -41,7 +41,7 @@ export default function StdPage4() {
     selection.removeAllRanges(); // 清除任何现有的选择
     selection.addRange(range);
     };
-
+    var stdDataQP1 = localStorage.getItem("stdDataQP2")?JSON.parse(localStorage.getItem("stdDataQP1")):{};
     useEffect(() => {
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
@@ -76,7 +76,7 @@ export default function StdPage4() {
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">"During my studies, I had the opportunity to engage in a research project focused on </span>
           </span>
-          <span name="getProject" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getProject||"describe the project"} ]</span>
+          <span name="getProject" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getProject||"If available, describe the project"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> This research endeavor culminated in a published paper in </span>
           </span>
@@ -92,13 +92,13 @@ export default function StdPage4() {
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> , which enriched my practical understanding of </span>
           </span>
-          <span name="getSkills" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getSkills||"specific research area or skill relevant to the volunteer work/competition"} ]</span>
+          <span name="getSkills" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getSkills||"specific research area or skill"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> . These experiences have not only expanded my knowledge in </span>
           </span>
-          <span name="getResearch" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.getResearch||"specific research area"} ]</span>
+          <span name="getResearch" style={{color:'black'}} onDoubleClick={handleClearText}>[ {stdDataQP1.drMajor||"specific research area"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No"> but have also reinforced my commitment to pursuing advanced studies and making significant contributions to the field." </span>
+          <span type="No">." </span>
           </span>
         </div>
         </div>

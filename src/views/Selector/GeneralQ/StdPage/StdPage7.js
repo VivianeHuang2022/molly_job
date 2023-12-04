@@ -10,7 +10,7 @@ export default function StdPage7() {
   const dispatch = useDispatch();
 
   const handleDataSave = () => {
-    const names = ["myGoal", "proStrenghths", "myCareer"];
+    const names = ["careerOrGoal", "careerOrField"];
     names.forEach(name => {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
@@ -76,8 +76,12 @@ export default function StdPage7() {
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">"My long-term career goal is to </span>
           </span>
-          <span name="myGoal" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.myGoal||"describe your career or academic goal"} ]</span>
+          <span name="careerOrGoal" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.careerOrGoal||"describe your career or academic goal"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
+          <span type="No"> I will gain during my studies to make a meaningful impact in the </span>
+          </span>
+          <span name="careerOrField" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.careerOrField||"your intended career or academic field]"} ]</span>
+          {/* <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> and I firmly believe that the study from the university will play a pivotal role in achieving this objective. The program's focus on </span>
           </span>
           <span name="proStrenghths" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.proStrenghths||"mention program strengths"} ]</span>
@@ -87,7 +91,7 @@ export default function StdPage7() {
           <span name="myCareer" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.myCareer||"your intended career or academic field"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> and contribute to the academic community." </span>
-          </span>
+          </span> */}
         </div>
         </div>
       </div>

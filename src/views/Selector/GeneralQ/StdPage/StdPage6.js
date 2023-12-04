@@ -10,7 +10,7 @@ export default function StdPage6() {
   const dispatch = useDispatch();
 
   const handleDataSave = () => {
-    const names = ["profUni", "profInterests", "profName", "profResearch", "profMajor"];
+    const names = ["profUni","ideaArea", "profName", "profResearch"];
     names.forEach(name => {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
@@ -21,7 +21,7 @@ export default function StdPage6() {
       }
     });
   };
-
+  var stdDataQP1 = localStorage.getItem("stdDataQP2")?JSON.parse(localStorage.getItem("stdDataQP1")):{};
   const handleClearText = (event) => {
     event.target.innerText = '[ ';
       const span = event.target;
@@ -34,7 +34,6 @@ export default function StdPage6() {
     const range = document.createRange();
     range.setStart(textNode, 0);
     range.setEnd(textNode, 0); // 1 表示空白节点的长度
-
     // 获取当前的选择对象并将其更改为新的范围
     const selection = window.getSelection();
     selection.removeAllRanges(); // 清除任何现有的选择
@@ -75,11 +74,15 @@ export default function StdPage6() {
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">"The program at </span>
           </span>
-          <span name="profUni" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profUni||"University Name"} ]</span>
+          <span name="profUni" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profUni||"the university name under application"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No"> aligns seamlessly with my academic interests, especially in courses like [specific courses or research areas] that fuel my passion for </span>
+          <span type="No"> aligns seamlessly with my academic interests, especially in courses like [] that fuel my passion for </span>
           </span>
-          <span name="profInterests" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profInterests||"academic interests"} ]</span>
+          <span name="ideaArea" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.ideaArea||"specific courses or research areas"} ]</span>
+          <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
+          <span type="No"> that fuel my passion in </span>
+          </span>
+          <span style={{color:'black'}} onDoubleClick={handleClearText}>[ {stdDataQP1.drMajor||"the major you applied"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> . I'm inspired by the university's academic excellence and faculty expertise, particularly </span>
           </span>
@@ -89,9 +92,9 @@ export default function StdPage6() {
           </span>
           <span name="profResearch" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profResearch||"Professor's Research Area"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No"> These elements, combined with research opportunities, resonate with my career goals, and I'm eager to advance my expertise in </span>
+          <span type="No">." </span>
           </span>
-          <span name="profMajor" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profMajor||"the major you applied"} ]</span>
+          {/* <span name="profMajor" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profMajor||"the major you applied"} ]</span> */}
         </div>
         </div>
       </div>

@@ -14,10 +14,13 @@
 .input{
     height: auto;
     font-size: 20px;
-    border-radius: 30px;
+    border-radius: 4px;
     padding: 10px 10px;
-    background-color: rgb(190, 188, 188);
-    border: none;
+    /* background-color: rgb(190, 188, 188); */
+    background-color: #f2f2f2;
+    border: 1px solid #d9d9d9;
+    /* border: none; */
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 .input::placeholder{
     font-size: 20px;

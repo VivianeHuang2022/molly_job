@@ -149,3 +149,25 @@ export const getCoverLetterImg = async(uId,countId)=>{
         throw error;
     }
 }
+
+export const createCoverLetter = async(dataGroup)=>{
+    const postUrl = `/api/CoverLetter/CreateCoverLetter`
+    try {
+        const response = await axios({
+            method: 'post',      
+            url: postUrl,
+            responseType: 'blob', // Important
+            data:dataGroup,    
+            headers: {           
+                // 'Content-Type': 'multipart/form-data',
+                'accept': '*/*',
+            },
+            timeout: 10000,       
+            // ... 其他配置
+           });
+
+           return response
+    } catch (error) {
+        throw error;
+    }
+}

@@ -36,8 +36,8 @@ export default function StdPage1() {
         marB="20px"
         title={texts.GeberalQ.StdPage.Page1.P1Q3} 
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q3_PH}
-        value={formData.apDegree || ''}
-        onChange={(e) => handleInputChange('apDegree', e.target.value)}
+        value={formData.drDegree || ''}
+        onChange={(e) => handleInputChange('drDegree', e.target.value)}
         />
     </div>
   )

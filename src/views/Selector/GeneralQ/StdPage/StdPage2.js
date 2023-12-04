@@ -7,20 +7,19 @@ import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // �
 export default function StdPage2() {
 
   //为了数据状态的持久化，数据必须存在本地
-  var formData = useSelector((state) => state.stdDataQP2); 
+  var formData = useSelector((state) => state.stdDataQP1); 
   const textRef = useRef(null);
   const dispatch = useDispatch();
 
   const handleDataSave = () => {
-    const names = ["drDegree", "drUni", "drStdField", "drCity"];
-    console.log("come in");
+    const names = ["drDegree", "drUni", "drCountry", "drMajor"];
     names.forEach(name => {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
         const data = span.innerText.replace('[', '').replace(']', '').trim();
-        dispatch(updateStdData({pNum: 2, payload: { [name]: data }}));
+        dispatch(updateStdData({pNum: 1, payload: { [name]: data }}));
         // 本地数据处理
-        stdDataSaveHandle(name, data, 2);
+        stdDataSaveHandle(name, data, 1);
       }
     });
   };
@@ -84,16 +83,20 @@ export default function StdPage2() {
         </span>
         <span name="drUni" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.drUni||"the University Name under Application"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-        <span type="No"> in Germany due to its distinguished reputation in </span>
+        <span type="No"> in </span>
         </span>
-        <span name="drStdField" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.drStdField||"mention the relevant field of study"} ]</span>
+        <span name="drCountry" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.drCountry||"Dream Country"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
+        <span type="No"> due to its distinguished reputation in </span>
+        </span>
+        <span name="drMajor" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.drMajor||"the major you applied"} ].</span>
+        {/* <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
         <span type="No">. Additionally, the university's diverse and inclusive academic environment and its location in </span>
         </span>
         <span name="drCity" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.drCity||"City Name"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
         <span type="No"> make it an ideal place for me to further my studies and research." </span>
-        </span>
+        </span> */}
       </div>
         </div>
       </div>

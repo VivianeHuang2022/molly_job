@@ -85,7 +85,7 @@ export default function StdPage8() {
           </span>
           <span name="didScore" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.didScore||"your score"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No">. This language proficiency, in conjunction with my strong communication skills, ensures my ability to actively participate in all aspects of the program at University." </span>
+          <span type="No">." </span>
           </span>
         </div>
         </div>

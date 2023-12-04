@@ -87,23 +87,23 @@ export default function StdPage3() {
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> in </span>
         </span>
-        <span name="curCountry" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.curCountry||"your home country"} ]</span>
+        <span name="curCountry" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.curCountry||"the country you studied"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No">. where I gained a solid foundation in my major and developed a strong background in relevant areas of study such as</span>
+          <span type="No">. where I gained a solid foundation in my major and developed a strong background in </span>
         </span>
-        <span name="curFocus" style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.curFocus||"mention relevant focus"} ]</span>
+        <span style={{color:'red'}} onDoubleClick={handleClearText}>[ {formData.curMajor||"your major"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No">, My academic journey has equipped me with the analytical and critical thinking skills necessary for success in the program. Moreover, my coursework in </span>
+          <span type="No">. Moreover, my coursework in </span>
         </span>
-        <span name="curCourses" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.curCourses||"mention relevant courses"} ]</span>
+        <span name="curCourses" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.curCourses||"mention 2-3 relevant courses"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No"> and my research project on </span>
+          <span type="No"> have deepened my interest in this field" </span>
         </span>
-        <span name="curProjects" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.curProjects||"If available, please briefly describe your projects"} ]</span>
+        {/* <span name="curProjects" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.curProjects||"If available, please briefly describe your projects"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> have deepened my interest in </span>
         </span>
-        <span name="curInterests" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.curInterests||"specific area of your field"} ]</span>
+        <span name="curInterests" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.curInterests||"specific area of your field"} ]</span> */}
         </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ export default function StdPage5() {
   const dispatch = useDispatch();
 
   const handleDataSave = () => {
-    const names = ["myInternship", "mySkills", "myField", "myLanguages", "myTools"];
+    const names = ["internRole","internCompany", "internSkills", "internField", "internTools"];
     names.forEach(name => {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
@@ -74,27 +74,31 @@ export default function StdPage5() {
         onInput={handleDataSave}
         >
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No">"I have gained practical experience through internships and research projects, where I further developed my analytical, problem-solving, and teamwork skills. My internships at </span>
+          <span type="No">"Furthermore, my internships as a/an </span>
           </span>
-          <span name="myInternship" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.myInternship||"Previous Internship Company"} ]</span>
+          <span name="internRole" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.internRole||"Previous Internship Role"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No"> allowed me to work on real-world projects, enhancing my proficiency in </span>
+          <span type="No"> at </span>
           </span>
-          <span name="mySkills" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.mySkills||"mention relevant skills"} ]</span>
+          <span name="internCompany" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.internCompany||"Previous Internship Company"} ]</span>
+          <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
+          <span type="No"> enhanced my proficiency in </span>
+          </span>
+          <span name="internSkills" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.internSkills||"mention relevant skills"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> . Additionally, I am proficient in relevant </span>
           </span>
-          <span name="myField" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.myField||"specific field"} ]</span>
-          <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
+          <span name="internField" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.internField||"specific field"} ]</span>
+          {/* <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> , such as </span>
           </span>
-          <span name="myLanguages" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.myLanguages||"skills: like languages"} ]</span>
+          <span name="myLanguages" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.myLanguages||"skills: like languages"} ]</span> */}
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> and I have hands-on experience with </span>
           </span>
-          <span name="myTools" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.myTools||"mention relevant software/tools"} ]</span>
+          <span name="internTools" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.internTools||"mention relevant software/tools"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No"> . These experiences have equipped me with the skills required to the program and contribute to research and academic endeavors." </span>
+          <span type="No">." </span>
           </span>
         </div>
         </div>
