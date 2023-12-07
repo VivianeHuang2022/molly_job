@@ -11,7 +11,7 @@ export default function StdPage4() {
   const dispatch = useDispatch();
 
   const handleDataSave = () => {
-    const names = ["getProject", "getConference", "getAwards", "getCompetitions", "getSkills", "curCourses", "getResearch"];
+    const names = ["getProject", "getConference", "getAwards", "getCompetitions", "getSkills"];
     names.forEach(name => {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
@@ -96,7 +96,7 @@ export default function StdPage4() {
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No"> . These experiences have not only expanded my knowledge in </span>
           </span>
-          <span name="getResearch" style={{color:'black'}} onDoubleClick={handleClearText}>[ {stdDataQP1.drMajor||"specific research area"} ]</span>
+          <span style={{color:'black'}} onDoubleClick={handleClearText}>[ {stdDataQP1.drMajor||"specific research area"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">." </span>
           </span>

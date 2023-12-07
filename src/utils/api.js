@@ -150,8 +150,29 @@ export const getCoverLetterImg = async(uId,countId)=>{
     }
 }
 
-export const createCoverLetter = async(dataGroup)=>{
-    const postUrl = `/api/CoverLetter/CreateCoverLetter`
+export const createStdCoverLetter = async(dataGroup)=>{
+    const postUrl = `/api/CoverLetter/CreateStdCoverLetter`
+    try {
+        const response = await axios({
+            method: 'post',      
+            url: postUrl,
+            data:dataGroup,    
+            headers: {           
+                // 'Content-Type': 'multipart/form-data',
+                'accept': '*/*',
+            },
+            timeout: 10000,       
+            // ... 其他配置
+           });
+
+           return response
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const createJobCoverLetter = async(dataGroup)=>{
+    const postUrl = `/api/CoverLetter/CreateStdCoverLetter`
     try {
         const response = await axios({
             method: 'post',      

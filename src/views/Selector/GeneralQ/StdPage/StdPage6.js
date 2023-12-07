@@ -10,7 +10,7 @@ export default function StdPage6() {
   const dispatch = useDispatch();
 
   const handleDataSave = () => {
-    const names = ["profUni","ideaArea", "profName", "profResearch"];
+    const names = ["ideaArea", "profName", "profResearch"];
     names.forEach(name => {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
@@ -21,7 +21,7 @@ export default function StdPage6() {
       }
     });
   };
-  var stdDataQP1 = localStorage.getItem("stdDataQP2")?JSON.parse(localStorage.getItem("stdDataQP1")):{};
+  var stdDataQP1 = localStorage.getItem("stdDataQP1")?JSON.parse(localStorage.getItem("stdDataQP1")):{};
   const handleClearText = (event) => {
     event.target.innerText = '[ ';
       const span = event.target;
@@ -74,9 +74,9 @@ export default function StdPage6() {
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
           <span type="No">"The program at </span>
           </span>
-          <span name="profUni" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.profUni||"the university name under application"} ]</span>
+          <span name="profUni" style={{color:'green'}} onDoubleClick={handleClearText}>[ {stdDataQP1.drUni||"the university name under application"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
-          <span type="No"> aligns seamlessly with my academic interests, especially in courses like [] that fuel my passion for </span>
+          <span type="No"> aligns seamlessly with my academic interests, especially in courses like </span>
           </span>
           <span name="ideaArea" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.ideaArea||"specific courses or research areas"} ]</span>
           <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
