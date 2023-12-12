@@ -95,7 +95,6 @@ const generateStdDataGroup = () => {
     getAwards:stdDataQP4.getAwards,
     getCompetitions:stdDataQP4.getCompetitions,
     getSkills:stdDataQP4.getSkills,
-    getResearch:stdDataQP4.getResearch,
     // intern Info
     internRole:stdDataQP5.internRole,
     internCompany:stdDataQP5.internCompany,
