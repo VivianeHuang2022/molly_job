@@ -108,8 +108,9 @@ export const uploadResumePost = async(request,uId,typeId)=>{
     }
 }
 
-export const downloadCoverLetterPdf = async()=>{
-    const postUrl = '/api/CoverLetter/DownloadCoverLetterPdf'
+export const downloadCoverLetterPdf = async(uId,countId,lan)=>{
+    const postUrl = `/api/CoverLetter/DownloadCoverLetterPdf?uId=${uId}&countId=${countId}&lan=${lan}`
+    console.log(postUrl)
     try {
         const response = await axios({
             method: 'get',      
@@ -129,8 +130,29 @@ export const downloadCoverLetterPdf = async()=>{
     }
 }
 
-export const getCoverLetterImg = async(uId,countId)=>{
-    const postUrl = `/api/CoverLetter/GetCoverLetterImg?uId=${uId}&countId=${countId}`
+export const getCoverLetterImg = async(uId,countId,lan)=>{
+    const postUrl = `/api/CoverLetter/GetCoverLetterImg?uId=${uId}&countId=${countId}&lan=${lan}`
+    try {
+        const response = await axios({
+            method: 'get',      
+            url: postUrl,
+            responseType: 'blob', // Important    
+            headers: {           
+                // 'Content-Type': 'multipart/form-data',
+                'accept': '*/*',
+            },
+            timeout: 10000,       
+            // ... 其他配置
+           });
+
+           return response
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const switchCoverLetterImg = async(uId,countId,lan)=>{
+    const postUrl = `/api/CoverLetter/CreateCoverLetterDE?uId=${uId}&countId=${countId}&lan=${lan}`
     try {
         const response = await axios({
             method: 'get',      
@@ -161,7 +183,7 @@ export const createStdCoverLetter = async(dataGroup)=>{
                 // 'Content-Type': 'multipart/form-data',
                 'accept': '*/*',
             },
-            timeout: 10000,       
+            timeout: 20000,       
             // ... 其他配置
            });
 

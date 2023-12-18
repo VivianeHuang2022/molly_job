@@ -5,6 +5,7 @@ import {Avatar, Dropdown, Menu } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import items from "./items";
 import { useNavigate,useLocation } from "react-router-dom";
+import texts from "../texts";
 
 function Navbar(props) {
     const navigate = useNavigate();
@@ -67,7 +68,7 @@ function Navbar(props) {
         }`}
         onClick={handleToInterviewPage}
       >
-        {localStorage.getItem("topicId")==="1"?"Application Guide":"Interview"}
+        {localStorage.getItem("topicId")==="1"?texts.homeTexts.applicationTxt:texts.homeTexts.interviewTxt}
       </div>
       <div
         className={`${styles.menuItem} ${
@@ -75,7 +76,7 @@ function Navbar(props) {
         }`}
         onClick={handleToCoverLetterPage}
       >
-        Cover Letter
+        {texts.homeTexts.coverletterTxt}
       </div>
       <div
         className={`${styles.menuItem} ${
@@ -83,7 +84,7 @@ function Navbar(props) {
         }`}
         onClick={handleToResumePage}
       >
-        Resume
+        {texts.homeTexts.resumeTxt}
       </div>
       <div
         className={`${styles.menuItem} ${
@@ -91,7 +92,7 @@ function Navbar(props) {
         }`}
         onClick={handleToMacthPage}
       >
-        Match
+        {texts.homeTexts.matchTxt}
       </div>
 
       <Dropdown

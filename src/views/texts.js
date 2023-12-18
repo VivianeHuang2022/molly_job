@@ -13,6 +13,12 @@ const texts ={
     homeTexts:{
         studyTitle:"YOUR UNIVERSITY GUIDE",
         careerTitle:"YOUR CAREER GUIDE",
+        applicationTxt:"Application Guide",
+        interviewTxt:"Interview",
+        coverletterTxt:"Cover Letter",
+        resumeTxt:"Resume",
+        uniGuidTxt:"Uni Guide",
+        matchTxt:"Match",
     },
     modalTexts:{
         title:"Update your info or let's Chat!",

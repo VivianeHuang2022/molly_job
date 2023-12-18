@@ -32,19 +32,19 @@ export default function Home() {
             <button 
               className={styles.buttonStyle} 
               style={Id==="1"?{background:"gray"}:{background:"darkgray"}}
-              onClick={handleToGeneralQ}>{Id==="1"?"Application Guide":"Interview"}</button>
+              onClick={handleToGeneralQ}>{Id==="1"?texts.homeTexts.applicationTxt:texts.homeTexts.interviewTxt}</button>
             <button 
               className={styles.buttonStyle}
               style={Id==="1"?{background:"darkgray"}:{background:"saddlebrown"}}
-              onClick={handleToCoverLetter}>Cover Letter</button>
+              onClick={handleToCoverLetter}>{texts.homeTexts.coverletterTxt}</button>
             <button 
               className={styles.buttonStyle}
               style={{background:"black"}}
-              onClick={handleToResume}>Resume</button>
+              onClick={handleToResume}>{texts.homeTexts.resumeTxt}</button>
             {Id==="1"&&<button 
               className={styles.buttonStyle}
               style={{background:"#0097b2"}}
-              onClick={handleToUniGuide}>Uni Guide</button>}
+              onClick={handleToUniGuide}>{texts.homeTexts.uniGuidTxt}</button>}
         </div>
         <img src={Id==="1"?studyShowImg:careerShowImg} alt='showImg' className={styles.showImg}
         style={Id==="2"?{marginRight:"3%"}:null}></img>
