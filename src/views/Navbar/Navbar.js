@@ -5,14 +5,15 @@ import {Avatar, Dropdown, Menu } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import items from "./items";
 import { useNavigate,useLocation } from "react-router-dom";
-import texts from "../texts";
+import texts_EN from "../texts";
+import texts_CN from "../texts_CN";
 
 function Navbar(props) {
     const navigate = useNavigate();
     const location = useLocation();
     const [activeItem, setActiveItem] = useState("");
     const [hoveredItem, setHoveredItem] = useState(null);
-
+    const texts = localStorage.getItem("Lan")==="CN"?texts_CN:texts_EN
     const updateActiveItemBasedOnPath = (path) => {
       switch(path) {
           case '/layout/interview':

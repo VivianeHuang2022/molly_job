@@ -110,7 +110,6 @@ export const uploadResumePost = async(request,uId,typeId)=>{
 
 export const downloadCoverLetterPdf = async(uId,countId,lan)=>{
     const postUrl = `/api/CoverLetter/DownloadCoverLetterPdf?uId=${uId}&countId=${countId}&lan=${lan}`
-    console.log(postUrl)
     try {
         const response = await axios({
             method: 'get',      

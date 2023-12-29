@@ -1,5 +1,6 @@
 import React, { useEffect, useRef} from 'react';
-import texts from '../../../texts'
+import texts_EN from '../../../texts'
+import texts_CN from '../../../texts_CN'
 import styles from './StdPageNew.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
@@ -10,7 +11,7 @@ export default function StdPage2() {
   var formData = useSelector((state) => state.stdDataQP1); 
   const textRef = useRef(null);
   const dispatch = useDispatch();
-
+  const texts = localStorage.getItem("Lan")==="CN"?texts_CN:texts_EN
   const handleDataSave = () => {
     const names = ["drDegree", "drUni", "drCountry", "drMajor"];
     names.forEach(name => {

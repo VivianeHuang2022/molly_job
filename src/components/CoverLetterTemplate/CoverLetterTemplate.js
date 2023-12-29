@@ -29,7 +29,7 @@ export default function CoverLetterTemplate(props) {
       }else{
         setCountId(newCountId);
       }
-      
+      console.log(data)
   };
 
   const switchLanguage = async (curCountId)=>{
@@ -59,6 +59,11 @@ export default function CoverLetterTemplate(props) {
   useEffect(() => {
     fetchImg(language);
     // setCountId(2)
+    var data = {
+      countId:countId,
+      language:language
+    }
+    props.onUpdateData(data);
   }, []);
   return (
     <div className={styles.coverLetterContainer}>

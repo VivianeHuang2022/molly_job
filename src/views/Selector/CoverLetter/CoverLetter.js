@@ -15,7 +15,7 @@ export default function CoverLetter() {
       const url = window.URL.createObjectURL(new Blob([response.data]));
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'example.pdf';
+        a.download = 'coverletter.pdf';
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);

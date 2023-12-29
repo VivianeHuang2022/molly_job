@@ -3,17 +3,17 @@ import { useNavigate, useLocation } from "react-router-dom";
 import style from "./Question.module.css";
 import { createStdCoverLetter} from "../../../utils/api";
 import AlertContext from '../../../components/AlertProvider/AlertContext';
-
+import texts_EN from '../../texts'
+import texts_CN from '../../texts_CN'
 
 export default function Question(props) {
 
 
   const childrenCount = props.Count;
-  
   const navigate = useNavigate();
   const location = useLocation();
   const { showAlertMessage } = useContext(AlertContext);
-
+  const texts = localStorage.getItem("Lan")==="CN"?texts_CN:texts_EN
   const handleToNext = async () => {
     const currentQNumber = parseInt(location.pathname.split("/page")[1], 10);
       if (currentQNumber < childrenCount) {
@@ -49,8 +49,8 @@ export default function Question(props) {
     <div className={style.container}>
       {props.children}
       <div className={style.footer}>
-        <button className={style.btnLast} onClick={handlToLast}>Back</button>
-        <button className={style.btnNext} type="submit" onClick={handleToNext}>Next</button>
+        <button className={style.btnLast} onClick={handlToLast}>{texts.QuestionP.back}</button>
+        <button className={style.btnNext} type="submit" onClick={handleToNext}>{texts.QuestionP.next}</button>
       </div>
     </div>
   );

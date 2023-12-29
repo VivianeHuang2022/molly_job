@@ -3,13 +3,15 @@ import React,{useContext} from "react";
 import styles from "./Modal.module.css";
 import InterviewIcon from "../../assets/images/interview_icon.PNG";
 import UploadIcon from "../../assets/images/upload_icon.PNG";
-import texts from "../texts";
+import texts_EN from "../texts";
+import texts_CN from "../texts_CN";
 import { useNavigate } from "react-router-dom";
 import uniqueId from "./GenerateUId";
 import { uploadResumePost } from "../../utils/api";
 import AlertContext from '../../components/AlertProvider/AlertContext';
 
 function ModalComponent({id}) {
+  const texts = localStorage.getItem("Lan")==="CN"?texts_CN:texts_EN
   const uId = uniqueId;
   const fileInputRef = React.createRef();
   const navigate = useNavigate();

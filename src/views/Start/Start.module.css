@@ -38,3 +38,18 @@
     /* bottom: 50px;
     width: 100%; */
 }
+
+/* 添加样式来对齐logo和语言切换按钮 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .languageButton {
+    background: transparent;
+    padding: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  

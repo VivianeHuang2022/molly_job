@@ -1,13 +1,14 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import texts from '../texts';
+import texts_EN from '../texts';
+import texts_CN from '../texts_CN';
 import styles from './Home.module.css'
 import studyShowImg from '../../assets/images/studyShowImg.png'
 import careerShowImg from '../../assets/images/careerShowImg.png'
 
 export default function Home() {
   const navigate = useNavigate()
-
+  const texts = localStorage.getItem("Lan")==="CN"? texts_CN:texts_EN
   const handleToGeneralQ = ()=>{
     navigate("/layout")
   }

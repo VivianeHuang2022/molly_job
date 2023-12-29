@@ -1,7 +1,8 @@
 import React, { useState} from 'react'
 import logoImage from "../../assets/images/Logo.PNG";
 import styles from './Start.module.css'
-import texts from '../texts';
+import texts_EN from '../texts';
+import texts_CN from '../texts_CN';
 import studyingAbroadIcon from '../../assets/images/Studying_abroad.PNG'
 import jobMentoringIcon from '../../assets/images/Job_mentoring.PNG'
 import ModalComponent from './Modal';
@@ -9,8 +10,11 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function Start() {
+  const defaultLan = localStorage.getItem("Lan")==="CN"?"CN":"EN"
+  const [lan, setLan] = useState(defaultLan);
   const [showModal, setShowModal] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const texts = lan==="EN"?texts_EN:texts_CN
   const navigate = useNavigate();
   const handleJumpToHome = (id)=>{
     setSelectedId(id); 
@@ -18,9 +22,19 @@ export default function Start() {
     id===2?setShowModal(true):navigate('/home/1');
   }
 
+  const switchLanguage = () => {
+    var newLan = lan==="EN"?"CN":"EN";
+    setLan(newLan)
+    localStorage.setItem("Lan",newLan);
+    console.log(newLan);
+  };
+
   return (
     <div>
-        <img src={logoImage} alt="logo" className={styles.logo}></img>
+        <div className={styles.header}>
+          <img src={logoImage} alt="logo" className={styles.logo}></img>
+          <button onClick={switchLanguage} className={styles.languageButton}>{lan==="EN"?"简体中文":"English"}</button>
+        </div>
         <div className={styles.title}>{texts.startTexts.pageTitle}</div>
         <div className={styles.containerStyle}>
             <div onClick={()=>handleJumpToHome(1)}>

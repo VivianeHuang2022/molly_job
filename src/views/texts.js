@@ -28,6 +28,10 @@ const texts ={
         uploadContent:"With the resume, our AI experts use a strategic approach, highlighting your achievements,skills,and qualifications in a format which captures the attention of hiring managers."
     }
     ,
+    QuestionP:{
+        back:"Back",
+        next:"Next"
+    },
     GeberalQ:{
         JobPage:{
             Page1:{
