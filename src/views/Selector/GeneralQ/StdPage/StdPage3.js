@@ -25,9 +25,9 @@ export default function StdPage3() {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
         const data = span.innerText.replace("[", "").replace("]", "").trim();
-        dispatch(updateStdData({ pNum: 2, payload: { [name]: data } }));
+        dispatch(updateStdData({ pNum: 3, payload: { [name]: data } }));
         // 本地数据处理
-        stdDataSaveHandle(name, data, 2);
+        stdDataSaveHandle(name, data, 3);
       }
     });
   };
@@ -89,10 +89,7 @@ export default function StdPage3() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">
-                "During my studies, I had the opportunity to engage in a
-                research project focused on{" "}
-              </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page3.P3T1} </span>
             </span>
             <span
               name="getProject"
@@ -105,10 +102,7 @@ export default function StdPage3() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">
-                {" "}
-                This research endeavor culminated in a published paper in{" "}
-              </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page3.P3T2} </span>
             </span>
             <span
               name="getConference"
@@ -122,7 +116,7 @@ export default function StdPage3() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> , and I was honored with the </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page3.P3T3} </span>
             </span>
             <span
               name="getAwards"
@@ -135,10 +129,7 @@ export default function StdPage3() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">
-                {" "}
-                for my contributions. Furthermore, I have been involved in{" "}
-              </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page3.P3T4} </span>
             </span>
             <span
               name="getCompetitions"
@@ -154,10 +145,7 @@ export default function StdPage3() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">
-                {" "}
-                , which enriched my practical understanding of{" "}
-              </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page3.P3T5} </span>
             </span>
             <span
               name="getSkills"
@@ -170,10 +158,7 @@ export default function StdPage3() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">
-                {" "}
-                . These experiences have not only expanded my knowledge in{" "}
-              </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page3.P3T7} </span>
             </span>
             {/* <span name="curProjects" style={{color:'green'}} onDoubleClick={handleClearText}>[ {formData.curProjects||"If available, please briefly describe your projects"} ]</span>
         <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
@@ -184,7 +169,7 @@ export default function StdPage3() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">"Furthermore, my internships as a/an </span>
+              <span type="No">{texts.GeberalQ.StdPage.Page3.P3T8}</span>
             </span>
             <span
               name="internRole"
@@ -197,7 +182,7 @@ export default function StdPage3() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> at </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page3.P3T9} </span>
             </span>
             <span
               name="internCompany"
@@ -210,7 +195,7 @@ export default function StdPage3() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> enhanced my proficiency in this industry</span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page3.P3T10}</span>
             </span>
 
             {/* <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>

@@ -29,9 +29,9 @@ export default function StdPage2() {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
         const data = span.innerText.replace("[", "").replace("]", "").trim();
-        dispatch(updateStdData({ pNum: 1, payload: { [name]: data } }));
+        dispatch(updateStdData({ pNum: 2, payload: { [name]: data } }));
         // 本地数据处理
-        stdDataSaveHandle(name, data, 1);
+        stdDataSaveHandle(name, data, 2);
       }
     });
   };
@@ -90,7 +90,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">"I am enthusiastic about pursuing my </span>
+              <span type="No">{texts.GeberalQ.StdPage.Page2.P2T1} </span>
             </span>
             <span
               name="drDegree"
@@ -103,7 +103,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> degree at </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page2.P2T2} </span>
             </span>
             <span
               name="drUni"
@@ -116,7 +116,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> in </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page2.P2T3} </span>
             </span>
             <span
               name="drCountry"
@@ -129,7 +129,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> due to its distinguished reputation in </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page2.P2T4} </span>
             </span>
             <span
               name="drMajor"
@@ -143,7 +143,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">"I hold a </span>
+              <span type="No">{texts.GeberalQ.StdPage.Page2.P2T5} </span>
             </span>
             <span
               name="curDegree"
@@ -156,7 +156,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> degree in </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page2.P2T6}</span>
             </span>
             <span
               name="curMajor"
@@ -169,7 +169,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> from </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page2.P2T7} </span>
             </span>
             <span
               name="curUni"
@@ -184,7 +184,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> in </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page2.P2T8}</span>
             </span>
             <span
               name="curCountry"
@@ -197,10 +197,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">
-                . where I gained a solid foundation in my major and developed a
-                strong background in{" "}
-              </span>
+              <span type="No">{texts.GeberalQ.StdPage.Page2.P2T9} </span>
             </span>
             <span style={{ color: "red" }} onDoubleClick={handleClearText}>
               [ {formData.curMajor || "your major"} ]
@@ -209,7 +206,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">. Moreover, my coursework in </span>
+              <span type="No">{texts.GeberalQ.StdPage.Page2.P2T10} </span>
             </span>
             <span
               name="curCourses"
@@ -222,7 +219,7 @@ export default function StdPage2() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> have deepened my interest in this field" </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page2.P2T11} </span>
             </span>
             {/* <span contentEditable={false} style={{ pointerEvents: 'none', userSelect: 'none' }}>
         <span type="No">. Additionally, the university's diverse and inclusive academic environment and its location in </span>

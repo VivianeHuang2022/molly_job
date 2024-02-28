@@ -16,9 +16,9 @@ export default function StdPage6() {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
         const data = span.innerText.replace("[", "").replace("]", "").trim();
-        dispatch(updateStdData({ pNum: 3, payload: { [name]: data } }));
+        dispatch(updateStdData({ pNum: 4, payload: { [name]: data } }));
         // 本地数据处理
-        stdDataSaveHandle(name, data, 3);
+        stdDataSaveHandle(name, data, 4);
       }
     });
   };
@@ -78,7 +78,7 @@ export default function StdPage6() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">"The program at </span>
+              <span type="No">"{texts.GeberalQ.StdPage.Page4.P4T1} </span>
             </span>
             <span
               name="profUni"
@@ -91,17 +91,13 @@ export default function StdPage6() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">
-                {" "}
-                aligns seamlessly with my academic interests, especially in
-                courses like{" "}
-              </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page4.P4T2} </span>
             </span>
             <span
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> that fuel my passion in </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page4.P4T3} </span>
             </span>
             <span style={{ color: "black" }} onDoubleClick={handleClearText}>
               [ {stdDataQP1.drMajor || "the major you applied"} ]
@@ -110,11 +106,7 @@ export default function StdPage6() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">
-                {" "}
-                . I'm inspired by the university's academic excellence and
-                faculty expertise, particularly{" "}
-              </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page4.P4T4} </span>
             </span>
             <span
               name="profName"
@@ -127,7 +119,7 @@ export default function StdPage6() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> in </span>
+              <span type="No"> {texts.GeberalQ.StdPage.Page4.P4T5} </span>
             </span>
             <span
               name="profResearch"
@@ -147,7 +139,7 @@ export default function StdPage6() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">"My long-term career goal is to </span>
+              <span type="No">"{texts.GeberalQ.StdPage.Page4.P4T6} </span>
             </span>
             <span
               name="careerOrGoal"
@@ -164,8 +156,8 @@ export default function StdPage6() {
             >
               <span type="No">
                 {" "}
-                I will gain during my studies to make a meaningful impact in the
-                field{""}
+                {texts.GeberalQ.StdPage.Page4.P4T7}
+                {""}
               </span>
             </span>
 
