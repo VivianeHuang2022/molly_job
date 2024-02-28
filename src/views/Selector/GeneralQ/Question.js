@@ -61,8 +61,8 @@ export default function Question(props) {
 }
 
 const generateStdDataGroup = () => {
-  var stdDataQP9 = localStorage.getItem("stdDataQP9")
-    ? JSON.parse(localStorage.getItem("stdDataQP9"))
+  var stdDataQP5 = localStorage.getItem("stdDataQP5")
+    ? JSON.parse(localStorage.getItem("stdDataQP5"))
     : {};
   var stdDataQP1 = localStorage.getItem("stdDataQP1")
     ? JSON.parse(localStorage.getItem("stdDataQP1"))
@@ -81,13 +81,13 @@ const generateStdDataGroup = () => {
     // personal Info topicId
     uId: localStorage.getItem("uId"),
     topicId: localStorage.getItem("topicId"),
-    firstName: stdDataQP9.FirstName,
-    surname: stdDataQP9.Surname,
-    userNationality: stdDataQP9.Nationality,
-    userBirthday: stdDataQP9.Birthday,
-    userAddress: stdDataQP9.Address,
-    userTel: stdDataQP9.Tel,
-    userEmail: stdDataQP9.Email,
+    firstName: stdDataQP5.FirstName,
+    surname: stdDataQP5.Surname,
+    userNationality: stdDataQP5.Nationality,
+    userBirthday: stdDataQP5.Birthday,
+    userAddress: stdDataQP5.Address,
+    userTel: stdDataQP5.Tel,
+    userEmail: stdDataQP5.Email,
     // dream Info
     dreamDegree: stdDataQP1.drDegree,
     dreamUni: stdDataQP1.drUni,

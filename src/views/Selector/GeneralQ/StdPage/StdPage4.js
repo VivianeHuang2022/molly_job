@@ -16,9 +16,9 @@ export default function StdPage6() {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
         const data = span.innerText.replace("[", "").replace("]", "").trim();
-        dispatch(updateStdData({ pNum: 6, payload: { [name]: data } }));
+        dispatch(updateStdData({ pNum: 3, payload: { [name]: data } }));
         // 本地数据处理
-        stdDataSaveHandle(name, data, 6);
+        stdDataSaveHandle(name, data, 3);
       }
     });
   };
