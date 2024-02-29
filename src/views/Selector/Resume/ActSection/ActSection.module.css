@@ -1,0 +1,30 @@
+/* ActSection.module.css */
+
+:root {
+  --input-container-width: 15rem;
+}
+
+.inputContainer {
+  width: var(--input-container-width);
+}
+
+.inputGroupContainer {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--input-container-width), 1fr)
+  );
+  gap: 10px;
+}
+
+.actSectionContainer {
+  padding: 20px;
+  background-color: #f7f7f7;
+  width: 100%;
+}
+
+.sectionHeading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

@@ -97,8 +97,8 @@ function Navbar(props) {
       </div>
 
       <Dropdown
-      //overlay
-      overlay={
+      //`overlay` is deprecated.  use `menu` instead. 
+      menu={
           <Menu>
             {/* 假设 items 是 Menu.Item 的数组 */}
             {items.map((item) => (
@@ -124,7 +124,7 @@ function Navbar(props) {
           icon={<UserOutlined />}
           style={{ backgroundColor: "black", cursor: "pointer" }}
         />
-      </Dropdown>      
+      </Dropdown>       
     </div>
     {props.children} 
     </div>

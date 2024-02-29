@@ -1,0 +1,44 @@
+:root {
+  --base-font-size: 10px;
+}
+
+.cvSection {
+  margin-bottom: 1.25rem;
+}
+
+.subSection {
+  margin-bottom: 0.5rem;
+}
+
+.cvSectionHeading {
+  color: #333;
+  font-size: calc(var(--base-font-size) * 1.5);
+  font-weight: bold;
+}
+
+.SubHeading {
+  color: #333;
+  font-size: calc(var(--base-font-size) * 1.2);
+}
+
+.paragraph {
+  color: #666;
+  font-size: var(--base-font-size);
+  margin-bottom: 0.15rem;
+}
+
+.personalInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.personalInfoDetails {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 0.2rem;
+}
+
+.personalInfoDetails div {
+  margin-right: 15px;
+}
