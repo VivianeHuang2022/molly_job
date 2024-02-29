@@ -8,7 +8,7 @@ import { updateJobData, jobDataSaveHandle } from '../../../../redux/slice'; // �
 export default function JobPage4() {
 
   const dispatch = useDispatch();
-  var formData = useSelector((state) => state.jobDataQP4); 
+  var formData = useSelector((state) => state.coverLetter.jobDataQP4); 
 
   // 使用 dispatch 更新 Redux Store
   const handleInputChange = (name, value) => {

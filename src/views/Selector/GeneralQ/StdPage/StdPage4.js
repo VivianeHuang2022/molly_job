@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateStdData, stdDataSaveHandle } from "../../../../redux/slice"; // 导入你的 action
 
 export default function StdPage6() {
-  var formData = useSelector((state) => state.stdDataQP6);
+  var formData = useSelector((state) => state.coverLetter.stdDataQP6);
   const textRef = useRef(null);
   const dispatch = useDispatch();
   const texts = localStorage.getItem("Lan") === "CN" ? texts_CN : texts_EN;
