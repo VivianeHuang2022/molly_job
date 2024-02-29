@@ -1,22 +1,47 @@
+import React, { useRef, useEffect } from 'react';
 import { Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { updateField} from '../../../../redux/cvDataSlice';
 
 
+// 输入框组件
+const PersonalInfoInput = ({
+  label,
+  value,
+  onChange,
+  onBlur,
+  onKeyDown,
+  inputRef,
+}) => (
+  <div>
+    <p>{label}</p>
+    <Input
+      placeholder={label}
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+      ref={inputRef}
+      onKeyDown={onKeyDown}
+    />
+  </div>
+);
+
+// PersonalInfoPage 组件
 const PersonalInfoPage = ({ cvData, labels, styles }) => {
-  const { firstName, surname, userTel, userEmail, linkedIn, sectionName } =
-    labels;
-
-  // 获取 labels 对象的所有键
-  const allLabelKeys = Object.keys(labels);
+  const { sectionName, ...otherLabels } = labels;
+  const allLabelKeys = Object.keys(otherLabels);
   const sectionKey = 'personalInfo';
+  const dispatch = useDispatch();
 
-  // 过滤掉键为 'sectionName' 的项
-  const labelKeys = allLabelKeys.filter((key) => key !== 'sectionName');
-  const dispatch = useDispatch(); // 获取 dispatch 函数
+  const inputRefs = useRef([]);
 
-  // 定义更新 Redux state 的函数
-  const updateFieldFunc = (sectionName, title, newValue) => {
+  useEffect(() => {
+    if (inputRefs.current[0]) {
+      inputRefs.current[0].focus();
+    }
+  }, []);
+
+  const updateFieldFunc = (title, newValue) => {
     dispatch(
       updateField({
         sectionName: sectionKey,
@@ -26,45 +51,38 @@ const PersonalInfoPage = ({ cvData, labels, styles }) => {
     );
   };
 
-  const PersonalInfoInput = ({ label, initialValue, title }) => {
-    return (
-      <div className={styles.inputContainer}>
-        <p>{label}</p>
-        <Input
-          placeholder={label}
-          defaultValue={initialValue}
-          onChange={(e) => updateFieldFunc(sectionKey, title, e.target.value)}
-        />
-      </div>
-    );
+  const handleKeyDown = (event, index) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const title = allLabelKeys[index];
+      const newValue = event.target.value;
+      const nextIndex = (index + 1) % allLabelKeys.length;
+      if (inputRefs.current[nextIndex]) {
+        inputRefs.current[nextIndex].focus();
+      }
+      updateFieldFunc(title, newValue);
+    }
   };
-
-  // 创建多个 PersonalInfoInput 组件，并放入一个数组中
-  const PersonalInfoInputs = labelKeys.map((key, index) => {
-    const title = labelKeys[index];
-
-    return (
-      <PersonalInfoInput
-        sectionKey={sectionKey}
-        key={index}
-        label={labels[title]}
-        initialValue={cvData['personalInfo'][title]}
-        title={title}
-      />
-    );
-  });
 
   return (
     <div>
       <h1>{sectionName}</h1>
-      {PersonalInfoInputs}
-      <button
-        onClick={() => updateFieldFunc(sectionName, 'firstName', 'new value')}
-      >
-        updateFieldFunc
-      </button>
+      <div className={styles.inputGroupContainer}>
+        {allLabelKeys.map((title, index) => (
+          <PersonalInfoInput
+            key={index}
+            label={labels[title]}
+            value={cvData['personalInfo'][title]}
+            onChange={(e) => updateFieldFunc(title, e.target.value)}
+            onBlur={() => updateFieldFunc(title, cvData['personalInfo'][title])}
+            inputRef={(el) => (inputRefs.current[index] = el)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
+
 
 export default PersonalInfoPage;
