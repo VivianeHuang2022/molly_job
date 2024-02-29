@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 
 const WorkExperienceItem = ({ experience, styles }) => {
   const {

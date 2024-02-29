@@ -2,7 +2,7 @@ import React from 'react';
 
 const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
   const personalInfo = cvData.personalInfo;
-  const { cvSection, personalInfo: personalInfoStyles } = styles;
+  const { cvSection} = styles;
   const { userTel, userEmail, linkedIn } = title;
 
   const { firstName, surname } = personalInfo;

@@ -4,7 +4,6 @@ import styles from './resume.module.css';
 import { Button } from 'antd';
 import ActSection from './ActSection';
 import CvSection from './CvSection';
-import LanguageSwitcher from './local/LanguageSwitcher'; // 导入切换语言的组件
 import { getLabels } from './local'; // 导入语言配置文件加载函数
 
 // ActionContainer Component
@@ -51,8 +50,6 @@ const CvPage = () => {
   // 根据当前语言设置获取对应的语言配置文件
   const labels = getLabels(currentLanguage);
 
-  const uId = localStorage.getItem('uId');
-  const topicId = localStorage.getItem('topicId'); //根据这个区分std和job的简历
   return (
     <div className={styles.container}>
       {/* 将获取到的语言配置文件传递给子组件 */}
