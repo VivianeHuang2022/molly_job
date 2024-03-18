@@ -97,11 +97,11 @@ export default function MRouter() {
       element: <Start />,
     },
     {
-      path: "/login",
+      path: "/login/:Id",
       element: <Login />,
     },
     {
-      path: "/register",
+      path: "/register/:Id",
       element: <Register />,
     },
     {

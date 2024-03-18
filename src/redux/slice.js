@@ -1,39 +1,43 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 //job初始化数据
 const getInitialJobData = (pNum) => {
-  const storedJobData = localStorage.getItem('jobDataQP'+pNum);
-  return storedJobData ? JSON.parse(storedJobData) : pNum===5?{"years":0}:{};
+  const storedJobData = localStorage.getItem("jobDataQP" + pNum);
+  return storedJobData
+    ? JSON.parse(storedJobData)
+    : pNum === 5
+    ? { years: 0 }
+    : {};
 };
 
 //std初始化数据
 const getInitialStdData = (pNum) => {
-  const storedStdData = localStorage.getItem('stdDataQP'+pNum);
-  return storedStdData?JSON.parse(storedStdData):{};
+  const storedStdData = localStorage.getItem("stdDataQP" + pNum);
+  return storedStdData ? JSON.parse(storedStdData) : {};
 };
 
 //job数据存储
-export const jobDataSaveHandle = (name, value, pNum)=>{
+export const jobDataSaveHandle = (name, value, pNum) => {
+  const storedJobData =
+    JSON.parse(localStorage.getItem("jobDataQP" + pNum)) || {};
 
-  const storedJobData = JSON.parse(localStorage.getItem('jobDataQP'+pNum)) || {};
+  const updatedJobData = { ...storedJobData, [name]: value };
 
-    const updatedJobData = { ...storedJobData, [name]: value };
-
-    localStorage.setItem('jobDataQP'+pNum, JSON.stringify(updatedJobData));
-}
+  localStorage.setItem("jobDataQP" + pNum, JSON.stringify(updatedJobData));
+};
 
 //std数据存储
-export const stdDataSaveHandle = (name, value, pNum)=>{
+export const stdDataSaveHandle = (name, value, pNum) => {
+  const storedStdData =
+    JSON.parse(localStorage.getItem("stdDataQP" + pNum)) || {};
 
-  const storedStdData = JSON.parse(localStorage.getItem('stdDataQP'+pNum)) || {};
+  const updatedStdData = { ...storedStdData, [name]: value };
 
-    const updatedStdData = { ...storedStdData, [name]: value };
-
-    localStorage.setItem('stdDataQP'+pNum, JSON.stringify(updatedStdData));
-}
+  localStorage.setItem("stdDataQP" + pNum, JSON.stringify(updatedStdData));
+};
 
 export const dataSlice = createSlice({
-  name: 'localData',
+  name: "localData",
   initialState: {
     jobDataQP1: getInitialJobData(1),
     jobDataQP2: getInitialJobData(2),
@@ -52,10 +56,10 @@ export const dataSlice = createSlice({
   },
   reducers: {
     updateJobData(state, action) {
-      const { pNum, payload } = action.payload; 
+      const { pNum, payload } = action.payload;
       // console.log(pNum)
       // console.log(payload)
-      switch(pNum){
+      switch (pNum) {
         case 1:
           state.jDataQP1 = { ...state.jobDataQP1, ...payload };
           break;
@@ -63,7 +67,7 @@ export const dataSlice = createSlice({
           state.jobDataQP2 = { ...state.jobDataQP2, ...payload };
           break;
         case 3:
-          state.jobDataQP3 = { ...state.jobDataQP3, ...payload};
+          state.jobDataQP3 = { ...state.jobDataQP3, ...payload };
           break;
         case 4:
           state.jobDataQP4 = { ...state.jobDataQP4, ...payload };
@@ -76,10 +80,10 @@ export const dataSlice = createSlice({
       }
     },
     updateStdData(state, action) {
-      const { pNum, payload } = action.payload; 
+      const { pNum, payload } = action.payload;
       // console.log(pNum)
       // console.log(payload)
-      switch(pNum){
+      switch (pNum) {
         case 1:
           state.stdDataQP1 = { ...state.stdDataQP1, ...payload };
           break;
@@ -87,7 +91,7 @@ export const dataSlice = createSlice({
           state.stdDataQP2 = { ...state.stdDataQP2, ...payload };
           break;
         case 3:
-          state.stdDataQP3 = { ...state.stdDataQP3, ...payload};
+          state.stdDataQP3 = { ...state.stdDataQP3, ...payload };
           break;
         case 4:
           state.stdDataQP4 = { ...state.stdDataQP4, ...payload };
@@ -108,12 +112,11 @@ export const dataSlice = createSlice({
           state.stdDataQP9 = { ...state.stdDataQP9, ...payload };
           break;
         default:
-            break;
+          break;
       }
     },
   },
 });
 
-export const { updateJobData,updateStdData } = dataSlice.actions;
+export const { updateJobData, updateStdData } = dataSlice.actions;
 export default dataSlice.reducer;
-

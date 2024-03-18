@@ -79,7 +79,7 @@ const generateStdDataGroup = () => {
 
   const dataGroup = {
     // personal Info topicId
-    uId: localStorage.getItem("uId"),
+    uId: localStorage.getItem("uId"), //delete
     topicId: localStorage.getItem("topicId"),
     firstName: stdDataQP5.FirstName,
     surname: stdDataQP5.Surname,

@@ -1,44 +1,107 @@
-import React,{useContext} from "react";
+import React, { useRef, useContext, useState } from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Form, Input} from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
+import { SafetyCertificateOutlined } from "@ant-design/icons";
 import styles from "../Register/Register.module.css";
 import logoImage from "../../assets/images/Logo.PNG";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { registerRequset } from "../../utils/api";
-import AlertContext from '../../components/AlertProvider/AlertContext';
+import AlertContext from "../../components/AlertProvider/AlertContext";
+import { getVerificationCode } from "../../utils/api";
 
 export default function Register() {
   const { showAlertMessage } = useContext(AlertContext);
+  // const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  //const { id } = useParams();
+  const [emailError, setEmailError] = useState(null);
+  const [pwdError, setPwdError] = useState(null);
+  const emailRef = useRef(null);
+  const pwdRef = useRef(null);
+
   //输入完成向后端发起请求
-  const onFinish = async (formData) => {
+  //向后端请求验证码
+  const handleGetCode = async () => {
+    const emailValue = emailRef.current.input.value; // 获取email输入框的值
+    const pwdValue = pwdRef.current.input.value; // 获取email输入框的值
+    if (!emailValue) {
+      setEmailError("Please input your Email!");
+    } else {
+      setEmailError(null);
+    }
+    if (!pwdValue) {
+      setPwdError("Please input your Password!");
+    } else {
+      setPwdError(null);
+    }
     try {
-      let { email, password } = formData;
       const request = {
-        email: email,
-        pwd: password,
+        email: emailValue,
+        pwd: pwdValue,
       };
+
+      const result = await getVerificationCode(request);
+      if (result.status === 200) {
+        console.log(result.data.msg);
+        showAlertMessage("Success", result.data.msg, "success");
+      } else {
+        showAlertMessage("Error", "unknown error!", "error");
+      }
+      /*
       const result = await registerRequset(request);
       //成功之后跳转到Login界面
       if (result.status === 200) {
-        showAlertMessage("Success",result.data.msg,"success")
+        showAlertMessage("Success", result.data.msg, "success");
+        id === 2 ? setShowModal(true) : navigate("/home/1");
+      } else {
+        showAlertMessage("Error", "unknown error!", "error");
+      }
+      */
+    } catch (error) {
+      if (error.response) {
+        showAlertMessage("Error", error.response.data.msg, "error");
+      } else {
+        showAlertMessage("Error", error.message, "error");
+      }
+    }
+    /*catch (error) {
+      if (error.response) {
+        if (error.response.data.code === 1001) {
+          showAlertMessage("Warning", error.response.data.msg, "warning");
+          navigate("/login");
+        }
+        if (error.response.data.code === 1007) {
+          showAlertMessage("Error", error.response.data.msg, "error");
+        }
+      } else {
+        showAlertMessage("Error", error.message, "error");
+      }
+    }
+    */
+  };
+
+  //验证验证码
+  const onFinish = async (formData) => {
+    console.log("Received values of form: ", formData);
+    let { email, password, captcha } = formData;
+    const request = {
+      email: email,
+      pwd: password,
+      verifyCode: captcha,
+    };
+    try {
+      const result = await registerRequset(request);
+      if (result.status === 200) {
+        showAlertMessage("Success", result.data.msg, "success");
         navigate("/login");
-      }else{
-        showAlertMessage("Error","unknown error!","error")
+      } else {
+        showAlertMessage("Error", "unknown error!", "error");
       }
     } catch (error) {
       if (error.response) {
-        if ((error.response.data.code === 1001)) 
-        {
-          showAlertMessage("Warning",error.response.data.msg,"warning")
-          navigate("/login");
-        }
-        if ((error.response.data.code === 1007)) 
-        {
-          showAlertMessage("Error",error.response.data.msg,"error")
-        } 
+        showAlertMessage("Warning", error.response.data.msg, "warning");
       } else {
-        showAlertMessage("Error", error.message,"error")
+        alert(`Error:${error.message}`);
       }
     }
   };
@@ -109,7 +172,48 @@ export default function Register() {
                 type="password"
                 placeholder="Confirm Password"
               />
+
+              {/* verify code*/}
+              <Row gutter={8}>
+                <Col span={12}>
+                  <Form.Item
+                    name="captcha"
+                    noStyle
+                    rules={[
+                      {
+                        required: true,
+                        message:
+                          "Please input the Verification code you got from Eamil!",
+                      },
+                    ]}
+                  >
+                    <Input
+                      prefix={
+                        <SafetyCertificateOutlined className="site-form-item-icon" />
+                      }
+                      type="text"
+                      placeholder="Verification code"
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Button
+                    type="primary"
+                    className="login-form-button"
+                    onMouseOver={(e) =>
+                      (e.currentTarget.style.backgroundColor = "gray")
+                    }
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.backgroundColor = "black")
+                    }
+                    onClick={handleGetCode}
+                  >
+                    Get Captcha
+                  </Button>
+                </Col>
+              </Row>
             </Form.Item>
+
             <Form.Item>
               <Button
                 type="primary"

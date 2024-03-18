@@ -225,6 +225,44 @@ const texts = {
       },
     },
   },
+  PaymentPage: [
+    {
+      title: "Super Pro",
+      pricing: "¥299",
+      usage: "unlimited",
+      description:
+        "Tailored for ambitious students applying to multiple schools, offering unlimited document generations for crafting the perfect application for each program without any template restrictions.",
+      features: [
+        { text: "Unlimited uses" },
+        { text: "All documents available" },
+        { text: "No template restrictions" },
+      ],
+    },
+    {
+      title: "Pro",
+      pricing: "¥99",
+      usage: "7 uses",
+      description:
+        "Designed for applicants targeting a select number of programs, providing 7 document generations to ensure each application is customized and compelling, with full access to all templates.",
+      features: [
+        { text: "7 generation opportunities" },
+        { text: "All documents available" },
+        { text: "No template restrictions" },
+      ],
+    },
+    {
+      title: "Standard",
+      pricing: "¥49",
+      usage: "2 uses",
+      description:
+        "Ideal for individuals focusing on one or two school applications, with 2 document generations and access to over 20 member templates to create standout applications.",
+      features: [
+        { text: "2 generation opportunities" },
+        { text: "All documents available" },
+        { text: "Over 20 member templates" },
+      ],
+    },
+  ],
 };
 
 export default texts;

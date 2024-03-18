@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import styles from "../Login/Login.module.css";
@@ -9,8 +9,10 @@ import AlertContext from "../../components/AlertProvider/AlertContext";
 export default function Login() {
   const navigate = useNavigate();
   const { showAlertMessage } = useContext(AlertContext);
+  const [showModal, setShowModal] = useState(false);
   const rememberEmail = localStorage.getItem("email");
   const rememberPassword = localStorage.getItem("password");
+  const id = localStorage.getItem("topicId");
   //输入完成请求后端
   const onFinish = async (formData) => {
     let { email, password, remember } = formData;
@@ -30,7 +32,9 @@ export default function Login() {
       //成功之后跳转到Login界面
       if (result.status === 200) {
         showAlertMessage("Success", result.data.msg, "success");
-        navigate("/start");
+
+        id === 2 ? setShowModal(true) : navigate("/home/1");
+
         const token = result.data.msg;
         //把token存在localStorage中
         localStorage.setItem("token", token);
@@ -111,7 +115,10 @@ export default function Login() {
                 Log in
               </Button>
               Or{" "}
-              <Link className="login-form-register" to="/register">
+              <Link
+                className="login-form-register"
+                to={`/register/${id || "1"}`}
+              >
                 register now!
               </Link>
             </Form.Item>

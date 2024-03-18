@@ -9,6 +9,9 @@ export default function CoverLetterTemplate(props) {
   const [imgUrl, setImgUrl] = useState(null);
   const [countId, setCountId] = useState(1);
   const [language, setLanguage] = useState("EN");
+
+  //add generate button
+  // const [generation, setGeneration] = useState("generate");
   const uId = localStorage.getItem("uId");
 
   const changeTemplate = async (curCountId) => {
@@ -54,6 +57,14 @@ export default function CoverLetterTemplate(props) {
       console.error("Error fetching PDF: ", error);
     }
   };
+  /*
+  const changeCoverLetter = async (generation) => {
+    try {
+    } catch (error) {
+      console.error("Error when generating the cover letter: ", error);
+    }
+  };
+  */
 
   useEffect(() => {
     fetchImg(language);
@@ -80,6 +91,9 @@ export default function CoverLetterTemplate(props) {
         <button onClick={() => switchLanguage(countId)}>
           {language === "EN" ? "Switch to German" : " Switch to English"}
         </button>
+        {/* <button onClick={() => changeCoverLetter(countId)}>
+          {generation === "generate" ? "generate" : " regenerate"}
+        </button>*/}
         {/* <Link to="/layout/resume" style={{ color: "blue" }}>
           CREATE RESUME
         </Link> */}

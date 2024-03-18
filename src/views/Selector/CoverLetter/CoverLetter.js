@@ -9,6 +9,7 @@ export default function CoverLetter() {
   const downloadCoverletter = async () => {
     let { countId, language } = coverLetterData;
     const uId = localStorage.getItem("uId");
+    //add generate & regenerate button
 
     try {
       const response = await downloadCoverLetterPdf(uId, countId, language);
