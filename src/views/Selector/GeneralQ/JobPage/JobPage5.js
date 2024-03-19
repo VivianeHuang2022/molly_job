@@ -7,7 +7,7 @@ import { updateJobData, jobDataSaveHandle } from '../../../../redux/slice'; // å
 
 export default function JobPage5() {
   const [activeButton, setActiveButton] = useState(null);
-  var formData = useSelector((state) => state.jobDataQP5); 
+  var formData = useSelector((state) => state.coverLetter.jobDataQP5); 
   useEffect(()=>{
     const defaultIndex = formData.years>6?6:formData.years
     setActiveButton(defaultIndex)
