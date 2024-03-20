@@ -215,44 +215,128 @@ const texts = {
     },
   },
 
-  PaymentPage: [
-    {
-      title: "超级专业",
-      pricing: "¥299",
-      usage: "无限制",
-      description:
-        "为有雄心壮志的学生度身定制，申请多所学校，提供无限制的文档生成，为每个项目制作完美的申请，没有任何模板限制。",
-      features: [
-        { text: "无限使用" },
-        { text: "所有文档可用" },
-        { text: "无模板限制" },
-      ],
+  generateDocument: {
+    chooseLan: {
+      title: '您选择的语言是',
+      option: {
+        zh: '中文',
+        en: '英文',
+        de: '德语',
+      },
     },
-    {
-      title: "专业",
-      pricing: "¥99",
-      usage: "7次使用",
-      description:
-        "专为有针对性的申请人设计，提供7次文档生成，确保每份申请都是定制且引人注目的，可以完全访问所有模板。",
-      features: [
-        { text: "7次生成机会" },
-        { text: "所有文档可用" },
-        { text: "无模板限制" },
-      ],
+    chooseTemplate: {
+      title: '当前模板',
+      templateName: '样式',
     },
-    {
-      title: "标准",
-      pricing: "¥49",
-      usage: "2次使用",
-      description:
-        "非常适合专注于一到两所学校申请的个人，提供2次文档生成，可以访问超过20个成员模板，创建出色的申请。",
-      features: [
-        { text: "2次生成机会" },
-        { text: "所有文档可用" },
-        { text: "超过20个成员模板" },
-      ],
+    buttonLabel: {
+      generateDocument: '生成文档',
+      goPayment: '查看充值方案',
     },
-  ],
+    currentGenerateCountTips: '当前剩余生成次数',
+    confirmationContent:
+      '您目前有 {remainingCount} 次生成机会。生成将消耗 1 次机会。确定要继续吗？',
+    successMessage: '生成成功！',
+    errorMessage: '获取用户账户信息失败：',
+
+    confirmationTitle: '确认生成',
+    confirmationContent:
+      '您当前有{remainingCount}次生成次数，生成将消耗1次，是否确认生成？',
+    successMessage: '生成成功！',
+    errorMessage: '获取用户账户信息失败：',
+    notEnoughCountMessage: '您当前的的生成次数为0，查看充值计划获取次数：',
+    errorMessageGenerate: '生成失败：',
+    firstTimeMessage:
+      '欢迎使用Molly Job，生成文档将消耗1次生成次数。由于您是初次使用，我们将免费赠送您1次生成次数进行体验。',
+  },
+  QRCode: {
+    pageTitle: '支付页面',
+    title: {
+      scanQRCode: '请扫描二维码完成支付',
+      expired: '二维码已过期，点击刷新重试',
+    },
+    timer: '剩余时间:',
+    buttonLabel: '刷新',
+    error: {
+      reason: {
+        paymentNotFound: '未找到支付类型',
+        qrNotLoad: 'QRcode 未加载.',
+      },
+      actionTip: '请返回重试',
+    },
+  },
+
+  plans: {
+    pricingType: {
+      monthly: '月',
+      annual: '年',
+    },
+    paymentType: {
+      superPro: {
+        label: '超级专业',
+        pricing: {
+          monthly: '¥299',
+          annual: '¥2999',
+        },
+        info: '为申请多所学校的有抱负的学生量身定制,提供无限制的文档生成,为每个项目打造完美的申请材料,没有任何模板限制。',
+        features: [
+          { type: 'generationCounts', text: '无限制使用' },
+          { type: 'documentsType', text: '所有文档可用' },
+          { type: 'templateRestrictions', text: '无模板限制' },
+        ],
+        level: '专业',
+      },
+      pro: {
+        label: '专业',
+        pricing: {
+          monthly: '¥99',
+          annual: '¥999',
+        },
+        info: '为瞄准少数项目的申请人设计,提供12次文档生成机会,确保每份申请材料都经过定制和增强,并可完全访问所有模板。',
+        features: [
+          { type: 'generationCounts', text: '12次生成机会' },
+          { type: 'documentsType', text: '所有文档可用' },
+          { type: 'templateRestrictions', text: '无模板限制' },
+        ],
+        level: '专业',
+      },
+      standard: {
+        label: '标准',
+        pricing: {
+          monthly: '¥49',
+          annual: '¥499',
+        },
+        info: '理想的一两所学校申请方案,提供5次文档生成机会,并可访问超过50个会员模板,打造出众的申请材料。',
+        features: [
+          { type: 'generationCounts', text: '5次生成机会' },
+          { type: 'documentsType', text: '所有文档可用' },
+          { type: 'templateRestrictions', text: '超过50个会员模板' },
+        ],
+        level: '标准',
+      },
+    },
+  },
+  orderResult: {
+    success: '订单成功',
+    fail: '订单失败',
+    checkOrder: '查看订单',
+    continueGenerate: '继续生成',
+    backToPlan: '返回到方案 test',
+    contact: '请尝试返回上一页重试或联系客服：',
+    details: {
+      orderType: '支付方案',
+      generateCount: '生成次数',
+      orderAmount: '花费金额',
+      orderId: '订单id',
+    },
+  },
+  download: {
+    documentGenerated: '文档已生成，点击下载获取',
+    downloadNotice: '下载同时会自动发送至您的邮箱',
+    downloadPdf: 'Download PDF',
+    generationTime: '文档生成时间',
+    contactEmail: '如有任何问题请联系',
+  },
+
 };
 
 export default texts;

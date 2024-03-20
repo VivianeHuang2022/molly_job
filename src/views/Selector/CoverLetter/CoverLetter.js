@@ -30,13 +30,16 @@ export default function CoverLetter() {
   };
   return (
     <div className={styles.container}>
-      <CoverLetterTemplate onUpdateData={updateCoverLetterData} />
-      <div className={styles.downloadContainer}>
+      {/* cover letter 生成img预览区 */}
+      {/* <CoverLetterTemplate onUpdateData={updateCoverLetterData} /> */}
+
+      {/* 下载区域 */}
+      {/* <div className={styles.downloadContainer}>
         <img className={styles.imgPdfStyle} src={imgPdf} alt="i_icon" />
         <button className={styles.btnStyle} onClick={downloadCoverletter}>
           Download
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

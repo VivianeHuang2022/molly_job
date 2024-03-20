@@ -225,44 +225,138 @@ const texts = {
       },
     },
   },
-  PaymentPage: [
-    {
-      title: "Super Pro",
-      pricing: "¥299",
-      usage: "unlimited",
-      description:
-        "Tailored for ambitious students applying to multiple schools, offering unlimited document generations for crafting the perfect application for each program without any template restrictions.",
-      features: [
-        { text: "Unlimited uses" },
-        { text: "All documents available" },
-        { text: "No template restrictions" },
-      ],
+  generateDocument: {
+    chooseLan: {
+      title: 'The language you have chosen is',
+      option: {
+        zh: 'Chinese',
+        en: 'English',
+        de: 'German',
+      },
     },
-    {
-      title: "Pro",
-      pricing: "¥99",
-      usage: "7 uses",
-      description:
-        "Designed for applicants targeting a select number of programs, providing 7 document generations to ensure each application is customized and compelling, with full access to all templates.",
-      features: [
-        { text: "7 generation opportunities" },
-        { text: "All documents available" },
-        { text: "No template restrictions" },
-      ],
+    chooseTemplate: {
+      title: 'Current template',
+      templateName: 'Style',
     },
-    {
-      title: "Standard",
-      pricing: "¥49",
-      usage: "2 uses",
-      description:
-        "Ideal for individuals focusing on one or two school applications, with 2 document generations and access to over 20 member templates to create standout applications.",
-      features: [
-        { text: "2 generation opportunities" },
-        { text: "All documents available" },
-        { text: "Over 20 member templates" },
-      ],
+    buttonLabel: {
+      generateDocument: 'Generate Document',
+      goPayment: 'View Payment Plans',
     },
-  ],
+    currentGenerateCountTips: 'Current Remaining Generation Count',
+    confirmationTitle: 'Confirm Generation',
+    confirmationContent:
+      'You currently have {remainingCount} generation attempts. Generating will consume 1 attempt. Are you sure you want to proceed?',
+    successMessage: 'Generation successful!',
+    errorMessage: 'Failed to retrieve user account information: ',
+    notEnoughCountMessage:
+      'You have 0 generation attempts left. Check the recharge plan for more attempts: ',
+    errorMessageGenerate: 'Generation failed: ',
+    firstTimeMessage:
+      'Welcome to Molly Job! Generating a document will consume 1 generation attempt. As you are using it for the first time, we will provide you with 1 free generation attempt as a trial.',
+  },
+  QRCode: {
+    pageTitle: 'Scan QR Code',
+    title: {
+      scanQRCode: 'Please scan the QR code to complete the payment',
+      expired: 'The QR code has expired, click to refresh and try again',
+    },
+    timer: 'Remaining time:',
+    buttonLabel: 'Refresh',
+    error: {
+      reason: {
+        paymentNotFound: 'Payment type not found',
+        qrNotLoad: 'QRcode is not loaded.',
+      },
+      actionTip: 'Please try again',
+    },
+  },
+  plans: {
+    pricingType: {
+      monthly: 'month',
+      annual: 'year',
+    },
+    paymentType: {
+      superPro: {
+        label: 'Super Pro',
+        pricing: {
+          monthly: '¥299',
+          annual: '¥2999',
+        },
+        info: 'Tailored for ambitious students applying to multiple schools, offering unlimited document generations for crafting the perfect application for each program without any template restrictions.',
+        features: [
+          { type: 'generationCounts', text: 'Unlimited uses' },
+          { type: 'documentsType', text: 'All documents available' },
+          {
+            type: 'templateRestrictions',
+            text: 'No template restrictions',
+          },
+        ],
+        level: 'pro',
+      },
+      pro: {
+        label: 'Pro',
+        pricing: {
+          monthly: '¥99',
+          annual: '¥999',
+        },
+        info: 'Designed for applicants targeting a select number of programs, providing 12 document generations to ensure each application is customized and compelling, with full access to all templates.',
+        features: [
+          {
+            type: 'generationCounts',
+            text: '12 generation opportunities',
+          },
+          { type: 'documentsType', text: 'All documents available' },
+          {
+            type: 'templateRestrictions',
+            text: 'No template restrictions',
+          },
+        ],
+        level: 'pro',
+      },
+      standard: {
+        label: 'Standard',
+        pricing: {
+          monthly: '¥49',
+          annual: '¥499',
+        },
+        info: 'Ideal for individuals focusing on one or two school applications, with 5 document generations and access to over 50 member templates to create standout applications.',
+        features: [
+          {
+            type: 'generationCounts',
+            text: '5 generation opportunities',
+          },
+          { type: 'documentsType', text: 'All documents available' },
+          {
+            type: 'templateRestrictions',
+            text: 'Over 50 member templates',
+          },
+        ],
+        level: 'standard',
+      },
+    },
+  },
+  orderResult: {
+    success: 'Order Successful',
+    fail: 'Order Failed',
+    checkOrder: 'Check Order',
+    continueGenerate: 'Continue Generating',
+    backToPlan: 'Back to Plan',
+    contact:
+      'Please try returning to the previous page to retry or contact customer service:',
+    details: {
+      orderType: 'Payment Plan',
+      generateCount: 'Generation Count',
+      orderAmount: 'Amount Spent',
+      orderId: 'Order ID',
+    },
+  },
+  download: {
+    documentGenerated: 'Document has been generated, click to download',
+    downloadNotice: 'Download will also be automatically sent to your email',
+    downloadPdf: 'Download PDF',
+    generationTime: 'Document generation time',
+    contactEmail: 'For any questions, please contact ',
+  },
 };
 
 export default texts;

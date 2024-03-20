@@ -1,0 +1,16 @@
+.button {
+  margin: 10px;
+  height: 50px;
+}
+
+.primaryButton {
+  margin: 10px;
+  background-color: rgb(28, 28, 28);
+  height: 50px;
+}
+
+.secParagraphComp {
+  color: aqua;
+  font-size: 1.2rem;
+  background-color: aquamarine;
+}
