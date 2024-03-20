@@ -13,6 +13,8 @@ import JobMatch from "../views/Selector/Match/JobMatch";
 import GeneralQ from "../views/Selector/GeneralQ/GeneralQ";
 import { LoadingOutlined } from "@ant-design/icons";
 
+import DownloadPage from '../views/Selector/CoverLetter/DownloadPage'
+
 const Login = React.lazy(() => import("../views/Login/Login"));
 const Register = React.lazy(() => import("../views/Register/Register"));
 const ResetPassword = React.lazy(() =>
@@ -145,6 +147,10 @@ export default function MRouter() {
         { path: "coverletter", element: <CoverLetter /> },
         { path: "jobmatch", element: <JobMatch /> },
       ],
+    },
+    {
+      path: "/download",
+      element: <DownloadPage />,
     },
     {
       path: "*",

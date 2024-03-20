@@ -67,13 +67,13 @@ const DownloadPage = () => {
     <div className={styles.pageContainer}>
       <div className={styles.previewContainer}>
         {/* 替换实际的src */}
-        {imageSrc && (
+         
           <img
             src={imageSrc}
             alt="preview img"
             className={styles.showImage}
           ></img>
-        )}
+        
       </div>
       <div className={styles.operationContainer}>
         <MidTitleComp>{downloadTexts.documentGenerated}</MidTitleComp>

@@ -9,7 +9,6 @@ const GenerateCoverLetterPage = () => {
   const generateDocumentTexts = texts.generateDocument;
   const choosLanTexts = generateDocumentTexts.chooseLan;
   const { Option } = Select;
-  console.log(texts);
 
   const uId = 1;
   const [selectedLanguage, setSelectedLanguage] = useState('english');

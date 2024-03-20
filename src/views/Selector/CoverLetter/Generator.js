@@ -77,11 +77,16 @@ const Generator = ({ uId, countId, lan, generateDocumentTexts }) => {
         </div>
 
         {/* 方便test */}
-        <MidTitleComp>下面这个按钮是为了方便test:</MidTitleComp>
+        <MidTitleComp>下面这些按钮是为了方便test:</MidTitleComp>
         <DefaultButton
           label={generateDocumentTexts.buttonLabel.goPayment}
           onClick={handleGoPaymentPage}
         />
+         <DefaultButton
+          label='去下载页面'
+          onClick={() => navigate('/download')}
+        />
+         
       </div>
     );
   };
