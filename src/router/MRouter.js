@@ -14,6 +14,10 @@ import GeneralQ from "../views/Selector/GeneralQ/GeneralQ";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import DownloadPage from '../views/Selector/CoverLetter/DownloadPage'
+import PlanCardsContainer from '../views/payment/PaymentPage';
+import QRCodePage from '../views/payment/QRCode';
+import PayFinishedPage from '../views/payment/Finished';
+import GenerateCountHistory from '../views/payment/History';
 
 const Login = React.lazy(() => import("../views/Login/Login"));
 const Register = React.lazy(() => import("../views/Register/Register"));
@@ -153,9 +157,25 @@ export default function MRouter() {
       element: <DownloadPage />,
     },
     {
+      path: "/payment",
+      element: <PlanCardsContainer />,
+    },
+    {
+      path: "/payment/qr",
+      element: <QRCodePage />,
+    },
+    {
+      path: "/payment/complete",
+      element: <PayFinishedPage />,
+    },
+    {
+      path: "/generateCounts_history", element:<GenerateCountHistory />
+  },
+    {
       path: "*",
       element: <NotFound />,
     },
   ]);
   return <Suspense fallback={<LoadingOutlined />}>{routes}</Suspense>;
 }
+
