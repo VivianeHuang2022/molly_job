@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { PrimaryButton } from '../../../../components/Button';
 import styles from './page.module.css';
 import { useNavigate } from 'react-router-dom';
 import AlertContext from '../../../../components/AlertProvider/AlertContext';
 
-import { editState } from '../../../../utils/checkCache';
+import { editState,hasLocalData } from '../../../../utils/checkCache';
 
 const Question = () => {
   const navigate = useNavigate();
@@ -28,6 +28,12 @@ const Question = () => {
       );
     }
   };
+
+  useEffect(() => {
+    if (hasLocalData('coverletter')) {
+      navigate('/layout/generalq');
+    }
+  }, []);
   return (
     <div className={styles.questionContainerOuter}>
       <div className={styles.questionContainer}>

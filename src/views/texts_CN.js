@@ -16,6 +16,8 @@ const texts = {
     applicationTxt: "申请指南",
     interviewTxt: "面试模拟",
     coverletterTxt: "动机信",
+    recommendationTxt: '推荐信',
+    paymentTxt: '支付方案',
     resumeTxt: "简历",
     uniGuidTxt: "大学向导",
     matchTxt: "匹配",

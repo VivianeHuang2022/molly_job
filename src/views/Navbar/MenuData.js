@@ -1,10 +1,11 @@
 import { getLabels } from '../local';
 
 const texts = getLabels();
+console.log(texts);
 
 export const menuItems = [
   {
-    key: 'interview',
+    key: 'generalq',
     label: texts.homeTexts.applicationTxt,
   },
   {
@@ -13,7 +14,7 @@ export const menuItems = [
   },
   {
     key: 'recommendation',
-    label: 'Recommendation',
+    label: texts.homeTexts.recommendationTxt,
   },
   {
     key: 'resume',
@@ -21,7 +22,7 @@ export const menuItems = [
   },
   {
     key: 'payment',
-    label: 'Payment',
+    label: texts.homeTexts.paymentTxt,
   },
 ];
 

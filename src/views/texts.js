@@ -17,6 +17,8 @@ const texts = {
     applicationTxt: "Application Guide",
     interviewTxt: "Interview",
     coverletterTxt: "Cover Letter",
+    recommendationTxt: 'Recommendation',
+    paymentTxt:'Payment',
     resumeTxt: "Resume",
     uniGuidTxt: "Uni Guide",
     matchTxt: "Match",

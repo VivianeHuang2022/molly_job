@@ -43,12 +43,12 @@
 }
 
 .infoContainer {
-  height: 160px;
+  height: 130px;
   overflow-y: auto;
 }
 .info {
   color: #777;
-  margin-bottom: 20px;
+  margin: 10px 0;
   flex: 1;
 }
 

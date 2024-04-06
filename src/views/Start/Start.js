@@ -36,7 +36,7 @@ export default function Start() {
           {lan === "EN" ? "简体中文" : "English"}
         </button>
       </div>
-      <div className={styles.title}>{texts.startTexts.pageTitle}</div>
+      {/* <div className={styles.title}>{texts.startTexts.pageTitle}</div> */}
       <div className={styles.containerStyle}>
         <div onClick={() => handleJumpToHome(1)}>
           <img
@@ -51,7 +51,7 @@ export default function Start() {
             {texts.startTexts.studyingAbroadParagraph}
           </div>
         </div>
-        <div onClick={() => handleJumpToHome(2)}>
+        {/* <div onClick={() => handleJumpToHome(2)}>
           <img
             src={jobMentoringIcon}
             alt="j_logo"
@@ -69,7 +69,7 @@ export default function Start() {
           <div className={styles.paragraph}>
             {texts.startTexts.jobMentoringParagraph3}
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={styles.footLine}>{texts.startTexts.footLine}</div>
       {showModal && <ModalComponent id={selectedId} />}

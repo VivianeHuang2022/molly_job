@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import style from "./Question.module.css";
 import { createStdCoverLetter } from "../../../utils/api";
+import {editState} from "../../../utils/checkCache";
 import AlertContext from "../../../components/AlertProvider/AlertContext";
 import texts_EN from "../../texts";
 import texts_CN from "../../texts_CN";
@@ -21,9 +22,11 @@ export default function Question(props) {
     if (currentQNumber === childrenCount) {
       if (localStorage.getItem("topicId") === "1") {
         var data = generateStdDataGroup();
+   
         const response = await createStdCoverLetter(data);
         if (response.status === 200) {
-          navigate("/layout/coverletter");
+          editState('isEditcoverletter', false);
+          navigate('/layout/coverletter/generatecoverletter');
         } else {
           showAlertMessage(
             "Error",

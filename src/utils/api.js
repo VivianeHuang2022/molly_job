@@ -431,14 +431,14 @@ const post = (url, data, contentType = 'application/json') => {
 
 /*-------------编辑模块----------------*/
 
-/**
- * 创建 Cover Letter。
- * @param {Object} dataGroup - 数据组。
- * @param {number} [topicId=1] - 身份类型，默认为学生。
- */
-export const createCoverletter = async (dataGroup, topicId = initTopicId) => {
-  return post(`createCoverletter/topicId=${topicId}`, dataGroup);
-};
+// /**
+//  * 创建 Cover Letter。
+//  * @param {Object} dataGroup - 数据组。
+//  * @param {number} [topicId=1] - 身份类型，默认为学生。
+//  */
+// export const createCoverletter = async (dataGroup, topicId = initTopicId) => {
+//   return post(`createCoverletter/topicId=${topicId}`, dataGroup);
+// };
 
 /**
  * 创建 Recommendation。
