@@ -1,0 +1,9 @@
+.questionContainer {
+  width: 80vw;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  margin-left: 40px;
+}

@@ -336,6 +336,66 @@ const texts = {
     generationTime: '文档生成时间',
     contactEmail: '如有任何问题请联系',
   },
+  recommendation: {
+    sectionTitle: {
+      majorApplication: '专业申请',
+      recommenderInformation: '推荐人信息',
+      backgroundOfRecommender: '推荐人背景',
+      starInstructions: '使用 STAR 原则描述一个故事：',
+      situation: '情境：提供正在发生的情况或原因。',
+      task: '任务：目标或需要解决的问题是什么？',
+      action: '行动：解决任务或挑战所采取的具体步骤。',
+      result: '结果：行动的结果和成就。',
+      activityInvolved: '涉及的活动',
+    },
+    major: {
+      label: '专业',
+      placeholder: '请输入...',
+    },
+    recommender: {
+      name: {
+        label: '姓名',
+        placeholder: '例如：王晓明',
+      },
+      relationship: {
+        label: '关系',
+        placeholder: '导师/教授/主管/经理',
+      },
+      institution: {
+        label: '所在机构',
+        placeholder: '大学/公司',
+      },
+      position: {
+        label: '职位',
+        placeholder: '请具体说明推荐人的职位或头衔',
+      },
+      phone: {
+        label: '电话号码',
+        placeholder: '推荐人的联系号码',
+      },
+      email: {
+        label: '电子邮件',
+        placeholder: '王晓明@example.com',
+      },
+      address: {
+        label: '地址',
+        placeholder: '邮寄地址',
+      },
+      zipCode: {
+        label: '邮政编码',
+        placeholder: '地址的邮政编码',
+      },
+    },
+    intro: {
+      label: '推荐人背景',
+      placeholder: '请输入...',
+    },
+    activity: {
+      label: '参与活动',
+      placeholder: '请分享您的故事...',
+    },
+    buttonLabel: '提交',
+  },
 
 };
 

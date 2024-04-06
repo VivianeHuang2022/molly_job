@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs } from 'antd';
+// import { Tabs } from 'antd';
 import PlanCard from './plancards/PlanCard';
 import styles from './payment.module.css'; // Import CSS module
 import { getLabels } from '../local';
@@ -7,11 +7,11 @@ import { getLabels } from '../local';
 const PlanCardsContainer = () => {
   const texts = getLabels();
   const plans = texts.plans;
-  const [activeTab, setActiveTab] = useState('monthly');
+  const [activeTab] = useState('monthly');
 
-  const handleTabChange = (key) => {
-    setActiveTab(key);
-  };
+  // const handleTabChange = (key) => {
+  //   setActiveTab(key);
+  // };
 
   // Render plans based on selected tab
   const renderSinglePlan = (planType) => {
@@ -46,16 +46,18 @@ const PlanCardsContainer = () => {
   // }));
 
   return (
-    <div className={styles.paymentContainer}>
-      <div className={styles.cards}>{renderPlans()}</div>
+    <div className={styles.paymenContainerOueter}>
+      <div className={styles.paymentContainer}>
+        <div className={styles.cards}>{renderPlans()}</div>
 
-      {/* <Tabs
+        {/* <Tabs
         activeKey={activeTab}
         onChange={handleTabChange}
         items={tabItems}
         centered
         tabBarStyle={tabBarStyle}
       /> */}
+      </div>
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './PlanCard.module.css';
 import { listIcon } from './icon';
 import { useNavigate } from 'react-router-dom';
-import { fetchPlanPrice } from '../../../utils/api';
 import { PrimaryButton } from '../../../components/Button';
 
 const PlanCard = ({

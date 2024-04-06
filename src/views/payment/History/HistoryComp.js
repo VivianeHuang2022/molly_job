@@ -1,33 +1,45 @@
 import React from 'react';
 import { Table } from 'antd';
 
+import { ColumnShow, CountComp } from '../../../components/Column/ColumnShow';
+import styles from './history.module.css';
+
 const columns = [
   {
-    title: 'Count',
+    title: <ColumnShow content="Count" />,
     key: 'count',
+    dataIndex: 'count',
     render: (text, record) => (
       <span>
-        {record.action === 'increment' ? '+' : '-'}
-        {record.count}
+        {record.recordType}
+        {record.action === 'increment' ? ' payment +' : ' generate -'}
+        <CountComp content={record.count} />
       </span>
     ),
   },
   {
-    title: 'Time',
+    title: <ColumnShow content="Time" />,
     dataIndex: 'timestamp',
     key: 'time',
-    render: (timestamp) => new Date(timestamp).toLocaleString(),
-    sorter: (a, b) => b.timestamp - a.timestamp, //实际这行应该用不到，都是按时间顺序排列的吧
+    render: (timestamp) => (
+      <ColumnShow content={new Date(timestamp).toLocaleString()} />
+    ),
+    sorter: (a, b) => b.timestamp - a.timestamp,
     defaultSortOrder: 'ascend',
   },
 ];
 
 const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
   return (
-    <div>
-      <h1>Generate Counts History</h1>
-      <h2>Remaining Counts: {remainingCounts}</h2>
-      <Table columns={columns} dataSource={generateCountHistory} />
+    <div className={styles.container}>
+      <h1>Remaining Counts: {remainingCounts}</h1>
+      <h2>Generate Counts History:</h2>
+      <Table
+        columns={columns}
+        scroll={{ x: 200 }}
+        headerRowStyle={{ display: 'none' }}
+        dataSource={generateCountHistory}
+      />
     </div>
   );
 };

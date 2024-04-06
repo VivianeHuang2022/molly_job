@@ -9,7 +9,7 @@ import { TitleComp, ParagraphComp } from '../../../components/Typography';
 import { DefaultButton } from '../../../components/Button';
 import { ImageWithOverlay } from '../../../components/ImageWithOverlay';
 
-import QRCode from '../../../image/pic.jpg';
+import QRCode from '../../../assets/placeholder/pic.jpg';
 import { fetchQRCodeImage } from '../../../utils/api';
 import { fetchOrderStatus } from '../../../utils/api';
 
@@ -40,11 +40,16 @@ const QRCodePage = () => {
       if (planType) {
         localStorage.setItem('planType', planType);
         // 调用API函数来获取QRCode图片
-        const qrCodeData = await fetchQRCodeImage(planType);
-        if (qrCodeData.status) {
-          setQRState('show');
-          setQRCodeImage(qrCodeData.data); // Assuming qrCodeData contains the image data
-        } else {
+        try {
+          const qrCodeData = await fetchQRCodeImage(planType);
+          console.log(qrCodeData);
+          if (qrCodeData.status) {
+            setQRState('show');
+            setQRCodeImage(qrCodeData.data); // Assuming qrCodeData contains the image data
+          } else {
+            setQRState('error');
+          }
+        } catch (error) {
           setQRState('error');
         }
       }
@@ -58,14 +63,19 @@ const QRCodePage = () => {
     let intervalId;
 
     const fetchOrder = async () => {
-      const orderData = await fetchOrderStatus();
-      if (orderData.status === 'completed') {
-        clearInterval(intervalId);
-        navigate('/payment/complete', { state: { orderData } });
+      try {
+        const orderData = await fetchOrderStatus();
+        if (orderData.status === 'completed') {
+          clearInterval(intervalId);
+          navigate('/payment/complete', { state: { orderData } });
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
 
     if (qrState === 'show') {
+      console.log(qrState);
       fetchOrder(); // 执行一次以立即检查订单状态
       intervalId = setInterval(fetchOrder, 5000); // 每5秒轮询一次订单状态
     }
@@ -84,12 +94,16 @@ const QRCodePage = () => {
   }
 
   const fetchQRCode = async () => {
-    const qrCodeData = await fetchQRCodeImage(planType);
-    console.log(qrCodeData);
-    if (qrCodeData.status) {
-      setQRState('show');
-      setQRCodeImage(qrCodeData);
-    } else {
+    try {
+      const qrCodeData = await fetchQRCodeImage(planType);
+      console.log(qrCodeData);
+      if (qrCodeData.status) {
+        setQRState('show');
+        setQRCodeImage(qrCodeData);
+      } else {
+        setQRState('error');
+      }
+    } catch (error) {
       setQRState('error');
     }
   };

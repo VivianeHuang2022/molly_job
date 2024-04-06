@@ -358,3 +358,193 @@ export const fetchPlanPrice = async (lan) => {
     throw error;
   }
 };
+
+
+
+
+//20240406 add api
+/*-------------公共模块----------------*/
+const authToken = localStorage.getItem('token');
+const BASE_URL = 'api/'; // API的基本URL
+const initTopicId = 1; // 不传类型时，默认为学生
+
+// 通用请求函数，根据HTTP方法和URL构建请求
+const apiRequest = async (method, url, data = null, config = {}) => {
+  const apiName = `${method.toUpperCase()} ${BASE_URL}${url}`; // 获取 API 的名称
+  try {
+    const headers = {
+      ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+      ...(config.headers || {}),
+    };
+
+    if (config.contentType) {
+      headers['Content-Type'] = config.contentType;
+    } else {
+      headers['Content-Type'] = 'application/json';
+    }
+
+    const response = await axios({
+      method,
+      url: BASE_URL + url,
+      data,
+      ...config, // 允许传递额外的配置，如responseType
+      headers,
+      timeout: 10000, // 设置请求超时时间为10秒
+    });
+    return response.data; // 返回响应数据
+  } catch (error) {
+    console.error(`请求失败(${apiName}): ${error}`);
+    throw error;
+  }
+};
+
+/**
+ * 封装GET请求。
+ * @param {string} url - 地址。
+ * @param {Object} params - 查询参数,用于根据查询参数过滤数据
+ * @param {string} responseType -指定服务器响应的数据类型。这里默认为“json”
+ 
+常见的值包括：
+"arraybuffer"：表示服务器响应将作为一个 ArrayBuffer 返回。
+"blob"：表示服务器响应将作为一个 Blob 对象返回。
+"document"：表示服务器响应将作为一个 Document 对象返回（例如，XML 文档）。
+"json"：表示服务器响应将作为一个 JSON 对象返回。
+"text"：表示服务器响应将作为一个字符串返回。
+ */
+const get = (url, params, responseType = 'json') => {
+  return apiRequest('get', url, null, { params, responseType }); // 传递查询参数和响应类型
+};
+
+/**
+ * 封装POST请求。
+ * @param {string} url - 地址。
+ * @param {number} data - 数据组。
+ * @param {string} contentType -指定发送请求时请求体的数据类型。这里默认'application/json'
+ 
+"application/json"：表示请求体中包含 JSON 数据。
+"multipart/form-data"：表示请求体中包含表单数据，通常用于上传文件等操作。
+"application/x-www-form-urlencoded"：表示请求体中包含 URL 编码的表单数据，通常在提交表单时使用。
+ */
+const post = (url, data, contentType = 'application/json') => {
+  return apiRequest('post', url, data, { contentType });
+};
+
+/*-------------编辑模块----------------*/
+
+/**
+ * 创建 Cover Letter。
+ * @param {Object} dataGroup - 数据组。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const createCoverletter = async (dataGroup, topicId = initTopicId) => {
+  return post(`createCoverletter/topicId=${topicId}`, dataGroup);
+};
+
+/**
+ * 创建 Recommendation。
+ * @param {Object} dataGroup - 数据组。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const createRecommendation = async (
+  dataGroup,
+  topicId = initTopicId
+) => {
+  return post(`recommendation/topicId=${topicId}`, dataGroup);
+};
+
+/**
+ * 创建简历。
+ * @param {Object} dataGroup - 数据组。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const createResume = async (dataGroup, topicId = initTopicId) => {
+  return post(`resume/topicId=${topicId}`, dataGroup);
+};
+
+/**
+ * 获取 Cover Letter最新数据。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const getCoverletter = async (topicId = initTopicId) => {
+  return get(`getCoverletter/topicId=${topicId}`);
+};
+
+/**
+ * 获取 Recommendation最新数据。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const getRecommendation = async (topicId = initTopicId) => {
+  return get(`recommendation/topicId=${topicId}`);
+};
+
+/**
+ * 获取 简历最新数据。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const getResume = async (topicId = initTopicId) => {
+  return get(`resume/topicId=${topicId}`);
+};
+
+/*-----------生成模块-------------*/
+
+/**
+ * 获取生成文件状态。
+ * @param {string} countId - 模板类型。
+ * @param {string} lan - 选择生成的语言。
+ * @param {string} documentType - 文件类型。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const getDocumentStatus = async (
+  countId,
+  lan,
+  documentType,
+  topicId = initTopicId
+) => {
+  return get(
+    `getDocumentStatus/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`,
+    null,
+    'text'
+  );
+};
+
+/**
+ * 获取生成文件的图片。
+ * @param {string} countId - 模板类型。
+ * @param {string} lan - 选择生成的语言。
+ * @param {string} documentType - 文件类型。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。。
+ */
+export const getDocumentImg = async (
+  countId,
+  lan,
+  documentType,
+  topicId = initTopicId
+) => {
+  return get(
+    `getDocumentImg/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`,
+    null,
+    'blob'
+  );
+};
+
+/**
+ * 下载生成的PDF文件。
+ * @param {string} countId - 模板类型。
+ * @param {string} lan - 选择生成的语言。
+ * @param {string} documentType - 文件类型。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const downloadDocumentPdf = async (
+  countId,
+  lan,
+  documentType,
+  topicId = initTopicId
+) => {
+  return get(
+    `downloadDocumentPdf/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`,
+    null,
+    'blob'
+  );
+};
+
+

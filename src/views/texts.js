@@ -357,6 +357,66 @@ const texts = {
     generationTime: 'Document generation time',
     contactEmail: 'For any questions, please contact ',
   },
+  recommendation: {
+    sectionTitle: {
+      majorApplication: 'Major Application',
+      recommenderInformation: 'Recommender Information',
+      backgroundOfRecommender: 'Background of Recommender',
+      starInstructions: 'Describe a story using the STAR principle:',
+      situation: 'Situation: Give context or reason about what was happening.',
+      task: 'Task: What was the goal or problem to be addressed?',
+      action: 'Action: Specific steps taken to address the task or challenge.',
+      result: 'Result: Outcome and achievement of the actions.',
+      activityInvolved: 'Activity Involved',
+    },
+    major: {
+      label: 'Major',
+      placeholder: 'Type here...',
+    },
+    recommender: {
+      name: {
+        label: 'Name',
+        placeholder: 'Example: Samantha Wang',
+      },
+      relationship: {
+        label: 'Relationship',
+        placeholder: 'Mentor/Professor/Supervisor/Manager',
+      },
+      institution: {
+        label: 'Institution',
+        placeholder: 'University/Company',
+      },
+      position: {
+        label: 'Position',
+        placeholder: 'Specify the position or title of recommender',
+      },
+      phone: {
+        label: 'Phone Number',
+        placeholder: 'Contact number of the recommender',
+      },
+      email: {
+        label: 'Email',
+        placeholder: 'Samantha@gmail.com',
+      },
+      address: {
+        label: 'Address',
+        placeholder: 'Mailing address',
+      },
+      zipCode: {
+        label: 'Zip Code',
+        placeholder: 'Zip code for the address',
+      },
+    },
+    intro: {
+      label: 'Background of recommender',
+      placeholder: 'Type here...',
+    },
+    activity: {
+      label: 'Activity Involved',
+      placeholder: 'Your story here...',
+    },
+    buttonLabel: 'Submit',
+  },
 };
 
 export default texts;

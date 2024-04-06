@@ -45,16 +45,8 @@ const PayFinishedPage = () => {
   };
 
   const backToGeneration = () => {
-    switch (orderResult?.paymentInfo?.planType) {
-      case 'cv':
-        navigate('/generate-cv');
-        break;
-      case 'coverLetter':
-        navigate('/layout/coverletter');
-        break;
-      default:
-        navigate('/layout/coverletter');
-    }
+    const documentType = localStorage.getItem('currentgenerate');
+    navigate(`/layout/${documentType}`);
   };
 
   const checkPayment = () => {
