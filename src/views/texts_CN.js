@@ -233,6 +233,8 @@ const texts = {
     buttonLabel: {
       generateDocument: '生成文档',
       goPayment: '查看充值方案',
+      tryAgain: '稍后重试',
+      backToEdit: '返回编辑',
     },
     currentGenerateCountTips: '当前剩余生成次数',
     confirmationContent:
@@ -397,6 +399,15 @@ const texts = {
       placeholder: '请分享您的故事...',
     },
     buttonLabel: '提交',
+  },
+  historyTexts: {
+    remainingCounts: '剩余数量：',
+    generateCountsHistory: '生成数量历史记录：',
+    increment: '增加',
+    payment: '支付',
+    generate: '生成',
+    count: '数量',
+    time: '时间',
   },
 
 };

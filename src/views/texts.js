@@ -243,6 +243,8 @@ const texts = {
     buttonLabel: {
       generateDocument: 'Generate Document',
       goPayment: 'View Payment Plans',
+      tryAgain: 'Try Again',
+      backToEdit: 'Back To Edit',
     },
     currentGenerateCountTips: 'Current Remaining Generation Count',
     confirmationTitle: 'Confirm Generation',
@@ -418,6 +420,14 @@ const texts = {
       placeholder: 'Your story here...',
     },
     buttonLabel: 'Submit',
+  }, historyTexts: {
+    remainingCounts: 'Remaining Counts: ',
+    generateCountsHistory: 'Generate Counts History:',
+    increment: 'increment',
+    payment: 'payment',
+    generate: 'generate',
+    count: 'Count',
+    time: 'Time',
   },
 };
 

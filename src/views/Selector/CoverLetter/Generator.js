@@ -59,6 +59,7 @@ const Generator = ({ uId, countId, lan, generateDocumentTexts }) => {
 
   //去支付页面
   const handleGoPaymentPage = () => {
+    localStorage.setItem('currentgenerate', documentType);
     navigate('/payment');
   };
 

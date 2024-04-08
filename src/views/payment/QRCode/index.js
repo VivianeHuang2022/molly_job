@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './QRCode.module.css';
 import QRCodeComponent from './QRCodeComponent';
+
 import { getLabels } from '../../local';
+import { useSelector } from 'react-redux';
+import { selectCurrentLanguage } from '../../../redux/slices/languageSlice';
+
 import { useLocation } from 'react-router-dom';
 import { Image } from 'antd';
 
@@ -16,7 +20,7 @@ import { fetchOrderStatus } from '../../../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 const QRCodePage = () => {
-  const texts = getLabels();
+  const texts = getLabels(useSelector(selectCurrentLanguage));
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -81,7 +85,7 @@ const QRCodePage = () => {
     }
 
     return () => clearInterval(intervalId); // 在组件卸载或者状态改变时清除interval
-  }, [qrState]);
+  }, [qrState, navigate]);
 
   // 如果未找到planType，则不展示QRCodeComponent
   if (!planType) {

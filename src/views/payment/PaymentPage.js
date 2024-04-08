@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import PlanCard from './plancards/PlanCard';
 import styles from './payment.module.css'; // Import CSS module
 import { getLabels } from '../local';
+import { useSelector } from 'react-redux';
+import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
 
 const PlanCardsContainer = () => {
-  const texts = getLabels();
+  const texts = getLabels(useSelector(selectCurrentLanguage));
   const plans = texts.plans;
   const [activeTab] = useState('monthly');
 

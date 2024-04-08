@@ -6,12 +6,14 @@ import { DefaultButton, PrimaryButton } from '../../../components/Button';
 import { TitleComp, ParagraphComp } from '../../../components/Typography';
 
 import { getLabels } from '../../local';
+import { useSelector } from 'react-redux';
+import { selectCurrentLanguage } from '../../../redux/slices/languageSlice';
 
 import PaymentDetails from './PaymentDetails';
 import styles from './Finished.module.css';
 
 const PayFinishedPage = () => {
-  const texts = getLabels();
+  const texts = getLabels(useSelector(selectCurrentLanguage));
   const orderResultTexts = texts.orderResult;
 
   const navigate = useNavigate();
