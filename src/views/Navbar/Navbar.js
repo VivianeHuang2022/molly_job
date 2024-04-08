@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { getMenuItems, profileItems } from './MenuData';
 import Profile from './Profile';
+import { editState, hasLocalData } from '../../utils/checkCache';
 
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
@@ -22,6 +23,11 @@ function Navbar(props) {
 
 
   const handleItemClick = (key) => {
+   if(!hasLocalData('isEditcoverletter')){
+    if (key === 'coverletter') {
+      editState('isEditcoverletter', false);
+    }
+   }
     navigate(key);
     setActiveKey(key);
   };

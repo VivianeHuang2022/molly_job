@@ -30,7 +30,7 @@ const Question = () => {
   };
 
   useEffect(() => {
-    if (hasLocalData('coverletter')) {
+    if (hasLocalData('isEditcoverletter')) {
       navigate('/layout/generalq');
     }
   }, [navigate]);

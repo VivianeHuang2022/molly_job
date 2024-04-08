@@ -101,7 +101,12 @@ const Generator = ({
   const handleBacktoEdit = () => {
     editState(`isEdit${documentType}`, true);
 
-    navigate(`/layout/${documentType}`);
+    if(documentType === 'coverletter'){
+      navigate(`/layout/generalq`);
+    }else {
+      navigate(`/layout/${documentType}`);
+
+    }
   };
   return (
     <div>
