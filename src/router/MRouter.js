@@ -161,11 +161,6 @@ export default function MRouter() {
           ) : (
             <GenerateCoverletter />
           ),
-          children: [
-            { path: 'editcoverletter', element: <Question /> },
-            { path: 'generatecoverletter', element: <GenerateCoverletter /> },
-            { path: 'downloadcoverletter', element: <DownloadPage /> },
-          ],
         },
         {
           path: 'recommendation',
@@ -174,14 +169,6 @@ export default function MRouter() {
           ) : (
             <GenerateRecommendation />
           ),
-          children: [
-            { path: 'editrecommendation', element: <EditRecommendationForm /> },
-            {
-              path: 'generaterecommendation',
-              element: <GenerateRecommendation />,
-            },
-            { path: 'downloadrecommendation', element: <DownloadPage /> },
-          ],
         },
         {
           path: 'payment',

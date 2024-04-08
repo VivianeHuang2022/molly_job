@@ -24,7 +24,7 @@ const RecommendationFormLogic = () => {
       console.log('Form submitted with values:', values);
 
       editState('isEditrecommendation', false);
-      navigate('/layout/Recommendation/generaterecommendation');
+      navigate('/layout/Recommendation');
     } else {
       //错误提示
     }

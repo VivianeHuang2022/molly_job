@@ -19,7 +19,7 @@ const Question = () => {
 
     if (response.status === 200) {
       editState('isEditcoverletter', false);
-      navigate('/layout/coverletter/generatecoverletter');
+      navigate('/layout/coverletter');
     } else {
       showAlertMessage(
         'Error',

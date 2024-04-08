@@ -61,8 +61,8 @@ const Generator = ({
         topicId
       );
       if (response.status == 200) {
-        navigate(`/${documentType}/download`);
-      }
+        navigate(`/download`);
+        localStorage.setItem('currentgenerate', documentType);      }
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -96,7 +96,7 @@ const Generator = ({
   const handleBacktoEdit = () => {
     editState(`isEdit${documentType}`, true);
 
-    navigate(`/layout/${documentType}/edit${documentType}`);
+    navigate(`/layout/${documentType}`);
   };
   return (
     <div>
