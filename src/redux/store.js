@@ -4,7 +4,7 @@ import rootReducer from './slice';
 
 import { combineReducers } from '@reduxjs/toolkit';
 import cvDataSlice from './cvDataSlice';
-import languageReducer from './languageSlice';
+import languageReducer from './slices/languageSlice';
 
 
 const reducers = combineReducers({

@@ -5,15 +5,21 @@ import styles from './Navbar.module.css';
 import { CustomMenuComponent } from '../../components/Menu/MenuComponent';
 import { useNavigate } from 'react-router-dom';
 
-import { menuItems, profileItems } from './MenuData';
+import { getMenuItems, profileItems } from './MenuData';
 import Profile from './Profile';
-// import { useLocation } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
+import { getLabels } from '../local';
 
 function Navbar(props) {
   const navigate = useNavigate();
   const [activeKey, setActiveKey] = useState('coverletter');
 
-  // const location = useLocation();
+  //用全局状态管理传入语言
+  const texts = getLabels(useSelector(selectCurrentLanguage));
+  const menuItems = getMenuItems(texts);
+
 
   const handleItemClick = (key) => {
     navigate(key);
@@ -35,7 +41,7 @@ function Navbar(props) {
           menuItems={menuItems}
         />
 
-        <Profile items={profileItems} />
+        <Profile profileItems={profileItems} />
       </div>
 
       {props.children}

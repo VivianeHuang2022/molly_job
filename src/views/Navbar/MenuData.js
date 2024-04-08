@@ -1,31 +1,27 @@
-import { getLabels } from '../local';
-
-const texts = getLabels();
-console.log(texts);
-
-export const menuItems = [
-  {
-    key: 'generalq',
-    label: texts.homeTexts.applicationTxt,
-  },
-  {
-    key: 'coverletter',
-    label: texts.homeTexts.coverletterTxt,
-  },
-  {
-    key: 'recommendation',
-    label: texts.homeTexts.recommendationTxt,
-  },
-  {
-    key: 'resume',
-    label: texts.homeTexts.resumeTxt,
-  },
-  {
-    key: 'payment',
-    label: texts.homeTexts.paymentTxt,
-  },
-];
-
+export const getMenuItems = (texts) => {
+  return [
+    // {
+    //   key: 'generalq',
+    //   label: texts.homeTexts.applicationTxt,
+    // },
+    {
+      key: 'coverletter',
+      label: texts.homeTexts.coverletterTxt,
+    },
+    {
+      key: 'recommendation',
+      label: texts.homeTexts.recommendationTxt,
+    },
+    {
+      key: 'resume',
+      label: texts.homeTexts.resumeTxt,
+    },
+    {
+      key: 'payment',
+      label: texts.homeTexts.paymentTxt,
+    },
+  ];
+};
 export const profileItems = [
   {
     key: '1',
@@ -42,9 +38,10 @@ export const profileItems = [
   {
     key: '2',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="">
+      <a target="_blank" rel="noopener noreferrer" href="/">
         Logout
       </a>
     ),
   },
 ];
+
