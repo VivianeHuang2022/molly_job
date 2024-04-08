@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './generate.module.css';
 
 import { PrimaryButton, DefaultButton } from '../../../components/Button';
+import { SecParagraphComp } from '../../../components/Typography';
 import { MidTitleComp } from '../../../components/Typography';
 
 const Generator = ({
@@ -41,7 +42,7 @@ const Generator = ({
         setnotEnoughCountAlert(true);
       }
     } catch (error) {
-      setErrorMessage(generateDocumentTexts.Message + error.message);
+      setErrorMessage(generateDocumentTexts.errorMessage + error.message);
     }
   };
 
@@ -52,6 +53,11 @@ const Generator = ({
   // 生成文件
   const handleGenerateClick = async () => {
     try {
+      // 模拟获取账户信息
+      // const response = { status: 200 };
+      // console.log(documentType);
+
+      //实际获取的api
       const response = await getDocumentStatus(
         countId,
         lan,
@@ -60,7 +66,8 @@ const Generator = ({
       );
       if (response.status === 200) {
         navigate(`/download`);
-        localStorage.setItem('currentgenerate', documentType);      }
+        localStorage.setItem('currentgenerate', documentType);
+      }
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -137,12 +144,25 @@ const Generator = ({
 
       {/* 错误提示 */}
       {errorMessage && (
-        <div>
+        <div className={styles.error}>
           <MidTitleComp>{errorMessage}</MidTitleComp>
-          <PrimaryButton label={'TRY AGAIN'} onClick={fetchData} />
+          <PrimaryButton
+            label={generateDocumentTexts.buttonLabel.tryAgain}
+            onClick={fetchData}
+          />
+          <div className={styles.contact}>
+            <SecParagraphComp>
+              contact email: viviane.huang@stu-de.org
+            </SecParagraphComp>
+          </div>
         </div>
       )}
-      <DefaultButton label={'back to edit'} onClick={handleBacktoEdit} />
+      <div className={styles.editButton}>
+        <DefaultButton
+          label={generateDocumentTexts.buttonLabel.backToEdit}
+          onClick={handleBacktoEdit}
+        />
+      </div>
     </div>
   );
 };

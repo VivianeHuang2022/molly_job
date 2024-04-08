@@ -50,3 +50,18 @@
   padding: 10px;
   border-radius: 10px 10px 0 0;
 }
+
+.error {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact {
+  text-align: center;
+}
+
+.editButton {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}

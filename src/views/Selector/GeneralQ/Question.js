@@ -46,7 +46,9 @@ export default function Question(props) {
     if (currentQNumber > 1) {
       const lastQ = "page" + (currentQNumber - 1);
       navigate(`/layout/generalq/${lastQ}`);
-    }
+    }else{ editState('isEditcoverletter', false);
+
+    navigate('/layout/coverletter');}
   };
   return (
     <div className={style.container}>

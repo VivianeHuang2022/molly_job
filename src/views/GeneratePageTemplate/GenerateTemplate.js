@@ -4,13 +4,15 @@ import styles from './GenerateTemplate.module.css';
 import Generator from './Generate/Generator';
 
 import { getLabels } from '../local';
+import { useSelector } from 'react-redux';
+import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
 
 import { LoadingIndicator } from '../../components/Loading';
 
 import LanguageSwitcher from './Generate/LanguageSwitcher';
 
 const GenerateTemplate = ({ fetchImages, documentType }) => {
-  const texts = getLabels();
+  const texts = getLabels(useSelector(selectCurrentLanguage));
   const { generateDocument: generateDocumentTexts } = texts;
   const [imageFiles, setImageFiles] = useState([]);
   const [loading, setLoading] = useState(true); // 图片加载状态

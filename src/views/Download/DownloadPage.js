@@ -3,7 +3,7 @@ import { getDocumentImg, downloadDocumentPdf } from '../../utils/api';
 
 import styles from './Download.module.css';
 
-import MockImage from '../../assets/cover/coverletterEnglish/Cover_letter_English_1.jpg';
+// import MockImage from '../../assets/cover/coverletterEnglish/Cover_letter_English_1.jpg';
 
 import { PrimaryButton } from '../../components/Button';
 import {
@@ -13,11 +13,14 @@ import {
 } from '../../components/Typography';
 
 import { getLabels } from '../local';
+import { useSelector } from 'react-redux';
+import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
 
-const DownloadPage = ({ documentType, topicId }) => {
-  const texts = getLabels();
+const DownloadPage = ({ topicId }) => {
+  const texts = getLabels(useSelector(selectCurrentLanguage));
   const downloadTexts = texts.download;
   const rememberEmail = localStorage.getItem('email');
+  const documentType = localStorage.getItem('currentgenerate');
 
   const [imageSrc, setImageSrc] = useState(null);
   const [generationTime] = useState('暂未获取到时间');
@@ -48,7 +51,7 @@ const DownloadPage = ({ documentType, topicId }) => {
     };
 
     fetchImage();
-  }, []);
+  }, [countId, documentType, lan, topicId]);
 
   const handleDownloadClick = async () => {
     let { countId, language } = coverLetterData;
@@ -80,11 +83,17 @@ const DownloadPage = ({ documentType, topicId }) => {
         {/* 替换实际的src */}
         {imageSrc && (
           <img
-            src={MockImage}
+            src={imageSrc}
             alt="preview img"
             className={styles.showImage}
           ></img>
         )}
+        {/* mock img */}
+        {/* <img
+          src={MockImage}
+          alt="preview img"
+          className={styles.showImage}
+        ></img> */}
       </div>
       <div className={styles.operationContainer}>
         <MidTitleComp>{downloadTexts.documentGenerated}</MidTitleComp>
