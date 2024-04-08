@@ -33,7 +33,7 @@ const Question = () => {
     if (hasLocalData('coverletter')) {
       navigate('/layout/generalq');
     }
-  }, []);
+  }, [navigate]);
   return (
     <div className={styles.questionContainerOuter}>
       <div className={styles.questionContainer}>

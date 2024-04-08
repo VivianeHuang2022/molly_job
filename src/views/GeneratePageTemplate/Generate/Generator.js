@@ -7,8 +7,6 @@ import styles from './generate.module.css';
 
 import { PrimaryButton, DefaultButton } from '../../../components/Button';
 import { MidTitleComp } from '../../../components/Typography';
-import { Typography } from 'antd';
-const { Text } = Typography;
 
 const Generator = ({
   lan,
@@ -49,7 +47,7 @@ const Generator = ({
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   // 生成文件
   const handleGenerateClick = async () => {
@@ -60,7 +58,7 @@ const Generator = ({
         documentType,
         topicId
       );
-      if (response.status == 200) {
+      if (response.status === 200) {
         navigate(`/download`);
         localStorage.setItem('currentgenerate', documentType);      }
     } catch (error) {

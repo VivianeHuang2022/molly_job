@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import PreviewImage from './Generate/PreviewImage';
 import styles from './GenerateTemplate.module.css';
 import Generator from './Generate/Generator';
+
 import { getLabels } from '../local';
+
 import { LoadingIndicator } from '../../components/Loading';
 
 import LanguageSwitcher from './Generate/LanguageSwitcher';
 
-const GenerateCoverLetterPage = ({ fetchImages, documentType }) => {
+const GenerateTemplate = ({ fetchImages, documentType }) => {
   const texts = getLabels();
   const { generateDocument: generateDocumentTexts } = texts;
   const [imageFiles, setImageFiles] = useState([]);
@@ -36,7 +38,7 @@ const GenerateCoverLetterPage = ({ fetchImages, documentType }) => {
     const images = fetchImages(selectedLanguage);
     setImageFiles(images);
     setLoading(false);
-  }, [selectedLanguage]);
+  }, [selectedLanguage, fetchImages]);
 
   return (
     <div className={styles.pageContainer}>
@@ -69,4 +71,4 @@ const GenerateCoverLetterPage = ({ fetchImages, documentType }) => {
   );
 };
 
-export default GenerateCoverLetterPage;
+export default GenerateTemplate;

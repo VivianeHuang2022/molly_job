@@ -8,9 +8,7 @@ import Home from "../views/Home/Home";
 import Layout from '../views/Layout/Layout';
 
 import Interview from "../views/Selector/Interview/JobInterview";
-import CoverLetter from "../views/Selector/CoverLetter";
 import Resume from "../views/Selector/Resume/Resume";
-import JobMatch from "../views/Selector/Match/JobMatch";
 import GeneralQ from "../views/Selector/GeneralQ/GeneralQ";
 import { LoadingOutlined } from "@ant-design/icons";
 
