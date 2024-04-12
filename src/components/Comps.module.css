@@ -14,3 +14,33 @@
   font-size: 1.2rem;
   background-color: aquamarine;
 }
+
+.icon {
+  color: rgb(214, 214, 214); /* 默认图标颜色 */
+  width: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon:hover {
+  color: #1a1a1a; /* 悬停时的图标颜色 */
+  cursor: pointer; /* 改变鼠标光标为指针形状，表示这是一个可交互元素 */
+}
+
+.addMore {
+  display: flex;
+  color: rgb(206, 206, 206);
+}
+
+.loadingIndicator {
+  height: 647px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.experienceName {
+  display: flex;
+  justify-content: space-between;
+}

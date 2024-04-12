@@ -1,7 +1,6 @@
 // TypographyComponents.js
 import React from 'react';
 import { Typography } from 'antd';
-import styles from './Comps.module.css';
 
 const { Title, Text } = Typography;
 
@@ -19,4 +18,8 @@ export const TitleComp = ({ level, children }) => {
 
 export const MidTitleComp = ({ level, children }) => {
   return <Title level={4}>{children}</Title>;
+};
+
+export const NoticeParagraphComp = ({ children }) => {
+  return <Text mark>{children}</Text>;
 };

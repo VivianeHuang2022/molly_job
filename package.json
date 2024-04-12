@@ -12,6 +12,7 @@
     "axios": "^1.5.1",
     "draft-js": "^0.11.7",
     "formik": "^2.4.5",
+    "html2pdf.js": "^0.9.3",
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

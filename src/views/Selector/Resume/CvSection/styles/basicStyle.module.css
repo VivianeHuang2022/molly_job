@@ -1,5 +1,5 @@
 :root {
-  --base-font-size: 10px;
+  --base-font-size: 6.7px;
 }
 
 .cvSection {
@@ -41,4 +41,9 @@
 
 .personalInfoDetails div {
   margin-right: 15px;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
 }

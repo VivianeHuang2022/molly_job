@@ -1,11 +1,10 @@
 import React from 'react';
 
 const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
-  const personalInfo = cvData.personalInfo;
-  const { cvSection} = styles;
-  const { userTel, userEmail, linkedIn } = title;
+  const { cvSection } = styles;
+  const { userTel, userEmail, userLinkedln } = title;
 
-  const { firstName, surname } = personalInfo;
+  const { firstName, surname } = cvData;
 
   const Heading = ({ text }) => {
     return <div className={styles.cvSectionHeading}>{text}</div>;
@@ -23,9 +22,11 @@ const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
     <div className={cvSection}>
       <Heading text={`${firstName} ${surname}`} />
       <div className={styles.personalInfoDetails}>
-        <PersonalInfoItem label={userTel} value={personalInfo.userTel} />
-        <PersonalInfoItem label={userEmail} value={personalInfo.userEmail} />
-        <PersonalInfoItem label={linkedIn} value={personalInfo.linkedIn} />
+        <PersonalInfoItem label={userTel} value={cvData.userTel} />
+        <PersonalInfoItem label={userEmail} value={cvData.userEmail} />
+        {cvData.userLinkedln && (
+          <PersonalInfoItem label={userLinkedln} value={cvData.userLinkedln} />
+        )}
       </div>
     </div>
   );

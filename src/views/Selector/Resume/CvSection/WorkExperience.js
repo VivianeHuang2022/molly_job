@@ -1,3 +1,4 @@
+import React from 'react';
 
 const WorkExperienceItem = ({ experience, styles }) => {
   const {
@@ -10,6 +11,7 @@ const WorkExperienceItem = ({ experience, styles }) => {
     endDate,
     workSummary,
     workDetail,
+    groupName,
   } = experience;
 
   const Paragraph = ({ content, title }) => {
@@ -29,7 +31,8 @@ const WorkExperienceItem = ({ experience, styles }) => {
     <div className={styles.subSection}>
       <SubHeading text={role} styles={styles} />
       <Paragraph content={company} styles={styles} />
-      <Paragraph content={`${city}, ${state}, ${country}`} />
+      <Paragraph content={groupName} />
+      <Paragraph content={`${city} ${state} ${country}`} />
       <Paragraph content={`${startDate} - ${endDate}`} />
       <Paragraph content={workSummary} styles={styles} />
       <Paragraph content={workDetail} />
@@ -38,7 +41,7 @@ const WorkExperienceItem = ({ experience, styles }) => {
 };
 
 const WorkExperience = ({ cvData, sectionName, styles }) => {
-  const { workExperience } = cvData;
+  const workExperience = cvData;
   const { cvSection } = styles;
 
   const Heading = ({ text }) => {

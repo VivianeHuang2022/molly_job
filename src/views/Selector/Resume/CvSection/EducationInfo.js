@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EducationInfo = ({ cvData, sectionName, styles }) => {
-  const educationInfo = cvData.educationInfo;
+  const educationInfo = cvData;
 
   const { cvSection } = styles;
 
@@ -12,7 +12,7 @@ const EducationInfo = ({ cvData, sectionName, styles }) => {
   const Paragraph = ({ title, content }) => {
     return (
       <div className={styles.paragraph}>
-        {title && <strong>{title}: </strong>}
+        {title && <strong>{title} </strong>}
         {content}
       </div>
     );
@@ -21,9 +21,12 @@ const EducationInfo = ({ cvData, sectionName, styles }) => {
   const EducationInfoItem = ({ edu }) => {
     return (
       <div className={styles.subSection}>
-        <Paragraph title={`${edu.curDegree} in ${edu.curMajor}`} />
-        <Paragraph content={`${edu.curUni}, ${edu.city}, ${edu.state}`} />
+        {edu.currentCountry}
+        <Paragraph title={`${edu.currentDegree}  ${edu.currentMajor}`} />
+        <Paragraph content={`${edu.currentUni} ${edu.city} ${edu.state}`} />
         <Paragraph content={edu.graduationDate} />
+        {edu.currentGPA} {edu.achievement}
+        {edu.currentCourses}
       </div>
     );
   };

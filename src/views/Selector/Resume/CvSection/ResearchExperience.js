@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ProjectExperience = ({ cvData, sectionName, styles }) => {
-  const projectExperience = cvData;
+const ResearchExperience = ({ cvData, sectionName, styles }) => {
+  const researchExperience = cvData;
 
   const { cvSection } = styles;
 
@@ -22,29 +22,27 @@ const ProjectExperience = ({ cvData, sectionName, styles }) => {
     );
   };
 
-  const ProjectExperienceItem = ({ project }) => {
+  const ResearchExperienceItem = ({ research }) => {
     const {
-      projectTitle,
-      courseName,
+      researchTitle,
       schoolName,
       city,
       state,
       country,
       startDate,
       endDate,
-      projectSummary,
-      projectDetail,
-    } = project;
+      researchSummary,
+      researchDetail,
+    } = research;
 
     return (
       <div className={styles.subSection}>
-        <SubHeading text={projectTitle} styles={styles} />
-        <Paragraph content={courseName} />
+        <SubHeading text={researchTitle} styles={styles} />
         <Paragraph content={schoolName} />
         <Paragraph content={`${city} ${state} ${country}`} />
         <Paragraph content={`${startDate} - ${endDate}`} />
-        <Paragraph content={projectSummary} styles={styles} />
-        <Paragraph content={projectDetail} />
+        <Paragraph content={researchSummary} styles={styles} />
+        <Paragraph content={researchDetail} />
       </div>
     );
   };
@@ -52,11 +50,15 @@ const ProjectExperience = ({ cvData, sectionName, styles }) => {
   return (
     <div className={cvSection}>
       <Heading text={sectionName} />
-      {projectExperience.map((project, index) => (
-        <ProjectExperienceItem key={index} project={project} styles={styles} />
+      {researchExperience.map((research, index) => (
+        <ResearchExperienceItem
+          key={index}
+          research={research}
+          styles={styles}
+        />
       ))}
     </div>
   );
 };
 
-export default ProjectExperience;
+export default ResearchExperience;

@@ -4,27 +4,56 @@
   --input-container-width: 15rem;
 }
 
-.inputContainer {
-  width: var(--input-container-width);
+.actSectionContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
-.inputGroupContainer {
+.sectionGroup {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+/* section标题: 整个一行的样式 */
+.sectionNameGrop {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+/* section标题:+ edit icon */
+.sectionNameContainer {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+/* section除标题外，内容group样式 */
+.sectionGroupContent {
+  padding: 0 10px 10px 10px;
+  border-radius: 10px;
+}
+
+.inputGridContainer {
   display: grid;
   grid-template-columns: repeat(
     auto-fill,
     minmax(var(--input-container-width), 1fr)
   );
-  gap: 10px;
+  gap: 20px;
+  margin-bottom: 5px;
 }
 
-.actSectionContainer {
-  padding: 20px;
-  background-color: #f7f7f7;
-  width: 100%;
+.label {
+  margin: 0 0 10px 0;
+  font-weight: normal;
 }
 
-.sectionHeading {
-  font-size: 24px;
-  font-weight: bold;
+.collapsePanel {
   margin-bottom: 10px;
 }
