@@ -2,7 +2,15 @@ import * as Yup from 'yup';
 
 // 定义表单字段
 export const getFormFields = (texts) => {
-  const { major, recommender, intro, activity } = texts.recommendation;
+  const {
+    major,
+    recommender,
+    intro,
+    activity,
+    userInfo,
+    dreamSchoolInfo,
+    currentSchoolInfo,
+  } = texts.recommendation;
 
   return {
     major: {
@@ -10,10 +18,91 @@ export const getFormFields = (texts) => {
       name: 'applyMajor',
       schema: Yup.string(),
     },
+    userInfo: {
+      firstName: {
+        ...userInfo.firstName,
+        name: 'firstName',
+        schema: Yup.string(),
+      },
+      surname: {
+        ...userInfo.surname,
+        name: 'surname',
+        schema: Yup.string(),
+      },
+    },
+    dreamSchoolInfo: {
+      applySchool: {
+        ...dreamSchoolInfo.applySchool,
+        name: 'applySchool',
+        schema: Yup.string(),
+      },
+      applyProgram: {
+        ...dreamSchoolInfo.applyProgram,
+        name: 'applyProgram',
+        schema: Yup.string(),
+      },
+      dreamDegree: {
+        ...dreamSchoolInfo.dreamDegree,
+        name: 'dreamDegree',
+        schema: Yup.string(),
+      },
+      dreamUni: {
+        ...dreamSchoolInfo.dreamUni,
+        name: 'dreamUni',
+        schema: Yup.string(),
+      },
+      dreamUniAddress: {
+        ...dreamSchoolInfo.dreamUniAddress,
+        name: 'dreamUniAddress',
+        schema: Yup.string(),
+      },
+      dreamMajor: {
+        ...dreamSchoolInfo.dreamMajor,
+        name: 'dreamMajor',
+        schema: Yup.string(),
+      },
+      dreamCountry: {
+        ...dreamSchoolInfo.dreamCountry,
+        name: 'dreamCountry',
+        schema: Yup.string(),
+      },
+    },
+    currentSchoolInfo: {
+      currentUni: {
+        ...currentSchoolInfo.currentUni,
+        name: 'currentUni',
+        schema: Yup.string(),
+      },
+      currentCountry: {
+        ...currentSchoolInfo.currentCountry,
+        name: 'currentCountry',
+        schema: Yup.string(),
+      },
+      currentDegree: {
+        ...currentSchoolInfo.currentDegree,
+        name: 'currentDegree',
+        schema: Yup.string(),
+      },
+      currentMajor: {
+        ...currentSchoolInfo.currentMajor,
+        name: 'currentMajor',
+        schema: Yup.string(),
+      },
+      currentGPA: {
+        ...currentSchoolInfo.currentGPA,
+        name: 'currentGPA',
+        schema: Yup.string(),
+      },
+    },
     recommender: {
-      name: {
-        ...recommender.name,
-        name: 'recommenderName',
+      firstName: {
+        ...recommender.firstName,
+        name: 'recommenderFirstName',
+        schema: Yup.string(),
+      },
+      lastName: {
+        ...recommender.lastName,
+        name: 'recommenderLastName',
         schema: Yup.string(),
       },
       relationship: {
@@ -31,25 +120,11 @@ export const getFormFields = (texts) => {
         name: 'recommenderPosition',
         schema: Yup.string(),
       },
-      phone: {
-        ...recommender.phone,
-        name: 'recommenderPhone',
-        schema: Yup.string(),
-      },
+
       email: {
         ...recommender.email,
         name: 'recommenderEmail',
         schema: Yup.string().email('Invalid email address'),
-      },
-      address: {
-        ...recommender.address,
-        name: 'recommenderAddress',
-        schema: Yup.string(),
-      },
-      zipCode: {
-        ...recommender.zipCode,
-        name: 'recommenderZipCode',
-        schema: Yup.string(),
       },
     },
     intro: {

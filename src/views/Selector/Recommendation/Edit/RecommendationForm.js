@@ -1,4 +1,3 @@
-import React from 'react';
 import { Formik, Form, useField } from 'formik';
 import { Input } from 'antd';
 import styles from './Recommendation.module.css';
@@ -9,23 +8,34 @@ import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 import * as Yup from 'yup';
 
-
+import { selectFormData } from '../../../../redux/slices/recommenderSlice';
 
 const { TextArea } = Input;
 
-const RecommendationFormUI = ({ initialValues, onSubmit }) => {
+const RecommendationFormUI = ({ onSubmit }) => {
   const texts = getLabels(useSelector(selectCurrentLanguage));
 
   const formFields = getFormFields(texts);
 
   const { sectionTitle, buttonLabel } = texts.recommendation;
-  const { major, recommender, intro, activity } = formFields;
+  const {
+    major,
+    recommender,
+    intro,
+    activity,
+    userInfo,
+    dreamSchoolInfo,
+    currentSchoolInfo,
+  } = formFields;
 
   const {
     majorApplication,
     recommenderInformation,
     backgroundOfRecommender,
     activityInvolved,
+    userInfoTitle,
+    dreamSchoolInfoTitle,
+    currentSchoolInfoTitle,
   } = sectionTitle;
 
   //表单规则
@@ -49,7 +59,7 @@ const RecommendationFormUI = ({ initialValues, onSubmit }) => {
   }
   const validationSchema = Yup.object().shape(validationSchemaObj);
 
- 
+  const initialValues = useSelector(selectFormData);
 
   return (
     <div className={styles.container}>
@@ -57,14 +67,20 @@ const RecommendationFormUI = ({ initialValues, onSubmit }) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
+        enableReinitialize={true}
       >
         {(props) => (
-          <Form>
+          <Form className={styles.form}>
             <FormSingle form={major} title={majorApplication} />
+            <FormGroup formGroup={recommender} tltle={recommenderInformation} />
+            <FormGroup formGroup={userInfo} tltle={userInfoTitle} />
             <FormGroup
-              formGroup={recommender}
-              tltle={recommenderInformation}
-              sectionTitle={sectionTitle}
+              formGroup={dreamSchoolInfo}
+              tltle={dreamSchoolInfoTitle}
+            />
+            <FormGroup
+              formGroup={currentSchoolInfo}
+              tltle={currentSchoolInfoTitle}
             />
             <FormSingle form={intro} title={backgroundOfRecommender} />
             <FormSingle
@@ -82,19 +98,19 @@ const RecommendationFormUI = ({ initialValues, onSubmit }) => {
   );
 };
 
-const FormGroup = ({ formGroup, sectionTitle }) => {
+const FormGroup = ({ formGroup, tltle }) => {
   const fields = Object.keys(formGroup).map((key) => {
     const item = formGroup[key];
     return (
-      <div key={key} id={key}>
+      <div key={key} id={key} className={styles.formContainer}>
         <SingleField {...item} />
       </div>
     );
   });
   return (
     <div>
-      <Section title={sectionTitle.recommenderInformation} />
-      <div className={styles.recommenderInfo}>{fields}</div>
+      <Section title={tltle} />
+      <div className={styles.groupGridInfo}>{fields}</div>
     </div>
   );
 };
