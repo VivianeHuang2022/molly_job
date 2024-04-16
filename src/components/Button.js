@@ -17,6 +17,20 @@ export const PrimaryButton = ({ onClick, label }) => {
   );
 };
 
+export const LoadingButton = ({ onClick, label }) => {
+  return (
+    <Button
+      onClick={onClick}
+      type="primary"
+      className={styles.primaryButton}
+      shape="round"
+      loading
+    >
+      {label}
+    </Button>
+  );
+};
+
 export const DefaultButton = ({ onClick, label }) => {
   return (
     <Button onClick={onClick} className={styles.button} shape="round">
