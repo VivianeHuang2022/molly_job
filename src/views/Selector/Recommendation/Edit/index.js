@@ -23,7 +23,7 @@ const RecommendationFormLogic = () => {
 
     if (response.status === 200) {
       editState('isEditrecommendation', false);
-      navigate('/layout/Recommendation');
+      navigate('/layout/Recommendation/generate');
     } else {
       //错误提示
     }

@@ -30,9 +30,8 @@ const Question = () => {
   };
 
   useEffect(() => {
-    if (hasLocalData('isEditcoverletter')) {
-      navigate('/layout/generalq');
-    }
+    navigate('/layout/generalq');
+
   }, [navigate]);
   return (
     <div className={styles.questionContainerOuter}>

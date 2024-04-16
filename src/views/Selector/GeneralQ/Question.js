@@ -26,7 +26,7 @@ export default function Question(props) {
         const response = await createStdCoverLetter(data);
         if (response.status === 200) {
           editState('isEditcoverletter', false);
-          navigate('/layout/coverletter');
+          navigate('/layout/coverletter/generate');
         } else {
           showAlertMessage(
             "Error",

@@ -5,7 +5,12 @@ import NotFound from "../components/NotFound";
 import Start from "../views/Start/Start";
 import HomeTest from "../views/Home/HomeTest";
 import Home from "../views/Home/Home";
-import Layout from '../views/Layout/Layout';
+
+import {
+  Layout,
+  CoverletterLayout,
+  RecommendationLayout,
+} from '../views/Layout/Layout';
 
 import Interview from "../views/Selector/Interview/JobInterview";
 import Resume from "../views/Selector/Resume";
@@ -154,19 +159,39 @@ export default function MRouter() {
         { path: "resume", element: <Resume /> },
         {
           path: 'coverletter',
-          element: hasLocalData('isEditcoverletter') ? (
-            <Question />
-          ) : (
-            <GenerateCoverletter />
-          ),
+          element: <CoverletterLayout />,
+          children: [
+            {
+              index: true,
+              element: <Question />,
+            },
+            {
+              path: 'edit',
+              element: <Question />,
+            },
+            {
+              path: 'generate',
+              element: <GenerateCoverletter />,
+            },
+          ],
         },
         {
           path: 'recommendation',
-          element: hasLocalData('isEditrecommendation') ? (
-            <EditRecommendationForm />
-          ) : (
-            <GenerateRecommendation />
-          ),
+          element: <RecommendationLayout />,
+          children: [
+            {
+              index: true,
+              element: <EditRecommendationForm />,
+            },
+            {
+              path: 'edit',
+              element: <EditRecommendationForm />,
+            },
+            {
+              path: 'generate',
+              element: <GenerateRecommendation />,
+            },
+          ],
         },
         {
           path: 'payment',

@@ -48,7 +48,8 @@ const PayFinishedPage = () => {
 
   const backToGeneration = () => {
     const documentType = localStorage.getItem('currentgenerate');
-    navigate(`/layout/${documentType}`);
+    localStorage.setItem('fromPayment', documentType);
+    navigate(`/layout/${documentType}/generate`);
   };
 
   const checkPayment = () => {

@@ -73,7 +73,7 @@ const Generator = ({
     navigate(`/layout/payment`);
   };
   const handleBacktoEdit = () => {
-    editState(`isEdit${documentType}`, true);
+    editState(`isEdit${documentType}/edit`, true);
 
     navigate(`/layout/${documentType}/edit`);
   };
