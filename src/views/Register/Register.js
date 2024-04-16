@@ -7,7 +7,7 @@ import logoImage from "../../assets/images/Logo.PNG";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { registerRequset } from "../../utils/api";
 import AlertContext from "../../components/AlertProvider/AlertContext";
-import { getVerificationCode } from "../../utils/api";
+import { getRegisterVerificationCode } from "../../utils/api";
 
 export default function Register() {
   const { showAlertMessage } = useContext(AlertContext);
@@ -24,60 +24,38 @@ export default function Register() {
   const handleGetCode = async () => {
     const emailValue = emailRef.current.input.value; // 获取email输入框的值
     const pwdValue = pwdRef.current.input.value; // 获取email输入框的值
+    // console.log(emailValue)
+    // console.log(pwdValue)
     if (!emailValue) {
       setEmailError("Please input your Email!");
-    } else {
-      setEmailError(null);
+    } else{
+      setEmailError(null)
     }
     if (!pwdValue) {
       setPwdError("Please input your Password!");
-    } else {
-      setPwdError(null);
     }
+    else{
+      setPwdError(null)
+    } 
     try {
       const request = {
-        email: emailValue,
-        pwd: pwdValue,
-      };
-
-      const result = await getVerificationCode(request);
-      if (result.status === 200) {
-        console.log(result.data.msg);
-        showAlertMessage("Success", result.data.msg, "success");
-      } else {
-        showAlertMessage("Error", "unknown error!", "error");
+        email:emailValue.trim(),
+        pwd:pwdValue.trim()
       }
-      /*
-      const result = await registerRequset(request);
-      //成功之后跳转到Login界面
+      const result = await getRegisterVerificationCode(request)
       if (result.status === 200) {
-        showAlertMessage("Success", result.data.msg, "success");
-        id === 2 ? setShowModal(true) : navigate("/home/1");
-      } else {
-        showAlertMessage("Error", "unknown error!", "error");
+        console.log(result.data.msg)
+        showAlertMessage("Success",result.data.msg,"success")
+      }else{
+        showAlertMessage("Error","unknown error!","error")
       }
-      */
     } catch (error) {
       if (error.response) {
-        showAlertMessage("Error", error.response.data.msg, "error");
+        showAlertMessage("Error",error.response.data.msg,"error")
       } else {
-        showAlertMessage("Error", error.message, "error");
+        showAlertMessage("Error", error.message,"error")
       }
     }
-    /*catch (error) {
-      if (error.response) {
-        if (error.response.data.code === 1001) {
-          showAlertMessage("Warning", error.response.data.msg, "warning");
-          navigate("/login");
-        }
-        if (error.response.data.code === 1007) {
-          showAlertMessage("Error", error.response.data.msg, "error");
-        }
-      } else {
-        showAlertMessage("Error", error.message, "error");
-      }
-    }
-    */
   };
 
   //验证验证码
@@ -85,9 +63,9 @@ export default function Register() {
     console.log("Received values of form: ", formData);
     let { email, password, captcha } = formData;
     const request = {
-      email: email,
-      pwd: password,
-      verifyCode: captcha,
+      email: email.trim(),
+      pwd: password.trim(),
+      verifyCode: captcha.trim(),
     };
     try {
       const result = await registerRequset(request);
@@ -123,8 +101,10 @@ export default function Register() {
             onFinish={onFinish}
           >
             <div className="smallSubText">EMAIL</div>
-            <Form.Item name="email" rules={[{ required: true, type: "email" }]}>
+            <Form.Item name="email" rules={[{ required: true, type: "email" }]} help={emailError} // 显示错误信息
+              validateStatus={emailError ? "error" : ""}>
               <Input
+                ref={emailRef} // 设置引用
                 prefix={<MailOutlined className="site-form-item-icon" />}
                 placeholder="Email"
               />
@@ -140,7 +120,7 @@ export default function Register() {
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
-                placeholder="Password"
+                placeholder="New Password"
               />
             </Form.Item>
             <div className="smallSubText">CONFIRM</div>
@@ -148,6 +128,8 @@ export default function Register() {
               name="confirm"
               dependencies={["password"]}
               hasFeedback
+              help={pwdError} // 显示错误信息
+              validateStatus={pwdError ? "error" : ""}
               rules={[
                 {
                   required: true,
@@ -171,9 +153,11 @@ export default function Register() {
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
                 placeholder="Confirm Password"
+                ref={pwdRef} // 设置引用
               />
-
-              {/* verify code*/}
+            </Form.Item>
+            <Form.Item
+            >
               <Row gutter={8}>
                 <Col span={12}>
                   <Form.Item
@@ -182,38 +166,31 @@ export default function Register() {
                     rules={[
                       {
                         required: true,
-                        message:
-                          "Please input the Verification code you got from Eamil!",
+                        message: "Please input the Verification code you got from Eamil!",
                       },
                     ]}
                   >
-                    <Input
-                      prefix={
-                        <SafetyCertificateOutlined className="site-form-item-icon" />
-                      }
-                      type="text"
-                      placeholder="Verification code"
-                    />
+                    <Input 
+                    prefix={<SafetyCertificateOutlined className="site-form-item-icon" />}
+                    type="text"
+                    placeholder="Verification code"/>
                   </Form.Item>
                 </Col>
                 <Col span={12}>
-                  <Button
-                    type="primary"
-                    className="login-form-button"
-                    onMouseOver={(e) =>
-                      (e.currentTarget.style.backgroundColor = "gray")
-                    }
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.backgroundColor = "black")
-                    }
-                    onClick={handleGetCode}
-                  >
-                    Get Captcha
-                  </Button>
+                  <Button type="primary"
+                className="login-form-button"
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.backgroundColor = "gray")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.backgroundColor = "black")
+                }
+                onClick={handleGetCode}
+                >Get Captcha
+                </Button>
                 </Col>
               </Row>
             </Form.Item>
-
             <Form.Item>
               <Button
                 type="primary"
