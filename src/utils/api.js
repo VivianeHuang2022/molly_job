@@ -481,6 +481,26 @@ export const getCoverletter = async (topicId = initTopicId) => {
     throw error;
   }
 };
+export const getRegisterVerificationCode = async (request) => {
+  try {
+    const response = await axios({
+      method: "post",
+      url: "api/Register/SendVerificationCode",
+      data: request,
+      headers: {
+        "Content-Type": "application/json",
+        accept: "*/*",
+        //'Authorization': 'Bearer YOUR_TOKEN_HERE'  // 例如：在这里放置Bearer token (如果需要)
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
 
 /**
  * 获取 Recommendation最新数据。
