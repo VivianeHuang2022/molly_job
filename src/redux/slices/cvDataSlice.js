@@ -228,7 +228,7 @@ export const cvDataSlice = createSlice({
       })
       .addCase(switchUserType, (state, action) => {
         // 根据用户身份类型切换的额外逻辑
-        const newUserType = action.payload; // 获取切换后的用户身份类型
+        // const newUserType = action.payload; // 获取切换后的用户身份类型
 
         // // 根据新的用户身份类型进行不同的处理
         // if (newUserType === 'student') {

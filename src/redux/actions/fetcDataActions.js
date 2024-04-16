@@ -9,7 +9,7 @@ import {
 const topicId = localStorage.getItem('topicId');
 
 export const fetchThunkCreator = (type, fetchFunction) => {
-  return createAsyncThunk(type, async (topicId) => {
+  return createAsyncThunk(type, async () => {
     try {
       const response = await fetchFunction(topicId);
       return response;

@@ -17,18 +17,18 @@ const SkillsActivitiesInterests = ({ cvData, sectionName, styles }) => {
     return <div className={styles.cvSectionHeading}>{text}</div>;
   };
 
-  const SubHeading = ({ text }) => {
-    return <div className={styles.SubHeading}>{text}</div>;
-  };
+  // const SubHeading = ({ text }) => {
+  //   return <div className={styles.SubHeading}>{text}</div>;
+  // };
 
-  const Paragraph = ({ content, title }) => {
-    return (
-      <div className={styles.paragraph}>
-        {title && <strong>{title}: </strong>}
-        {content}
-      </div>
-    );
-  };
+  // const Paragraph = ({ content, title }) => {
+  //   return (
+  //     <div className={styles.paragraph}>
+  //       {title && <strong>{title}: </strong>}
+  //       {content}
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className={cvSection}>

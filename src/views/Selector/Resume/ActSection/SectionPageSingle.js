@@ -1,6 +1,5 @@
 import React from 'react';
 import EditSectionPage from './ActComponent/EditSectionPage';
-import SectionName from './ActComponent/SectionName';
 
 const SectionPageSingle = ({ cvData, labels, styles, sectionKey }) => {
   const { sectionName: labelSecName, ...otherLabels } = labels;

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './MenuStyles.module.css';
-import { Menu } from 'antd';
 import { useLocation } from 'react-router-dom';
 
 export const CustomMenuComponent = ({ handleItemClick, menuItems }) => {
