@@ -361,84 +361,41 @@ export const fetchPlanPrice = async (lan) => {
 
 
 
-
-//20240406 add api
+//20240416 api
 /*-------------公共模块----------------*/
 const authToken = localStorage.getItem('token');
-const BASE_URL = 'api/'; // API的基本URL
+const BASE_URL = 'api'; // API的基本URL
 const initTopicId = 1; // 不传类型时，默认为学生
-
-// 通用请求函数，根据HTTP方法和URL构建请求
-const apiRequest = async (method, url, data = null, config = {}) => {
-  const apiName = `${method.toUpperCase()} ${BASE_URL}${url}`; // 获取 API 的名称
-  try {
-    const headers = {
-      ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
-      ...(config.headers || {}),
-    };
-
-    if (config.contentType) {
-      headers['Content-Type'] = config.contentType;
-    } else {
-      headers['Content-Type'] = 'application/json';
-    }
-
-    const response = await axios({
-      method,
-      url: BASE_URL + url,
-      data,
-      ...config, // 允许传递额外的配置，如responseType
-      headers,
-      timeout: 10000, // 设置请求超时时间为10秒
-    });
-    return response.data; // 返回响应数据
-  } catch (error) {
-    console.error(`请求失败(${apiName}): ${error}`);
-    throw error;
-  }
-};
-
-/**
- * 封装GET请求。
- * @param {string} url - 地址。
- * @param {Object} params - 查询参数,用于根据查询参数过滤数据
- * @param {string} responseType -指定服务器响应的数据类型。这里默认为“json”
- 
-常见的值包括：
-"arraybuffer"：表示服务器响应将作为一个 ArrayBuffer 返回。
-"blob"：表示服务器响应将作为一个 Blob 对象返回。
-"document"：表示服务器响应将作为一个 Document 对象返回（例如，XML 文档）。
-"json"：表示服务器响应将作为一个 JSON 对象返回。
-"text"：表示服务器响应将作为一个字符串返回。
- */
-const get = (url, params, responseType = 'json') => {
-  return apiRequest('get', url, null, { params, responseType }); // 传递查询参数和响应类型
-};
-
-/**
- * 封装POST请求。
- * @param {string} url - 地址。
- * @param {number} data - 数据组。
- * @param {string} contentType -指定发送请求时请求体的数据类型。这里默认'application/json'
- 
-"application/json"：表示请求体中包含 JSON 数据。
-"multipart/form-data"：表示请求体中包含表单数据，通常用于上传文件等操作。
-"application/x-www-form-urlencoded"：表示请求体中包含 URL 编码的表单数据，通常在提交表单时使用。
- */
-const post = (url, data, contentType = 'application/json') => {
-  return apiRequest('post', url, data, { contentType });
-};
 
 /*-------------编辑模块----------------*/
 
-// /**
-//  * 创建 Cover Letter。
-//  * @param {Object} dataGroup - 数据组。
-//  * @param {number} [topicId=1] - 身份类型，默认为学生。
-//  */
-// export const createCoverletter = async (dataGroup, topicId = initTopicId) => {
-//   return post(`createCoverletter/topicId=${topicId}`, dataGroup);
-// };
+/**
+ * 创建 Cover Letter。
+ * @param {Object} dataGroup - 数据组。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const createCoverletter = async (dataGroup, topicId = initTopicId) => {
+  const postUrl = `${BASE_URL}/createCoverletter/topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'post',
+      url: postUrl,
+      responseType: 'blob', // Important
+      data: dataGroup,
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
 
 /**
  * 创建 Recommendation。
@@ -449,7 +406,26 @@ export const createRecommendation = async (
   dataGroup,
   topicId = initTopicId
 ) => {
-  return post(`recommendation/topicId=${topicId}`, dataGroup);
+  const postUrl = `${BASE_URL}/createRecommendation/topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'post',
+      url: postUrl,
+      responseType: 'json', // Important
+      data: dataGroup,
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 /**
@@ -458,7 +434,26 @@ export const createRecommendation = async (
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const createResume = async (dataGroup, topicId = initTopicId) => {
-  return post(`resume/topicId=${topicId}`, dataGroup);
+  const postUrl = `${BASE_URL}/createResume/topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'post',
+      url: postUrl,
+      responseType: 'json', // Important
+      data: dataGroup,
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
 };
 
 /**
@@ -466,7 +461,25 @@ export const createResume = async (dataGroup, topicId = initTopicId) => {
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const getCoverletter = async (topicId = initTopicId) => {
-  return get(`getCoverletter/topicId=${topicId}`);
+  const postUrl = `${BASE_URL}/getCoverletter/topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      responseType: 'blob', // Important
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
 };
 
 /**
@@ -474,7 +487,25 @@ export const getCoverletter = async (topicId = initTopicId) => {
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const getRecommendation = async (topicId = initTopicId) => {
-  return get(`recommendation/topicId=${topicId}`);
+  const postUrl = `${BASE_URL}/getRecommendation/topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      responseType: 'blob', // Important
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
 };
 
 /**
@@ -482,13 +513,32 @@ export const getRecommendation = async (topicId = initTopicId) => {
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const getResume = async (topicId = initTopicId) => {
-  return get(`resume/topicId=${topicId}`);
+  const postUrl = `${BASE_URL}/getResume/topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      responseType: 'blob', // Important
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 /*-----------生成模块-------------*/
 
+
 /**
- * 获取生成文件状态。
+ * 获取生成文件状态,这个会调用AI接口
  * @param {string} countId - 模板类型。
  * @param {string} lan - 选择生成的语言。
  * @param {string} documentType - 文件类型。
@@ -500,11 +550,22 @@ export const getDocumentStatus = async (
   documentType,
   topicId = initTopicId
 ) => {
-  return get(
-    `getDocumentStatus/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`,
-    null,
-    'text'
-  );
+  const postUrl = `${BASE_URL}/getDocumentStatus/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      headers: {
+        Accept: 'application/json',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+    });
+
+    return response;
+  } catch (error) {
+    console.error('获取文档生成状态失败：', error);
+    throw error;
+  }
 };
 
 /**
@@ -520,11 +581,26 @@ export const getDocumentImg = async (
   documentType,
   topicId = initTopicId
 ) => {
-  return get(
-    `getDocumentImg/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`,
-    null,
-    'blob'
-  );
+  const postUrl = `${BASE_URL}/getDocumentImg/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`;
+
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      responseType: 'blob', // Important
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
 };
 
 /**
@@ -540,11 +616,26 @@ export const downloadDocumentPdf = async (
   documentType,
   topicId = initTopicId
 ) => {
-  return get(
-    `downloadDocumentPdf/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`,
-    null,
-    'blob'
-  );
+  const postUrl = `${BASE_URL}/downloadDocumentPdf/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      responseType: 'blob', // Important
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
 };
+
 
 
