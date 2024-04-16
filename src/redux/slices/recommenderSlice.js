@@ -4,7 +4,6 @@ import { fetchRecommendData } from '../actions/fetcDataActions';
 // 定义表单的初始值
 const initialValues = {
   //recommender special value
-  applyMajor: '',
   recommenderFirstName: '',
   recommenderLastName: '',
   recommenderPosition: '',
@@ -15,8 +14,6 @@ const initialValues = {
   recommendActivity: '',
 
   //from other part
-  applySchool: '',
-  applyProgram: '',
   firstName: '',
   surname: '', //按照最初的coverletter沿用的名字,如果要统一命名要一起修改对其
 

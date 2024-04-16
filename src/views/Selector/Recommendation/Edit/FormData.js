@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 // 定义表单字段
 export const getFormFields = (texts) => {
   const {
-    major,
     recommender,
     intro,
     activity,
@@ -13,11 +12,6 @@ export const getFormFields = (texts) => {
   } = texts.recommendation;
 
   return {
-    major: {
-      ...major,
-      name: 'applyMajor',
-      schema: Yup.string(),
-    },
     userInfo: {
       firstName: {
         ...userInfo.firstName,
@@ -31,16 +25,6 @@ export const getFormFields = (texts) => {
       },
     },
     dreamSchoolInfo: {
-      applySchool: {
-        ...dreamSchoolInfo.applySchool,
-        name: 'applySchool',
-        schema: Yup.string(),
-      },
-      applyProgram: {
-        ...dreamSchoolInfo.applyProgram,
-        name: 'applyProgram',
-        schema: Yup.string(),
-      },
       dreamDegree: {
         ...dreamSchoolInfo.dreamDegree,
         name: 'dreamDegree',

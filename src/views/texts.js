@@ -246,6 +246,7 @@ const texts_en = {
       goPayment: 'View Payment Plans',
       tryAgain: 'Try Again',
       backToEdit: 'Back To Edit',
+      generateLoading: 'Generating...',
     },
     currentGenerateCountTips: 'Current Remaining Generation Count',
     confirmationTitle: 'Confirm Generation',
@@ -255,6 +256,8 @@ const texts_en = {
     errorMessage: 'Failed to retrieve user account information: ',
     notEnoughCountMessage:
       'You have 0 generation attempts left. Check the recharge plan for more attempts: ',
+    generateLoading:
+      'We are generating files for you, please do not close the page',
     errorMessageGenerate: 'Generation failed: ',
     firstTimeMessage:
       'Welcome to Molly Job! Generating a document will consume 1 generation attempt. As you are using it for the first time, we will provide you with 1 free generation attempt as a trial.',
@@ -364,6 +367,10 @@ const texts_en = {
   },
 
   recommendation: {
+    title: {
+      personalInfo: 'Confirm Your Personal Information',
+      refereeInfo: 'Fill in Referee Information',
+    },
     sectionTitle: {
       majorApplication: 'Major Application',
       recommenderInformation: 'Recommender Information',

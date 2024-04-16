@@ -235,12 +235,14 @@ const texts_cn = {
       goPayment: '查看充值方案',
       tryAgain: '稍后重试',
       backToEdit: '返回编辑',
+      generateLoading: '生成中...',
     },
     currentGenerateCountTips: '当前剩余生成次数',
     confirmationContent:
       '您目前有 {remainingCount} 次生成机会。生成将消耗 1 次机会。确定要继续吗？',
     successMessage: '生成成功！',
     errorMessage: '获取用户账户信息失败：',
+    generateLoading: '正在为您生成文件中,请勿关闭页面...',
 
     confirmationTitle: '确认生成',
 
@@ -339,6 +341,10 @@ const texts_cn = {
   },
 
   recommendation: {
+    title: {
+      personalInfo: '确认你的个人信息',
+      refereeInfo: '填写推荐人信息',
+    },
     sectionTitle: {
       majorApplication: '专业申请',
       recommenderInformation: '推荐人信息',

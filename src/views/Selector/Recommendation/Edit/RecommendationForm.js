@@ -17,7 +17,7 @@ const RecommendationFormUI = ({ onSubmit }) => {
 
   const formFields = getFormFields(texts);
 
-  const { sectionTitle, buttonLabel } = texts.recommendation;
+  const { sectionTitle, buttonLabel, title } = texts.recommendation;
   const {
     major,
     recommender,
@@ -29,7 +29,6 @@ const RecommendationFormUI = ({ onSubmit }) => {
   } = formFields;
 
   const {
-    majorApplication,
     recommenderInformation,
     backgroundOfRecommender,
     activityInvolved,
@@ -71,8 +70,7 @@ const RecommendationFormUI = ({ onSubmit }) => {
       >
         {(props) => (
           <Form className={styles.form}>
-            <FormSingle form={major} title={majorApplication} />
-            <FormGroup formGroup={recommender} tltle={recommenderInformation} />
+            <h1>{title.personalInfo}:</h1>
             <FormGroup formGroup={userInfo} tltle={userInfoTitle} />
             <FormGroup
               formGroup={dreamSchoolInfo}
@@ -82,6 +80,9 @@ const RecommendationFormUI = ({ onSubmit }) => {
               formGroup={currentSchoolInfo}
               tltle={currentSchoolInfoTitle}
             />
+            <h1>{title.refereeInfo}:</h1>
+
+            <FormGroup formGroup={recommender} tltle={recommenderInformation} />
             <FormSingle form={intro} title={backgroundOfRecommender} />
             <FormSingle
               form={activity}
