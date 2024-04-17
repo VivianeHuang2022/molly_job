@@ -26,6 +26,7 @@ const QRCodePage = () => {
   const location = useLocation();
   const [planType, setPlanType] = useState('');
   const [qrCodeImage, setQRCodeImage] = useState(QRCode);
+  const [orderNumber, setOrderNumber] = useState(QRCode);
 
   const [qrState, setQRState] = useState('loading');
 
@@ -40,16 +41,18 @@ const QRCodePage = () => {
           setPlanType(savedPlanType);
         }
       }
-
+      
       if (planType) {
         localStorage.setItem('planType', planType);
         // 调用API函数来获取QRCode图片
         try {
+          
           const qrCodeData = await fetchQRCodeImage(planType);
-          console.log(qrCodeData);
-          if (qrCodeData.status) {
+          console.log(qrCodeData.data);
+          if (qrCodeData.status===200) {
             setQRState('show');
-            setQRCodeImage(qrCodeData.data); // Assuming qrCodeData contains the image data
+            setQRCodeImage(qrCodeData.data.qrCode); // Assuming qrCodeData contains the image data
+            setOrderNumber(qrCodeData.data.orderNumber)
           } else {
             setQRState('error');
           }
@@ -68,8 +71,9 @@ const QRCodePage = () => {
 
     const fetchOrder = async () => {
       try {
-        const orderData = await fetchOrderStatus();
-        if (orderData.status === 'completed') {
+        const orderData = await fetchOrderStatus(orderNumber);
+        console.log(orderData.msg)
+        if (orderData.code === 0&&orderData.msg==="SUCCESS") {
           clearInterval(intervalId);
           navigate('/payment/complete', { state: { orderData } });
         }
@@ -87,8 +91,10 @@ const QRCodePage = () => {
     return () => clearInterval(intervalId); // 在组件卸载或者状态改变时清除interval
   }, [qrState, navigate]);
 
+
   // 如果未找到planType，则不展示QRCodeComponent
   if (!planType) {
+    ///console.log(planType)
     return (
       <div className={styles.qrPageContainer}>
         <TitleComp>{texts.QRCode.error.reason.paymentNotFound}</TitleComp>
@@ -101,9 +107,9 @@ const QRCodePage = () => {
     try {
       const qrCodeData = await fetchQRCodeImage(planType);
       console.log(qrCodeData);
-      if (qrCodeData.status) {
+      if (qrCodeData.status===200) {
         setQRState('show');
-        setQRCodeImage(qrCodeData);
+        setQRCodeImage(qrCodeData.data);
       } else {
         setQRState('error');
       }
@@ -154,12 +160,12 @@ const QRCodePage = () => {
           texts={texts}
           Paragraph={ParagraphComp}
           qrCodeImage={qrCodeImage}
-          min={0.1}
+          min={2}
           fetchQRCode={fetchQRCode}
         />
       )}
 
-      <DefaultButton onClick={testFinish} label="test finished" />
+      {/* <DefaultButton onClick={testFinish} label="test finished" /> */}
     </div>
   );
 };

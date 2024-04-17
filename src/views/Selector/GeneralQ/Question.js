@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import style from "./Question.module.css";
-import { createStdCoverLetter } from "../../../utils/api";
-import {editState, hasLocalData} from "../../../utils/checkCache";
+import { postStdCoverLetterDataGroup } from "../../../utils/api";
+import {editState,hasLocalData} from "../../../utils/checkCache";
 import AlertContext from "../../../components/AlertProvider/AlertContext";
 import texts_EN from "../../texts";
 import texts_CN from "../../texts_CN";
+import { checkLogin } from "../../../utils/checkLogin";
 
 export default function Question(props) {
   const childrenCount = props.Count;
@@ -13,6 +14,7 @@ export default function Question(props) {
   const location = useLocation();
   const { showAlertMessage } = useContext(AlertContext);
   const texts = localStorage.getItem("Lan") === "CN" ? texts_CN : texts_EN;
+
   const handleToNext = async () => {
     const currentQNumber = parseInt(location.pathname.split("/page")[1], 10);
     if (currentQNumber < childrenCount) {
@@ -22,12 +24,18 @@ export default function Question(props) {
     if (currentQNumber === childrenCount) {
       if (localStorage.getItem("topicId") === "1") {
         var data = generateStdDataGroup();
-
-        const response = await createStdCoverLetter(data);
+        //console.log(data)
+        const response = await postStdCoverLetterDataGroup(data);
+        
         if (response.status === 200) {
           editState('isEditcoverletter', false);
-          navigate('/layout/coverletter/generate');
-        } else {
+          navigate('/layout/coverletter/edit');
+        }
+        else if(response.status === 401)
+        {
+          navigate('/login')
+        }
+        else {
           showAlertMessage(
             "Error",
             "Post data failed!, Please check your data!",
@@ -53,6 +61,19 @@ export default function Question(props) {
      navigate('/layout/coverletter');
     }}
   };
+
+  useEffect(() => {
+    const checkRes = checkLogin();
+    checkRes.then(result=>{
+    if(!result){
+      // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
+      navigate("/login")
+      // console.log(window.location)
+    }
+    })
+    
+  }, []); // 注意这里是一个空依赖数组，表示这个effect仅在组件挂载时运行一次
+
   return (
     <div className={style.container}>
       {props.children}
@@ -75,8 +96,8 @@ const generateStdDataGroup = () => {
   var stdDataQP1 = localStorage.getItem("stdDataQP1")
     ? JSON.parse(localStorage.getItem("stdDataQP1"))
     : {};
-  var stdDataQP2 = localStorage.getItem("stdDataQP3")
-    ? JSON.parse(localStorage.getItem("stdDataQP3"))
+  var stdDataQP2 = localStorage.getItem("stdDataQP2")
+    ? JSON.parse(localStorage.getItem("stdDataQP2"))
     : {};
   var stdDataQP3 = localStorage.getItem("stdDataQP3")
     ? JSON.parse(localStorage.getItem("stdDataQP3"))
@@ -87,8 +108,8 @@ const generateStdDataGroup = () => {
 
   const dataGroup = {
     // personal Info topicId
-    uId: localStorage.getItem("uId"), //delete
-    topicId: localStorage.getItem("topicId"),
+    // uId: localStorage.getItem("uId"), //delete
+    // topicId: localStorage.getItem("topicId"),
     firstName: stdDataQP5.FirstName,
     surname: stdDataQP5.Surname,
     userNationality: stdDataQP5.Nationality,

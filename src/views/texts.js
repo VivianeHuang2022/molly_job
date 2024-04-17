@@ -292,7 +292,7 @@ const texts_en = {
         },
         info: 'Tailored for ambitious students applying to multiple schools, offering unlimited document generations for crafting the perfect application for each program without any template restrictions.',
         features: [
-          { type: 'generationCounts', text: 'Unlimited uses' },
+          { type: 'generationCounts', text: 'generation opportunities' },
           { type: 'documentsType', text: 'All documents available' },
           {
             type: 'templateRestrictions',
@@ -311,7 +311,7 @@ const texts_en = {
         features: [
           {
             type: 'generationCounts',
-            text: '12 generation opportunities',
+            text: 'generation opportunities',
           },
           { type: 'documentsType', text: 'All documents available' },
           {
@@ -331,7 +331,7 @@ const texts_en = {
         features: [
           {
             type: 'generationCounts',
-            text: '5 generation opportunities',
+            text: 'generation opportunities',
           },
           { type: 'documentsType', text: 'All documents available' },
           {

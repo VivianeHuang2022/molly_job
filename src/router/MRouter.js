@@ -26,7 +26,7 @@ import GenerateCoverletter from '../views/Selector/CoverLetter/GenerateCoverLett
 import GenerateRecommendation from '../views/Selector/Recommendation/GenerateRecommendation';
 import Question from '../views/Selector/CoverLetter/Edit';
 import EditRecommendationForm from '../views/Selector/Recommendation/Edit';
-import { hasLocalData } from '../utils/checkCache';
+// import { hasLocalData } from '../utils/checkCache';
 
 const Login = React.lazy(() => import("../views/Login/Login"));
 const Register = React.lazy(() => import("../views/Register/Register"));
@@ -112,11 +112,11 @@ export default function MRouter() {
       element: <Start />,
     },
     {
-      path: "/login/:Id",
+      path: "/login",
       element: <Login />,
     },
     {
-      path: "/register/:Id",
+      path: "/register",
       element: <Register />,
     },
     {

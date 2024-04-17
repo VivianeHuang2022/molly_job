@@ -34,11 +34,11 @@ const Generator = ({
   const fetchData = async () => {
     try {
       const response = await fetchRemainingCounts();
-      setAccountInfo(response.data);
+      setAccountInfo(response.msg);
       let state;
-      if (response.data.firstTime) {
+      if (response.msg.firstTime) {
         state = 'newUser'; // 首次生成
-      } else if (response.data.remainingCount > 0) {
+      } else if (response.msg.remainingCount > 0) {
         state = 'hasCount'; // 有生成次数
       } else {
         state = 'noCount'; // 无次数
@@ -48,6 +48,31 @@ const Generator = ({
       setErrorMessage(generateDocumentTexts.errorMessage + error.message);
     }
   };
+
+  // const fetchData = async () => {
+  //   try {
+  //     // 模拟获取账户信息
+  //     // const response = { data: { remainingCount: 1, firstTime: false } };
+
+  //     //实际获取的api
+  //     const response = await fetchRemainingCounts();
+  //     if(response.code===0){
+  //       setAccountInfo(response.msg);
+
+  //     if (response.msg.firstTime) {
+  //       setFirstTimeGenerate(true); // 首次生成
+  //     } else if (response.msg.remainingCount > 0) {
+  //       setShowConfirmation(true); //有生成次数
+  //     } else {
+  //       setnotEnoughCountAlert(true);
+  //     }
+  //     }
+      
+  //   } catch (error) {
+  //     setErrorMessage(generateDocumentTexts.errorMessage + error.message);
+  //   }
+  // };
+
   // 生成文件
   const handleGenerateClick = async () => {
     setCurrentState('loading');

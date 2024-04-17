@@ -107,6 +107,26 @@ export const uploadResumePost = async (request, uId, typeId) => {
   }
 };
 
+export const checkJWT = async (JWT) => {
+  try {
+    const response = await axios({
+      method: "get",
+      url: "api/Profile/CheckJWT",
+      headers: {
+        "Content-Type": "application/json",
+        accept: "*/*",
+        'Authorization': `Bearer ${JWT}`  // 例如：在这里放置Bearer token (如果需要)
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 
 export const switchCoverLetterImg = async (uId, countId, lan) => {
@@ -129,6 +149,31 @@ export const switchCoverLetterImg = async (uId, countId, lan) => {
     throw error;
   }
 };
+
+//when click generate button, call open ai api
+export const postStdCoverLetterDataGroup = async (dataGroup) => {
+  const postUrl = `/api/CoverLetter/PostStdCoverLetterDataGroup`;
+  const jwtToken = localStorage.getItem('jwtToken');
+  try {
+    const response = await axios({
+      method: "post",
+      url: postUrl,
+      data: dataGroup,
+      headers: {
+        "Content-Type": "application/json",
+        accept: "*/*",
+        'Authorization': `Bearer ${jwtToken}`  // 例如：在这里放置Bearer token (如果需要)
+      },
+      timeout: 20000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+//
 
 //when click generate button, call open ai api
 export const createStdCoverLetter = async (dataGroup) => {
@@ -202,14 +247,16 @@ export const updateCvData = async (dataGroup) => {
 /*-----------CoverLetter-------------*/
 //获取生成次数
 export const fetchRemainingCounts = async () => {
+  const jwtToken = localStorage.getItem('jwtToken');
   try {
-    const postUrl = `api/payment/remainingCounts`;
+    const postUrl = `api/Profile/GetUserTotalTimes`;
     const response = await axios({
       method: 'get',
       url: postUrl,
       headers: {
         Accept: 'application/json',
-        Authorization: 'Bearer YOUR_TOKEN_HERE',
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${jwtToken}`
       },
     });
 
@@ -288,27 +335,28 @@ export const downloadCoverLetterPdf = async (uId, countId, lan) => {
 
 /*-----------Payment-------------*/
 //获取二维码图片
-export const fetchQRCodeImage = async (paymentType) => {
+export const fetchQRCodeImage = async (orderLabel) => {
+  const jwtToken = localStorage.getItem('jwtToken');
   try {
-    const postUrl = `api/payment/fetchQRCodeImage`;
+    const postUrl = `api/WeixinPay/CreateOrder`;
     const response = await axios({
       method: 'get',
       url: postUrl,
-      params: { paymentType },
+      params: { orderLabel },
       headers: {
         Accept: 'image/jpeg',
-        Authorization: 'Bearer YOUR_TOKEN_HERE',
+        Authorization: `Bearer ${jwtToken}`,
       },
-      responseType: 'arraybuffer',
+      responseType: 'json',
     });
 
     // Convert binary data to base64 encoded string
-    const imageBase64String = Buffer.from(response.data, 'binary').toString(
-      'base64'
-    );
-    const imgSrc = `data:image/jpeg;base64,${imageBase64String}`;
+    // const imageBase64String = Buffer.from(response.data, 'binary').toString(
+    //   'base64'
+    // );
+    // const imgSrc = `data:image/jpeg;base64,${imageBase64String}`;
 
-    return imgSrc;
+    return response;
   } catch (error) {
     // console.error('获取二维码失败：', error);
     const errormessage = {
@@ -320,19 +368,20 @@ export const fetchQRCodeImage = async (paymentType) => {
 };
 
 // 获取支付结果
-export const fetchOrderStatus = async (planType) => {
+export const fetchOrderStatus = async (orderNumber) => {
+  const jwtToken = localStorage.getItem('jwtToken');
   try {
-    const postUrl = `api/orders/${planType}/status`;
+    const postUrl = `api/WeixinPay/CheckOrderStatus?orderNumber=${orderNumber}`;
     const response = await axios({
       method: 'get',
       url: postUrl,
       headers: {
         Accept: 'application/json',
-        Authorization: 'Bearer YOUR_TOKEN_HERE',
+        Authorization: `Bearer ${jwtToken}`,
       },
     });
 
-    return response.data.status;
+    return response.data;
   } catch (error) {
     console.error('获取订单状态失败：', error);
     throw error;
@@ -349,6 +398,27 @@ export const fetchPlanPrice = async (lan) => {
       headers: {
         Accept: 'application/json',
         Authorization: 'Bearer YOUR_TOKEN_HERE',
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('获取支付价格失败：', error);
+    throw error;
+  }
+};
+
+//获取支付价格
+export const getOrderPrice = async () => {
+  try {
+    const postUrl = `api/WeixinPay/GetOderPrice`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      headers: {
+        Accept: 'json',
+        Authorization: `Bearer ${jwtToken}`,
       },
     });
 

@@ -4,6 +4,7 @@ import { listIcon } from './icon';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../../../components/Button';
 
+
 const PlanCard = ({
   pricing,
   title,
@@ -22,13 +23,16 @@ const PlanCard = ({
   const handleChoosPlan = (paymentData) => {
     //得到后端返回的二维码信息 展示二维码页面
     navigate('/payment/qr', { state: { planType: paymentData.planType } });
+    // console.log(planType);
   };
+
 
   return (
     <article className={`${styles.plan} ${styles.card}`}>
       <div className={styles.inner}>
         <span className={styles.pricing}>
-          {pricing} <span className={styles.time}>/ {time}</span>
+        {pricing}
+          {/* {pricing} <span className={styles.time}>/ {time}</span> */}
         </span>
         <TitleComponent title={title} />
         <InfoComponent info={info} />

@@ -55,8 +55,7 @@ const QRCodeComponent = ({
 
         {/* 渲染二维码显示组件 */}
         <div className={styles.qrcodeWrapper}>
-          <Image src={qrCodeImage} preview={false} alt="QR Code" />
-          {expired && (
+          {expired ? (
             <ImageWithOverlay
               styles={styles}
               qrCodeImage={qrCodeImage}
@@ -65,7 +64,7 @@ const QRCodeComponent = ({
               onClick={refreshImage}
               buttonText={texts.QRCode.buttonLabel}
             />
-          )}
+          ): (<Image src={qrCodeImage} preview={false} alt="QR Code" />)}
         </div>
 
         <div className={styles.timer}>

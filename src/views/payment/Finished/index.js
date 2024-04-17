@@ -48,8 +48,7 @@ const PayFinishedPage = () => {
 
   const backToGeneration = () => {
     const documentType = localStorage.getItem('currentgenerate');
-    localStorage.setItem('fromPayment', documentType);
-    navigate(`/layout/${documentType}/generate`);
+    navigate(`/layout/${documentType}`);
   };
 
   const checkPayment = () => {
@@ -58,7 +57,7 @@ const PayFinishedPage = () => {
 
   return (
     <div className={styles.pageContainer}>
-      {orderResult?.orderStatus === 'success' ? (
+      {orderResult?.msg === 'SUCCESS' ? (
         <div>
           <TitleComp>{orderResultTexts.success}</TitleComp>
           <PaymentDetails
