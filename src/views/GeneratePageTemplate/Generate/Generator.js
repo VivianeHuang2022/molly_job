@@ -49,29 +49,6 @@ const Generator = ({
     }
   };
 
-  // const fetchData = async () => {
-  //   try {
-  //     // 模拟获取账户信息
-  //     // const response = { data: { remainingCount: 1, firstTime: false } };
-
-  //     //实际获取的api
-  //     const response = await fetchRemainingCounts();
-  //     if(response.code===0){
-  //       setAccountInfo(response.msg);
-
-  //     if (response.msg.firstTime) {
-  //       setFirstTimeGenerate(true); // 首次生成
-  //     } else if (response.msg.remainingCount > 0) {
-  //       setShowConfirmation(true); //有生成次数
-  //     } else {
-  //       setnotEnoughCountAlert(true);
-  //     }
-  //     }
-      
-  //   } catch (error) {
-  //     setErrorMessage(generateDocumentTexts.errorMessage + error.message);
-  //   }
-  // };
 
   // 生成文件
   const handleGenerateClick = async () => {
@@ -83,12 +60,16 @@ const Generator = ({
         documentType,
         topicId
       );
+      console.log(response)
       if (response.status === 200) {
         navigate(`/download`);
         localStorage.setItem('currentgenerate', documentType);
+      }else if(response.status === 401)
+      {
+        navigate(`/login`);
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
       alert(error.message);
     }
   };

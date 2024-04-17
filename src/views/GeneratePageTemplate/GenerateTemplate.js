@@ -22,7 +22,7 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
   );
 
   const [countId, setCountId] = useState(
-    localStorage.getItem('countId') || '0'
+    localStorage.getItem('countId') || '1'
   ); // 新增 contid 状态
 
   const handleLanguageChange = (value) => {

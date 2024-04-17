@@ -433,7 +433,7 @@ export const getOrderPrice = async () => {
 
 //20240416 api
 /*-------------公共模块----------------*/
-const authToken = localStorage.getItem('token');
+const authToken = localStorage.getItem('jwtToken');
 const BASE_URL = 'api'; // API的基本URL
 const initTopicId = 1; // 不传类型时，默认为学生
 
@@ -640,7 +640,7 @@ export const getDocumentStatus = async (
   documentType,
   topicId = initTopicId
 ) => {
-  const postUrl = `${BASE_URL}/getDocumentStatus/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`;
+  const postUrl = `${BASE_URL}/${documentType}/getDocumentStatus?countId=${countId}&lan=${lan}&topicId=${topicId}`;
   try {
     const response = await axios({
       method: 'get',
@@ -657,6 +657,9 @@ export const getDocumentStatus = async (
     throw error;
   }
 };
+/**
+
+
 
 /**
  * 获取生成文件的图片。
@@ -671,13 +674,13 @@ export const getDocumentImg = async (
   documentType,
   topicId = initTopicId
 ) => {
-  const postUrl = `${BASE_URL}/getDocumentImg/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`;
+  const postUrl = `${BASE_URL}/${documentType}/getDocumentImg/?countId=${countId}&lan=${lan}&topicId=${topicId}`;
 
   try {
     const response = await axios({
       method: 'get',
       url: postUrl,
-      responseType: 'blob', // Important
+      responseType: 'json', // Important
       headers: {
         // 'Content-Type': 'multipart/form-data',
         accept: '*/*',

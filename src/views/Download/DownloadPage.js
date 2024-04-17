@@ -23,7 +23,7 @@ const DownloadPage = ({ topicId }) => {
   const documentType = localStorage.getItem('currentgenerate');
 
   const [imageSrc, setImageSrc] = useState(null);
-  const [generationTime] = useState('暂未获取到时间');
+  const [generationTime, setGenerationTime] = useState('暂未获取到时间');
   const [coverLetterData] = useState({});
   const countId = localStorage.getItem('countId');
   const lan = localStorage.getItem('lan');
@@ -38,13 +38,13 @@ const DownloadPage = ({ topicId }) => {
           documentType,
           topicId
         );
-        const file = new Blob([response.data], { type: 'image/jpeg' });
+        // const file = new Blob([response.data], { type: 'image/jpeg' });
 
-        const fileURL = URL.createObjectURL(file);
-        setImageSrc(fileURL);
+        // const fileURL = URL.createObjectURL(file);
+        setImageSrc(response.data.msg.img);
 
         //生成时间在这里更新
-        // setGenerationTime(response.data.generationTime);
+        setGenerationTime(response.data.msg.generationTime);
       } catch (error) {
         console.error('Failed to fetch image:', error);
       }
