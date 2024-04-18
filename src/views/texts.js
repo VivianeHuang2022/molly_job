@@ -514,7 +514,7 @@ const texts_en = {
   },
   resumeTxt: {
     personalInfo: {
-      sectionName: 'Personal',
+      sectionName: 'Personal',//会删除
       firstName: 'First Name',
       surname: 'Last Name',
       userTel: 'Phone Number',
