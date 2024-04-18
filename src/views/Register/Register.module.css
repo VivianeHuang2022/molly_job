@@ -1,44 +1,38 @@
 .containerStyle {
-    background-color: white;
-    border: 1px solid #d9d9d9;
-    border-radius: 0 50px 0 0; 
-    padding: 20px;
-    width: 93%;
-    height: 100%; 
-    left: 0;
-    position: absolute; 
-    top: 0;
-    right: 7%; /* 距离左边 10% */
-    display: flex;          /* 使用flexbox */
-    align-items: center;     /* 垂直居中 */
- }
+  background-color: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 0 50px 0 0;
+  padding: 20px;
+  width: 93%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  right: 7%; /* 距离左边 10% */
+  display: flex; /* 使用flexbox */
+  align-items: center; /* 垂直居中 */
+}
 
- .backgroundLayer {
-    background-image: url('/src/assets/images/SignUp_page.PNG');
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: fixed;          /* 固定定位，使背景覆盖整个屏幕 */
-    top: 0;                   /* 从顶部开始 */
-    left: 0;                  /* 从左边开始 */
-    right: 0;                 /* 延伸到右边 */
-    bottom: 0;                /* 延伸到底部 */
-    z-index: -1;              /* 保证背景位于内容下面 */
-  }
-  .logo{
-    height: 500px;
-    width: 500px;
-    margin: 0 300px 0 300px;
-  }
+.backgroundLayer {
+  background-image: url("/src/assets/images/SignUp_page.PNG");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed; /* 固定定位，使背景覆盖整个屏幕 */
+  top: 0; /* 从顶部开始 */
+  left: 0; /* 从左边开始 */
+  right: 0; /* 延伸到右边 */
+  bottom: 0; /* 延伸到底部 */
+  z-index: -1; /* 保证背景位于内容下面 */
+}
+.logo {
+  height: 500px;
+  width: 500px;
+  margin: 0 300px 0 300px;
+}
 
-  .formStyle{
-    padding: 10px;
-    width: 25%;
-    height: 75%;
-    margin: 0 0 0 300px;
-    }
-
-
- 
-
-
-    
+.formStyle {
+  padding: 10px;
+  width: 25%;
+  height: 100%;
+  margin: 0 0 0 300px;
+}

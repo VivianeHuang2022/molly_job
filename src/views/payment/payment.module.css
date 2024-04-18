@@ -1,0 +1,27 @@
+/* Card Styles */
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 20px;
+  padding: 20px;
+}
+
+.paymentContainer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center; /* 居中显示 */
+  background-color: #f5f5f5;
+
+  width: 70%;
+  border-radius: 20px;
+  padding: 10px 0;
+}
+
+.paymenContainerOueter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

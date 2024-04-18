@@ -5,13 +5,28 @@ import NotFound from "../components/NotFound";
 import Start from "../views/Start/Start";
 import HomeTest from "../views/Home/HomeTest";
 import Home from "../views/Home/Home";
-import Layout from "../views/Layout/Layout";
+
+import {
+  Layout,
+  CoverletterLayout,
+  RecommendationLayout,
+} from '../views/Layout/Layout';
+
 import Interview from "../views/Selector/Interview/JobInterview";
-import CoverLetter from "../views/Selector/CoverLetter/CoverLetter";
-import Resume from "../views/Selector/Resume/Resume";
-import JobMatch from "../views/Selector/Match/JobMatch";
+import Resume from "../views/Selector/Resume";
 import GeneralQ from "../views/Selector/GeneralQ/GeneralQ";
 import { LoadingOutlined } from "@ant-design/icons";
+
+import DownloadPage from '../views/Download/DownloadPage';
+import PlanCardsContainer from '../views/payment/PaymentPage';
+import QRCodePage from '../views/payment/QRCode';
+import PayFinishedPage from '../views/payment/Finished';
+import GenerateCountHistory from '../views/payment/History';
+import GenerateCoverletter from '../views/Selector/CoverLetter/GenerateCoverLetterPage';
+import GenerateRecommendation from '../views/Selector/Recommendation/GenerateRecommendation';
+import Question from '../views/Selector/CoverLetter/Edit';
+import EditRecommendationForm from '../views/Selector/Recommendation/Edit';
+// import { hasLocalData } from '../utils/checkCache';
 
 const Login = React.lazy(() => import("../views/Login/Login"));
 const Register = React.lazy(() => import("../views/Register/Register"));
@@ -142,10 +157,67 @@ export default function MRouter() {
         },
         { path: "interview", element: <Interview /> },
         { path: "resume", element: <Resume /> },
-        { path: "coverletter", element: <CoverLetter /> },
-        { path: "jobmatch", element: <JobMatch /> },
+        {
+          path: 'coverletter',
+          element: <CoverletterLayout />,
+          children: [
+            {
+              index: true,
+              element: <Question />,
+            },
+            {
+              path: 'edit',
+              element: <Question />,
+            },
+            {
+              path: 'generate',
+              element: <GenerateCoverletter />,
+            },
+          ],
+        },
+        {
+          path: 'recommendation',
+          element: <RecommendationLayout />,
+          children: [
+            {
+              index: true,
+              element: <EditRecommendationForm />,
+            },
+            {
+              path: 'edit',
+              element: <EditRecommendationForm />,
+            },
+            {
+              path: 'generate',
+              element: <GenerateRecommendation />,
+            },
+          ],
+        },
+        {
+          path: 'payment',
+          element: <PlanCardsContainer />,
+        },
       ],
     },
+    {
+      path: "/download",
+      element: <DownloadPage />,
+    },
+    {
+      path: "/payment",
+      element: <PlanCardsContainer />,
+    },
+    {
+      path: "/payment/qr",
+      element: <QRCodePage />,
+    },
+    {
+      path: "/payment/complete",
+      element: <PayFinishedPage />,
+    },
+    {
+      path: "/generateCounts_history", element:<GenerateCountHistory />
+  },
     {
       path: "*",
       element: <NotFound />,
@@ -153,3 +225,4 @@ export default function MRouter() {
   ]);
   return <Suspense fallback={<LoadingOutlined />}>{routes}</Suspense>;
 }
+

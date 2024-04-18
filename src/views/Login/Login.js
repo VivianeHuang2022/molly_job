@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import styles from "../Login/Login.module.css";
@@ -9,14 +9,21 @@ import AlertContext from "../../components/AlertProvider/AlertContext";
 export default function Login() {
   const navigate = useNavigate();
   const { showAlertMessage } = useContext(AlertContext);
+  // const [showModal, setShowModal] = useState(false);
+
+  // const queryParams = new URLSearchParams(window.location.search);
+  // console.log(queryParams)
+  // const returnUrl = queryParams.get('returnUrl') || '/';
+  // console.log(returnUrl)
   const rememberEmail = localStorage.getItem("email");
   const rememberPassword = localStorage.getItem("password");
+  const id = localStorage.getItem("topicId");
   //输入完成请求后端
   const onFinish = async (formData) => {
     let { email, password, remember } = formData;
     const request = {
-      email: email,
-      pwd: password,
+      email: email.trim(),
+      pwd: password.trim()
     };
     if (remember) {
       localStorage.setItem("email", email);
@@ -29,18 +36,33 @@ export default function Login() {
       const result = await loginRequset(request);
       //成功之后跳转到Login界面
       if (result.status === 200) {
-        showAlertMessage("Success", result.data.msg, "success");
-        navigate("/start");
+        showAlertMessage("Success", "Login successfully!", "success");
+
+        // id === 2 ? setShowModal(true) : navigate("/home/1");
         const token = result.data.msg;
         //把token存在localStorage中
-        localStorage.setItem("token", token);
+        localStorage.setItem("jwtToken", token);
+        navigate(`/home/${id}`);
+        // const isInternalUrl = returnUrl.startsWith('/') && !returnUrl.startsWith('//');
+        // navigate(isInternalUrl ? decodeURIComponent(returnUrl) : `/home/${id}`);
       } else {
         //alert("unknown error!")
         showAlertMessage("Error", "unknown error!", "error");
       }
     } catch (error) {
+      // console.log("herr")
       if (error.response) {
-        showAlertMessage("Warning", error.response.data.msg, "warning");
+        if(error.response.data.msg){
+          showAlertMessage("Warning", error.response.data.msg, "warning");
+        }
+        else{
+          showAlertMessage("Warning", error.response.statusText, "warning");
+        }
+        
+        if(error.response.data.code===1006){
+          navigate("/register");
+        }
+        
       } else {
         // alert(`Error:${error.message}`)
         showAlertMessage("Error", error.message, "error");
@@ -111,7 +133,10 @@ export default function Login() {
                 Log in
               </Button>
               Or{" "}
-              <Link className="login-form-register" to="/register">
+              <Link
+                className="login-form-register"
+                to={`/register`}
+              >
                 register now!
               </Link>
             </Form.Item>

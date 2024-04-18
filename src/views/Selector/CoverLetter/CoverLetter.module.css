@@ -1,35 +1,127 @@
-.container{
-    display: flex;
-    justify-content: center;
-    max-height:75vh;
-    
+.container {
+  display: flex;
+  justify-content: center;
+  max-height: 75vh;
 }
 
-.downloadContainer{
-    display: flex;
+.downloadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 30%;
+  margin-left: 5px;
+}
+
+.imgPdfStyle {
+  max-width: 100%;
+  max-height: 100%;
+  height: 35%;
+  width: auto;
+}
+
+.btnStyle {
+  padding: 15px;
+  font-size: 30px;
+  margin: 20px;
+  border-radius: 80px;
+  border: none;
+  width: 50%;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+
+.carouselContainer {
+  max-width: 500px; /* 设置轮播容器的最大宽度 */
+  margin: 10px;
+  justify-content: center;
+  /* background-color: rgb(127, 144, 255); */
+}
+
+.carousel {
+  width: 100%; /* 设置轮播的宽度为100% */
+}
+
+.carouselItem {
+  display: flex; /* 设置轮播项为flex布局 */
+}
+
+.carouselImage {
+  max-width: 100%; /* 设置图片的最大宽度为父容器的100% */
+  max-height: 650px; /* 设置图片的最大高度 */
+  object-fit: contain;
+}
+
+/* cover letter 轮博切换按钮*/
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-top: 20px;
+  /* background-color: aqua; */
+}
+
+.selectedLanguage {
+  margin-top: 20px;
+  text-align: center;
+  justify-content: center;
+  /* background-color: aqua; */
+}
+
+.previewContainer {
+  max-width: 1200px;
+  background-color: rgb(234, 234, 234);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  gap: 20px;
+}
+
+/* 生成按钮区域 */
+.operationContainer {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* background-color: rgb(0, 255, 89); */
+}
+
+.operationButtonsContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* background-color: aqua; */
+}
+
+@media (max-width: 800px) {
+  .pageContainer {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    width: 30%;
-    margin-left: 5px;
+  }
+  .operationContainer {
+    width: 100%;
+  }
 }
 
-.imgPdfStyle{
-    max-width: 100%;    
-    max-height: 100%; 
-    height: 35%;
-    width: auto;
+.showImage {
+  max-width: 500px; /* 设置图片的最大宽度为父容器的100% */
+  max-height: 650px; /* 设置图片的最大高度 */
+  object-fit: contain;
 }
 
-.btnStyle{
-    padding: 15px;
-    font-size: 30px;
-    margin:20px;
-    border-radius: 80px;
-    border: none;
-    width: 50%;
-    color: white;
-    background-color: black;
-    cursor: pointer;
+.buttonMidContainer {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  text-align: center;
 }

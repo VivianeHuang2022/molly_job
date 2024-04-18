@@ -9,6 +9,7 @@ import AlertProvider from './components/AlertProvider/AlertProvider'
 import { Provider } from 'react-redux';
 import store from './redux/store'; // 导入你的 store
 
+// console.log(store.getState());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
