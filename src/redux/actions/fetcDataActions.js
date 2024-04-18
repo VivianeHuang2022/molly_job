@@ -8,6 +8,7 @@ import {
 
 const topicId = localStorage.getItem('topicId');
 
+//获取异步状态的公共函数
 export const fetchThunkCreator = (type, fetchFunction) => {
   return createAsyncThunk(type, async () => {
     try {

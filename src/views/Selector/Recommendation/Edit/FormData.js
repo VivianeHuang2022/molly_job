@@ -126,17 +126,4 @@ export const getFormFields = (texts) => {
   };
 };
 
-// 定义表单的初始值
-export const initialValues = {
-  applyMajor: '',
-  recommenderName: '',
-  recommenderPosition: '',
-  recommenderInstitution: '',
-  recommenderPhone: '',
-  recommenderEmail: '',
-  recommenderAddress: '',
-  recommenderZipCode: '',
-  recommenderIntro: '',
-  recommendRelationship: '',
-  recommendActivity: '',
-};
+
