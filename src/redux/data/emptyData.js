@@ -35,6 +35,7 @@ export const cvSection = {
         currentCountry: '',
         currentDegree: '',
         currentMajor: '',
+        startDate: '',
         graduationDate: '',
         currentGPA: '',
         achievement: '',
@@ -48,7 +49,6 @@ export const cvSection = {
       {
         id: 1,
         getProject: '',
-        courseName: '',
         schoolName: '',
         city: '',
         state: '',
@@ -122,7 +122,6 @@ export const cvSection = {
     data: {
       language: '',
       getSkills: '',
-      industrySkills: '',
       relevantCertificates: '',
       volunteerWork: '',
       interest: '',

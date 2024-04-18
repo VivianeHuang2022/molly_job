@@ -4,7 +4,6 @@ const SkillsActivitiesInterests = ({ cvData, sectionName, styles }) => {
   const {
     language,
     getSkills,
-    industrySkills,
     relevantCertificates,
     volunteerWork,
     interest,
@@ -36,7 +35,6 @@ const SkillsActivitiesInterests = ({ cvData, sectionName, styles }) => {
       <div className={styles.subSection}>
         {language && <div>Languages: {language}</div>}
         {getSkills && <div>Skills: {getSkills}</div>}
-        {industrySkills && <div>Industry Skills: {industrySkills}</div>}
         {relevantCertificates && (
           <div>Certificates: {relevantCertificates}</div>
         )}

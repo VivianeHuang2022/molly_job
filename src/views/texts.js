@@ -514,7 +514,6 @@ const texts_en = {
   },
   resumeTxt: {
     personalInfo: {
-      sectionName: 'Personal',//会删除
       firstName: 'First Name',
       surname: 'Last Name',
       userTel: 'Phone Number',
@@ -522,7 +521,6 @@ const texts_en = {
       userLinkedln: 'userLinkedln',
     },
     dreamInfo: {
-      sectionName: 'dream Info',
       dreamDegree: 'degree name',
       dreamUni: 'dream Uni name',
       dreamMajor: '',
@@ -530,20 +528,19 @@ const texts_en = {
     },
 
     educationInfo: {
-      sectionName: 'Education',
       currentUni: 'University',
       city: 'City',
       state: 'State',
       currentCountry: 'Country',
-      currentDegree: 'Degree in Major',
+      currentDegree: 'Degree',
       currentMajor: 'Major',
+      startDate: 'Start Date',
       graduationDate: 'Graduation Date',
-      currentGPA: 'GPA and Honors',
+      currentGPA: 'GPA',
       achievement: 'Achievement',
       currentCourses: 'Courses',
     },
     workExperience: {
-      sectionName: 'Work Experience',
       role: 'Position Title',
       groupName: 'Group Name',
       company: 'Company',
@@ -556,10 +553,8 @@ const texts_en = {
       workDetail: 'Work Detail',
     },
     projectExperience: {
-      sectionName: 'Project Experience',
-      getProject: 'Project Title',
-      courseName: 'Course Name',
-      schoolName: 'School',
+      getProject: 'Project Name',
+      schoolName: 'College/Institution/Company',
       city: 'City',
       state: 'State',
       country: 'Country',
@@ -569,9 +564,8 @@ const texts_en = {
       projectDetail: 'Project Details',
     },
     researchExperience: {
-      sectionName: 'Research Experience',
       researchTitle: 'Research Title',
-      schoolName: 'School',
+      schoolName: 'College/Institution/Company',
       city: 'City',
       state: 'State',
       country: 'Country',
@@ -581,17 +575,16 @@ const texts_en = {
       researchDetail: 'Research Details',
     },
     publicationsPresentations: {
-      sectionName: 'Publications and Presentations',
       getConference: 'Publications and Presentations',
     },
     skillsActivitiesInterests: {
-      sectionName: 'Skills, Activities, and Interests',
       language: 'Language 1,Language 2',
       getSkills: 'Skills',
-      industrySkills: 'Industry Skills',
       relevantCertificates: 'Certificates',
       volunteerWork: 'Volunteer Work',
       interest: 'Interests',
+      getAwards: 'Awards and Honors',
+      getCompetitions: 'Competitions',
     },
     interface: {
       saveButton: 'Save Data',
