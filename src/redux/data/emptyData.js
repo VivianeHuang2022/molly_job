@@ -109,7 +109,7 @@ export const cvSection = {
     ],
   },
   publicationsPresentations: {
-    sectionName: 'Publications Presentations',
+    sectionName: 'Publications',
     data: [
       {
         id: 1,
