@@ -476,7 +476,7 @@ export const createRecommendation = async (
   dataGroup,
   topicId = initTopicId
 ) => {
-  const postUrl = `${BASE_URL}/createRecommendation/topicId=${topicId}`;
+  const postUrl = `${BASE_URL}/Recommendation/PostRecommendationDataGroup?topicId=${topicId}`;
   try {
     const response = await axios({
       method: 'post',
@@ -492,7 +492,7 @@ export const createRecommendation = async (
       // ... 其他配置
     });
 
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
@@ -577,14 +577,14 @@ export const getRegisterVerificationCode = async (request) => {
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const getRecommendation = async (topicId = initTopicId) => {
-  const postUrl = `${BASE_URL}/getRecommendation/topicId=${topicId}`;
+  const postUrl = `${BASE_URL}/Recommendation/GetRecommendationDataGroup?topicId=${topicId}`;
   try {
     const response = await axios({
       method: 'get',
       url: postUrl,
-      responseType: 'blob', // Important
+      // responseType: 'application/json', // Important
       headers: {
-        // 'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         accept: '*/*',
         Authorization: authToken ? `Bearer ${authToken}` : '',
       },
@@ -696,6 +696,19 @@ export const getDocumentImg = async (
   }
 };
 
+
+// export const downloadDocumentPdf = async (
+//   countId,
+//   lan,
+//   documentType,
+//   topicId = initTopicId
+// ) => {
+//   return get(
+//     `${documentType}/downloadDocumentPdf?countId=${countId}&lan=${lan}&topicId=${topicId}`,
+//     null,
+//     'blob'
+//   );
+// };
 /**
  * 下载生成的PDF文件。
  * @param {string} countId - 模板类型。
@@ -709,7 +722,7 @@ export const downloadDocumentPdf = async (
   documentType,
   topicId = initTopicId
 ) => {
-  const postUrl = `${BASE_URL}/downloadDocumentPdf/documentType=${documentType}/countId=${countId}/lan=${lan}/topicId=${topicId}`;
+  const postUrl = `${BASE_URL}/${documentType}/downloadDocumentPdf?countId=${countId}&lan=${lan}&topicId=${topicId}`;
   try {
     const response = await axios({
       method: 'get',

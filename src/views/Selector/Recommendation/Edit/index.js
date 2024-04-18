@@ -14,13 +14,13 @@ const RecommendationFormLogic = () => {
   const navigate = useNavigate();
 
   const handleToNext = async (values) => {
-    console.log('Form submitted with values:', values);
+    //console.log('Form submitted with values:', values);
     //mock data
     // const response = { status: 200 };
 
     //调用生成pdf api
     const response = await createRecommendation(values);
-
+    console.log(response)
     if (response.status === 200) {
       editState('isEditrecommendation', false);
       navigate('/layout/Recommendation/generate');

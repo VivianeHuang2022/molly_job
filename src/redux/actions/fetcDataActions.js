@@ -12,8 +12,10 @@ const topicId = localStorage.getItem('topicId');
 export const fetchThunkCreator = (type, fetchFunction) => {
   return createAsyncThunk(type, async () => {
     try {
+
       const response = await fetchFunction(topicId);
-      return response;
+      
+      return response.data.msg;
     } catch (error) {
       console.error('Error fetching data:', error);
       throw error;

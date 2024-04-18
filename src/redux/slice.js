@@ -61,7 +61,7 @@ export const dataSlice = createSlice({
       // console.log(payload)
       switch (pNum) {
         case 1:
-          state.jDataQP1 = { ...state.jobDataQP1, ...payload };
+          state.jobDataQP1 = { ...state.jobDataQP1, ...payload };
           break;
         case 2:
           state.jobDataQP2 = { ...state.jobDataQP2, ...payload };

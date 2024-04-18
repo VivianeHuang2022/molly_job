@@ -54,14 +54,16 @@ const DownloadPage = ({ topicId }) => {
   }, [countId, documentType, lan, topicId]);
 
   const handleDownloadClick = async () => {
-    let { countId, language } = coverLetterData;
+    // let { countId, language } = coverLetterData;
 
+    // console.log(countId);
+    // console.log(language);
     //add generate & regenerate button
 
     try {
       const response = await downloadDocumentPdf(
         countId,
-        language,
+        lan,
         documentType,
         topicId
       );

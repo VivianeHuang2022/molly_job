@@ -10,8 +10,8 @@ const initialValues = {
   recommenderInstitution: '',
   recommenderEmail: '',
   recommenderIntro: '',
-  recommendRelationship: '',
-  recommendActivity: '',
+  recommenderRelationship: '',
+  recommenderActivity: '',
 
   //from other part
   firstName: '',

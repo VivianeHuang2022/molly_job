@@ -23,13 +23,16 @@ function Navbar(props) {
 
 
   const handleItemClick = (key) => {
-   if(!hasLocalData('isEditcoverletter')){
-    if (key === 'coverletter') {
-      editState('isEditcoverletter', false);
+
+    if(key === 'coverletter'){
+      if(!hasLocalData('isEditcoverletter')){
+        editState('isEditcoverletter', false);
+      }
+      navigate('/layout/coverletter/edit');
+    }else{
+      navigate(key);
     }
-   }
-    navigate(key);
-    setActiveKey(key);
+    setActiveKey(key);    
   };
 
   const backToStart = () => {

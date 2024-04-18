@@ -119,7 +119,7 @@ export const getFormFields = (texts) => {
     },
     activity: {
       ...activity,
-      name: 'recommendActivity',
+      name: 'recommenderActivity',
       component: 'textarea', // 标记为使用 TextArea 组件
       schema: Yup.string(),
     },
