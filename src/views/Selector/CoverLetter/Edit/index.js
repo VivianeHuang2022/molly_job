@@ -28,10 +28,10 @@ const Question = () => {
     }
   };
 
-  useEffect(() => {
-    navigate('/layout/generalq');
+  // useEffect(() => {
+  //   navigate('/layout/generalq');
 
-  }, [navigate]);
+  // }, [navigate]);
   return (
     <div className={styles.questionContainerOuter}>
       <div className={styles.questionContainer}>

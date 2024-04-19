@@ -260,7 +260,7 @@ export const fetchRemainingCounts = async () => {
       },
     });
 
-    return response.data;
+    return response;
   } catch (error) {
     console.error('获取生成次数失败：', error);
     throw error;
@@ -603,14 +603,14 @@ export const getRecommendation = async (topicId = initTopicId) => {
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const getResume = async (topicId = initTopicId) => {
-  const postUrl = `${BASE_URL}/getResume/topicId=${topicId}`;
+  const postUrl = `${BASE_URL}/Resume/GetResumeDataGroup?topicId=${topicId}`;
   try {
     const response = await axios({
       method: 'get',
       url: postUrl,
-      responseType: 'blob', // Important
+      // responseType: 'blob', // Important
       headers: {
-        // 'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         accept: '*/*',
         Authorization: authToken ? `Bearer ${authToken}` : '',
       },

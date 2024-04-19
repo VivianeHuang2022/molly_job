@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import { getDocumentImg, downloadDocumentPdf } from '../../utils/api';
+import AlertContext from "../../components/AlertProvider/AlertContext";
 
 import styles from './Download.module.css';
 
@@ -17,6 +18,7 @@ import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
 
 const DownloadPage = ({ topicId }) => {
+  const { showAlertMessage } = useContext(AlertContext);
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const downloadTexts = texts.download;
   const rememberEmail = localStorage.getItem('email');
@@ -67,6 +69,9 @@ const DownloadPage = ({ topicId }) => {
         documentType,
         topicId
       );
+      if(response.status===200){
+        showAlertMessage("Success", "The Document sent successfully!", "success");
+      }
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const a = document.createElement('a');
       a.href = url;

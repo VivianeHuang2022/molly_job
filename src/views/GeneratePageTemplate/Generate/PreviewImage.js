@@ -3,6 +3,7 @@ import styles from './generate.module.css';
 import { Carousel, Button, Space } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { ParagraphComp } from '../../../components/Typography';
+import { current } from '@reduxjs/toolkit';
 
 const PreviewImage = ({
   onContidChange,
@@ -33,7 +34,7 @@ const PreviewImage = ({
     setDirection('prev');
     mediaRef.current.prev(); // 控制主轮播图的切换
   }, [mediaRef]);
-
+  console.log(currentIndex)
   return (
     <div className={styles.carouselContainer}>
       <Space className={styles.buttonsContainer} size={20}>

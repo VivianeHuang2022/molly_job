@@ -9,7 +9,7 @@ export default function CoverLetter(props) {
       navigate('/layout/coverletter/generate');
       localStorage.removeItem('fromPayment');
     } else {
-      navigate('/layout/coverletter/edit');
+      navigate('/layout/coverletter/generate');
     }
   }, []);
   return <div>{props.children}</div>;

@@ -33,18 +33,23 @@ const Generator = ({
   /*-------------操作-----------------*/
   const fetchData = async () => {
     try {
+
       const response = await fetchRemainingCounts();
-      setAccountInfo(response.msg);
-      let state;
-      if (response.msg.firstTime) {
+        setAccountInfo(response.data.msg);
+        let state;
+      
+      if (response.data.msg.firstTime) {
         state = 'newUser'; // 首次生成
-      } else if (response.msg.remainingCount > 0) {
+      } else if (response.data.msg.remainingCount > 0) {
         state = 'hasCount'; // 有生成次数
       } else {
         state = 'noCount'; // 无次数
       }
       setCurrentState(state);
     } catch (error) {
+      if(error.response.status===401){
+        navigate('/login')
+      }
       setErrorMessage(generateDocumentTexts.errorMessage + error.message);
     }
   };
@@ -60,7 +65,7 @@ const Generator = ({
         documentType,
         topicId
       );
-      console.log(response)
+      // console.log(response)
       if (response.status === 200) {
         navigate(`/download`);
         localStorage.setItem('currentgenerate', documentType);
@@ -79,9 +84,14 @@ const Generator = ({
     navigate(`/layout/payment`);
   };
   const handleBacktoEdit = () => {
+    
     editState(`isEdit${documentType}/edit`, true);
-
-    navigate(`/layout/${documentType}/edit`);
+    if(documentType==='coverletter'){
+      navigate(`/layout/generalq`);
+    }
+    else{
+      navigate(`/layout/${documentType}/edit`);
+    }
   };
 
   /*-------------渲染UI-----------------*/

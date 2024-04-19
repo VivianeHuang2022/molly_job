@@ -36,6 +36,7 @@ const CvContainer = ({
 
   const handleSaveToBackend = async () => {
     const dataGroup = matchDataToBack(singleCvData);
+    console.log(dataGroup)
     const topicId = localStorage.getItem('topicId');
     try {
       const response = createResume(dataGroup, topicId);

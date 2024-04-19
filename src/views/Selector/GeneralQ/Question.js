@@ -29,7 +29,9 @@ export default function Question(props) {
         
         if (response.status === 200) {
           editState('isEditcoverletter', false);
-          navigate('/layout/coverletter/edit');
+          // editState('isEditcoverletter', false);
+          //navigate('/layout/coverletter/edit');
+          navigate('/layout/coverletter/generate');
         }
         else if(response.status === 401)
         {

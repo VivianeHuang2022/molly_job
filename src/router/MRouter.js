@@ -160,6 +160,7 @@ export default function MRouter() {
         {
           path: 'coverletter',
           element: <CoverletterLayout />,
+          //暂时都导航到GenerateCoverletter
           children: [
             {
               index: true,
