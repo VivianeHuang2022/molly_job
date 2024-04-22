@@ -1,9 +1,6 @@
 export const getMenuItems = (texts) => {
   return [
-    {
-      key: 'generalq',
-      label: texts.homeTexts.applicationTxt,
-    },
+
     {
       key: 'coverletter',
       label: texts.homeTexts.coverletterTxt,

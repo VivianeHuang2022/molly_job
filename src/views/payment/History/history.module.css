@@ -3,3 +3,28 @@
   flex-direction: column;
   margin: 0 30px;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.returnButton {
+  align-items: center;
+  text-decoration: none; /* 移除链接下划线 */
+
+  background-color: #333;
+  color: #fff;
+  width: 37px;
+  line-height: normal;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.returnButton:hover {
+  background-color: #c6c3c3;
+}

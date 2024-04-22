@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table,Button } from 'antd';
 
 import { ColumnShow, CountComp } from '../../../components/Column/ColumnShow';
 import styles from './history.module.css';
@@ -7,6 +7,7 @@ import styles from './history.module.css';
 import { getLabels } from '../../local';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../redux/slices/languageSlice';
+import { Link } from 'react-router-dom';
 
 const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
   const texts = getLabels(useSelector(selectCurrentLanguage));
@@ -51,7 +52,12 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
         headerRowStyle={{ display: 'none' }}
         dataSource={generateCountHistory}
       />
+
+     <Link to="/layout" className={styles.returnButton}>
+        {historyTexts.buttonBack}
+      </Link>
     </div>
+    
   );
 };
 

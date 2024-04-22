@@ -8,11 +8,69 @@
 
 .qrcodeContainer {
   display: flex;
+  border: 1px solid #ccc; /* 添加外边框 */
+  border-radius: 8px; /* 添加圆角 */
+  background-color: #f7f7f7; /* 主要背景色为灰色 */
 }
 
 .qrcodeWrapper {
   position: relative;
   text-align: center; /* 图片水平居中 */
+  padding: 20px; /* 添加内边距 */
+}
+
+.qrcodeTitle {
+  font-size: 18px;
+  text-align: center;
+  color: #333; /* 主要文字颜色为黑色 */
+  margin-bottom: 10px; /* 调整标题与二维码之间的间距 */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* 调整按钮样式 */
+.button {
+  background-color: #666; /* 按钮背景色为灰色 */
+  color: #fff; /* 按钮文字颜色为白色 */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #555; /* 鼠标悬停时按钮背景色加深 */
+}
+
+/* QRCodeComponent.module.css */
+/*
+.qrPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qrcodeContainer {
+  display: flex;
+}
+
+.qrcodeWrapper {
+  position: relative;
+  text-align: center; 
 }
 
 .qrcodeTitle {
@@ -35,3 +93,4 @@
   text-align: center;
   margin-top: 10px;
 }
+*/

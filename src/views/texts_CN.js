@@ -14,7 +14,7 @@ const texts_cn = {
   homeTexts: {
     studyTitle: '你的大学指南',
     careerTitle: '你的职业指南',
-    applicationTxt: '申请指南',
+    applicationTxt: '推荐信',
     interviewTxt: '面试模拟',
     coverletterTxt: '动机信',
     resumeTxt: '简历',
@@ -280,11 +280,11 @@ const texts_cn = {
           monthly: '¥299',
           annual: '¥2999',
         },
-        info: '为申请多所学校的有抱负的学生量身定制,提供无限制的文档生成,为每个项目打造完美的申请材料,没有任何模板限制。',
+        info: '为申请多个国家多语言的申请人，量身定制，超过1000份海内外名校申请文书,支持50多种语言，提供10次申请文书生成,为每个项目打造完美的申请材料,无限使用任何模板。完成支付可免费入当地留学群，并获得留学生活指南',
         features: [
-          { type: 'generationCounts', text: '无限制使用' },
+          { type: 'generationCounts', text: '10次使用机会' },
           { type: 'documentsType', text: '所有文档可用' },
-          { type: 'templateRestrictions', text: '无模板限制' },
+          { type: 'templateRestrictions', text: '无模板限制，免费留学咨询' },
         ],
         level: '专业',
       },
@@ -294,11 +294,11 @@ const texts_cn = {
           monthly: '¥99',
           annual: '¥999',
         },
-        info: '为瞄准少数项目的申请人设计,提供12次文档生成机会,确保每份申请材料都经过定制和增强,并可完全访问所有模板。',
+        info: '为申请人量身定制，超过1000份海内外名校申请文书,支持50多种语言，提供5次文档生成机会,确保每份申请材料都经过定制,并可完全访问所有模板。完成支付可免费入当地留学群，并获得留学生活指南',
         features: [
-          { type: 'generationCounts', text: '12次生成机会' },
+          { type: 'generationCounts', text: '5次生成机会' },
           { type: 'documentsType', text: '所有文档可用' },
-          { type: 'templateRestrictions', text: '无模板限制' },
+          { type: 'templateRestrictions', text: '支持超20+国家留学申请' },
         ],
         level: '专业',
       },
@@ -308,9 +308,9 @@ const texts_cn = {
           monthly: '¥49',
           annual: '¥499',
         },
-        info: '理想的一两所学校申请方案,提供5次文档生成机会,并可访问超过50个会员模板,打造出众的申请材料。',
+        info: '理想的一两所学校申请方案,提供1次文档生成机会,并可访问超过50个会员模板,打造出众的申请材料。',
         features: [
-          { type: 'generationCounts', text: '5次生成机会' },
+          { type: 'generationCounts', text: '1次生成机会' },
           { type: 'documentsType', text: '所有文档可用' },
           { type: 'templateRestrictions', text: '超过50个会员模板' },
         ],
@@ -368,11 +368,11 @@ const texts_cn = {
     recommender: {
       firstName: {
         label: '名',
-        placeholder: '请输入姓',
+        placeholder: '请输入名字',
       },
       lastName: {
         label: '姓',
-        placeholder: '输入名',
+        placeholder: '输入姓氏',
       },
       relationship: {
         label: '关系',
@@ -483,6 +483,7 @@ const texts_cn = {
     generate: '生成',
     count: '数量',
     time: '时间',
+    buttonBack:'返回',
   },
   resumeTxt: {
     personalInfo: {

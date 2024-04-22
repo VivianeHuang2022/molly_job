@@ -63,7 +63,7 @@ export default function Question(props) {
      navigate('/layout/coverletter');
     }}
   };
-
+/*
   useEffect(() => {
     const checkRes = checkLogin();
     checkRes.then(result=>{
@@ -75,6 +75,8 @@ export default function Question(props) {
     })
     
   }, []); // 注意这里是一个空依赖数组，表示这个effect仅在组件挂载时运行一次
+
+  */
 
   return (
     <div className={style.container}>

@@ -10,7 +10,7 @@ export default function Home() {
   const navigate = useNavigate()
   const texts = localStorage.getItem("Lan")==="CN"? texts_CN:texts_EN
   const handleToGeneralQ = ()=>{
-    navigate("/layout")
+    navigate("/layout/recommendation")
   }
   const handleToCoverLetter = ()=>{
     navigate("/layout/coverletter")
@@ -29,7 +29,7 @@ export default function Home() {
         <div className={styles.listStyle}>
             <div className={styles.topTitle} style={Id==="1"?{color:"cyan"}:{color:"black"}}>
                 {Id==="1"?texts.homeTexts.studyTitle:texts.homeTexts.careerTitle}</div>
-            <div className={styles.title}>Start</div>
+           
             <button 
               className={styles.buttonStyle} 
               style={Id==="1"?{background:"gray"}:{background:"darkgray"}}

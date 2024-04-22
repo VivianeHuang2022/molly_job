@@ -1,0 +1,29 @@
+/* Unauthorized.css */
+
+.unauthorized-card {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.unauthorized-content {
+  text-align: center;
+}
+
+.unauthorized-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.unauthorized-message {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  font-size: 14px;
+  margin-top: 20px;
+}

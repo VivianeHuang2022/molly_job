@@ -29,6 +29,10 @@
   height: 100%;
   /* background-color: rgb(86, 74, 74); */
 }
+.actionOutContainer:hover {
+  background-color: #eeeeee; /* Change to a darker shade of gray */
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -51,11 +55,28 @@
   height: 80vh;
   min-width: 500px;
   /* aspect-ratio: 21 / 29.7; */
-  background-color: rgb(201, 201, 214);
+  background-color: #f7f7f7;
   padding: calc(var(--padding) * 2);
   display: flex;
   flex-direction: column;
 }
+
+.resumeContainer:hover {
+  background-color: #e7e7e8; /* Change to a darker shade of gray */
+}
+
+.resumeContainer::before {
+  content: "";
+  position: absolute;
+  top: 80;
+  bottom: 20;
+  left: 60%; /* Position the line at the center of the container */
+  width: 2px; /* Width of the line */
+  height: 70vh;
+  background-color: #acacac; /* Color of the line */
+  z-index: -1; /* Ensure the line is behind the container content */
+}
+
 /* Styling for the resume display area */
 .resumeShow {
   aspect-ratio: 21 / 29.7;

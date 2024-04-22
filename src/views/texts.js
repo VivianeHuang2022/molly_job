@@ -15,7 +15,7 @@ const texts_en = {
   homeTexts: {
     studyTitle: 'YOUR UNIVERSITY GUIDE',
     careerTitle: 'YOUR CAREER GUIDE',
-    applicationTxt: 'Application Guide',
+    applicationTxt: 'Recommendation Letter',
     interviewTxt: 'Interview',
     coverletterTxt: 'Cover Letter',
     resumeTxt: 'Resume',
@@ -287,10 +287,10 @@ const texts_en = {
       superPro: {
         label: 'Super Pro',
         pricing: {
-          monthly: '¥299',
-          annual: '¥2999',
+          monthly: '99.9 USD',
+          annual: '299.9 USD',
         },
-        info: 'Tailored for ambitious students applying to multiple schools, offering unlimited document generations for crafting the perfect application for each program without any template restrictions.',
+        info: 'Tailored for ambitious students applying to multiple schools, offering 12 document generations for crafting the perfect application for each program without any template restrictions.',
         features: [
           { type: 'generationCounts', text: 'generation opportunities' },
           { type: 'documentsType', text: 'All documents available' },
@@ -304,10 +304,10 @@ const texts_en = {
       pro: {
         label: 'Pro',
         pricing: {
-          monthly: '¥99',
-          annual: '¥999',
+          monthly: '29.9 USD',
+          annual: '79.9 USD',
         },
-        info: 'Designed for applicants targeting a select number of programs, providing 12 document generations to ensure each application is customized and compelling, with full access to all templates.',
+        info: 'Designed for applicants targeting a select number of programs, providing 5 document generations to ensure each application is customized and compelling, with full access to all templates.',
         features: [
           {
             type: 'generationCounts',
@@ -324,10 +324,10 @@ const texts_en = {
       standard: {
         label: 'Standard',
         pricing: {
-          monthly: '¥49',
-          annual: '¥499',
+          monthly: '9.9 USD',
+          annual: '99 USD',
         },
-        info: 'Ideal for individuals focusing on one or two school applications, with 5 document generations and access to over 50 member templates to create standout applications.',
+        info: 'Ideal for individuals focusing on one or two school applications, with 1 document generations and access to over 50 member templates to create standout applications.',
         features: [
           {
             type: 'generationCounts',
@@ -511,6 +511,7 @@ const texts_en = {
     generate: 'generate',
     count: 'Count',
     time: 'Time',
+    buttonBack:'Back',
   },
   resumeTxt: {
     personalInfo: {

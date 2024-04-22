@@ -1,0 +1,80 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
+  background-color: #eef0f3;
+  background-image: radial-gradient(circle, #ffffff 10%, transparent 10%),
+    radial-gradient(circle, #ffffff 10%, transparent 10%);
+  background-size: 30px 30px; /* Adjust the size of the circles */
+  background-position: 0 0, 15px 15px; /* Position the background */
+}
+
+.not-found-card {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.not-found-content {
+  text-align: center;
+}
+
+.not-found-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+.not-found-message {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #6c757d;
+}
+
+.product-info {
+  font-size: 14px;
+  margin-top: 20px;
+  color: #6c757d;
+}
+
+.contact-info {
+  font-size: 14px;
+  margin-top: 20px;
+  color: #6c757d;
+}
+
+.not-found-link {
+  font-size: 16px;
+  color: #007bff;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.not-found-link:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .not-found-card {
+    width: 80%;
+  }
+}
