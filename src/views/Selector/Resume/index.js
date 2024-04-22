@@ -30,7 +30,7 @@ const CvPage = () => {
   // 根据当前语言设置获取对应的语言配置文件
   const labels = getLabels(currentLanguage).resumeTxt;
   const matchDataToBack = (data) => {
-    console.log(data);
+    //console.log(data);
     // 创建一个新的dataGroup对象
     const dataGroup = { sectionName: [] };
 
@@ -47,7 +47,6 @@ const CvPage = () => {
 
     return dataGroup;
   };
-
   return (
     <div className={styles.container}>
       <ActionContainer

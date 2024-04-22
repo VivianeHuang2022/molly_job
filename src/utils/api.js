@@ -504,7 +504,9 @@ export const createRecommendation = async (
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const createResume = async (dataGroup, topicId = initTopicId) => {
-  const postUrl = `${BASE_URL}/createResume/topicId=${topicId}`;
+  const postUrl = `${BASE_URL}/Resume/PostStdResumeDataGroup?topicId=${topicId}`;
+  console.log(123)
+  console.log(dataGroup)
   try {
     const response = await axios({
       method: 'post',
@@ -512,7 +514,7 @@ export const createResume = async (dataGroup, topicId = initTopicId) => {
       responseType: 'json', // Important
       data: dataGroup,
       headers: {
-        // 'Content-Type': 'multipart/form-data',
+        //'Content-Type': 'multipart/form-data',
         accept: '*/*',
         Authorization: authToken ? `Bearer ${authToken}` : '',
       },
@@ -618,7 +620,7 @@ export const getResume = async (topicId = initTopicId) => {
       // ... 其他配置
     });
 
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }

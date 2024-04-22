@@ -5,7 +5,7 @@ import styles from './ActSection.module.css';
 
 const ActSection = ({ labels, singleCvData, currentSectionType }) => {
   const cvData = singleCvData;
-
+  console.log(currentSectionType)
   return (
     <div className={styles.actSectionContainer}>
       {currentSectionType.map((sectionType) => {
