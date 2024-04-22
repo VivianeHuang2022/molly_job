@@ -174,9 +174,11 @@ export const cvDataSlice = createSlice({
         //转换后端传来数据格式以匹配UI数据
         const structDataFucn = (responseData) => {
           const createSection = (sectionKey) => {
+            // console.log(sectionKey)
+            //console.log(responseData)
             const section = {
-              sectionName: responseData.sectionName[sectionKey],
-              data: responseData[sectionKey],
+              sectionName: responseData[sectionKey].sectionName,
+              data: responseData[sectionKey].data,
             };
             return section;
           };
@@ -192,6 +194,7 @@ export const cvDataSlice = createSlice({
         };
 
         // Step 1: 检查后端响应是否有有效值
+        
         if (responseData && responseData?.timeStamp) {
           // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
           if (localSaved) {

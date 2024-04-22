@@ -505,7 +505,6 @@ export const createRecommendation = async (
  */
 export const createResume = async (dataGroup, topicId = initTopicId) => {
   const postUrl = `${BASE_URL}/Resume/PostStdResumeDataGroup?topicId=${topicId}`;
-  console.log(123)
   console.log(dataGroup)
   try {
     const response = await axios({
@@ -619,7 +618,6 @@ export const getResume = async (topicId = initTopicId) => {
       timeout: 10000,
       // ... 其他配置
     });
-
     return response;
   } catch (error) {
     throw error;

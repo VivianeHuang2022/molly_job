@@ -30,21 +30,22 @@ const CvPage = () => {
   // 根据当前语言设置获取对应的语言配置文件
   const labels = getLabels(currentLanguage).resumeTxt;
   const matchDataToBack = (data) => {
-    //console.log(data);
+    
     // 创建一个新的dataGroup对象
-    const dataGroup = { sectionName: [] };
-
+    // const dataGroup = { sectionName: [] };
+    const dataGroup = {};
     // 遍历cvData的每个section
     Object.keys(data).forEach((sectionKey) => {
-      const section = data[sectionKey];
+       const section = data[sectionKey];
       dataGroup[sectionKey] = section.data;
       dataGroup.sectionName.push(section.sectionName);
+      //dataGroup[sectionKey] = section
     });
 
     // cvType信息
     dataGroup.currentSectionType = currentSectionType;
     dataGroup.timeStamp = new Date().getTime();
-
+    //console.log(dataGroup);
     return dataGroup;
   };
   return (
