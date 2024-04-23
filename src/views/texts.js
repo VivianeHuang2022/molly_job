@@ -282,13 +282,17 @@ const texts_en = {
     pricingType: {
       monthly: 'month',
       annual: 'year',
+      times:'次'
     },
+    priceSymbol:"$",
     paymentType: {
       superPro: {
         label: 'Super Pro',
         pricing: {
-          monthly: '99.9 USD',
-          annual: '299.9 USD',
+          monthly: '-',
+          annual: '-',
+          times:'-',
+          timesNum:'-',
         },
         info: 'Tailored for ambitious students applying to multiple schools, offering 12 document generations for crafting the perfect application for each program without any template restrictions.',
         features: [
@@ -304,8 +308,10 @@ const texts_en = {
       pro: {
         label: 'Pro',
         pricing: {
-          monthly: '29.9 USD',
-          annual: '79.9 USD',
+          monthly: '-',
+          annual: '-',
+          times:'-',
+          timesNum:'-',
         },
         info: 'Designed for applicants targeting a select number of programs, providing 5 document generations to ensure each application is customized and compelling, with full access to all templates.',
         features: [
@@ -324,8 +330,10 @@ const texts_en = {
       standard: {
         label: 'Standard',
         pricing: {
-          monthly: '9.9 USD',
-          annual: '99 USD',
+          monthly: '-',
+          annual: '-',
+          times:'-',
+          timesNum:'-',
         },
         info: 'Ideal for individuals focusing on one or two school applications, with 1 document generations and access to over 50 member templates to create standout applications.',
         features: [

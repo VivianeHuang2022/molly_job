@@ -10,9 +10,10 @@ const PlanCard = ({
   title,
   info,
   features,
-  time,
   planType,
-  planTimeType,
+  time,
+  priceSymbol,
+  timesNum
 }) => {
   const navigate = useNavigate();
 
@@ -31,8 +32,8 @@ const PlanCard = ({
     <article className={`${styles.plan} ${styles.card}`}>
       <div className={styles.inner}>
         <span className={styles.pricing}>
-        {pricing}
-          {/* {pricing} <span className={styles.time}>/ {time}</span> */}
+       {priceSymbol} {pricing}
+          {pricing} <span className={styles.time}>/ {timesNum}{time}</span>
         </span>
         <TitleComponent title={title} />
         <InfoComponent info={info} />

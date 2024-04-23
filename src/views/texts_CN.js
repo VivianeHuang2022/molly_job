@@ -272,13 +272,18 @@ const texts_cn = {
     pricingType: {
       monthly: '月',
       annual: '年',
+      timesNum:'-',
+      times:'次'
     },
+    priceSymbol:"¥",
     paymentType: {
       superPro: {
         label: '超级专业',
         pricing: {
-          monthly: '¥299',
-          annual: '¥2999',
+          monthly: '-',
+          annual: '-',
+          times:'-',
+          timesNum:'-',
         },
         info: '为申请多个国家多语言的申请人，量身定制，超过1000份海内外名校申请文书,支持50多种语言，提供10次申请文书生成,为每个项目打造完美的申请材料,无限使用任何模板。完成支付可免费入当地留学群，并获得留学生活指南',
         features: [
@@ -291,8 +296,10 @@ const texts_cn = {
       pro: {
         label: '专业',
         pricing: {
-          monthly: '¥99',
-          annual: '¥999',
+          monthly: '-',
+          annual: '-',
+          times:'-',          
+          timesNum:'-',
         },
         info: '为申请人量身定制，超过1000份海内外名校申请文书,支持50多种语言，提供5次文档生成机会,确保每份申请材料都经过定制,并可完全访问所有模板。完成支付可免费入当地留学群，并获得留学生活指南',
         features: [
@@ -305,8 +312,10 @@ const texts_cn = {
       standard: {
         label: '标准',
         pricing: {
-          monthly: '¥49',
-          annual: '¥499',
+          monthly: '-',
+          annual: '-',
+          times:'-',
+          timesNum:'-',
         },
         info: '理想的一两所学校申请方案,提供1次文档生成机会,并可访问超过50个会员模板,打造出众的申请材料。',
         features: [

@@ -8,80 +8,38 @@ import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
 import { getOrderPrice } from '../../utils/api'
 
 const PlanCardsContainer = () => {
-  const texts = getLabels(useSelector(selectCurrentLanguage));
-  const [activeTab] = useState('monthly');
+  const currentLanguage = useSelector(selectCurrentLanguage);
+  const texts = getLabels(currentLanguage);
+  const [activeTab] = useState('times');
   const [plans, setPlans] = useState(texts.plans);
 
-  // const handleTabChange = (key) => {
-  //   setActiveTab(key);
-  // };
 
-  // Render plans based on selected tab
-  const renderSinglePlan = (planType) => {
-    
+  useEffect(() => {
+    const fetchOrderPriceAndUpdatePlans = async () => {
+      try {
+        // 假设getOrderPrice返回一个Promise对象
+        console.log(plans);
 
-    const selectedPlan = plans.paymentType[planType];
-    //console.log(selectedPlan)
-    if (selectedPlan) {
-      return (
-        <PlanCard
-          key={planType}
-          pricing={selectedPlan.pricing[activeTab]}
-          // pricing={price}
-          title={selectedPlan.label}
-          info={selectedPlan.info}
-          features={selectedPlan.features}
-          time={plans.pricingType[activeTab]}
-          planType={planType}
-          planTimeType={activeTab}
-        />
-      );
+        //获取全部语言的价格到本地
+        const response = await getOrderPrice();
+        //不同语言价格不同
+        // 假设response.data包含我们需要的数据
+        const {data} = response;
+  
+        const plansCopy = JSON.parse(JSON.stringify(plans));
+        updateFeaturesByOrderType(data, plansCopy);
+        setPlans(plansCopy);
+      } catch (error) {
+        // 捕获异步操作中的错误
+        console.error('Error fetching order prices:', error);
+        // 可以根据错误类型进行更详细的错误处理
+      }
     }
-  };
+  
+    fetchOrderPriceAndUpdatePlans();
+  }, [plans]); // 依赖项中添加plans，以便在plans变化时重新请求
 
-  const renderPlans = () => {
-    return Object.keys(plans.paymentType).map((planType) => {
-      return renderSinglePlan(planType);
-    });
-  };
-
-  //const deepCopy = _.cloneDeep(plans.paymentType);
-
-  useEffect(()=>{
-    var response = getOrderPrice()
-    response.then(data=>{
-      const plansCopy = JSON.parse(JSON.stringify(plans));
-      updateFeaturesByOrderType(data, plansCopy);
-      // 使用更新后的副本设置plans状态
-      setPlans(plansCopy);
-      //console.log(plans)
-    })
-    
-  },[]);
-
-  return (
-    <div className={styles.paymenContainerOueter}>
-      <div className={styles.paymentContainer}>
-        <div className={styles.cards}>{renderPlans()}</div>
-
-        {/* <Tabs
-        activeKey={activeTab}
-        onChange={handleTabChange}
-        items={tabItems}
-        centered
-        tabBarStyle={tabBarStyle}
-      /> */}
-      </div>
-    </div>
-  );
-};
-// const tabBarStyle = {
-//   // backgroundColor: 'lightblue',
-//   // 添加其他您想要修改的样式属性
-// };
-export default PlanCardsContainer;
-
-function updateFeaturesByOrderType(orders, plans) {
+const updateFeaturesByOrderType=(orders, plans) => {
   orders.forEach(order => {
     // 遍历每个订单
     Object.keys(plans.paymentType).forEach(planKey => {
@@ -96,10 +54,50 @@ function updateFeaturesByOrderType(orders, plans) {
           }
         });
         // 更新pricing.monthly，保留"¥"标识符
-        plan.pricing.monthly = `¥${order.amount}`;
+        plan.pricing.monthly = `${plans.priceSymbol}${order.amount}`;
       }
     });
   });
 }
+
+  // Render plans based on selected tab
+  const renderSinglePlan = (planType) => {
+    
+    const selectedPlan = plans.paymentType[planType];
+    if (selectedPlan) {
+      return (
+        <PlanCard
+          key={planType}
+          pricing={selectedPlan.pricing[activeTab]}
+          title={selectedPlan.label}
+          info={selectedPlan.info}
+          features={selectedPlan.features}
+          planType={planType}
+          priceSymbol={plans.priceSymbol}
+          time={plans.pricingType[activeTab]}
+          timesNum={selectedPlan.pricing.timesNum}
+        />
+      );
+    }
+  };
+  
+
+  const renderPlans = () => {
+    return Object.keys(plans.paymentType).map((planType) => {
+      return renderSinglePlan(planType);
+    });
+  };
+
+  return (
+    <div className={styles.paymenContainerOueter}>
+      <div className={styles.paymentContainer}>
+        <div className={styles.cards}>{renderPlans()}</div>
+      </div>
+    </div>
+  );
+};
+
+export default PlanCardsContainer;
+
 
 
