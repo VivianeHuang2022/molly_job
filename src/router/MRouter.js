@@ -5,6 +5,8 @@ import NotFound from "../components/NotFound";
 import Start from "../views/Start/Start";
 import HomeTest from "../views/Home/HomeTest";
 import Home from "../views/Home/Home";
+import About from '../views/About';
+
 
 import {
   Layout,
@@ -221,6 +223,10 @@ export default function MRouter() {
     },
     {
       path: "/generateCounts_history", element:<GenerateCountHistory />
+  },
+  {
+    path: '/about',
+    element: <About />,
   },
     {
       path: "*",

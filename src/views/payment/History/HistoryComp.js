@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table,Button } from 'antd';
+import { Table, Button } from 'antd';
 
 import { ColumnShow, CountComp } from '../../../components/Column/ColumnShow';
 import styles from './history.module.css';
@@ -20,10 +20,9 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
       dataIndex: 'count',
       render: (text, record) => (
         <span>
-          {record.recordType}
           {record.action === historyTexts.increment
-            ? ` ${historyTexts.payment} +`
-            : ` ${historyTexts.generate} -`}
+            ? `${historyTexts.payment} ${record.planType}  +`
+            : `  ${historyTexts.generate} ${record.doucumentType} -`}
           <CountComp content={record.count} />
         </span>
       ),
@@ -53,11 +52,10 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
         dataSource={generateCountHistory}
       />
 
-     <Link to="/layout" className={styles.returnButton}>
+      <Link to="/layout" className={styles.returnButton}>
         {historyTexts.buttonBack}
       </Link>
     </div>
-    
   );
 };
 

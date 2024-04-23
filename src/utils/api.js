@@ -1,14 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const registerRequset = async (request) => {
   try {
     const response = await axios({
-      method: "post",
-      url: "/api/Register/RegisterByEamil",
+      method: 'post',
+      url: '/api/Register/RegisterByEamil',
       data: request,
       headers: {
-        "Content-Type": "application/json",
-        accept: "*/*",
+        'Content-Type': 'application/json',
+        accept: '*/*',
         //'Authorization': 'Bearer YOUR_TOKEN_HERE'  // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 10000,
@@ -24,12 +24,12 @@ export const registerRequset = async (request) => {
 export const loginRequset = async (request) => {
   try {
     const response = await axios({
-      method: "post",
-      url: "api/Login/LoginByEmail",
+      method: 'post',
+      url: 'api/Login/LoginByEmail',
       data: request,
       headers: {
-        "Content-Type": "application/json",
-        accept: "*/*",
+        'Content-Type': 'application/json',
+        accept: '*/*',
         //'Authorization': 'Bearer YOUR_TOKEN_HERE'  // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 5000,
@@ -45,12 +45,12 @@ export const loginRequset = async (request) => {
 export const getVerificationCode = async (request) => {
   try {
     const response = await axios({
-      method: "post",
-      url: "api/VerificationCode/SendVerificationCode",
+      method: 'post',
+      url: 'api/VerificationCode/SendVerificationCode',
       data: request,
       headers: {
-        "Content-Type": "application/json",
-        accept: "*/*",
+        'Content-Type': 'application/json',
+        accept: '*/*',
         //'Authorization': 'Bearer YOUR_TOKEN_HERE'  // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 10000,
@@ -66,12 +66,12 @@ export const getVerificationCode = async (request) => {
 export const resetPasswordRequest = async (request) => {
   try {
     const response = await axios({
-      method: "post",
-      url: "api/ResetPassword/ResetPasswordByEmail",
+      method: 'post',
+      url: 'api/ResetPassword/ResetPasswordByEmail',
       data: request,
       headers: {
-        "Content-Type": "application/json",
-        accept: "*/*",
+        'Content-Type': 'application/json',
+        accept: '*/*',
         //'Authorization': 'Bearer YOUR_TOKEN_HERE'  // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 10000,
@@ -89,12 +89,12 @@ export const uploadResumePost = async (request, uId, typeId) => {
   console.log(postUrl);
   try {
     const response = await axios({
-      method: "post",
+      method: 'post',
       url: postUrl,
       data: request,
       headers: {
-        "Content-Type": "multipart/form-data",
-        accept: "*/*",
+        'Content-Type': 'multipart/form-data',
+        accept: '*/*',
         //'Authorization': 'Bearer YOUR_TOKEN_HERE'  // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 10000,
@@ -110,12 +110,12 @@ export const uploadResumePost = async (request, uId, typeId) => {
 export const checkJWT = async (JWT) => {
   try {
     const response = await axios({
-      method: "get",
-      url: "api/Profile/CheckJWT",
+      method: 'get',
+      url: 'api/Profile/CheckJWT',
       headers: {
-        "Content-Type": "application/json",
-        accept: "*/*",
-        'Authorization': `Bearer ${JWT}`  // 例如：在这里放置Bearer token (如果需要)
+        'Content-Type': 'application/json',
+        accept: '*/*',
+        Authorization: `Bearer ${JWT}`, // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 10000,
       // ... 其他配置
@@ -127,18 +127,16 @@ export const checkJWT = async (JWT) => {
   }
 };
 
-
-
 export const switchCoverLetterImg = async (uId, countId, lan) => {
   const postUrl = `/api/CoverLetter/CreateCoverLetterDE?uId=${uId}&countId=${countId}&lan=${lan}`;
   try {
     const response = await axios({
-      method: "get",
+      method: 'get',
       url: postUrl,
-      responseType: "blob", // Important
+      responseType: 'blob', // Important
       headers: {
         // 'Content-Type': 'multipart/form-data',
-        accept: "*/*",
+        accept: '*/*',
       },
       timeout: 10000,
       // ... 其他配置
@@ -156,13 +154,13 @@ export const postStdCoverLetterDataGroup = async (dataGroup) => {
   const jwtToken = localStorage.getItem('jwtToken');
   try {
     const response = await axios({
-      method: "post",
+      method: 'post',
       url: postUrl,
       data: dataGroup,
       headers: {
-        "Content-Type": "application/json",
-        accept: "*/*",
-        'Authorization': `Bearer ${jwtToken}`  // 例如：在这里放置Bearer token (如果需要)
+        'Content-Type': 'application/json',
+        accept: '*/*',
+        Authorization: `Bearer ${jwtToken}`, // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 20000,
       // ... 其他配置
@@ -180,12 +178,12 @@ export const createStdCoverLetter = async (dataGroup) => {
   const postUrl = `/api/CoverLetter/CreateStdCoverLetter`;
   try {
     const response = await axios({
-      method: "post",
+      method: 'post',
       url: postUrl,
       data: dataGroup,
       headers: {
         // 'Content-Type': 'multipart/form-data',
-        accept: "*/*",
+        accept: '*/*',
       },
       timeout: 20000,
       // ... 其他配置
@@ -201,13 +199,13 @@ export const createJobCoverLetter = async (dataGroup) => {
   const postUrl = `/api/CoverLetter/CreateStdCoverLetter`;
   try {
     const response = await axios({
-      method: "post",
+      method: 'post',
       url: postUrl,
-      responseType: "blob", // Important
+      responseType: 'blob', // Important
       data: dataGroup,
       headers: {
         // 'Content-Type': 'multipart/form-data',
-        accept: "*/*",
+        accept: '*/*',
       },
       timeout: 10000,
       // ... 其他配置
@@ -218,7 +216,6 @@ export const createJobCoverLetter = async (dataGroup) => {
     throw error;
   }
 };
-
 
 /*-------------Resume----------------*/
 //更新简历数据
@@ -255,8 +252,8 @@ export const fetchRemainingCounts = async () => {
       url: postUrl,
       headers: {
         Accept: 'application/json',
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${jwtToken}`
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${jwtToken}`,
       },
     });
 
@@ -429,7 +426,66 @@ export const getOrderPrice = async () => {
   }
 };
 
+export const getOrderPrice_MOCK = async () => {
+  try {
+    const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/167972066`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      headers: {
+        Accept: 'json',
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
 
+    return response.data;
+  } catch (error) {
+    console.error('获取支付价格失败：', error);
+    throw error;
+  }
+};
+
+//获取生成次数增删历史
+export const getGenerateCountHistory = async () => {
+  try {
+    const postUrl = `getGenerateCountHistory`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      headers: {
+        Accept: 'json',
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('获取支付价格失败：', error);
+    throw error;
+  }
+};
+
+export const getGenerateCountHistory_MOCK = async () => {
+  try {
+    const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/167979554`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      headers: {
+        Accept: 'json',
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('获取支付价格失败：', error);
+    throw error;
+  }
+};
 
 //20240416 api
 /*-------------公共模块----------------*/
@@ -505,7 +561,7 @@ export const createRecommendation = async (
  */
 export const createResume = async (dataGroup, topicId = initTopicId) => {
   const postUrl = `${BASE_URL}/Resume/PostStdResumeDataGroup?topicId=${topicId}`;
-  console.log(dataGroup)
+  console.log(dataGroup);
   try {
     const response = await axios({
       method: 'post',
@@ -555,12 +611,12 @@ export const getCoverletter = async (topicId = initTopicId) => {
 export const getRegisterVerificationCode = async (request) => {
   try {
     const response = await axios({
-      method: "post",
-      url: "api/Register/SendVerificationCode",
+      method: 'post',
+      url: 'api/Register/SendVerificationCode',
       data: request,
       headers: {
-        "Content-Type": "application/json",
-        accept: "*/*",
+        'Content-Type': 'application/json',
+        accept: '*/*',
         //'Authorization': 'Bearer YOUR_TOKEN_HERE'  // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 10000,
@@ -625,7 +681,6 @@ export const getResume = async (topicId = initTopicId) => {
 };
 
 /*-----------生成模块-------------*/
-
 
 /**
  * 获取生成文件状态,这个会调用AI接口
@@ -696,7 +751,6 @@ export const getDocumentImg = async (
   }
 };
 
-
 // export const downloadDocumentPdf = async (
 //   countId,
 //   lan,
@@ -742,6 +796,3 @@ export const downloadDocumentPdf = async (
     throw error;
   }
 };
-
-
-
