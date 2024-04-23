@@ -25,7 +25,6 @@ const ProjectExperience = ({ cvData, sectionName, styles }) => {
   const ProjectExperienceItem = ({ project }) => {
     const {
       projectTitle,
-      courseName,
       schoolName,
       city,
       state,
@@ -39,7 +38,6 @@ const ProjectExperience = ({ cvData, sectionName, styles }) => {
     return (
       <div className={styles.subSection}>
         <SubHeading text={projectTitle} styles={styles} />
-        <Paragraph content={courseName} />
         <Paragraph content={schoolName} />
         <Paragraph content={`${city} ${state} ${country}`} />
         <Paragraph content={`${startDate} - ${endDate}`} />
