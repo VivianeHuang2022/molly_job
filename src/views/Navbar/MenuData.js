@@ -1,6 +1,5 @@
 export const getMenuItems = (texts) => {
   return [
-
     {
       key: 'coverletter',
       label: texts.homeTexts.coverletterTxt,
@@ -28,7 +27,7 @@ export const profileItems = [
         rel="noopener noreferrer"
         href="#/generateCounts_history"
       >
-        Remain Counts
+        History
       </a>
     ),
   },
@@ -41,4 +40,3 @@ export const profileItems = [
     ),
   },
 ];
-
