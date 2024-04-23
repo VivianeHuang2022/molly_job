@@ -18,6 +18,7 @@ const PlanCardsContainer = () => {
     try {
       //获取全部语言的价格到本地
       const response = await getOrderPrice();
+      console.log(response)
       if (response) {
         setResponse(response);
       }
@@ -35,7 +36,7 @@ const PlanCardsContainer = () => {
   // Render plans based on selected tab
   const renderSinglePlan = (planType) => {
     const selectedPlan = plans.paymentType[planType];
-
+    
     if (response[0]) {
       const selectOrder = response.find(
         (order) => order.orderType === planType

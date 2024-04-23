@@ -6,6 +6,7 @@ import { createResume } from '../../../utils/api';
 
 import { NoticeParagraphComp } from '../../../components/Typography';
 import { saveLocalEdit } from '../../../utils/saveLocalData';
+import { useNavigate } from 'react-router-dom';
 
 // ResumeContainer Component
 const CvContainer = ({
@@ -16,6 +17,7 @@ const CvContainer = ({
   styles,
 }) => {
   const [isSaved, setIsSaved] = useState(true);
+  const navigate = useNavigate();
   const contentRef = useRef(null);
   const downloadPDF = () => {
     // 使用 ref 获取 DOM 元素
@@ -40,10 +42,13 @@ const CvContainer = ({
     //console.log(dataGroup)
     const topicId = localStorage.getItem('topicId');
     try {
-      const response = createResume(dataGroup, topicId);
+      const response = await createResume(dataGroup, topicId);
       if (response.status === 200) {
         setIsSaved(true);
-      } else {
+      } else if(response.status === 401){
+        navigate("/login")
+      }
+      else {
         setIsSaved(false);
         saveLocalEdit('resume', topicId, {
           cvSections: singleCvData,

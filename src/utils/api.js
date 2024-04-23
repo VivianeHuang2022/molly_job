@@ -561,7 +561,6 @@ export const createRecommendation = async (
  */
 export const createResume = async (dataGroup, topicId = initTopicId) => {
   const postUrl = `${BASE_URL}/Resume/PostStdResumeDataGroup?topicId=${topicId}`;
-  console.log(dataGroup);
   try {
     const response = await axios({
       method: 'post',

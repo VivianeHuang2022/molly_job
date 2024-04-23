@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { editState } from '../../../../utils/checkCache';
 import RecommendationForm from './RecommendationForm';
-
+import { checkLogin } from "../../../../utils/checkLogin";
 import { createRecommendation } from '../../../../utils/api';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -24,12 +24,23 @@ const RecommendationFormLogic = () => {
     if (response.status === 200) {
       editState('isEditrecommendation', false);
       navigate('/layout/Recommendation/generate');
-    } else {
+    } else if(response.status === 401){
+      navigate("/login")
+    }
+    else{
       //错误提示
     }
   };
 
   useEffect(() => {
+    const checkRes = checkLogin();
+    checkRes.then(result=>{
+    if(!result){
+      // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
+      navigate("/login")
+      // console.log(window.location)
+    }
+    })
     // 在组件加载时触发异步 action
     dispatch(fetchRecommendData());
 

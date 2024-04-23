@@ -30,16 +30,18 @@ const CvPage = () => {
   // 根据当前语言设置获取对应的语言配置文件
   const labels = getLabels(currentLanguage).resumeTxt;
   const matchDataToBack = (data) => {
-    
+    // console.log(123)
+    // console.log(data)
     // 创建一个新的dataGroup对象
     // const dataGroup = { sectionName: [] };
     const dataGroup = {};
     // 20240423 lily我这里做循环遍历的原因是原本我前端用的结构跟传给后端的不一样,我原来是以haifei0323在群里的那个格式作为后端api格式处理的,前端测试用的api: https://mock.apifox.com/m2/4308331-3951008-default/163703866 我今天看到resume20240422_zhf这个修改调整了格式,看起来跟我在redux data使用的是一样的,如果前后端格式一样的话就不需要做循环匹配,同理在redux 接受异步那个函数也不需要做额外的匹配.
     Object.keys(data).forEach((sectionKey) => {
       const section = data[sectionKey];
-      dataGroup[sectionKey] = section.data;
+      dataGroup[sectionKey] = section
+      //dataGroup[sectionKey] = section.data;
       // dataGroup.sectionName.push(section.sectionName);
-      //dataGroup[sectionKey] = section
+      // dataGroup[sectionKey] = section
     });
 
     // cvType信息
