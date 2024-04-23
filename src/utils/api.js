@@ -429,6 +429,26 @@ export const getOrderPrice = async () => {
   }
 };
 
+export const getOrderPrice_MOCK = async () => {
+  try {
+    const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/167972066`;
+    const jwtToken = localStorage.getItem('jwtToken');
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      headers: {
+        Accept: 'json',
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('获取支付价格失败：', error);
+    throw error;
+  }
+};
+
 
 
 //20240416 api

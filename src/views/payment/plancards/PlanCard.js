@@ -4,7 +4,6 @@ import { listIcon } from './icon';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../../../components/Button';
 
-
 const PlanCard = ({
   pricing,
   title,
@@ -13,8 +12,9 @@ const PlanCard = ({
   planType,
   time,
   priceSymbol,
-  timesNum
+  timesNum,
 }) => {
+  console.log(pricing);
   const navigate = useNavigate();
 
   const paymentData = {
@@ -27,13 +27,15 @@ const PlanCard = ({
     // console.log(planType);
   };
 
-
   return (
     <article className={`${styles.plan} ${styles.card}`}>
       <div className={styles.inner}>
         <span className={styles.pricing}>
-       {priceSymbol} {pricing}
-          {pricing} <span className={styles.time}>/ {timesNum}{time}</span>
+          {priceSymbol} {pricing}
+          <span className={styles.time}>
+            / {timesNum}
+            {time}
+          </span>
         </span>
         <TitleComponent title={title} />
         <InfoComponent info={info} />
