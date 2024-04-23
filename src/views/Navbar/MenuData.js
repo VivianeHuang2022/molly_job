@@ -20,7 +20,7 @@ export const getMenuItems = (texts) => {
 };
 export const profileItems = [
   {
-    key: '1',
+    key: 'generateCounts_history',
     label: (
       <a
         target="_blank"
@@ -32,7 +32,15 @@ export const profileItems = [
     ),
   },
   {
-    key: '2',
+    key: 'about',
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="#/About">
+        About
+      </a>
+    ),
+  },
+  {
+    key: 'logout',
     label: (
       <a target="_blank" rel="noopener noreferrer" href="/">
         Logout

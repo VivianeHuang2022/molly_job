@@ -1,0 +1,7 @@
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 200px;
+}
