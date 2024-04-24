@@ -165,7 +165,7 @@ export const cvDataSlice = createSlice({
         //更新获取的值,会根据topicId获取不同身份值
         const responseData = action.payload;
         const { currentSectionType, timeStamp, ...cvSections } = responseData;
-
+        
         //根据topicId来获取不同身份值
         const topicId = localStorage.getItem('topicId');
         const localSaved = JSON.parse(
@@ -178,7 +178,6 @@ export const cvDataSlice = createSlice({
         };
 
         // Step 1: 检查后端响应是否有有效值
-
         if (responseData && timeStamp) {
           // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
           if (localSaved) {

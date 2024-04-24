@@ -35,7 +35,7 @@ const ActionContainer = ({
   const handleDropdownChange = (e) => {
     const newSection = e.key;
     // 这里 value 就是用户选择的 sectionType
-    console.log('Selected section:', newSection);
+    //console.log('Selected section:', newSection);
     dispatch(addNewSection(newSection));
   };
 

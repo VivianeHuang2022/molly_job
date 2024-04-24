@@ -18,7 +18,6 @@ const CvPage = () => {
   const currentLanguage = useSelector(selectCurrentLanguage);
   const singleCvData = useSelector(selectCvData);
   const currentSectionType = useSelector(selectCurrentSectionType);
-
   const allSectionType = useSelector(selectAllSectionType);
 
   const dispatch = useDispatch();

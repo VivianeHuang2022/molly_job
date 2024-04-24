@@ -107,6 +107,29 @@ export const uploadResumePost = async (request, uId, typeId) => {
   }
 };
 
+export const downloadResumePDF = async (request, topicId) => {
+  const postUrl = `/api/Resume/DownloadResume?topicId=${topicId}`;
+  const jwtToken = localStorage.getItem('jwtToken');
+  try {
+    const response = await axios({
+      method: 'post',
+      url: postUrl,
+      data: request,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: `Bearer ${jwtToken}`,  // 例如：在这里放置Bearer token (如果需要)
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const checkJWT = async (JWT) => {
   try {
     const response = await axios({
