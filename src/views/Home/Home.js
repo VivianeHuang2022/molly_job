@@ -21,7 +21,8 @@ export default function Home() {
   const handleToUniGuide =()=>{
     window.location.href = 'https://stu-de.org/';
   }
-  const{Id} = useParams()
+  const{Id} = useParams();
+  localStorage.setItem("topicId", Id);
 
   return (
     <div className={styles.backgroudStyle}>

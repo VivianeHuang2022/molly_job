@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 
 import { PrimaryButton } from '../../../../components/Button';
 import styles from './page.module.css';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import AlertContext from '../../../../components/AlertProvider/AlertContext';
 import { editState } from '../../../../utils/checkCache';
 
-const Question = () => {
+const Question_MOCK = () => {
   const navigate = useNavigate();
   const { showAlertMessage } = useContext(AlertContext);
   const handleToNext = async () => {
@@ -28,10 +28,11 @@ const Question = () => {
     }
   };
 
-  // useEffect(() => {
-  //   navigate('/layout/generalq');
+  useEffect(() => {
+    console.log(111);
+    navigate('/layout/generalq');
 
-  // }, [navigate]);
+  }, [navigate]);
   return (
     <div className={styles.questionContainerOuter}>
       <div className={styles.questionContainer}>
@@ -43,4 +44,4 @@ const Question = () => {
   );
 };
 
-export default Question;
+export default Question_MOCK;
