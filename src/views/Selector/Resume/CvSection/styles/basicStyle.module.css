@@ -3,31 +3,34 @@
 }
 
 .cvSection {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.7rem;
+  /* background-color: rgb(212, 254, 209); */
 }
 
 .subSection {
-  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  /* background-color: aqua; */
 }
 
 .cvSectionHeading {
   color: #333;
   font-size: calc(var(--base-font-size) * 1.5);
   font-weight: bold;
-  background-color: rgb(244, 232, 255);
+  /* background-color: rgb(244, 232, 255); */
 }
 
 .SubHeading {
   color: #333;
   font-size: calc(var(--base-font-size) * 1.2);
-  background-color: aqua;
+  /* background-color: aqua; */
 }
 
 .paragraph {
   color: #666;
   font-size: var(--base-font-size);
   margin-bottom: 0.15rem;
-  background-color: rgb(196, 255, 222);
+  /* background-color: rgb(196, 255, 222); */
 }
 
 .personalInfo {
