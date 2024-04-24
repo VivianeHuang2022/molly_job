@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 import { Image } from 'antd';
 
 import { TitleComp, ParagraphComp } from '../../../components/Typography';
-import { DefaultButton } from '../../../components/Button';
+// import { DefaultButton } from '../../../components/Button';
 import { ImageWithOverlay } from '../../../components/ImageWithOverlay';
 
 import QRCode from '../../../assets/placeholder/pic.jpg';

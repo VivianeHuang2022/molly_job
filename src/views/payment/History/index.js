@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HistoryComp from './HistoryComp';
 
 import {
-  getGenerateCountHistory,
+  // getGenerateCountHistory,
   getGenerateCountHistory_MOCK,
   fetchRemainingCounts,
 } from '../../../utils/api';

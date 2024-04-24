@@ -3,7 +3,7 @@ import styles from './generate.module.css';
 import { Carousel, Button, Space } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { ParagraphComp } from '../../../components/Typography';
-import { current } from '@reduxjs/toolkit';
+// import { current } from '@reduxjs/toolkit';
 
 const PreviewImage = ({
   onContidChange,

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Table, Button } from 'antd';
+import { Table, 
+  // Button
+ } from 'antd';
 
 import { ColumnShow, CountComp } from '../../../components/Column/ColumnShow';
 import styles from './history.module.css';

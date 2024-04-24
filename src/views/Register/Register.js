@@ -4,7 +4,7 @@ import { Button, Col, Form, Input, Row } from "antd";
 import { SafetyCertificateOutlined } from "@ant-design/icons";
 import styles from "../Register/Register.module.css";
 import logoImage from "../../assets/images/Logo.PNG";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerRequset } from "../../utils/api";
 import AlertContext from "../../components/AlertProvider/AlertContext";
 import { getRegisterVerificationCode } from "../../utils/api";

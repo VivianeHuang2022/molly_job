@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { PrimaryButton } from '../../../../components/Button';
 import styles from './page.module.css';
