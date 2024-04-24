@@ -107,7 +107,9 @@ export default function MRouter() {
   const routes = useRoutes([
     {
       path: "/",
-      element: <Navigate to="/start" />,
+      //MVP版本只上线std部分,所以首页为std选择页面
+      element: <Navigate to="/home/1" />,
+      // element: <Navigate to="/start" />,
     },
     {
       path: "/start",
