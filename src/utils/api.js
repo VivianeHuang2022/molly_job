@@ -679,6 +679,27 @@ export const getResume = async (topicId = initTopicId) => {
   }
 };
 
+export const getResume_MOCK = async (topicId = initTopicId) => {
+  const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/168294019`;
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      // responseType: 'blob', // Important
+      headers: {
+        'Content-Type': 'application/json',
+        accept: '*/*',
+        // Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 /*-----------生成模块-------------*/
 
 /**

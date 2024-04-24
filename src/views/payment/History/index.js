@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import HistoryComp from './HistoryComp';
 
 import {
-  // getGenerateCountHistory,
-  getGenerateCountHistory_MOCK,
+  getGenerateCountHistory,
+  // getGenerateCountHistory_MOCK,
   fetchRemainingCounts,
 } from '../../../utils/api';
 
@@ -14,7 +14,7 @@ const GenerateCountHistory = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const fetchedResponse = await getGenerateCountHistory_MOCK();
+        const fetchedResponse = await getGenerateCountHistory();
         if (fetchedResponse) {
           setResponse(fetchedResponse);
         }

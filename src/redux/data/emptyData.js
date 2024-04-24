@@ -145,41 +145,5 @@ export const allSectionType = [
   'skillsActivitiesInterests',
 ];
 
-export const otherCV = {
-  // 其他信息...
-  pdf: {
-    id: 1,
-    fileName: '', // PDF文件名
-    filePath: '', // PDF文件存储路径
-    generatedTime: '', // PDF生成时间
-    fieldName: '', // 后端接收文件的字段名
-  },
-  history: [
-    {
-      id: 1,
-      lastUpdated: '',
-      pdfInfo: {},
-      personalInfo: {
-        /* 个人信息 */
-      },
-      educationInfo: [
-        /* 教育经历 */
-      ],
-      workExperience: [
-        /* 工作经历 */
-      ],
-      projectExperience: [
-        /* 项目经验 */
-      ],
-      researchExperience: [
-        /* 研究经验 */
-      ],
-      publicationsPresentations: {
-        /* 其他信息 */
-      },
-      skillsActivitiesInterests: {
-        /* 技能、活动和兴趣信息 */
-      },
-    },
-  ],
-};
+
+

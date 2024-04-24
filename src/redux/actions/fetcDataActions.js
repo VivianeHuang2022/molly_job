@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   getResume,
   getRecommendation,
-
+  // getResume_MOCK
 } from '../../utils/api';
 
 const topicId = localStorage.getItem('topicId');
@@ -12,7 +12,6 @@ const topicId = localStorage.getItem('topicId');
 export const fetchThunkCreator = (type, fetchFunction) => {
   return createAsyncThunk(type, async () => {
     try {
-
       const response = await fetchFunction(topicId);
       return response.data.msg;
     } catch (error) {
