@@ -1,32 +1,21 @@
-import React from 'react';
+import { Heading, Paragraph, SubHeading } from './cvComps/CvTypography';
 
 const EducationInfo = ({ cvData, sectionName, styles }) => {
   const educationInfo = cvData;
 
   const { cvSection } = styles;
 
-  const Heading = ({ text }) => {
-    return <div className={styles.cvSectionHeading}>{text}</div>;
-  };
-
-  const Paragraph = ({ title, content }) => {
-    return (
-      <div className={styles.paragraph}>
-        {title && <strong>{title} </strong>}
-        {content}
-      </div>
-    );
-  };
-
   const EducationInfoItem = ({ edu }) => {
     return (
       <div className={styles.subSection}>
-        {edu.currentCountry}
-        <Paragraph title={`${edu.currentDegree}  ${edu.currentMajor}`} />
-        <Paragraph content={`${edu.currentUni} ${edu.city} ${edu.state}`} />
-        <Paragraph content={edu.graduationDate} />
-        {edu.currentGPA} {edu.achievement}
-        {edu.currentCourses}
+        <Paragraph text={edu.currentCountry} />
+
+        <SubHeading text={`${edu.currentDegree}  ${edu.currentMajor}`} />
+        <Paragraph text={`${edu.currentUni} ${edu.city} ${edu.state}`} />
+        <Paragraph text={edu.graduationDate} />
+        <Paragraph text={edu.currentGPA} />
+        <Paragraph text={edu.achievement} />
+        <Paragraph text={edu.currentCourses} />
       </div>
     );
   };

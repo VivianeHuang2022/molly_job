@@ -1,4 +1,4 @@
-import React from 'react';
+import { Paragraph, SubHeading } from './cvComps/CvTypography';
 
 const ProjectExperience = ({ cvData, sectionName, styles }) => {
   const projectExperience = cvData;

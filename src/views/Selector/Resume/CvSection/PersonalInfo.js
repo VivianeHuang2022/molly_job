@@ -1,4 +1,4 @@
-import React from 'react';
+import { Heading, Paragraph, SubHeading } from './cvComps/CvTypography';
 
 const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
   const { cvSection } = styles;
@@ -6,16 +6,8 @@ const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
 
   const { firstName, surname } = cvData;
 
-  const Heading = ({ text }) => {
-    return <div className={styles.cvSectionHeading}>{text}</div>;
-  };
-
-  const Paragraph = ({ content }) => {
-    return <div className={styles.personalInfoDetails}>{content}</div>;
-  };
-
   const PersonalInfoItem = ({ label, value }) => {
-    return <Paragraph content={`${label}: ${value}`} />;
+    return <Paragraph text={`${label}: ${value}`} />;
   };
 
   return (

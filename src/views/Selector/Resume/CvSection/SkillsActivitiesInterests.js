@@ -1,4 +1,4 @@
-import React from 'react';
+import { Heading, Paragraph, SubHeading } from './cvComps/CvTypography';
 
 const SkillsActivitiesInterests = ({ cvData, sectionName, styles }) => {
   const {
@@ -16,32 +16,17 @@ const SkillsActivitiesInterests = ({ cvData, sectionName, styles }) => {
     return <div className={styles.cvSectionHeading}>{text}</div>;
   };
 
-  // const SubHeading = ({ text }) => {
-  //   return <div className={styles.SubHeading}>{text}</div>;
-  // };
-
-  // const Paragraph = ({ content, title }) => {
-  //   return (
-  //     <div className={styles.paragraph}>
-  //       {title && <strong>{title}: </strong>}
-  //       {content}
-  //     </div>
-  //   );
-  // };
-
   return (
     <div className={cvSection}>
       <Heading text={sectionName} />
       <div className={styles.subSection}>
-        {language && <div>Languages: {language}</div>}
-        {getSkills && <div>Skills: {getSkills}</div>}
-        {relevantCertificates && (
-          <div>Certificates: {relevantCertificates}</div>
-        )}
-        {volunteerWork && <div>Volunteer Work: {volunteerWork}</div>}
-        {interest && <div>Interests: {interest}</div>}
-        {getAwards && <div>Awards: {getAwards}</div>}
-        {getCompetitions && <div>Competitions: {getCompetitions}</div>}
+        <Paragraph text={language} />
+        <Paragraph text={getSkills} />
+        <Paragraph text={relevantCertificates} />
+        <Paragraph text={volunteerWork} />
+        <Paragraph text={interest} />
+        <Paragraph text={getAwards} />
+        <Paragraph text={getCompetitions} />
       </div>
     </div>
   );
