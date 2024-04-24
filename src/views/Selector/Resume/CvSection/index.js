@@ -26,6 +26,7 @@ const CvSectionPage = ({ labels, singleCvData, currentSectionType }) => {
 
   // 获取简历数据，这里假设singleCvData是一个包含所有简历部分的对象
   const cvData = singleCvData;
+  const { paragraph: paragraphStyle, SubHeading: subHeadingStyle } = styles;
 
   // 根据currentSectionType数组动态渲染对应的子组件
   return (
@@ -44,6 +45,8 @@ const CvSectionPage = ({ labels, singleCvData, currentSectionType }) => {
               sectionName={sectionName}
               title={labels[sectionType]}
               styles={styles}
+              paragraphStyle={paragraphStyle}
+              subHeadingStyle={subHeadingStyle}
             />
           );
         } else {

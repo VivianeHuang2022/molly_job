@@ -1,11 +1,11 @@
-import { getLabels } from '../local';
-import { useSelector } from 'react-redux';
-import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
+// import { getLabels } from '../local';
+// import { useSelector } from 'react-redux';
+// import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
 import { SecParagraphComp } from '../../components/Typography';
 import styles from './about.module.css';
 
 const About = () => {
-  const texts = getLabels(useSelector(selectCurrentLanguage));
+  // const texts = getLabels(useSelector(selectCurrentLanguage));
 
   //待适配语言
   return (

@@ -9,13 +9,7 @@ import { saveLocalEdit } from '../../../utils/saveLocalData';
 import { useNavigate } from 'react-router-dom';
 
 // ResumeContainer Component
-const CvContainer = ({
-  labels,
-  singleCvData,
-  currentSectionType,
-  matchDataToBack,
-  styles,
-}) => {
+const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
   const [isSaved, setIsSaved] = useState(true);
   const navigate = useNavigate();
   const contentRef = useRef(null);
@@ -23,12 +17,20 @@ const CvContainer = ({
     // 使用 ref 获取 DOM 元素
     const element = contentRef.current;
 
+    // 计算元素的宽度和高度
+    const width = element.offsetWidth;
+    const height = element.offsetHeight;
+    const scaleFactor = 4 / width;
+
     // 设置 html2pdf.js 的配置选项
     const opt = {
-      margin: 1,
+      margin: 0.2,
       filename: 'myfile.pdf',
-      html2canvas: { scale: 3 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      html2canvas: { scale: 4 },
+      jsPDF: {
+        unit: 'in',
+        format: [width * scaleFactor, height * scaleFactor],
+      },
       // 其他可能需要的配置项，例如页眉页脚等
     };
 
@@ -37,18 +39,17 @@ const CvContainer = ({
   };
 
   const handleSaveToBackend = async () => {
-    const dataGroup = matchDataToBack(singleCvData);
-    //console.log(321)
-    //console.log(dataGroup)
+    const timeStamp = new Date().getTime();
+    const dataGroup = { ...singleCvData, currentSectionType, timeStamp };
+    console.log(dataGroup);
     const topicId = localStorage.getItem('topicId');
     try {
       const response = await createResume(dataGroup, topicId);
       if (response.status === 200) {
         setIsSaved(true);
-      } else if(response.status === 401){
-        navigate("/login")
-      }
-      else {
+      } else if (response.status === 401) {
+        navigate('/login');
+      } else {
         setIsSaved(false);
         saveLocalEdit('resume', topicId, {
           cvSections: singleCvData,

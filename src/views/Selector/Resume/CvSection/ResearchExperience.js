@@ -1,26 +1,9 @@
-import React from 'react';
+import { Heading, Paragraph, SubHeading } from './cvComps/CvTypography';
 
 const ResearchExperience = ({ cvData, sectionName, styles }) => {
   const researchExperience = cvData;
 
   const { cvSection } = styles;
-
-  const Heading = ({ text }) => {
-    return <div className={styles.cvSectionHeading}>{text}</div>;
-  };
-
-  const SubHeading = ({ text }) => {
-    return <div className={styles.SubHeading}>{text}</div>;
-  };
-
-  const Paragraph = ({ content, title }) => {
-    return (
-      <div className={styles.paragraph}>
-        {title && <strong>{title}: </strong>}
-        {content}
-      </div>
-    );
-  };
 
   const ResearchExperienceItem = ({ research }) => {
     const {
@@ -38,11 +21,11 @@ const ResearchExperience = ({ cvData, sectionName, styles }) => {
     return (
       <div className={styles.subSection}>
         <SubHeading text={researchTitle} styles={styles} />
-        <Paragraph content={schoolName} />
-        <Paragraph content={`${city} ${state} ${country}`} />
-        <Paragraph content={`${startDate} - ${endDate}`} />
-        <Paragraph content={researchSummary} styles={styles} />
-        <Paragraph content={researchDetail} />
+        <Paragraph text={schoolName} />
+        <Paragraph text={`${city} ${state} ${country}`} />
+        <Paragraph text={`${startDate} - ${endDate}`} />
+        <Paragraph text={researchSummary} styles={styles} />
+        <Paragraph text={researchDetail} />
       </div>
     );
   };

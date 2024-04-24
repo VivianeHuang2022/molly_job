@@ -36,7 +36,7 @@ function Navbar(props) {
   };
 
   const backToStart = () => {
-    navigate('/start')
+    navigate('/')
 };
 
   return (

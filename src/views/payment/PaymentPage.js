@@ -5,7 +5,9 @@ import styles from './payment.module.css'; // Import CSS module
 import { getLabels } from '../local';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
-import { getOrderPrice, getOrderPrice_MOCK } from '../../utils/api';
+import { getOrderPrice, 
+  // getOrderPrice_MOCK 
+} from '../../utils/api';
 
 const PlanCardsContainer = () => {
   const currentLanguage = useSelector(selectCurrentLanguage);

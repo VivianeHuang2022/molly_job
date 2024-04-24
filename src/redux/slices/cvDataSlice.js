@@ -164,44 +164,27 @@ export const cvDataSlice = createSlice({
 
         //更新获取的值,会根据topicId获取不同身份值
         const responseData = action.payload;
+        const { currentSectionType, timeStamp, ...cvSections } = responseData;
 
         //根据topicId来获取不同身份值
         const topicId = localStorage.getItem('topicId');
-        const localSaved = topicId
-          ? JSON.parse(localStorage.getItem(`resume_localEdit${topicId}`))
-          : null;
-
+        const localSaved = JSON.parse(
+          localStorage.getItem(`resume_localEdit${topicId}`)
+        );
         //转换后端传来数据格式以匹配UI数据
-        const structDataFucn = (responseData) => {
-          const createSection = (sectionKey) => {
-            // console.log(sectionKey)
-            //console.log(responseData)
-            const section = {
-              sectionName: responseData[sectionKey].sectionName,
-              data: responseData[sectionKey].data,
-            };
-            return section;
-          };
-
-          const sectionKeys = state.allSectionType;
-
-          state.cvSections = sectionKeys.reduce((accumulator, currentKey) => {
-            const section = createSection(currentKey);
-            return { ...accumulator, [currentKey]: section };
-          }, {});
-
+        const updateSliceData = () => {
+          state.cvSections = cvSections;
           state.currentSectionType = responseData.currentSectionType;
         };
 
         // Step 1: 检查后端响应是否有有效值
-        
-        if (responseData && responseData?.timeStamp) {
+
+        if (responseData && timeStamp) {
           // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
           if (localSaved) {
-            if (responseData.timeStamp > localSaved?.timeStamp) {
+            if (timeStamp > localSaved?.timeStamp) {
               //目前是当本地时间戳更新的时候保留本地缓存的效果,这样可以保证在网络保存数据没有成功的前提下,防止用户数据丢失
-
-              structDataFucn(responseData);
+              updateSliceData();
             } else {
               console.log('调用缓存');
 
@@ -215,7 +198,7 @@ export const cvDataSlice = createSlice({
             }
           } else {
             //存在有效后端数据,没有本地缓存,直接使用后端数据
-            structDataFucn(responseData);
+            updateSliceData();
           }
         } else {
           // 后端响应中没有有效值，无法获取更新的数据
@@ -232,7 +215,6 @@ export const cvDataSlice = createSlice({
       .addCase(switchUserType, (state, action) => {
         // 根据用户身份类型切换的额外逻辑
         // const newUserType = action.payload; // 获取切换后的用户身份类型
-
         // // 根据新的用户身份类型进行不同的处理
         // if (newUserType === 'student') {
         //   // 如果切换后是学生身份

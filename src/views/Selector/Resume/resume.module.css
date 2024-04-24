@@ -7,15 +7,15 @@
 .container {
   background-color: #f7f7f7;
   display: grid;
-  grid-template-columns: 1.5fr 1fr; /* 左栏1份，右栏3份 */
+  grid-template-columns: 2fr 1fr;
   height: 89.5vh;
-  gap: 20px;
+  gap: 10px;
 }
 
 .actionOutContainer {
-  height: 86vh;
+  height: 80vh;
   width: 100%;
-  padding: 20px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
@@ -47,6 +47,7 @@
   justify-content: flex-end;
   align-items: baseline;
   gap: 10px;
+  margin-top: 10px;
   /* background-color: rgb(208, 208, 208); */
 }
 
@@ -66,7 +67,7 @@
 }
 
 .resumeContainer::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 80;
   bottom: 20;
@@ -83,7 +84,6 @@
   background-color: rgb(255, 255, 255);
   padding: var(--padding);
   display: flex;
-
   font-size: 0.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -94,6 +94,7 @@
   display: flex;
   justify-content: flex-end; /* 将子元素右对齐 */
   margin-top: 20px;
+  /* background-color: aqua; */
 }
 
 /* Styling for the resume itself for print in one page*/

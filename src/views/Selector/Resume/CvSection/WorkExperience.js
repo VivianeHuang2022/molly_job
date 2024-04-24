@@ -1,6 +1,10 @@
-import React from 'react';
-
-const WorkExperienceItem = ({ experience, styles }) => {
+import { Paragraph, SubHeading } from './cvComps/CvTypography';
+const WorkExperienceItem = ({
+  experience,
+  styles,
+  paragraphStyle,
+  subHeadingStyle,
+}) => {
   const {
     role,
     company,
@@ -14,33 +18,26 @@ const WorkExperienceItem = ({ experience, styles }) => {
     groupName,
   } = experience;
 
-  const Paragraph = ({ content, title }) => {
-    return (
-      <div className={styles.paragraph}>
-        {title && <strong>{title}: </strong>}
-        {content}
-      </div>
-    );
-  };
-
-  const SubHeading = ({ text }) => {
-    return <div className={styles.SubHeading}>{text}</div>;
-  };
-
   return (
     <div className={styles.subSection}>
-      <SubHeading text={role} styles={styles} />
-      <Paragraph content={company} styles={styles} />
-      <Paragraph content={groupName} />
-      <Paragraph content={`${city} ${state} ${country}`} />
-      <Paragraph content={`${startDate} - ${endDate}`} />
-      <Paragraph content={workSummary} styles={styles} />
-      <Paragraph content={workDetail} />
+      <SubHeading text={role} />
+      <Paragraph text={company} />
+      <Paragraph text={groupName} />
+      <Paragraph text={`${city} ${state} ${country}`} />
+      <Paragraph text={`${startDate} - ${endDate}`} />
+      <Paragraph text={workSummary} />
+      <Paragraph text={workDetail} />
     </div>
   );
 };
 
-const WorkExperience = ({ cvData, sectionName, styles }) => {
+const WorkExperience = ({
+  cvData,
+  sectionName,
+  styles,
+  paragraphStyle,
+  subHeadingStyle,
+}) => {
   const workExperience = cvData;
   const { cvSection } = styles;
 
@@ -56,6 +53,8 @@ const WorkExperience = ({ cvData, sectionName, styles }) => {
           key={index}
           experience={experience}
           styles={styles}
+          paragraphStyle={paragraphStyle}
+          subHeadingStyle={subHeadingStyle}
         />
       ))}
     </div>

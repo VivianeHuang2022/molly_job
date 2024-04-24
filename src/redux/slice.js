@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchCoverletterData } from './actions/fetcDataActions';
 
 //job初始化数据
 const getInitialJobData = (pNum) => {
@@ -114,6 +115,21 @@ export const dataSlice = createSlice({
         default:
           break;
       }
+    },
+    extraReducers: (builder) => {
+      builder
+        .addCase(fetchCoverletterData.pending, (state) => {
+          state.loading = true;
+        })
+        .addCase(fetchCoverletterData.fulfilled, (state, action) => {
+          state.loading = false;
+          //这里要匹配Coverletter的数据格式
+          // state = action.payload;
+        })
+        .addCase(fetchCoverletterData.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.error.message;
+        });
     },
   },
 });

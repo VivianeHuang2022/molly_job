@@ -9,7 +9,7 @@ import careerShowImg from '../../assets/images/careerShowImg.png'
 export default function Home() {
   const navigate = useNavigate()
   const texts = localStorage.getItem("Lan")==="CN"? texts_CN:texts_EN
-  const handleToGeneralQ = ()=>{
+  const handleTorecommendation = ()=>{
     navigate("/layout/recommendation")
   }
   const handleToCoverLetter = ()=>{
@@ -21,7 +21,8 @@ export default function Home() {
   const handleToUniGuide =()=>{
     window.location.href = 'https://stu-de.org/';
   }
-  const{Id} = useParams()
+  const{Id} = useParams();
+  localStorage.setItem("topicId", Id);
 
   return (
     <div className={styles.backgroudStyle}>
@@ -31,13 +32,15 @@ export default function Home() {
                 {Id==="1"?texts.homeTexts.studyTitle:texts.homeTexts.careerTitle}</div>
            
             <button 
-              className={styles.buttonStyle} 
-              style={Id==="1"?{background:"gray"}:{background:"darkgray"}}
-              onClick={handleToGeneralQ}>{Id==="1"?texts.homeTexts.applicationTxt:texts.homeTexts.interviewTxt}</button>
-            <button 
               className={styles.buttonStyle}
               style={Id==="1"?{background:"darkgray"}:{background:"saddlebrown"}}
               onClick={handleToCoverLetter}>{texts.homeTexts.coverletterTxt}</button>
+
+            <button 
+              className={styles.buttonStyle} 
+              style={Id==="1"?{background:"gray"}:{background:"darkgray"}}
+              onClick={handleTorecommendation}>{Id==="1"?texts.homeTexts.applicationTxt:texts.homeTexts.interviewTxt}</button>
+
             <button 
               className={styles.buttonStyle}
               style={{background:"black"}}

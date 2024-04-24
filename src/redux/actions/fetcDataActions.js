@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import {
-  getResume,
+  getCoverletter,
   getRecommendation,
-
+  getResume,
+  // getResume_MOCK,
 } from '../../utils/api';
 
 const topicId = localStorage.getItem('topicId');
@@ -12,7 +13,6 @@ const topicId = localStorage.getItem('topicId');
 export const fetchThunkCreator = (type, fetchFunction) => {
   return createAsyncThunk(type, async () => {
     try {
-
       const response = await fetchFunction(topicId);
       return response.data.msg;
     } catch (error) {
@@ -22,9 +22,17 @@ export const fetchThunkCreator = (type, fetchFunction) => {
   });
 };
 
-export const fetchCVData = fetchThunkCreator('cvData/fetchCVData', getResume);
+export const fetchCVData = fetchThunkCreator(
+  'cvData/fetchCVData',
+  getResume
+);
 
 export const fetchRecommendData = fetchThunkCreator(
   'recommendData/fetchRecommendData',
   getRecommendation
+);
+
+export const fetchCoverletterData = fetchThunkCreator(
+  'coverletter/fetchCoverletterData',
+  getCoverletter
 );

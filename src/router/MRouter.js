@@ -26,7 +26,7 @@ import PayFinishedPage from '../views/payment/Finished';
 import GenerateCountHistory from '../views/payment/History';
 import GenerateCoverletter from '../views/Selector/CoverLetter/GenerateCoverLetterPage';
 import GenerateRecommendation from '../views/Selector/Recommendation/GenerateRecommendation';
-import Question from '../views/Selector/CoverLetter/Edit';
+import Question_MOCK from '../views/Selector/CoverLetter/Edit';
 import EditRecommendationForm from '../views/Selector/Recommendation/Edit';
 // import { hasLocalData } from '../utils/checkCache';
 
@@ -107,7 +107,9 @@ export default function MRouter() {
   const routes = useRoutes([
     {
       path: "/",
-      element: <Navigate to="/start" />,
+      //MVP版本只上线std部分,所以首页为std选择页面
+      element: <Navigate to="/home/1" />,
+      // element: <Navigate to="/start" />,
     },
     {
       path: "/start",
@@ -165,15 +167,15 @@ export default function MRouter() {
         {
           path: 'coverletter',
           element: <CoverletterLayout />,
-          //暂时都导航到GenerateCoverletter
+          //都是默认跳到edit
           children: [
             {
               index: true,
-              element: <Question />,
+              element: <Question_MOCK />,
             },
             {
               path: 'edit',
-              element: <Question />,
+              element: <Question_MOCK />,
             },
             {
               path: 'generate',

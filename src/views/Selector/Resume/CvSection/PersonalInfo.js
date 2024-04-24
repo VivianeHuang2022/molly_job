@@ -1,32 +1,19 @@
-import React from 'react';
+import { Heading, Paragraph } from './cvComps/CvTypography';
 
 const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
-  const { cvSection } = styles;
-  const { userTel, userEmail, userLinkedln } = title;
+  // 解构styles对象
+  const { cvSection, personalInfoDetails } = styles;
 
-  const { firstName, surname } = cvData;
-
-  const Heading = ({ text }) => {
-    return <div className={styles.cvSectionHeading}>{text}</div>;
-  };
-
-  const Paragraph = ({ content }) => {
-    return <div className={styles.personalInfoDetails}>{content}</div>;
-  };
-
-  const PersonalInfoItem = ({ label, value }) => {
-    return <Paragraph content={`${label}: ${value}`} />;
-  };
+  // 进一步解构cvData对象，提取可能需要的属性
+  const { firstName, surname, userTel, userEmail, userLinkedln } = cvData;
 
   return (
     <div className={cvSection}>
       <Heading text={`${firstName} ${surname}`} />
-      <div className={styles.personalInfoDetails}>
-        <PersonalInfoItem label={userTel} value={cvData.userTel} />
-        <PersonalInfoItem label={userEmail} value={cvData.userEmail} />
-        {cvData.userLinkedln && (
-          <PersonalInfoItem label={userLinkedln} value={cvData.userLinkedln} />
-        )}
+      <div className={personalInfoDetails}>
+        <Paragraph text={userTel} />
+        <Paragraph text={userEmail} />
+        <Paragraph text={userLinkedln} />
       </div>
     </div>
   );

@@ -19,7 +19,6 @@ const RecommendationFormUI = ({ onSubmit }) => {
 
   const { sectionTitle, buttonLabel, title } = texts.recommendation;
   const {
-    major,
     recommender,
     intro,
     activity,

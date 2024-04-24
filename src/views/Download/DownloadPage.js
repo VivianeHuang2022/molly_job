@@ -26,7 +26,7 @@ const DownloadPage = ({ topicId }) => {
 
   const [imageSrc, setImageSrc] = useState(null);
   const [generationTime, setGenerationTime] = useState('暂未获取到时间');
-  const [coverLetterData] = useState({});
+  // const [coverLetterData] = useState({});
   const countId = localStorage.getItem('countId');
   const lan = localStorage.getItem('lan');
 
