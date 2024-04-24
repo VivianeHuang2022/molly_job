@@ -13,7 +13,6 @@ const CvContainer = ({
   labels,
   singleCvData,
   currentSectionType,
-  matchDataToBack,
   styles,
 }) => {
   const [isSaved, setIsSaved] = useState(true);
@@ -37,9 +36,9 @@ const CvContainer = ({
   };
 
   const handleSaveToBackend = async () => {
-    const dataGroup = matchDataToBack(singleCvData);
-    //console.log(321)
-    //console.log(dataGroup)
+    const timeStamp = new Date().getTime();
+    const dataGroup = {...singleCvData,currentSectionType,timeStamp};
+    console.log(dataGroup);
     const topicId = localStorage.getItem('topicId');
     try {
       const response = await createResume(dataGroup, topicId);
