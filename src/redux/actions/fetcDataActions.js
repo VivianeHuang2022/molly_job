@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import {
-  getResume,
+  getCoverletter,
   getRecommendation,
-  getResume_MOCK
+  getResume,
+  getResume_MOCK,
 } from '../../utils/api';
 
 const topicId = localStorage.getItem('topicId');
@@ -21,9 +22,17 @@ export const fetchThunkCreator = (type, fetchFunction) => {
   });
 };
 
-export const fetchCVData = fetchThunkCreator('cvData/fetchCVData', getResume_MOCK);
+export const fetchCVData = fetchThunkCreator(
+  'cvData/fetchCVData',
+  getResume_MOCK
+);
 
 export const fetchRecommendData = fetchThunkCreator(
   'recommendData/fetchRecommendData',
+  getRecommendation
+);
+
+export const fetchCoverletterData = fetchThunkCreator(
+  'coverletter/fetchCoverletterData',
   getRecommendation
 );

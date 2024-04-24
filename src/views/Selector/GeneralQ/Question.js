@@ -7,8 +7,13 @@ import AlertContext from "../../../components/AlertProvider/AlertContext";
 import texts_EN from "../../texts";
 import texts_CN from "../../texts_CN";
 import { checkLogin } from "../../../utils/checkLogin";
+import { fetchCoverletterData } from '../../../redux/actions/fetcDataActions';
+import { useDispatch } from 'react-redux';
+
 
 export default function Question(props) {
+  const dispatch = useDispatch();
+
   const childrenCount = props.Count;
   const navigate = useNavigate();
   const location = useLocation();
@@ -73,6 +78,8 @@ export default function Question(props) {
       // console.log(window.location)
     }
     })
+    // 在组件加载时触发异步 action
+    dispatch(fetchCoverletterData());
     
   }, []); // 注意这里是一个空依赖数组，表示这个effect仅在组件挂载时运行一次
 

@@ -6,16 +6,29 @@ const EducationInfo = ({ cvData, sectionName, styles }) => {
   const { cvSection } = styles;
 
   const EducationInfoItem = ({ edu }) => {
+    const {
+      currentCountry,
+      currentDegree,
+      currentMajor,
+      currentUni,
+      city,
+      state,
+      startDate,
+      graduationDate,
+      currentGPA,
+      achievement,
+      currentCourses,
+    } = edu;
     return (
       <div className={styles.subSection}>
-        <Paragraph text={edu.currentCountry} />
-
-        <SubHeading text={`${edu.currentDegree}  ${edu.currentMajor}`} />
-        <Paragraph text={`${edu.currentUni} ${edu.city} ${edu.state}`} />
-        <Paragraph text={edu.graduationDate} />
-        <Paragraph text={edu.currentGPA} />
-        <Paragraph text={edu.achievement} />
-        <Paragraph text={edu.currentCourses} />
+        <Paragraph text={currentCountry} />
+        <SubHeading text={`${currentDegree} ${currentMajor}`} />
+        <Paragraph text={`${currentUni} ${city} ${state}`} />
+        <Paragraph text={startDate} />
+        <Paragraph text={graduationDate} />
+        <Paragraph text={currentGPA} />
+        <Paragraph text={achievement} />
+        <Paragraph text={currentCourses} />
       </div>
     );
   };
