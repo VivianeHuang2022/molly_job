@@ -24,7 +24,7 @@ export const fetchThunkCreator = (type, fetchFunction) => {
 
 export const fetchCVData = fetchThunkCreator(
   'cvData/fetchCVData',
-  getResume_MOCK
+  getResume
 );
 
 export const fetchRecommendData = fetchThunkCreator(
