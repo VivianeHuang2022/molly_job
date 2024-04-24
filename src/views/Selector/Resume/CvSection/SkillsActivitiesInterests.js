@@ -1,4 +1,4 @@
-import { Heading, Paragraph, SubHeading } from './cvComps/CvTypography';
+import {  Paragraph } from './cvComps/CvTypography';
 
 const SkillsActivitiesInterests = ({ cvData, sectionName, styles }) => {
   const {

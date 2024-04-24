@@ -1,30 +1,14 @@
-import { Paragraph, SubHeading } from './cvComps/CvTypography';
+import { Heading,Paragraph, SubHeading } from './cvComps/CvTypography';
 
 const ProjectExperience = ({ cvData, sectionName, styles }) => {
   const projectExperience = cvData;
 
   const { cvSection } = styles;
 
-  const Heading = ({ text }) => {
-    return <div className={styles.cvSectionHeading}>{text}</div>;
-  };
-
-  const SubHeading = ({ text }) => {
-    return <div className={styles.SubHeading}>{text}</div>;
-  };
-
-  const Paragraph = ({ content, title }) => {
-    return (
-      <div className={styles.paragraph}>
-        {title && <strong>{title}: </strong>}
-        {content}
-      </div>
-    );
-  };
 
   const ProjectExperienceItem = ({ project }) => {
     const {
-      projectTitle,
+      getProject,
       schoolName,
       city,
       state,
@@ -35,14 +19,15 @@ const ProjectExperience = ({ cvData, sectionName, styles }) => {
       projectDetail,
     } = project;
 
+
     return (
       <div className={styles.subSection}>
-        <SubHeading text={projectTitle} styles={styles} />
-        <Paragraph content={schoolName} />
-        <Paragraph content={`${city} ${state} ${country}`} />
-        <Paragraph content={`${startDate} - ${endDate}`} />
-        <Paragraph content={projectSummary} styles={styles} />
-        <Paragraph content={projectDetail} />
+        <SubHeading text={getProject}  />
+        <Paragraph text={schoolName} />
+        <Paragraph text={`${city} ${state} ${country}`} />
+        <Paragraph text={`${startDate} - ${endDate}`} />
+        <Paragraph text={projectSummary} styles={styles} />
+        <Paragraph text={projectDetail} />
       </div>
     );
   };

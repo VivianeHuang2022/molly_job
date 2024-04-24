@@ -4,7 +4,7 @@ import {
   getCoverletter,
   getRecommendation,
   getResume,
-  getResume_MOCK,
+  // getResume_MOCK,
 } from '../../utils/api';
 
 const topicId = localStorage.getItem('topicId');
@@ -34,5 +34,5 @@ export const fetchRecommendData = fetchThunkCreator(
 
 export const fetchCoverletterData = fetchThunkCreator(
   'coverletter/fetchCoverletterData',
-  getRecommendation
+  getCoverletter
 );
