@@ -118,7 +118,7 @@ export const downloadResumePDF = async (request, topicId) => {
       headers: {
         'Content-Type': 'multipart/form-data',
         accept: '*/*',
-        Authorization: `Bearer ${jwtToken}`,  // 例如：在这里放置Bearer token (如果需要)
+        Authorization: `Bearer ${jwtToken}`, // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 10000,
       // ... 其他配置
@@ -673,7 +673,29 @@ export const getRecommendation = async (topicId = initTopicId) => {
 
     return response;
   } catch (error) {
-    throw error;
+    console.error(error);
+  }
+};
+
+export const getRecommendation_MOCK = async (topicId = initTopicId) => {
+  const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/164527997`;
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      // responseType: 'application/json', // Important
+      headers: {
+        'Content-Type': 'application/json',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
   }
 };
 

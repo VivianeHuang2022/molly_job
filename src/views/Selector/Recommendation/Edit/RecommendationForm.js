@@ -8,11 +8,9 @@ import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 import * as Yup from 'yup';
 
-import { selectFormData } from '../../../../redux/slices/recommenderSlice';
-
 const { TextArea } = Input;
 
-const RecommendationFormUI = ({ onSubmit }) => {
+const RecommendationFormUI = ({ onSubmit, initialValues }) => {
   const texts = getLabels(useSelector(selectCurrentLanguage));
 
   const formFields = getFormFields(texts);
@@ -57,8 +55,6 @@ const RecommendationFormUI = ({ onSubmit }) => {
   }
   const validationSchema = Yup.object().shape(validationSchemaObj);
 
-  const initialValues = useSelector(selectFormData);
-
   return (
     <div className={styles.container}>
       <Formik
@@ -70,18 +66,18 @@ const RecommendationFormUI = ({ onSubmit }) => {
         {(props) => (
           <Form className={styles.form}>
             <h1>{title.personalInfo}:</h1>
-            <FormGroup formGroup={userInfo} tltle={userInfoTitle} />
+            <FormGroup formGroup={userInfo} title={userInfoTitle} />
             <FormGroup
               formGroup={dreamSchoolInfo}
-              tltle={dreamSchoolInfoTitle}
+              title={dreamSchoolInfoTitle}
             />
             <FormGroup
               formGroup={currentSchoolInfo}
-              tltle={currentSchoolInfoTitle}
+              title={currentSchoolInfoTitle}
             />
             <h1>{title.refereeInfo}:</h1>
 
-            <FormGroup formGroup={recommender} tltle={recommenderInformation} />
+            <FormGroup formGroup={recommender} title={recommenderInformation} />
             <FormSingle form={intro} title={backgroundOfRecommender} />
             <FormSingle
               form={activity}
@@ -98,7 +94,7 @@ const RecommendationFormUI = ({ onSubmit }) => {
   );
 };
 
-const FormGroup = ({ formGroup, tltle }) => {
+const FormGroup = ({ formGroup, title }) => {
   const fields = Object.keys(formGroup).map((key) => {
     const item = formGroup[key];
     return (
@@ -109,7 +105,7 @@ const FormGroup = ({ formGroup, tltle }) => {
   });
   return (
     <div>
-      <Section title={tltle} />
+      <Section title={title} />
       <div className={styles.groupGridInfo}>{fields}</div>
     </div>
   );
