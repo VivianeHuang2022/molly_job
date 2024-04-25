@@ -1,8 +1,13 @@
 // InputHandler.js
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateField } from '../../../../../redux/slices/cvDataSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  updateField,
+  selectCurrentSectionType,
+  selectCvData,
+} from '../../../../../redux/slices/cvDataSlice';
 import CustomInput from './CustomInput';
+import { saveLocalEdit } from '../../../../../utils/saveLocalData';
 
 const InputHandler = ({
   labels,
@@ -13,6 +18,8 @@ const InputHandler = ({
   itemId,
 }) => {
   const dispatch = useDispatch();
+  const singleCvData = useSelector(selectCvData);
+  const currentSectionType = useSelector(selectCurrentSectionType);
   const inputRefs = useRef([]);
 
   const updateFieldFunc = (title, newValue, id) => {
@@ -58,6 +65,14 @@ const InputHandler = ({
     }
   };
 
+  const handleOnBlur = (title) => {
+    updateFieldFunc(title, data[title], itemId);
+    saveLocalEdit('resume', {
+      cvSections: singleCvData,
+      currentSectionType,
+    });
+  };
+
   return (
     <div className={styles.inputGridContainer}>
       {labelArray.map((title, index) => (
@@ -66,7 +81,7 @@ const InputHandler = ({
           label={labels[title]}
           value={data[title]}
           onChange={(e) => updateFieldFunc(title, e.target.value, itemId)}
-          onBlur={() => updateFieldFunc(title, data[title], itemId)}
+          onBlur={() => handleOnBlur(title)}
           inputRef={(el) => (inputRefs.current[index] = el)}
           onKeyDown={(e) => handleKeyDown(e, index, itemId)}
           type={getComponentType(title)}

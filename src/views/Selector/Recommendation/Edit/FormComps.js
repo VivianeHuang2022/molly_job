@@ -41,9 +41,8 @@ export const SingleField = ({ label, component, ...props }) => {
 
   // 定义onBlur事件处理函数
   const handleBlur = () => {
-    const topicId = localStorage.getItem('topicId');
     // 存储表单的值到缓存
-    saveLocalEdit('recommendation', topicId, values);
+    saveLocalEdit('recommendation', values);
   };
 
   const CustomField =
