@@ -118,7 +118,7 @@ export const downloadResumePDF = async (request, topicId) => {
       headers: {
         'Content-Type': 'multipart/form-data',
         accept: '*/*',
-        Authorization: `Bearer ${jwtToken}`,  // 例如：在这里放置Bearer token (如果需要)
+        Authorization: `Bearer ${jwtToken}`, // 例如：在这里放置Bearer token (如果需要)
       },
       timeout: 10000,
       // ... 其他配置
@@ -577,6 +577,32 @@ export const createRecommendation = async (
   }
 };
 
+export const updateRecommendation = async (
+  dataGroup,
+  topicId = initTopicId
+) => {
+  const postUrl = `${BASE_URL}/Recommendation/updateRecommendation?topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'post',
+      url: postUrl,
+      responseType: 'json', // Important
+      data: dataGroup,
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 /**
  * 创建简历。
  * @param {Object} dataGroup - 数据组。
@@ -673,7 +699,29 @@ export const getRecommendation = async (topicId = initTopicId) => {
 
     return response;
   } catch (error) {
-    throw error;
+    console.error(error);
+  }
+};
+
+export const getRecommendation_MOCK = async (topicId = initTopicId) => {
+  const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/168725474`;
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      // responseType: 'application/json', // Important
+      headers: {
+        'Content-Type': 'application/json',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
   }
 };
 

@@ -4,13 +4,14 @@ import styles from './Comps.module.css';
 import { PlusOutlined } from '@ant-design/icons';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
-export const PrimaryButton = ({ onClick, label }) => {
+export const PrimaryButton = ({ onClick, label, htmlType }) => {
   return (
     <Button
       onClick={onClick}
       type="primary"
       className={styles.primaryButton}
       shape="round"
+      htmlType={htmlType}
     >
       {label}
     </Button>

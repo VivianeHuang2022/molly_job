@@ -126,4 +126,31 @@ export const getFormFields = (texts) => {
   };
 };
 
+//当fetchData没有有效值的时候使用initialValues
+export const initialValues = {
+  //recommender special value
+  recommenderFirstName: '',
+  recommenderLastName: '',
+  recommenderPosition: '',
+  recommenderInstitution: '',
+  recommenderEmail: '',
+  recommenderIntro: '',
+  recommenderRelationship: '',
+  recommenderActivity: '',
 
+  //from other part
+  firstName: '',
+  surname: '', //按照最初的coverletter沿用的名字,如果要统一命名要一起修改对其
+
+  dreamDegree: '',
+  dreamUni: '',
+  dreamUniAddress: '',
+  dreamMajor: '',
+  dreamCountry: '',
+
+  currentUni: '',
+  currentCountry: '',
+  currentDegree: '',
+  currentMajor: '',
+  currentGPA: '',
+};

@@ -17,8 +17,7 @@ const CustomInput = ({
   let InputComp;
 
   switch (type) {
-    case 'workSummary':
-    case 'workDetail':
+    case 'TextArea':
       InputComp = (
         <div>
           <TextArea
