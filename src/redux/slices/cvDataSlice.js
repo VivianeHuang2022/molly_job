@@ -18,31 +18,46 @@ const {
   dreamInfo,
 } = cvSection;
 
+const getInitialState = () => {
+  //根据topicId来获取不同身份值
+  const topicId = localStorage.getItem('topicId');
+  const localSaved = JSON.parse(
+    localStorage.getItem(`resume_localEdit${topicId}`)
+  );
+
+  if (localSaved) {
+    return {
+      cvSections: localSaved.data.cvSections,
+      currentSectionType: localSaved.data.currentSectionType,
+      allSectionType,
+      loading: false,
+    };
+  } else
+    return {
+      //single Resume section
+      cvSections: {
+        personalInfo,
+        educationInfo,
+        workExperience,
+        projectExperience,
+        researchExperience,
+        publicationsPresentations,
+        skillsActivitiesInterests,
+      },
+      currentSectionType,
+
+      //config
+      allSectionType,
+
+      //status
+      loading: false,
+    };
+};
+
 // 创建简历 slice
 export const cvDataSlice = createSlice({
   name: 'cvData',
-  initialState: {
-    //single Resume section
-    cvSections: {
-      personalInfo,
-      educationInfo,
-      workExperience,
-      projectExperience,
-      researchExperience,
-      publicationsPresentations,
-      skillsActivitiesInterests,
-    },
-    currentSectionType,
-
-    //config
-    allSectionType,
-
-    //status
-    loading: false,
-
-    //std special data
-    dreamInfo,
-  },
+  initialState: getInitialState(),
   reducers: {
     // 更新简历字段...
     updateField: (state, action) => {
@@ -165,7 +180,7 @@ export const cvDataSlice = createSlice({
         //更新获取的值,会根据topicId获取不同身份值
         const responseData = action.payload;
         const { currentSectionType, timeStamp, ...cvSections } = responseData;
-        
+
         //根据topicId来获取不同身份值
         const topicId = localStorage.getItem('topicId');
         const localSaved = JSON.parse(
