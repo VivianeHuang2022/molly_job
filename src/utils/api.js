@@ -678,7 +678,7 @@ export const getRecommendation = async (topicId = initTopicId) => {
 };
 
 export const getRecommendation_MOCK = async (topicId = initTopicId) => {
-  const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/164527997`;
+  const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/168725474`;
   try {
     const response = await axios({
       method: 'get',

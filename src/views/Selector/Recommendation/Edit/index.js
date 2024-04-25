@@ -21,10 +21,11 @@ const RecommendationFormLogic = () => {
 
   const fetchNewData = async () => {
     const response = await getRecommendation_MOCK();
+    console.log(response);
     if (response) {
       setIsLoading(false);
-      if (response.data) {
-        setFormData(response.data);
+      if (response.data.msg) {
+        setFormData(response.data.msg);
       }
     }
   };

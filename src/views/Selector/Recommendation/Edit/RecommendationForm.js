@@ -34,32 +34,32 @@ const RecommendationFormUI = ({ onSubmit, initialValues }) => {
     currentSchoolInfoTitle,
   } = sectionTitle;
 
-  //表单规则
-  const validationSchemaObj = {};
-  for (const fieldName in formFields) {
-    if (Object.prototype.hasOwnProperty.call(formFields, fieldName)) {
-      const field = formFields[fieldName];
-      if (Object.prototype.hasOwnProperty.call(field, 'schema')) {
-        validationSchemaObj[field.name] = field.schema;
-      } else {
-        for (const subFieldName in field) {
-          if (
-            Object.prototype.hasOwnProperty.call(field[subFieldName], 'schema')
-          ) {
-            validationSchemaObj[field[subFieldName].name] =
-              field[subFieldName].schema;
-          }
-        }
-      }
-    }
-  }
-  const validationSchema = Yup.object().shape(validationSchemaObj);
+  //表单规则,目前没有任何限制,暂时隐藏
+  // const validationSchemaObj = {};
+  // for (const fieldName in formFields) {
+  //   if (Object.prototype.hasOwnProperty.call(formFields, fieldName)) {
+  //     const field = formFields[fieldName];
+  //     if (Object.prototype.hasOwnProperty.call(field, 'schema')) {
+  //       validationSchemaObj[field.name] = field.schema;
+  //     } else {
+  //       for (const subFieldName in field) {
+  //         if (
+  //           Object.prototype.hasOwnProperty.call(field[subFieldName], 'schema')
+  //         ) {
+  //           validationSchemaObj[field[subFieldName].name] =
+  //             field[subFieldName].schema;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+  // const validationSchema = Yup.object().shape(validationSchemaObj);
 
   return (
     <div className={styles.container}>
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         onSubmit={onSubmit}
         enableReinitialize={true}
       >
