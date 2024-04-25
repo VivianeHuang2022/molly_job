@@ -133,6 +133,8 @@ const generateStdDataGroup = () => {
     dreamUni: stdDataQP1.drUni,
     dreamMajor: stdDataQP1.drMajor,
     dreamCountry: stdDataQP1.drCountry,
+    ideaArea: stdDataQP4.ideaArea,
+    careerOrGoal: stdDataQP4.careerOrGoal,
     // current Info
     currentDegree: stdDataQP2.curDegree,
     currentMajor: stdDataQP2.curMajor,
@@ -150,11 +152,7 @@ const generateStdDataGroup = () => {
     internRole: stdDataQP3.internRole,
     internCompany: stdDataQP3.internCompany,
 
-    // professor Info
-    ideaArea: stdDataQP4.ideaArea,
-
-    //career Info
-    careerOrGoal: stdDataQP4.careerOrGoal,
+    
   };
   return dataGroup;
 };
