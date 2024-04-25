@@ -8,17 +8,18 @@ const InputHandler = ({
   labels,
   data,
   sectionKey,
-  labelKeys,
   styles,
   labelArray,
+  itemId,
 }) => {
   const dispatch = useDispatch();
   const inputRefs = useRef([]);
 
-  const updateFieldFunc = (title, newValue) => {
+  const updateFieldFunc = (title, newValue, id) => {
     dispatch(
       updateField({
         sectionKey: sectionKey,
+        id: id,
         title: title,
         newValue: newValue,
       })
@@ -31,8 +32,6 @@ const InputHandler = ({
       const title = labelArray[index];
       const newValue = event.target.value;
       if (index + 1 < labelArray.length) {
-        console.log(1);
-
         setTimeout(() => {
           inputRefs.current[index + 1].focus();
         }, 0);
@@ -44,17 +43,33 @@ const InputHandler = ({
     }
   };
 
+  const getComponentType = (title) => {
+    // 根据labelKey来决定每个 input 的类型
+    switch (title) {
+      case 'workSummary':
+      case 'workDetail':
+      case 'projectSummary':
+      case 'projectDetail':
+      case 'researchSummary':
+      case 'researchDetail':
+        return 'TextArea'; // 直接返回 title 作为 type，因为它们是唯一的
+      default:
+        return 'Input'; // 默认类型为 'input'
+    }
+  };
+
   return (
     <div className={styles.inputGridContainer}>
-      {Object.keys(labelKeys).map((title, index) => (
+      {labelArray.map((title, index) => (
         <CustomInput
-          key={index}
+          key={title} // 使用 title 作为 key，因为它是唯一的
           label={labels[title]}
           value={data[title]}
-          onChange={(e) => updateFieldFunc(title, e.target.value)}
-          onBlur={() => updateFieldFunc(title, data[title])}
+          onChange={(e) => updateFieldFunc(title, e.target.value, itemId)}
+          onBlur={() => updateFieldFunc(title, data[title], itemId)}
           inputRef={(el) => (inputRefs.current[index] = el)}
-          onKeyDown={(e) => handleKeyDown(e, index)}
+          onKeyDown={(e) => handleKeyDown(e, index, itemId)}
+          type={getComponentType(title)}
         />
       ))}
     </div>

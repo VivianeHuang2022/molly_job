@@ -16,7 +16,6 @@ const EditSectionPage = ({
       <SectionName sectionName={sectionName} sectionKey={sectionKey} />
       <div className={styles.sectionGroupContent}>
         <InputHandler
-          labelKeys={otherLabels}
           labels={labels}
           sectionKey={sectionKey}
           styles={styles}
