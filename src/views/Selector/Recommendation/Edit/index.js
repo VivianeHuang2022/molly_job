@@ -17,18 +17,50 @@ import { initialValues } from './FormData';
 
 //整个推荐信表单
 const RecommendationFormLogic = () => {
+  const topicId = localStorage.getItem('topicId');
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState(initialValues);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const fetchNewData = async () => {
-    const response = await getRecommendation_MOCK();
-    if (response) {
-      setIsLoading(false);
-      if (response.data.msg) {
-        setFormData(response.data.msg);
+  const fetchAndCompareData = async () => {
+    try {
+      const localSaved =
+        JSON.parse(
+          localStorage.getItem(`recommendation_localEdit${topicId}`)
+        ) || {};
+      const response = await getRecommendation(topicId); // 注意这里应该是真实的API调用
+
+      // Step 1: 检查后端响应是否有有效值
+      if (response && response.timeStamp) {
+        // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
+
+        if (localSaved) {
+          if (response.timeStamp > localSaved?.timeStamp) {
+            //后台数据更新,用后台数据
+            setFormData(response.data.msg);
+          } else {
+            //后台数据没更新，用本地数据
+            if (localSaved?.data) {
+              setFormData(localSaved.data);
+            }
+          }
+        } else {
+          //存在有效后端数据,没有本地缓存,直接使用后端数据
+          setFormData(response.data.msg);
+        }
+      } else {
+        // 后端响应中没有有效值，无法获取更新的数据
+        if (localSaved) {
+          // console.log('后端没有有效值,但有缓存');
+          setFormData(localSaved.data);
+        }
       }
+    } catch (error) {
+      // 处理错误情况
+      console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -43,7 +75,7 @@ const RecommendationFormLogic = () => {
     //       // console.log(window.location
     //     } else {
     //       // 验证用户身份后获取最新数据
-    //       fetchNewData();
+    //       fetchAndCompareData();
     //     }
     //   } catch (error) {
     //     // 处理错误
@@ -51,7 +83,7 @@ const RecommendationFormLogic = () => {
     //   }
     // };
     // checkLoginAndDataFetch();
-    fetchNewData();
+    fetchAndCompareData();
   }, [dispatch]); // 依赖 dispatch 函数
 
   const handleToNext = async (values) => {
@@ -71,8 +103,6 @@ const RecommendationFormLogic = () => {
       //错误提示
     }
   };
-
-  const topicId = localStorage.getItem('topicId');
 
   const saveData = async () => {
     const localSaved = JSON.parse(
