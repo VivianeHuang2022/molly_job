@@ -1,6 +1,8 @@
 import styles from './Recommendation.module.css';
-import { useField } from 'formik';
+import { useField, useFormikContext } from 'formik';
 import { Input } from 'antd';
+import { saveLocalEdit } from '../../../../utils/saveLocalData';
+
 const { TextArea } = Input;
 
 export const FormGroup = ({ formGroup, title }) => {
@@ -31,12 +33,24 @@ export const FormSingle = ({ instruction, form, title, sectionTitle }) => {
 };
 
 export const SingleField = ({ label, component, ...props }) => {
+  // 使用useField来获取当前字段的值和元数据
   const [field, meta] = useField(props);
+
+  // 使用useFormikContext来获取Formik的上下文
+  const { values } = useFormikContext();
+
+  // 定义onBlur事件处理函数
+  const handleBlur = () => {
+    const topicId = localStorage.getItem('topicId');
+    // 存储表单的值到缓存
+    saveLocalEdit('recommendation', topicId, values);
+  };
+
   const CustomField =
     component === 'textarea' ? (
-      <TextArea {...field} {...props} />
+      <TextArea {...field} {...props} onBlur={handleBlur} />
     ) : (
-      <Input {...field} {...props} />
+      <Input {...field} {...props} onBlur={handleBlur} />
     );
 
   return (

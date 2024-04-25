@@ -1,14 +1,15 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, useFormikContext } from 'formik';
 import styles from './Recommendation.module.css';
 import { getLabels } from '../../../local';
 import { FormSingle, FormGroup, StarInstructions } from './FormComps';
+import { PrimaryButton, DefaultButton } from '../../../../components/Button';
 
 import { getFormFields } from './FormData';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 // import * as Yup from 'yup';
 
-const RecommendationFormUI = ({ onSubmit, initialValues }) => {
+const RecommendationFormUI = ({ onSubmit, initialValues, saveData }) => {
   const texts = getLabels(useSelector(selectCurrentLanguage));
 
   const formFields = getFormFields(texts);
@@ -86,7 +87,10 @@ const RecommendationFormUI = ({ onSubmit, initialValues }) => {
               sectionTitle={sectionTitle}
             />
 
-            <button type="submit">{buttonLabel}</button>
+            <div className={styles.buttonContainer}>
+              <DefaultButton label={'save data'} onClick={saveData} />
+              <PrimaryButton label={buttonLabel} htmlType="submit" />
+            </div>
           </Form>
         )}
       </Formik>

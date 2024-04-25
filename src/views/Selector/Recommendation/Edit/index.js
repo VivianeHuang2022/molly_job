@@ -2,7 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { editState } from '../../../../utils/checkCache';
 import RecommendationForm from './RecommendationForm';
 import { checkLogin } from '../../../../utils/checkLogin';
-import { createRecommendation } from '../../../../utils/api';
+import {
+  createRecommendation,
+  updateRecommendation,
+} from '../../../../utils/api';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
@@ -21,7 +24,6 @@ const RecommendationFormLogic = () => {
 
   const fetchNewData = async () => {
     const response = await getRecommendation_MOCK();
-    console.log(response);
     if (response) {
       setIsLoading(false);
       if (response.data.msg) {
@@ -70,12 +72,25 @@ const RecommendationFormLogic = () => {
     }
   };
 
+  const topicId = localStorage.getItem('topicId');
+
+  const saveData = async () => {
+    const localSaved = JSON.parse(
+      localStorage.getItem(`recommendation_localEdit${topicId}`)
+    );
+    const response = await updateRecommendation(localSaved);
+  };
+
   return (
     <div>
       {isLoading ? (
         <LoadingIndicator isLoading={true} />
       ) : (
-        <RecommendationForm onSubmit={handleToNext} initialValues={formData} />
+        <RecommendationForm
+          onSubmit={handleToNext}
+          initialValues={formData}
+          saveData={saveData}
+        />
       )}
     </div>
   );

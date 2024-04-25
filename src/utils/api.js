@@ -577,6 +577,32 @@ export const createRecommendation = async (
   }
 };
 
+export const updateRecommendation = async (
+  dataGroup,
+  topicId = initTopicId
+) => {
+  const postUrl = `${BASE_URL}/Recommendation/updateRecommendation?topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'post',
+      url: postUrl,
+      responseType: 'json', // Important
+      data: dataGroup,
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 /**
  * 创建简历。
  * @param {Object} dataGroup - 数据组。
