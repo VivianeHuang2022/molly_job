@@ -28,11 +28,6 @@ const Question_MOCK = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(111);
-    navigate('/layout/generalq');
-
-  }, [navigate]);
   return (
     <div className={styles.questionContainerOuter}>
       <div className={styles.questionContainer}>

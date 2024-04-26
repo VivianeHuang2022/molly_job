@@ -171,11 +171,11 @@ export default function MRouter() {
           children: [
             {
               index: true,
-              element: <Question_MOCK />,
+              element: <Navigate to="edit" replace />,
             },
             {
               path: 'edit',
-              element: <Question_MOCK />,
+              element: <Question_MOCK/>,//20240426 这个实际上不会生效,在CoverletterLayout中为所有coverletter path下带有edit的路径导向了/Layout/generalq(这样处理是因为我不知道如何把原来的generalq编辑内容平移过来)
             },
             {
               path: 'generate',
