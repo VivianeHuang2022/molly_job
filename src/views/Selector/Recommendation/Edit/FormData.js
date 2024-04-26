@@ -1,5 +1,16 @@
 import * as Yup from 'yup';
 
+//表单规则
+const validationSchemaObj = {
+  firstName: Yup.string().required('First Name is required'),
+  surname: Yup.string().required('First Name is required'),
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('First Name is required'),
+};
+
+export const validationSchema = Yup.object().shape(validationSchemaObj);
+
 // 定义表单字段
 export const getFormFields = (texts) => {
   const {
@@ -16,112 +27,112 @@ export const getFormFields = (texts) => {
       firstName: {
         ...userInfo.firstName,
         name: 'firstName',
-        schema: Yup.string(),
+        schema: true,
       },
       surname: {
         ...userInfo.surname,
         name: 'surname',
-        schema: Yup.string(),
+        schema: true,
       },
     },
     dreamSchoolInfo: {
       dreamDegree: {
         ...dreamSchoolInfo.dreamDegree,
         name: 'dreamDegree',
-        schema: Yup.string(),
+        schema: false,
       },
       dreamUni: {
         ...dreamSchoolInfo.dreamUni,
         name: 'dreamUni',
-        schema: Yup.string(),
+        schema: false,
       },
       dreamUniAddress: {
         ...dreamSchoolInfo.dreamUniAddress,
         name: 'dreamUniAddress',
-        schema: Yup.string(),
+        schema: false,
       },
       dreamMajor: {
         ...dreamSchoolInfo.dreamMajor,
         name: 'dreamMajor',
-        schema: Yup.string(),
+        schema: false,
       },
       dreamCountry: {
         ...dreamSchoolInfo.dreamCountry,
         name: 'dreamCountry',
-        schema: Yup.string(),
+        schema: false,
       },
     },
     currentSchoolInfo: {
       currentUni: {
         ...currentSchoolInfo.currentUni,
         name: 'currentUni',
-        schema: Yup.string(),
+        schema: false,
       },
       currentCountry: {
         ...currentSchoolInfo.currentCountry,
         name: 'currentCountry',
-        schema: Yup.string(),
+        schema: false,
       },
       currentDegree: {
         ...currentSchoolInfo.currentDegree,
         name: 'currentDegree',
-        schema: Yup.string(),
+        schema: false,
       },
       currentMajor: {
         ...currentSchoolInfo.currentMajor,
         name: 'currentMajor',
-        schema: Yup.string(),
+        schema: false,
       },
       currentGPA: {
         ...currentSchoolInfo.currentGPA,
         name: 'currentGPA',
-        schema: Yup.string(),
+        schema: false,
       },
     },
     recommender: {
       firstName: {
         ...recommender.firstName,
         name: 'recommenderFirstName',
-        schema: Yup.string(),
+        schema: false,
       },
       lastName: {
         ...recommender.lastName,
         name: 'recommenderLastName',
-        schema: Yup.string(),
+        schema: false,
       },
       relationship: {
         ...recommender.relationship,
         name: 'recommenderRelationship',
-        schema: Yup.string(),
+        schema: false,
       },
       institution: {
         ...recommender.institution,
         name: 'recommenderInstitution',
-        schema: Yup.string(),
+        schema: false,
       },
       position: {
         ...recommender.position,
         name: 'recommenderPosition',
-        schema: Yup.string(),
+        schema: false,
       },
 
       email: {
         ...recommender.email,
         name: 'recommenderEmail',
-        schema: Yup.string().email('Invalid email address'),
+        schema: true,
       },
     },
     intro: {
       ...intro,
       name: 'recommenderIntro',
       component: 'textarea', // 标记为使用 TextArea 组件
-      schema: Yup.string(),
+      schema: false,
     },
     activity: {
       ...activity,
       name: 'recommenderActivity',
       component: 'textarea', // 标记为使用 TextArea 组件
-      schema: Yup.string(),
+      schema: false,
     },
   };
 };

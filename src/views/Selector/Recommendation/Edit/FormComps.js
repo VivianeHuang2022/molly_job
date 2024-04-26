@@ -32,7 +32,7 @@ export const FormSingle = ({ instruction, form, title, sectionTitle }) => {
   );
 };
 
-export const SingleField = ({ label, component, ...props }) => {
+export const SingleField = ({ label, component, schema, ...props }) => {
   // 使用useField来获取当前字段的值和元数据
   const [field, meta] = useField(props);
 
@@ -56,6 +56,7 @@ export const SingleField = ({ label, component, ...props }) => {
     <>
       <div>
         {label}
+        {schema && ' * '}
         {CustomField}
       </div>
       {meta.touched && meta.error ? (
