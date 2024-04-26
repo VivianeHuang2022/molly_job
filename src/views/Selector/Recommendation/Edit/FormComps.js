@@ -1,3 +1,4 @@
+import React, { useRef, useEffect } from 'react';
 import styles from './Recommendation.module.css';
 import { useField, useFormikContext } from 'formik';
 import { Input } from 'antd';
@@ -5,12 +6,16 @@ import { saveLocalEdit } from '../../../../utils/saveLocalData';
 
 const { TextArea } = Input;
 
-export const FormGroup = ({ formGroup, title }) => {
+export const FormGroup = ({ formGroup, title, registerRef, handleKeyDown }) => {
   const fields = Object.keys(formGroup).map((key) => {
     const item = formGroup[key];
     return (
       <div key={key} id={key} className={styles.formContainer}>
-        <SingleField {...item} />
+        <SingleField
+          {...item}
+          registerRef={registerRef}
+          handleKeyDown={handleKeyDown}
+        />
       </div>
     );
   });
@@ -22,22 +27,52 @@ export const FormGroup = ({ formGroup, title }) => {
   );
 };
 
-export const FormSingle = ({ instruction, form, title, sectionTitle }) => {
+export const FormSingle = ({
+  instruction,
+  form,
+  title,
+  sectionTitle,
+  registerRef,
+  handleKeyDown,
+}) => {
   return (
     <div>
       <Section title={title} />
       {instruction && <StarInstructions sectionTitle={sectionTitle} />}
-      <SingleField {...form} />
+      <SingleField
+        {...form}
+        registerRef={registerRef}
+        handleKeyDown={handleKeyDown}
+      />
     </div>
   );
 };
 
-export const SingleField = ({ label, component, ...props }) => {
+export const SingleField = ({
+  registerRef,
+  handleKeyDown,
+  label,
+  component,
+  schema,
+  ...props
+}) => {
   // 使用useField来获取当前字段的值和元数据
   const [field, meta] = useField(props);
 
   // 使用useFormikContext来获取Formik的上下文
-  const { values } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext();
+
+  // 为当前字段创建一个引用
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    registerRef(inputRef);
+  }, [registerRef]);
+
+  // 定义 onKeyDown 事件处理函数
+  const handleKeyDownSingle = (event) => {
+    handleKeyDown(event, inputRef);
+  };
 
   // 定义onBlur事件处理函数
   const handleBlur = () => {
@@ -47,15 +82,28 @@ export const SingleField = ({ label, component, ...props }) => {
 
   const CustomField =
     component === 'textarea' ? (
-      <TextArea {...field} {...props} onBlur={handleBlur} />
+      <TextArea
+        ref={inputRef}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDownSingle}
+        {...field}
+        {...props}
+      />
     ) : (
-      <Input {...field} {...props} onBlur={handleBlur} />
+      <Input
+        ref={inputRef}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDownSingle}
+        {...field}
+        {...props}
+      />
     );
 
   return (
     <>
       <div>
         {label}
+        {schema && ' * '}
         {CustomField}
       </div>
       {meta.touched && meta.error ? (
