@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   getCoverletter,
   getResume,
-  // getResume_MOCK,
+  // getResume_MOCK
 } from '../../utils/api';
 
 const topicId = localStorage.getItem('topicId');

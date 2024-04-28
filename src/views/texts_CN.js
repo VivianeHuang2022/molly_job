@@ -272,18 +272,18 @@ const texts_cn = {
     pricingType: {
       monthly: '月',
       annual: '年',
-      timesNum:'-',
-      times:'次'
+      timesNum: '-',
+      times: '次',
     },
-    priceSymbol:"¥",
+    priceSymbol: '¥',
     paymentType: {
       superPro: {
         label: '超级专业',
         pricing: {
           monthly: '-',
           annual: '-',
-          times:'-',
-          timesNum:'-',
+          times: '-',
+          timesNum: '-',
         },
         info: '为申请多个国家多语言的申请人，量身定制，超过1000份海内外名校申请文书,支持50多种语言，提供10次申请文书生成,为每个项目打造完美的申请材料,无限使用任何模板。完成支付可免费入当地留学群，并获得留学生活指南',
         features: [
@@ -298,8 +298,8 @@ const texts_cn = {
         pricing: {
           monthly: '-',
           annual: '-',
-          times:'-',          
-          timesNum:'-',
+          times: '-',
+          timesNum: '-',
         },
         info: '为申请人量身定制，超过1000份海内外名校申请文书,支持50多种语言，提供5次文档生成机会,确保每份申请材料都经过定制,并可完全访问所有模板。完成支付可免费入当地留学群，并获得留学生活指南',
         features: [
@@ -314,8 +314,8 @@ const texts_cn = {
         pricing: {
           monthly: '-',
           annual: '-',
-          times:'-',
-          timesNum:'-',
+          times: '-',
+          timesNum: '-',
         },
         info: '理想的一两所学校申请方案,提供1次文档生成机会,并可访问超过50个会员模板,打造出众的申请材料。',
         features: [
@@ -492,7 +492,7 @@ const texts_cn = {
     generate: '生成',
     count: '数量',
     time: '时间',
-    buttonBack:'返回',
+    buttonBack: '返回',
   },
   resumeTxt: {
     personalInfo: {
@@ -512,8 +512,8 @@ const texts_cn = {
       startDate: '入学日期',
       endDate: '毕业日期',
       currentGPA: 'GPA和荣誉',
-      achievement: '成就',
       currentCourses: '课程',
+      achievement: '成就',
     },
     workExperience: {
       role: '职位名称',

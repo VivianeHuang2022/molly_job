@@ -1,4 +1,4 @@
-import {  Paragraph } from './cvComps/CvTypography';
+import { Heading, Paragraph } from './cvComps/CvTypography';
 
 const SkillsActivitiesInterests = ({ cvData, sectionName, styles }) => {
   const {
@@ -12,23 +12,21 @@ const SkillsActivitiesInterests = ({ cvData, sectionName, styles }) => {
   } = cvData;
   const { cvSection } = styles;
 
-  const Heading = ({ text }) => {
-    return <div className={styles.cvSectionHeading}>{text}</div>;
-  };
-
   return (
-    <div className={cvSection}>
+    <main>
       <Heading text={sectionName} />
-      <div className={styles.subSection}>
-        <Paragraph text={language} />
-        <Paragraph text={getSkills} />
-        <Paragraph text={relevantCertificates} />
-        <Paragraph text={volunteerWork} />
-        <Paragraph text={interest} />
-        <Paragraph text={getAwards} />
-        <Paragraph text={getCompetitions} />
+
+      <div className={cvSection}>
+        <div className={styles.subSection}>
+          <Paragraph
+            text={`${getSkills} ${language} ${relevantCertificates}`}
+          />
+
+          <Paragraph text={`${getAwards} ${getCompetitions}`} />
+          <Paragraph text={`${volunteerWork} ${interest}`} />
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 

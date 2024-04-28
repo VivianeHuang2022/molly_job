@@ -1,10 +1,11 @@
-import { Paragraph, SubHeading } from './cvComps/CvTypography';
-const WorkExperienceItem = ({
-  experience,
-  styles,
-  paragraphStyle,
-  subHeadingStyle,
-}) => {
+import {
+  Paragraph,
+  SubHeading,
+  Heading,
+  HorizontalLayout,
+  ParagraphList,
+} from './cvComps/CvTypography';
+const WorkExperienceItem = ({ experience, styles }) => {
   const {
     role,
     company,
@@ -20,44 +21,40 @@ const WorkExperienceItem = ({
 
   return (
     <div className={styles.subSection}>
-      <SubHeading text={role} />
-      <Paragraph text={company} />
-      <Paragraph text={groupName} />
-      <Paragraph text={`${city} ${state} ${country}`} />
-      <Paragraph text={`${startDate} - ${endDate}`} />
+      <HorizontalLayout>
+        <SubHeading text={`${company} `} />
+        <Paragraph text={`${city} ${state} ${country}`} />
+      </HorizontalLayout>
+
+      <HorizontalLayout>
+        <Paragraph text={`${groupName} ${role}`} />
+        <Paragraph text={`${startDate} - ${endDate}`} />
+      </HorizontalLayout>
+
       <Paragraph text={workSummary} />
-      <Paragraph text={workDetail} />
+      <ParagraphList text={workDetail} />
     </div>
   );
 };
 
-const WorkExperience = ({
-  cvData,
-  sectionName,
-  styles,
-  paragraphStyle,
-  subHeadingStyle,
-}) => {
+const WorkExperience = ({ cvData, sectionName, styles }) => {
   const workExperience = cvData;
   const { cvSection } = styles;
 
-  const Heading = ({ text }) => {
-    return <div className={styles.cvSectionHeading}>{text}</div>;
-  };
-
   return (
-    <div className={cvSection}>
+    <main>
       <Heading text={sectionName} />
-      {workExperience.map((experience, index) => (
-        <WorkExperienceItem
-          key={index}
-          experience={experience}
-          styles={styles}
-          paragraphStyle={paragraphStyle}
-          subHeadingStyle={subHeadingStyle}
-        />
-      ))}
-    </div>
+
+      <div className={cvSection}>
+        {workExperience.map((experience, index) => (
+          <WorkExperienceItem
+            key={index}
+            experience={experience}
+            styles={styles}
+          />
+        ))}
+      </div>
+    </main>
   );
 };
 

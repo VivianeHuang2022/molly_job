@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { PrimaryButton } from '../../../../components/Button';
 import styles from './page.module.css';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import AlertContext from '../../../../components/AlertProvider/AlertContext';
 import { editState } from '../../../../utils/checkCache';
 
-const Question_MOCK = () => {
+const QuestionMock = () => {
   const navigate = useNavigate();
   const { showAlertMessage } = useContext(AlertContext);
   const handleToNext = async () => {
@@ -14,7 +14,7 @@ const Question_MOCK = () => {
     const response = { status: 200 };
 
     //调用生成pdf api
-     //const response = await createStdCoverLetter(data);
+    //const response = await createStdCoverLetter(data);
 
     if (response.status === 200) {
       editState('isEditcoverletter', false);
@@ -39,4 +39,4 @@ const Question_MOCK = () => {
   );
 };
 
-export default Question_MOCK;
+export default QuestionMock;

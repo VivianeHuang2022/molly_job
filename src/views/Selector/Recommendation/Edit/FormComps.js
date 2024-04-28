@@ -60,7 +60,7 @@ export const SingleField = ({
   const [field, meta] = useField(props);
 
   // 使用useFormikContext来获取Formik的上下文
-  const { values, setFieldValue } = useFormikContext();
+  const { values } = useFormikContext();
 
   // 为当前字段创建一个引用
   const inputRef = useRef(null);

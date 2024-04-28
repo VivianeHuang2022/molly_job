@@ -26,7 +26,7 @@ const CustomInput = ({
             onChange={onChange}
             onBlur={onBlur}
             ref={inputRef}
-            onKeyDown={onKeyDown}
+            // onKeyDown={onKeyDown}
             autoSize={{ minRows: 5, maxRows: 15 }}
           />
           {/* <Button>AI</Button> */}

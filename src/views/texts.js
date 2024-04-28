@@ -546,8 +546,8 @@ const texts_en = {
       startDate: 'Start Date',
       graduationDate: 'Graduation Date',
       currentGPA: 'GPA',
-      achievement: 'Achievement',
       currentCourses: 'Courses',
+      achievement: 'Achievement',
     },
     workExperience: {
       role: 'Position Title',

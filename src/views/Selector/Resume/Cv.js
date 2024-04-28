@@ -21,7 +21,7 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
     // 计算元素的宽度和高度
     const width = element.offsetWidth;
     const height = element.offsetHeight;
-    const scaleFactor = 4 / width;
+    const scaleFactor = 5 / width;
     //预防文件名重复
     const fileName = 'Resume_' + getFormattedDateTime() + '.pdf';
     // 设置 html2pdf.js 的配置选项

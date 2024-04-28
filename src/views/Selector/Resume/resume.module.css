@@ -84,7 +84,6 @@
   background-color: rgb(255, 255, 255);
   padding: var(--padding);
   display: flex;
-  font-size: 0.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
@@ -99,7 +98,10 @@
 
 /* Styling for the resume itself for print in one page*/
 .resume {
-  aspect-ratio: 21 / 26;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Media query for print styling */

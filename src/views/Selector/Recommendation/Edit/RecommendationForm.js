@@ -1,5 +1,5 @@
 import { Formik, Form } from 'formik';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Recommendation.module.css';
 import { getLabels } from '../../../local';
 import { FormSingle, FormGroup, StarInstructions } from './FormComps';

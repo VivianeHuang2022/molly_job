@@ -1,10 +1,15 @@
-import { Heading,Paragraph, SubHeading } from './cvComps/CvTypography';
+import {
+  Heading,
+  Paragraph,
+  SubHeading,
+  HorizontalLayout,
+  ParagraphList,
+} from './cvComps/CvTypography';
 
 const ProjectExperience = ({ cvData, sectionName, styles }) => {
   const projectExperience = cvData;
 
   const { cvSection } = styles;
-
 
   const ProjectExperienceItem = ({ project }) => {
     const {
@@ -19,26 +24,38 @@ const ProjectExperience = ({ cvData, sectionName, styles }) => {
       projectDetail,
     } = project;
 
-
     return (
       <div className={styles.subSection}>
-        <SubHeading text={getProject}  />
-        <Paragraph text={schoolName} />
-        <Paragraph text={`${city} ${state} ${country}`} />
-        <Paragraph text={`${startDate} - ${endDate}`} />
+        <HorizontalLayout>
+          <SubHeading text={getProject} />{' '}
+          <Paragraph text={`${city} ${state} ${country}`} />
+        </HorizontalLayout>
+
+        <HorizontalLayout>
+          <Paragraph text={schoolName} />
+          <Paragraph text={`${startDate} - ${endDate}`} />
+        </HorizontalLayout>
+
         <Paragraph text={projectSummary} styles={styles} />
-        <Paragraph text={projectDetail} />
+        <ParagraphList text={projectDetail} />
       </div>
     );
   };
 
   return (
-    <div className={cvSection}>
+    <main>
       <Heading text={sectionName} />
-      {projectExperience.map((project, index) => (
-        <ProjectExperienceItem key={index} project={project} styles={styles} />
-      ))}
-    </div>
+
+      <div className={cvSection}>
+        {projectExperience.map((project, index) => (
+          <ProjectExperienceItem
+            key={index}
+            project={project}
+            styles={styles}
+          />
+        ))}
+      </div>
+    </main>
   );
 };
 
