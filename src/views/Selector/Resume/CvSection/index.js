@@ -30,7 +30,7 @@ const CvSectionPage = ({ labels, singleCvData, currentSectionType }) => {
 
   // 根据currentSectionType数组动态渲染对应的子组件
   return (
-    <div className={styles.cvSection}>
+    <div className={styles.cvContainer}>
       {currentSectionType.map((sectionType) => {
         // 根据sectionType从componentMap中获取对应的组件
         const Component = componentMap[sectionType];

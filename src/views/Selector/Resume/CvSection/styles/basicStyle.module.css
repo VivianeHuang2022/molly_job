@@ -2,12 +2,24 @@
   --base-font-size: 8px;
   --base-font-color: #333;
 }
-
-.cvSection {
+.cvContainer {
   width: 90%;
   margin-bottom: 0.7rem;
+  /* background-color: rgb(204, 216, 203); */
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nameSection {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cvSection {
   /* background-color: rgb(212, 254, 209); */
-  margin: 0.5rem;
 }
 
 .subSection {
@@ -22,12 +34,19 @@
   font-weight: bold;
 }
 .heading {
-  color: calc(var(--base-font-color));
+  color: black;
   font-size: calc(var(--base-font-size) * 1.2);
   font-weight: bold;
   /* background-color: rgb(244, 232, 255); */
 }
 
+.heading::after {
+  content: '';
+  display: block;
+  width: 100%; /* 确保横线宽度与页面一样宽 */
+  border-bottom: 1px solid #000; /* 黑色横线，3px粗 */
+  margin-bottom: 10px; /* 根据需要调整横线与文本的间距 */
+}
 .subHeading {
   color: calc(var(--base-font-color));
   font-size: calc(var(--base-font-size) * 1.2);
