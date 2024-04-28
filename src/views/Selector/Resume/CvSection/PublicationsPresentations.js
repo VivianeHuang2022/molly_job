@@ -16,16 +16,19 @@ const PublicationsPresentations = ({ cvData, sectionName, styles }) => {
   };
 
   return (
-    <div className={cvSection}>
+    <main>
       <Heading text={sectionName} />
-      {publicationsPresentations.map((publicationPresentation, index) => (
-        <PublicationPresentationItem
-          key={index}
-          publicationPresentation={publicationPresentation}
-          styles={styles}
-        />
-      ))}
-    </div>
+
+      <div className={cvSection}>
+        {publicationsPresentations.map((publicationPresentation, index) => (
+          <PublicationPresentationItem
+            key={index}
+            publicationPresentation={publicationPresentation}
+            styles={styles}
+          />
+        ))}
+      </div>
+    </main>
   );
 };
 

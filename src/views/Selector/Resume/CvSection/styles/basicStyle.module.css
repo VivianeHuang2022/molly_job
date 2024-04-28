@@ -1,6 +1,9 @@
 :root {
   --base-font-size: 8px;
-  --base-font-color: #333;
+
+  --base-heading-color: #000000;
+  --base-font-color: #000000;
+  --secondary-font-color: #333;
 }
 .cvContainer {
   width: 90%;
@@ -19,6 +22,9 @@
   align-items: center;
 }
 .cvSection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   /* background-color: rgb(212, 254, 209); */
 }
 
@@ -29,12 +35,12 @@
 }
 
 .keyTile {
-  color: calc(var(--base-font-color));
+  color: var(--base-font-color);
   font-size: calc(var(--base-font-size) * 1.7);
   font-weight: bold;
 }
 .heading {
-  color: black;
+  color: var(--base-heading-color);
   font-size: calc(var(--base-font-size) * 1.2);
   font-weight: bold;
   /* background-color: rgb(244, 232, 255); */
@@ -43,21 +49,28 @@
 .heading::after {
   content: '';
   display: block;
-  width: 100%; /* 确保横线宽度与页面一样宽 */
-  border-bottom: 1px solid #000; /* 黑色横线，3px粗 */
-  margin-bottom: 10px; /* 根据需要调整横线与文本的间距 */
+  width: 100%;
+  border-bottom: 1px solid;
+  border-bottom-color: calc(var(--base-heading-color));
+  margin-bottom: 5px;
 }
 .subHeading {
-  color: calc(var(--base-font-color));
+  color: var(--base-heading-color);
   font-size: calc(var(--base-font-size) * 1.2);
   /* background-color: aqua; */
 }
 
 .paragraph {
-  color: #666;
+  color: var(--base-font-color);
   font-size: var(--base-font-size);
   margin-bottom: 0.15rem;
   /* background-color: rgb(196, 255, 222); */
+}
+
+.miniParagraph {
+  color: var(--secondary-font-color);
+  font-size: var(--base-font-size);
+  margin-bottom: 0.15rem;
 }
 
 .personalInfo {
@@ -79,4 +92,10 @@
 .flexContainer {
   display: flex;
   justify-content: space-between;
+}
+
+.horizontalLayout {
+  display: flex; /* 使用Flexbox布局 */
+  justify-content: space-between; /* 子元素之间保持等距 */
+  align-items: center; /* 垂直居中对齐 */
 }

@@ -8,14 +8,14 @@ const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
   const { firstName, surname, userTel, userEmail, userLinkedln } = cvData;
 
   return (
-    <div className={nameSection}>
+    <main className={nameSection}>
       <KeyTile text={`${firstName} ${surname}`} />
       <div className={personalInfoDetails}>
         <Paragraph text={userTel} />
         <Paragraph text={userEmail} />
         <Paragraph text={userLinkedln} />
       </div>
-    </div>
+    </main>
   );
 };
 
