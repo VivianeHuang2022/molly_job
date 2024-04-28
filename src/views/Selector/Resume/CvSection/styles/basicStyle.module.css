@@ -1,10 +1,13 @@
 :root {
-  --base-font-size: 6.7px;
+  --base-font-size: 8px;
+  --base-font-color: #333;
 }
 
 .cvSection {
+  width: 90%;
   margin-bottom: 0.7rem;
   /* background-color: rgb(212, 254, 209); */
+  margin: 0.5rem;
 }
 
 .subSection {
@@ -13,15 +16,20 @@
   /* background-color: aqua; */
 }
 
-.cvSectionHeading {
-  color: #333;
-  font-size: calc(var(--base-font-size) * 1.5);
+.keyTile {
+  color: calc(var(--base-font-color));
+  font-size: calc(var(--base-font-size) * 1.7);
+  font-weight: bold;
+}
+.heading {
+  color: calc(var(--base-font-color));
+  font-size: calc(var(--base-font-size) * 1.2);
   font-weight: bold;
   /* background-color: rgb(244, 232, 255); */
 }
 
-.SubHeading {
-  color: #333;
+.subHeading {
+  color: calc(var(--base-font-color));
   font-size: calc(var(--base-font-size) * 1.2);
   /* background-color: aqua; */
 }

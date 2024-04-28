@@ -1,4 +1,4 @@
-import { Heading, Paragraph } from './cvComps/CvTypography';
+import { KeyTile, Paragraph } from './cvComps/CvTypography';
 
 const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
   // 解构styles对象
@@ -9,7 +9,7 @@ const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
 
   return (
     <div className={cvSection}>
-      <Heading text={`${firstName} ${surname}`} />
+      <KeyTile text={`${firstName} ${surname}`} />
       <div className={personalInfoDetails}>
         <Paragraph text={userTel} />
         <Paragraph text={userEmail} />

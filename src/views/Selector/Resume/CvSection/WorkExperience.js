@@ -1,4 +1,4 @@
-import { Paragraph, SubHeading } from './cvComps/CvTypography';
+import { Paragraph, SubHeading,Heading } from './cvComps/CvTypography';
 const WorkExperienceItem = ({
   experience,
   styles,
@@ -41,9 +41,7 @@ const WorkExperience = ({
   const workExperience = cvData;
   const { cvSection } = styles;
 
-  const Heading = ({ text }) => {
-    return <div className={styles.cvSectionHeading}>{text}</div>;
-  };
+
 
   return (
     <div className={cvSection}>
