@@ -53,11 +53,9 @@ const InputHandler = ({
   const getComponentType = (title) => {
     // 根据labelKey来决定每个 input 的类型
     switch (title) {
-      case 'workSummary':
+      case 'achievement':
       case 'workDetail':
-      case 'projectSummary':
       case 'projectDetail':
-      case 'researchSummary':
       case 'researchDetail':
         return 'TextArea'; // 直接返回 title 作为 type，因为它们是唯一的
       default:
