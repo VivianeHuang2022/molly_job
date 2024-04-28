@@ -30,7 +30,7 @@ const RecommendationFormLogic = () => {
           localStorage.getItem(`recommendation_localEdit${topicId}`)
         ) || {};
       const response = await getRecommendation(topicId); // 注意这里应该是真实的API调用
-
+      console.log(response)
       // Step 1: 检查后端响应是否有有效值
       if (response && response.timeStamp) {
         // Step 2: 如果后端响应中有有效值且更新了，比较时间戳

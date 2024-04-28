@@ -11,10 +11,13 @@ import {
 } from '../../../redux/slices/cvDataSlice';
 import { fetchCVData } from '../../../redux/actions/fetcDataActions';
 import { selectCurrentLanguage } from '../../../redux/slices/languageSlice';
+import { useNavigate } from 'react-router-dom';
+import { checkLogin } from "../../../utils/checkLogin";
 
 // 导出组件------------------------------------------------
 const CvPage = () => {
   // 使用 useSelector 钩子选择 Redux store 中的当前语言设置
+  const navigate = useNavigate();
   const currentLanguage = useSelector(selectCurrentLanguage);
   const singleCvData = useSelector(selectCvData);
   const currentSectionType = useSelector(selectCurrentSectionType);
@@ -22,6 +25,15 @@ const CvPage = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
+    const checkRes = checkLogin();
+    checkRes.then(result=>{
+    if(!result){
+      // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
+      navigate("/login")
+      // console.log(window.location)
+    }
+    })
+
     // 在组件挂载时调用异步 action creator，从后端获取数据
     dispatch(fetchCVData());
   }, [dispatch]);
