@@ -3,7 +3,6 @@ import {
   Paragraph,
   SubHeading,
   HorizontalLayout,
-  MiniParagraph,
   ParagraphList,
 } from './cvComps/CvTypography';
 
@@ -37,7 +36,7 @@ const ProjectExperience = ({ cvData, sectionName, styles }) => {
           <Paragraph text={`${startDate} - ${endDate}`} />
         </HorizontalLayout>
 
-        <MiniParagraph text={projectSummary} styles={styles} />
+        <Paragraph text={projectSummary} styles={styles} />
         <ParagraphList text={projectDetail} />
       </div>
     );

@@ -4,7 +4,6 @@ import {
   Heading,
   HorizontalLayout,
   ParagraphList,
-  MiniParagraph,
 } from './cvComps/CvTypography';
 const WorkExperienceItem = ({ experience, styles }) => {
   const {
@@ -28,11 +27,11 @@ const WorkExperienceItem = ({ experience, styles }) => {
       </HorizontalLayout>
 
       <HorizontalLayout>
-        <Paragraph text={`${groupName} ${role}`} />{' '}
+        <Paragraph text={`${groupName} ${role}`} />
         <Paragraph text={`${startDate} - ${endDate}`} />
       </HorizontalLayout>
 
-      <MiniParagraph text={workSummary} />
+      <Paragraph text={workSummary} />
       <ParagraphList text={workDetail} />
     </div>
   );

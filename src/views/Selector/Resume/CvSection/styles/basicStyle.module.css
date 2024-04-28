@@ -3,7 +3,10 @@
 
   --base-heading-color: #000000;
   --base-font-color: #000000;
-  --secondary-font-color: #333;
+  --secondary-font-color: #000000;
+}
+body {
+  font-family: 'Roboto', sans-serif;
 }
 .cvContainer {
   width: 90%;
@@ -67,10 +70,11 @@
   /* background-color: rgb(196, 255, 222); */
 }
 
-.miniParagraph {
+.Paragraph {
   color: var(--secondary-font-color);
   font-size: var(--base-font-size);
   margin-bottom: 0.15rem;
+  font-weight: 100;
 }
 
 .personalInfo {
