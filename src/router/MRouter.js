@@ -26,7 +26,7 @@ import PayFinishedPage from '../views/payment/Finished';
 import GenerateCountHistory from '../views/payment/History';
 import GenerateCoverletter from '../views/Selector/CoverLetter/GenerateCoverLetterPage';
 import GenerateRecommendation from '../views/Selector/Recommendation/GenerateRecommendation';
-import Question_MOCK from '../views/Selector/CoverLetter/Edit';
+import QuestionMock from '../views/Selector/CoverLetter/Edit';
 import EditRecommendationForm from '../views/Selector/Recommendation/Edit';
 // import { hasLocalData } from '../utils/checkCache';
 
@@ -175,7 +175,7 @@ export default function MRouter() {
             },
             {
               path: 'edit',
-              element: <Question_MOCK/>,//20240426 这个实际上不会生效,在CoverletterLayout中为所有coverletter path下带有edit的路径导向了/Layout/generalq(这样处理是因为我不知道如何把原来的generalq编辑内容平移过来)
+              element: <QuestionMock/>,//20240426 这个实际上不会生效,在CoverletterLayout中为所有coverletter path下带有edit的路径导向了/Layout/generalq(这样处理是因为我不知道如何把原来的generalq编辑内容平移过来)
             },
             {
               path: 'generate',
