@@ -49,6 +49,16 @@
   margin-bottom: 5px;
 }
 
+/* 让最后一个项目占据整行 */
+.inputGridContainer > :last-child {
+  grid-column: 1 / -1;
+}
+
+/* 让倒数第二个项目占据整行 */
+.inputGridContainer > :nth-last-child(2) {
+  grid-column: 1 / -1;
+}
+
 .label {
   margin: 0 0 10px 0;
   font-weight: normal;
