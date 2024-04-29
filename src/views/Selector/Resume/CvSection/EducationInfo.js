@@ -3,7 +3,7 @@ import {
   Paragraph,
   SubHeading,
   HorizontalLayout,
-  ParagraphList,
+  SubHeadingArray,
 } from './cvComps/CvTypography';
 
 const EducationInfo = ({ cvData, sectionName, styles }) => {
@@ -28,17 +28,25 @@ const EducationInfo = ({ cvData, sectionName, styles }) => {
     return (
       <div className={styles.subSection}>
         <HorizontalLayout>
-          <SubHeading text={`${currentUni} ${state}`} />
-          <Paragraph text={`${city} ${currentCountry}`} />
-        </HorizontalLayout>
-
-        <HorizontalLayout>
-          <Paragraph text={`${currentDegree} ${currentMajor} ${currentGPA}`} />
+          <SubHeadingArray
+            text={[currentDegree, currentUni, city, currentCountry]}
+          />
           <Paragraph text={`${startDate} - ${graduationDate}`} />
         </HorizontalLayout>
 
-        <Paragraph text={currentCourses} />
-        <ParagraphList text={achievement} />
+        <div className={styles.lockIn}>
+          <HorizontalLayout>
+            <Paragraph text={` ${currentMajor}`} />
+            <Paragraph text={` ${state}`} />
+          </HorizontalLayout>
+
+          <HorizontalLayout>
+            <Paragraph text={achievement} />
+            <Paragraph text={` ${currentGPA}`} />
+          </HorizontalLayout>
+
+          <Paragraph text={currentCourses} />
+        </div>
       </div>
     );
   };
