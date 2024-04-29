@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import EditArrayInfoPage from './ActComponent/EditArrayInfoPage';
 import SectionName from './ActComponent/SectionName';
 import { AddMore } from '../../../../components/Button';
@@ -17,9 +17,22 @@ const SectionPage = ({ cvData, labels, styles, sectionKey }) => {
   const handleAddNewExperience = () => {
     dispatch(addNewExperience(sectionKey));
   };
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
   return (
-    <div className={styles.sectionGroup}>
-      <SectionName sectionName={sectionName} sectionKey={sectionKey} />
+    <div
+      className={styles.sectionGroup}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <SectionName
+        sectionName={sectionName}
+        sectionKey={sectionKey}
+        showButtons={isHovered} // 传递鼠标悬停状态给子组件
+      />
 
       {arrayData.map((item) => {
         return (

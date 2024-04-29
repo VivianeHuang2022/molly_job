@@ -18,6 +18,10 @@
   padding: 10px 20px;
 }
 
+.sectionGroup:hover {
+  border: 1px solid #d6d6d6;
+}
+
 /* section标题: 整个一行的样式 */
 .sectionNameGrop {
   width: 100%;

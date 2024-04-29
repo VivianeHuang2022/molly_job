@@ -6,7 +6,7 @@ import {
 import styles from '../ActSection.module.css';
 import { EditButton, DeleteButton } from '../../../../../components/Button';
 
-const SectionName = ({ sectionKey, sectionName }) => {
+const SectionName = ({ sectionKey, sectionName, showButtons }) => {
   const dispatch = useDispatch();
 
   const handleSectionNameClick = () => {
@@ -32,9 +32,11 @@ const SectionName = ({ sectionKey, sectionName }) => {
         onClick={handleSectionNameClick}
       >
         <h1>{sectionName}</h1>
-        <EditButton />
+
+        {showButtons && <EditButton />}
       </div>
-      <DeleteButton onClick={handleDeleteSection} />
+
+      {showButtons && <DeleteButton onClick={handleDeleteSection} />}
     </div>
   );
 };
