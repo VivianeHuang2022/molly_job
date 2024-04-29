@@ -26,13 +26,13 @@ const CvPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const checkRes = checkLogin();
-    // checkRes.then(result=>{
-    // if(!result){
-    //   // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
-    //   navigate("/login")
-    //   // console.log(window.location)
-    // }
-    // })
+    checkRes.then((result) => {
+      if (!result) {
+        // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
+        navigate('/login');
+        // console.log(window.location)
+      }
+    });
 
     // 在组件挂载时调用异步 action creator，从后端获取数据
     dispatch(fetchCVData());
