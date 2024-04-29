@@ -103,3 +103,8 @@ body {
   justify-content: space-between; /* 子元素之间保持等距 */
   align-items: center; /* 垂直居中对齐 */
 }
+
+.lockIn {
+  /* background-color: aqua; */
+  text-indent: 1em; /* 文本首行缩进2个字符间距 */
+}

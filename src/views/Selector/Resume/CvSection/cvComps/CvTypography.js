@@ -6,7 +6,11 @@ export const KeyTile = ({ text }) => {
   return <div className={styles.keyTile}>{text}</div>;
 };
 
-//标题
+const formatItems = (items) => {
+  return items.filter((item) => item).join(', ');
+};
+
+/*-----------标题------------*/
 export const Heading = ({ text }) => {
   return <div className={styles.heading}>{text}</div>;
 };
@@ -15,13 +19,22 @@ export const SubHeading = ({ text }) => {
   return <div className={styles.subHeading}>{text}</div>;
 };
 
-// 段落处理
+export const SubHeadingArray = ({ text }) => {
+  return <div className={styles.subHeading}>{formatItems(text)}</div>;
+};
+
+/*-----------段落------------*/
+
 export const HorizontalLayout = ({ children }) => {
   return <div className={styles.horizontalLayout}>{children}</div>;
 };
 
 export const Paragraph = ({ text }) => {
   return <div className={styles.paragraph}>{text}</div>;
+};
+
+export const ParagraphArray = ({ text }) => {
+  return <div className={styles.paragraph}>{formatItems(text)}</div>;
 };
 
 export const ParagraphList = ({ text }) => {

@@ -8,12 +8,17 @@ const EditSectionPage = ({
   data,
   styles,
   sectionKey,
+  showButtons, // 新增属性，控制按钮的显示
 }) => {
   const allLabelKeys = Object.keys(otherLabels);
 
   return (
     <div>
-      <SectionName sectionName={sectionName} sectionKey={sectionKey} />
+      <SectionName
+        sectionName={sectionName}
+        sectionKey={sectionKey}
+        showButtons={showButtons}
+      />
       <div className={styles.sectionGroupContent}>
         <InputHandler
           labels={labels}

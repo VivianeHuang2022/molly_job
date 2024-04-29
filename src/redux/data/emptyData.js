@@ -26,7 +26,7 @@ export const cvSection = {
   },
   educationInfo: {
     sectionName: 'Education',
-    //20240423 lily 不同经历信息一模一样所以用相同变量 是否当前经历只做id区别 
+    //20240423 lily 不同经历信息一模一样所以用相同变量 是否当前经历只做id区别
     data: [
       {
         id: 1,
@@ -35,10 +35,10 @@ export const cvSection = {
         state: '',
         currentCountry: '',
         currentDegree: '',
-        currentMajor: '',
+        currentMajor: 'Major:Computer ',
         startDate: '',
         graduationDate: '',
-        currentGPA: '',
+        currentGPA: 'GPA:3.8',
         achievement: '',
         currentCourses: '',
       },
@@ -133,7 +133,7 @@ export const cvSection = {
   // resume其他部分的信息...
 };
 
-export const currentSectionType = ['personalInfo'];
+export const currentSectionType = ['personalInfo', 'educationInfo'];
 
 export const allSectionType = [
   'personalInfo',
@@ -144,6 +144,3 @@ export const allSectionType = [
   'publicationsPresentations',
   'skillsActivitiesInterests',
 ];
-
-
-
