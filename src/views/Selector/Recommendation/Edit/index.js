@@ -2,10 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { editState } from '../../../../utils/checkCache';
 import RecommendationForm from './RecommendationForm';
 import { checkLogin } from '../../../../utils/checkLogin';
-import {
-  createRecommendation,
-  updateRecommendation,
-} from '../../../../utils/api';
+import { updateRecommendation } from '../../../../utils/api';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
@@ -14,51 +11,67 @@ import {
 } from '../../../../utils/api';
 import { LoadingIndicator } from '../../../../components/Loading';
 import { initialValues } from './FormData';
-import { saveLocalEdit } from '../../../../utils/saveLocalData';
 
 //整个推荐信表单
 const RecommendationFormLogic = () => {
   const topicId = localStorage.getItem('topicId');
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState(initialValues);
+  const [apiMessage, setApiMessage] = useState('');
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const fetchAndCompareData = async () => {
-    console.log(formData);
     try {
       const localSaved = JSON.parse(
         localStorage.getItem(`recommendation_localEdit${topicId}`)
       );
-      const response = await getRecommendation(topicId); // 注意这里应该是真实的API调用
-      // Step 1: 检查后端响应是否有有效值
-      if (response && response.timeStamp) {
-        console.log('存在后端有效值');
-        // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
-        if (localSaved) {
-          console.log('有recommend缓存');
+      const response = await getRecommendation(topicId);
 
-          if (response.timeStamp > localSaved?.timeStamp) {
-            //后台数据更新,用后台数据
-            setFormData(response.data.msg);
-          } else {
-            //后台数据没更新，用本地数据
-            if (localSaved?.data) {
-              setFormData(localSaved.data);
-            }
-          }
-        } else {
-          //存在有效后端数据,没有本地缓存,直接使用后端数据
-          setFormData(response.data.msg);
-        }
-      } else {
-        // 后端响应中没有有效值，无法获取更新的数据
+      if (!response) {
+        //未获成功链接后台提示:未获取到最新后台数据,请刷新重试
+        setApiMessage('not get new data from backend, please try it later');
+        // 没有获取到后端数据，无法获取更新的数据
         if (localSaved) {
-          console.log('后端没有有效值,但有缓存');
+          console.log('没有获取到后端数据,但有缓存');
           console.log(localSaved);
           setFormData(localSaved.data);
         } else {
-          console.log('后端没有有效值,也没有缓存', formData);
+          console.log('没有获取到后端数据,也没有缓存', formData);
+        }
+      } else {
+        //成功获取到后端数据则消除apiMessage提示
+        setApiMessage('');
+        // Step 1: 检查后端响应是否有有效值
+        if (response && response.timeStamp) {
+          console.log('存在后端有效值');
+          // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
+          if (localSaved) {
+            console.log('有recommend缓存');
+
+            if (response.timeStamp > localSaved?.timeStamp) {
+              //后台数据更新,用后台数据
+              setFormData(response.data.msg);
+            } else {
+              //后台数据没更新，用本地数据
+              if (localSaved?.data) {
+                setFormData(localSaved.data);
+              }
+            }
+          } else {
+            //存在有效后端数据,没有本地缓存,直接使用后端数据
+            setFormData(response.data.msg);
+          }
+        } else {
+          // 后端响应中没有有效值，无法获取更新的数据
+          if (localSaved) {
+            console.log('后端没有有效值,但有缓存');
+            console.log(localSaved);
+            setFormData(localSaved.data);
+          } else {
+            console.log('后端没有有效值,也没有缓存', formData);
+          }
         }
       }
     } catch (error) {
@@ -91,38 +104,19 @@ const RecommendationFormLogic = () => {
     fetchAndCompareData();
   }, [dispatch]); // 依赖 dispatch 函数
 
-  const handleToNext = async (values) => {
-    saveData(values);
-    //mock data
-    // const response = { status: 200 };
-
-    //调用生成pdf api
+  //在编辑页面只向后端存数据,不会接生成文档的api,在生成页消耗次数后才会createRecommendation
+  const sendDatatoBack = async (values) => {
     try {
-      const response = await createRecommendation(values);
-      console.log(response);
-      if (response.status === 200) {
-        editState('isEditrecommendation', false);
-        navigate('/layout/Recommendation/generate');
-      } else if (response.status === 401) {
-        navigate('/login');
-      } else {
-        //错误提示
-      }
+      const response = await updateRecommendation(values);
+      return response;
     } catch (error) {
       console.error(error);
     }
   };
 
-  const saveData = async (values) => {
-    console.log(values);
-
-    // 存储表单的值到缓存
-    saveLocalEdit('recommendation', values);
-    try {
-      const response = await updateRecommendation(values);
-    } catch (error) {
-      console.error(error);
-    }
+  const goToGenerate = (values) => {
+    editState('isEditrecommendation', false);
+    navigate('/layout/Recommendation/generate');
   };
 
   return (
@@ -131,10 +125,11 @@ const RecommendationFormLogic = () => {
         <LoadingIndicator isLoading={true} />
       ) : (
         <RecommendationForm
-          onSubmit={handleToNext}
           initialValues={formData}
-          saveData={saveData}
-          handleToNext={handleToNext}
+          sendDatatoBack={sendDatatoBack}
+          goToGenerate={goToGenerate}
+          topicId={topicId}
+          apiMessage={apiMessage}
         />
       )}
     </div>

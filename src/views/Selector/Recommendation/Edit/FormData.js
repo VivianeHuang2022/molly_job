@@ -4,9 +4,7 @@ import * as Yup from 'yup';
 const validationSchemaObj = {
   firstName: Yup.string().required('First Name is required'),
   surname: Yup.string().required('Sur Name is required'),
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('First Name is required'),
+  recommenderEmail: Yup.string().required('email is required'),
 };
 
 export const validationSchema = Yup.object().shape(validationSchemaObj);
