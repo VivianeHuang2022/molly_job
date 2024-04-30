@@ -180,7 +180,8 @@ const RecommendationFormUI = ({
                 />
               </div>
 
-              <div className={styles.buttonContainer}>
+              {/*  由于antd才用了已被弃用的findDOMNode导致会报错提示,要么保留报错等待antd团队修复bug;要么用普通的button 改样式也可以解决*/}
+              {/* <div className={styles.buttonContainer}>
                 <button onClick={() => saveData(values, errors)} type="button">
                   save data
                 </button>
@@ -191,7 +192,7 @@ const RecommendationFormUI = ({
                 >
                   {buttonLabel}
                 </button>
-              </div>
+              </div> */}
             </Form>
           );
         }}
