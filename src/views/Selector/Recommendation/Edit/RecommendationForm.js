@@ -4,7 +4,7 @@ import styles from './Recommendation.module.css';
 import { getLabels } from '../../../local';
 import { FormSingle, FormGroup, StarInstructions } from './FormComps';
 import { PrimaryButton, DefaultButton } from '../../../../components/Button';
-import { Button } from 'antd';
+import { NoticeParagraphComp } from '../../../../components/Typography';
 
 import { getFormFields, validationSchema } from './FormData';
 import { useSelector } from 'react-redux';
@@ -14,8 +14,8 @@ import { saveLocalEdit } from '../../../../utils/saveLocalData';
 const RecommendationFormUI = ({
   goToGenerate,
   initialValues,
-  handleToNext,
   sendDatatoBack,
+  topicId,
 }) => {
   const [message, setMessage] = useState('');
   const texts = getLabels(useSelector(selectCurrentLanguage));
@@ -76,10 +76,15 @@ const RecommendationFormUI = ({
               // 存在错误，不进行保存操作
 
               console.log(errors);
+              setMessage('Please fill in all required fields.');
               return false;
             } else {
-              if (Object.keys(touched).length === 0) {
-                console.log('no change');
+              const localSaved = JSON.parse(
+                localStorage.getItem(`recommendation_localEdit${topicId}`)
+              );
+              if (!localSaved) {
+                console.log('no fill');
+                setMessage('Please fill in all required fields.');
                 return false;
               } else {
                 const isSaved = await sendDatatoBack(values);
@@ -87,6 +92,7 @@ const RecommendationFormUI = ({
                   return true;
                 } else {
                   console.log('sendDatatoBack failed');
+                  setMessage('sendDatatoBack failed');
                   return false;
                 }
               }
@@ -151,6 +157,12 @@ const RecommendationFormUI = ({
                 registerRef={registerRef}
                 handleKeyDown={handleKeyDown}
               />
+
+              <div className={styles.buttonContainer}>
+                {message && (
+                  <NoticeParagraphComp>{message}</NoticeParagraphComp>
+                )}
+              </div>
 
               <div className={styles.buttonContainer}>
                 <DefaultButton

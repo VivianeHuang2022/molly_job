@@ -111,6 +111,7 @@ const RecommendationFormLogic = () => {
           initialValues={formData}
           sendDatatoBack={sendDatatoBack}
           goToGenerate={goToGenerate}
+          topicId={topicId}
         />
       )}
     </div>
