@@ -71,6 +71,7 @@ export const SingleField = ({
 
   // 定义 onKeyDown 事件处理函数
   const handleKeyDownSingle = (event) => {
+    saveLocalEdit('recommendation', values);
     handleKeyDown(event, inputRef);
   };
 
@@ -82,13 +83,7 @@ export const SingleField = ({
 
   const CustomField =
     component === 'textarea' ? (
-      <TextArea
-        ref={inputRef}
-        onBlur={handleBlur}
-        onKeyDown={handleKeyDownSingle}
-        {...field}
-        {...props}
-      />
+      <TextArea ref={inputRef} onBlur={handleBlur} {...field} {...props} />
     ) : (
       <Input
         ref={inputRef}

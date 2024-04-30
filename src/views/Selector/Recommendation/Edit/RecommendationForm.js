@@ -9,7 +9,12 @@ import { getFormFields, validationSchema } from './FormData';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 
-const RecommendationFormUI = ({ onSubmit, initialValues, saveData }) => {
+const RecommendationFormUI = ({
+  onSubmit,
+  initialValues,
+  saveData,
+  handleToNext,
+}) => {
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const formFields = getFormFields(texts);
   const { sectionTitle, buttonLabel, title } = texts.recommendation;
@@ -61,58 +66,67 @@ const RecommendationFormUI = ({ onSubmit, initialValues, saveData }) => {
         onSubmit={onSubmit}
         enableReinitialize={true}
       >
-        {(props) => (
-          <Form className={styles.form}>
-            {/* 确认学生个人信息 */}
-            <h1>{title.personalInfo}:</h1>
-            <FormGroup
-              formGroup={userInfo}
-              title={userInfoTitle}
-              registerRef={registerRef}
-              handleKeyDown={handleKeyDown}
-            />
-            <FormGroup
-              formGroup={dreamSchoolInfo}
-              title={dreamSchoolInfoTitle}
-              registerRef={registerRef}
-              handleKeyDown={handleKeyDown}
-            />
-            <FormGroup
-              formGroup={currentSchoolInfo}
-              title={currentSchoolInfoTitle}
-              registerRef={registerRef}
-              handleKeyDown={handleKeyDown}
-            />
+        {({ values }) => {
+          return (
+            <Form className={styles.form}>
+              {/* 确认学生个人信息 */}
+              <h1>{title.personalInfo}:</h1>
+              <FormGroup
+                formGroup={userInfo}
+                title={userInfoTitle}
+                registerRef={registerRef}
+                handleKeyDown={handleKeyDown}
+              />
+              <FormGroup
+                formGroup={dreamSchoolInfo}
+                title={dreamSchoolInfoTitle}
+                registerRef={registerRef}
+                handleKeyDown={handleKeyDown}
+              />
+              <FormGroup
+                formGroup={currentSchoolInfo}
+                title={currentSchoolInfoTitle}
+                registerRef={registerRef}
+                handleKeyDown={handleKeyDown}
+              />
 
-            {/* 推荐人相关信息 */}
-            <h1>{title.refereeInfo}:</h1>
-            <FormGroup
-              formGroup={recommender}
-              title={recommenderInformation}
-              registerRef={registerRef}
-              handleKeyDown={handleKeyDown}
-            />
-            <FormSingle
-              form={intro}
-              title={backgroundOfRecommender}
-              registerRef={registerRef}
-              handleKeyDown={handleKeyDown}
-            />
-            <FormSingle
-              form={activity}
-              title={activityInvolved}
-              instruction={StarInstructions}
-              sectionTitle={sectionTitle}
-              registerRef={registerRef}
-              handleKeyDown={handleKeyDown}
-            />
+              {/* 推荐人相关信息 */}
+              <h1>{title.refereeInfo}:</h1>
+              <FormGroup
+                formGroup={recommender}
+                title={recommenderInformation}
+                registerRef={registerRef}
+                handleKeyDown={handleKeyDown}
+              />
+              <FormSingle
+                form={intro}
+                title={backgroundOfRecommender}
+                registerRef={registerRef}
+                handleKeyDown={handleKeyDown}
+              />
+              <FormSingle
+                form={activity}
+                title={activityInvolved}
+                instruction={StarInstructions}
+                sectionTitle={sectionTitle}
+                registerRef={registerRef}
+                handleKeyDown={handleKeyDown}
+              />
 
-            <div className={styles.buttonContainer}>
-              <DefaultButton label={'save data'} onClick={saveData} />
-              <PrimaryButton label={buttonLabel} htmlType="submit" />
-            </div>
-          </Form>
-        )}
+              <div className={styles.buttonContainer}>
+                <DefaultButton
+                  label={'save data'}
+                  onClick={() => saveData(values)}
+                />
+                <PrimaryButton
+                  label={buttonLabel}
+                  onClick={() => handleToNext(values)}
+                  htmlType="submit"
+                />
+              </div>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );
