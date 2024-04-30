@@ -65,8 +65,8 @@ const RecommendationFormUI = ({
     <div className={styles.container}>
       <Formik initialValues={initialValues} validationSchema={validationSchema}>
         {({ values, errors, touched, isSubmitting }) => {
-          const saveData = (values, errors) => {
-            // console.log(values);
+          const saveData = async (values, errors) => {
+            console.log(values);
 
             // 存储表单的值到缓存
             saveLocalEdit('recommendation', values);
@@ -76,20 +76,35 @@ const RecommendationFormUI = ({
               // 存在错误，不进行保存操作
 
               console.log(errors);
-              return;
+              return false;
             } else {
               if (Object.keys(touched).length === 0) {
                 console.log('no change');
-                return;
+                return false;
               } else {
-                sendDatatoBack(values);
+                const isSaved = await sendDatatoBack(values);
+                if (isSaved) {
+                  return true;
+                } else {
+                  console.log('sendDatatoBack failed');
+                  return false;
+                }
               }
             }
           };
-          const handleSubmit = (values, errors) => {
+          const handleSubmit = async (values, errors) => {
             console.log('yes');
-            saveData(values, errors);
-            goToGenerate(values);
+            try {
+              // 等待saveData完成
+              const isSaved = await saveData(values, errors);
+              console.log(isSaved);
+              if (isSaved) {
+                goToGenerate(values);
+              }
+            } catch (error) {
+              // 处理可能发生的错误
+              console.error('保存数据时出错:', error);
+            }
           };
           return (
             <Form className={styles.form}>
@@ -140,13 +155,13 @@ const RecommendationFormUI = ({
               <div className={styles.buttonContainer}>
                 <DefaultButton
                   label={'save data'}
-                  onClick={() => saveData(values)}
+                  onClick={() => saveData(values, errors)}
                 />
 
                 <PrimaryButton
                   label={buttonLabel}
                   onClick={() => handleSubmit(values, errors)}
-                  htmlType="submit"
+                  htmlType="button"
                 />
               </div>
 
@@ -156,7 +171,7 @@ const RecommendationFormUI = ({
                 </button>
 
                 <button
-                  type="submit"
+                  type="button"
                   onClick={() => handleSubmit(values, errors)}
                 >
                   {buttonLabel}

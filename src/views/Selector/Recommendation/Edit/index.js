@@ -2,10 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { editState } from '../../../../utils/checkCache';
 import RecommendationForm from './RecommendationForm';
 import { checkLogin } from '../../../../utils/checkLogin';
-import {
-  createRecommendation,
-  updateRecommendation,
-} from '../../../../utils/api';
+import { updateRecommendation } from '../../../../utils/api';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
@@ -14,7 +11,6 @@ import {
 } from '../../../../utils/api';
 import { LoadingIndicator } from '../../../../components/Loading';
 import { initialValues } from './FormData';
-import { saveLocalEdit } from '../../../../utils/saveLocalData';
 
 //整个推荐信表单
 const RecommendationFormLogic = () => {
@@ -91,33 +87,19 @@ const RecommendationFormLogic = () => {
     fetchAndCompareData();
   }, [dispatch]); // 依赖 dispatch 函数
 
+  //在编辑页面只向后端存数据,不会接生成文档的api,在生成页消耗次数后才会createRecommendation
   const sendDatatoBack = async (values) => {
     try {
       const response = await updateRecommendation(values);
+      return response;
     } catch (error) {
       console.error(error);
     }
   };
 
-  const goToGenerate = async (values) => {
-    //mock data
-    // const response = { status: 200 };
-
-    //调用生成pdf api
-    try {
-      const response = await createRecommendation(values);
-      console.log(response);
-      if (response.status === 200) {
-        editState('isEditrecommendation', false);
-        navigate('/layout/Recommendation/generate');
-      } else if (response.status === 401) {
-        navigate('/login');
-      } else {
-        //错误提示
-      }
-    } catch (error) {
-      console.error(error);
-    }
+  const goToGenerate = (values) => {
+    editState('isEditrecommendation', false);
+    navigate('/layout/Recommendation/generate');
   };
 
   return (
