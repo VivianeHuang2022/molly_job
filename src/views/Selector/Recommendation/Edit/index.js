@@ -91,8 +91,15 @@ const RecommendationFormLogic = () => {
     fetchAndCompareData();
   }, [dispatch]); // 依赖 dispatch 函数
 
-  const handleToNext = async (values) => {
-    saveData(values);
+  const sendDatatoBack = async (values) => {
+    try {
+      const response = await updateRecommendation(values);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const goToGenerate = async (values) => {
     //mock data
     // const response = { status: 200 };
 
@@ -113,28 +120,15 @@ const RecommendationFormLogic = () => {
     }
   };
 
-  const saveData = async (values) => {
-    console.log(values);
-
-    // 存储表单的值到缓存
-    saveLocalEdit('recommendation', values);
-    try {
-      const response = await updateRecommendation(values);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <div>
       {isLoading ? (
         <LoadingIndicator isLoading={true} />
       ) : (
         <RecommendationForm
-          onSubmit={handleToNext}
           initialValues={formData}
-          saveData={saveData}
-          handleToNext={handleToNext}
+          sendDatatoBack={sendDatatoBack}
+          goToGenerate={goToGenerate}
         />
       )}
     </div>

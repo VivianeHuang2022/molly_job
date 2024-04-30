@@ -4,17 +4,20 @@ import styles from './Recommendation.module.css';
 import { getLabels } from '../../../local';
 import { FormSingle, FormGroup, StarInstructions } from './FormComps';
 import { PrimaryButton, DefaultButton } from '../../../../components/Button';
+import { Button } from 'antd';
 
 import { getFormFields, validationSchema } from './FormData';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
+import { saveLocalEdit } from '../../../../utils/saveLocalData';
 
 const RecommendationFormUI = ({
-  onSubmit,
+  goToGenerate,
   initialValues,
-  saveData,
   handleToNext,
+  sendDatatoBack,
 }) => {
+  const [message, setMessage] = useState('');
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const formFields = getFormFields(texts);
   const { sectionTitle, buttonLabel, title } = texts.recommendation;
@@ -60,13 +63,34 @@ const RecommendationFormUI = ({
 
   return (
     <div className={styles.container}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-        enableReinitialize={true}
-      >
-        {({ values }) => {
+      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+        {({ values, errors, touched, isSubmitting }) => {
+          const saveData = (values, errors) => {
+            // console.log(values);
+
+            // 存储表单的值到缓存
+            saveLocalEdit('recommendation', values);
+
+            console.log(Object.keys(errors).length);
+            if (Object.keys(errors).length !== 0) {
+              // 存在错误，不进行保存操作
+
+              console.log(errors);
+              return;
+            } else {
+              if (Object.keys(touched).length === 0) {
+                console.log('no change');
+                return;
+              } else {
+                sendDatatoBack(values);
+              }
+            }
+          };
+          const handleSubmit = (values, errors) => {
+            console.log('yes');
+            saveData(values, errors);
+            goToGenerate(values);
+          };
           return (
             <Form className={styles.form}>
               {/* 确认学生个人信息 */}
@@ -118,11 +142,25 @@ const RecommendationFormUI = ({
                   label={'save data'}
                   onClick={() => saveData(values)}
                 />
+
                 <PrimaryButton
                   label={buttonLabel}
-                  onClick={() => handleToNext(values)}
+                  onClick={() => handleSubmit(values, errors)}
                   htmlType="submit"
                 />
+              </div>
+
+              <div className={styles.buttonContainer}>
+                <button onClick={() => saveData(values, errors)} type="button">
+                  save data
+                </button>
+
+                <button
+                  type="submit"
+                  onClick={() => handleSubmit(values, errors)}
+                >
+                  {buttonLabel}
+                </button>
               </div>
             </Form>
           );
