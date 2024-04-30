@@ -16,6 +16,7 @@ const RecommendationFormUI = ({
   initialValues,
   sendDatatoBack,
   topicId,
+  apiMessage,
 }) => {
   const [message, setMessage] = useState('');
   const texts = getLabels(useSelector(selectCurrentLanguage));
@@ -63,6 +64,9 @@ const RecommendationFormUI = ({
 
   return (
     <div className={styles.container}>
+      <div className={styles.apiMessage}>
+        {apiMessage && <NoticeParagraphComp>{apiMessage}</NoticeParagraphComp>}
+      </div>
       <Formik initialValues={initialValues} validationSchema={validationSchema}>
         {({ values, errors, touched, isSubmitting }) => {
           const saveData = async (values, errors) => {
