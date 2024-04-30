@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 //表单规则
 const validationSchemaObj = {
   firstName: Yup.string().required('First Name is required'),
-  surname: Yup.string().required('First Name is required'),
+  surname: Yup.string().required('Sur Name is required'),
   email: Yup.string()
     .email('Invalid email address')
     .required('First Name is required'),

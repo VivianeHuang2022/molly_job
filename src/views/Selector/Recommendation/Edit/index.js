@@ -14,6 +14,7 @@ import {
 } from '../../../../utils/api';
 import { LoadingIndicator } from '../../../../components/Loading';
 import { initialValues } from './FormData';
+import { saveLocalEdit } from '../../../../utils/saveLocalData';
 
 //整个推荐信表单
 const RecommendationFormLogic = () => {
@@ -24,18 +25,19 @@ const RecommendationFormLogic = () => {
   const navigate = useNavigate();
 
   const fetchAndCompareData = async () => {
+    console.log(formData);
     try {
-      const localSaved =
-        JSON.parse(
-          localStorage.getItem(`recommendation_localEdit${topicId}`)
-        ) || {};
+      const localSaved = JSON.parse(
+        localStorage.getItem(`recommendation_localEdit${topicId}`)
+      );
       const response = await getRecommendation(topicId); // 注意这里应该是真实的API调用
-      console.log(response)
       // Step 1: 检查后端响应是否有有效值
       if (response && response.timeStamp) {
+        console.log('存在后端有效值');
         // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
-
         if (localSaved) {
+          console.log('有recommend缓存');
+
           if (response.timeStamp > localSaved?.timeStamp) {
             //后台数据更新,用后台数据
             setFormData(response.data.msg);
@@ -52,8 +54,11 @@ const RecommendationFormLogic = () => {
       } else {
         // 后端响应中没有有效值，无法获取更新的数据
         if (localSaved) {
-          // console.log('后端没有有效值,但有缓存');
+          console.log('后端没有有效值,但有缓存');
+          console.log(localSaved);
           setFormData(localSaved.data);
+        } else {
+          console.log('后端没有有效值,也没有缓存', formData);
         }
       }
     } catch (error) {
@@ -87,28 +92,37 @@ const RecommendationFormLogic = () => {
   }, [dispatch]); // 依赖 dispatch 函数
 
   const handleToNext = async (values) => {
-    console.log('Form submitted with values:', values);
+    saveData(values);
     //mock data
     // const response = { status: 200 };
 
     //调用生成pdf api
-    const response = await createRecommendation(values);
-    console.log(response);
-    if (response.status === 200) {
-      editState('isEditrecommendation', false);
-      navigate('/layout/Recommendation/generate');
-    } else if (response.status === 401) {
-      navigate('/login');
-    } else {
-      //错误提示
+    try {
+      const response = await createRecommendation(values);
+      console.log(response);
+      if (response.status === 200) {
+        editState('isEditrecommendation', false);
+        navigate('/layout/Recommendation/generate');
+      } else if (response.status === 401) {
+        navigate('/login');
+      } else {
+        //错误提示
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const saveData = async () => {
-    const localSaved = JSON.parse(
-      localStorage.getItem(`recommendation_localEdit${topicId}`)
-    );
-    const response = await updateRecommendation(localSaved);
+  const saveData = async (values) => {
+    console.log(values);
+
+    // 存储表单的值到缓存
+    saveLocalEdit('recommendation', values);
+    try {
+      const response = await updateRecommendation(values);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -120,6 +134,7 @@ const RecommendationFormLogic = () => {
           onSubmit={handleToNext}
           initialValues={formData}
           saveData={saveData}
+          handleToNext={handleToNext}
         />
       )}
     </div>
