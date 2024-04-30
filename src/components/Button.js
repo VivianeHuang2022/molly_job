@@ -11,7 +11,6 @@ export const PrimaryButton = ({ onClick, label, htmlType }) => {
       type="primary"
       className={styles.primaryButton}
       shape="round"
-      htmlType={htmlType}
     >
       {label}
     </Button>

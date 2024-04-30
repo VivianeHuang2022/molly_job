@@ -177,7 +177,6 @@ const RecommendationFormUI = ({
                 <PrimaryButton
                   label={buttonLabel}
                   onClick={() => handleSubmit(values, errors)}
-                  htmlType="button"
                 />
               </div>
 
