@@ -44,13 +44,13 @@ const RecommendationFormLogic = () => {
         //成功获取到后端数据则消除apiMessage提示
         setApiMessage('');
         // Step 1: 检查后端响应是否有有效值
-        if (response && response.timeStamp) {
+        if (response && response.data.timeStamp) {
           console.log('存在后端有效值');
           // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
           if (localSaved) {
             console.log('有recommend缓存');
 
-            if (response.timeStamp > localSaved?.timeStamp) {
+            if (response.data.timeStamp > localSaved?.timeStamp) {
               //后台数据更新,用后台数据
               setFormData(response.data.msg);
             } else {

@@ -70,8 +70,6 @@ const RecommendationFormUI = ({
       <Formik initialValues={initialValues} validationSchema={validationSchema}>
         {({ values, errors, touched, isSubmitting }) => {
           const saveData = async (values, errors) => {
-            console.log(values);
-
             // 存储表单的值到缓存
             saveLocalEdit('recommendation', values);
 

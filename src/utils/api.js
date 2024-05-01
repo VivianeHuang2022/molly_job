@@ -581,7 +581,8 @@ export const updateRecommendation = async (
   dataGroup,
   topicId = initTopicId
 ) => {
-  const postUrl = `${BASE_URL}/Recommendation/updateRecommendation?topicId=${topicId}`;
+  console.log(dataGroup)
+  const postUrl = `${BASE_URL}/Recommendation/PostRecommendationDataGroup?topicId=${topicId}`;
   try {
     const response = await axios({
       method: 'post',
@@ -638,12 +639,11 @@ export const createResume = async (dataGroup, topicId = initTopicId) => {
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const getCoverletter = async (topicId = initTopicId) => {
-  const postUrl = `${BASE_URL}/getCoverletter/topicId=${topicId}`;
+  const postUrl = `${BASE_URL}/CoverLetter/GetStdCoverLetterDataGroup`;
   try {
     const response = await axios({
       method: 'get',
       url: postUrl,
-      responseType: 'blob', // Important
       headers: {
         // 'Content-Type': 'multipart/form-data',
         accept: '*/*',
