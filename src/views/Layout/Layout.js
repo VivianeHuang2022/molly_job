@@ -23,6 +23,9 @@ export const CoverletterLayout = () => {
       // 导航到 '/generalq'，注意这是相对于根路径的绝对路径
       navigate('/Layout/generalq', { replace: true });
     }
+    else{
+      navigate('/layout/coverletter/generate')
+    }
   }, [navigate, location]);
   return (
     <CoverLetter>

@@ -28,7 +28,6 @@ const RecommendationFormLogic = () => {
         localStorage.getItem(`recommendation_localEdit${topicId}`)
       );
       const response = await getRecommendation(topicId);
-
       if (!response) {
         //未获成功链接后台提示:未获取到最新后台数据,请刷新重试
         setApiMessage('not get new data from backend, please try it later');
@@ -44,13 +43,13 @@ const RecommendationFormLogic = () => {
         //成功获取到后端数据则消除apiMessage提示
         setApiMessage('');
         // Step 1: 检查后端响应是否有有效值
-        if (response && response.data.timeStamp) {
+        if (response && response.data.msg.timeStamp) {
           console.log('存在后端有效值');
           // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
           if (localSaved) {
             console.log('有recommend缓存');
 
-            if (response.data.timeStamp > localSaved?.timeStamp) {
+            if (response.data.msg.timeStamp > localSaved?.timeStamp) {
               //后台数据更新,用后台数据
               setFormData(response.data.msg);
             } else {
@@ -107,6 +106,7 @@ const RecommendationFormLogic = () => {
   //在编辑页面只向后端存数据,不会接生成文档的api,在生成页消耗次数后才会createRecommendation
   const sendDatatoBack = async (values) => {
     try {
+      values.timeStamp = new Date().getTime();
       const response = await updateRecommendation(values);
       return response;
     } catch (error) {

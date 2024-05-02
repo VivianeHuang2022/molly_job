@@ -50,10 +50,10 @@ export const dataSlice = createSlice({
     stdDataQP3: getInitialStdData(3),
     stdDataQP4: getInitialStdData(4),
     stdDataQP5: getInitialStdData(5),
-    stdDataQP6: getInitialStdData(6),
-    stdDataQP7: getInitialStdData(7),
-    stdDataQP8: getInitialStdData(8),
-    stdDataQP9: getInitialStdData(9),
+    // stdDataQP6: getInitialStdData(6),
+    // stdDataQP7: getInitialStdData(7),
+    // stdDataQP8: getInitialStdData(8),
+    // stdDataQP9: getInitialStdData(9),
   },
   reducers: {
     updateJobData(state, action) {
@@ -115,22 +115,106 @@ export const dataSlice = createSlice({
         default:
           break;
       }
-    },
-    extraReducers: (builder) => {
-      builder
-        .addCase(fetchCoverletterData.pending, (state) => {
-          state.loading = true;
-        })
-        .addCase(fetchCoverletterData.fulfilled, (state, action) => {
-          state.loading = false;
-          //这里要匹配Coverletter的数据格式
-          // state = action.payload;
-        })
-        .addCase(fetchCoverletterData.rejected, (state, action) => {
-          state.loading = false;
-          state.error = action.error.message;
-        });
-    },
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCoverletterData.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchCoverletterData.fulfilled, (state, action) => {
+        state.loading = false;
+        const responseData = action.payload
+        const {timeStamp} = responseData;
+        const storedStdData = localStorage.getItem("stdDataUpdateTimeStamp");
+
+        const getLocalData = ()=>{
+          state.stdDataQP1 = getInitialStdData(1)
+          state.stdDataQP2 = getInitialStdData(2)
+          state.stdDataQP3 = getInitialStdData(3)
+          state.stdDataQP4 = getInitialStdData(4)
+          state.stdDataQP5 = getInitialStdData(5)
+        }
+
+        const getBackEndData =() =>{
+          const stdData1 = {
+            drCountry:responseData.dreamCountry,
+            drUni: responseData.dreamUni,
+            drDegree:responseData.dreamDegree,
+            drMajor:responseData.dreamMajor
+          }
+          const stdData2 = {
+            drCountry:responseData.dreamCountry,
+            drUni: responseData.dreamUni,
+            drDegree:responseData.dreamDegree,
+            drMajor:responseData.dreamMajor,
+            curDegree:responseData.currentDegree,
+            curMajor:responseData.currentMajor,
+            curUni:responseData.currentUni,
+            curCountry:responseData.currentCountry,
+            curCourses: responseData.currentCourses,
+
+          }
+          const stdData3 = {
+            getAwards: responseData.getAwards,
+            getCompetitions:responseData.getCompetitions,
+            getConference:responseData.getConference,
+            getProject:responseData.getProject,
+            getSkills:responseData.getSkills,
+            internCompany:responseData.internCompany,
+            internRole:responseData.internRole
+          }
+
+          const stdData4 = {
+            careerOrGoal:responseData.careerOrGoal,
+            profName:"",
+            profResearch:""
+          }
+
+          const stdData5 = {
+            FirstName:responseData.firstName,
+            Surname:responseData.surname,
+            Nationality:responseData.userNationality,
+            Birthday:responseData.userBirthday,
+            Address:responseData.userAddress,
+            Tel:responseData.userTel,
+            Email:responseData.userEmail
+          }
+          state.stdDataQP1 = stdData1
+          state.stdDataQP2 = stdData2
+          state.stdDataQP3 = stdData3
+          state.stdDataQP4 = stdData4
+          state.stdDataQP5 = stdData5
+          localStorage.setItem("stdDataQP1", JSON.stringify(stdData1));
+          localStorage.setItem("stdDataQP2", JSON.stringify(stdData2));
+          localStorage.setItem("stdDataQP3", JSON.stringify(stdData3));
+          localStorage.setItem("stdDataQP4", JSON.stringify(stdData4));
+          localStorage.setItem("stdDataQP5", JSON.stringify(stdData5));
+        }
+        if(responseData){
+          if(!storedStdData){
+            if(timeStamp>storedStdData){
+              getBackEndData()
+            }
+            else{
+              getLocalData()
+            }
+          }
+          else{
+            getBackEndData()
+          }
+        }
+        else{
+          getLocalData()
+        }
+      
+        //这里要匹配Coverletter的数据格式
+        // state = action.payload;
+      })
+      .addCase(fetchCoverletterData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

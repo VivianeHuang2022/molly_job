@@ -581,7 +581,6 @@ export const updateRecommendation = async (
   dataGroup,
   topicId = initTopicId
 ) => {
-  console.log(dataGroup)
   const postUrl = `${BASE_URL}/Recommendation/PostRecommendationDataGroup?topicId=${topicId}`;
   try {
     const response = await axios({
@@ -645,7 +644,7 @@ export const getCoverletter = async (topicId = initTopicId) => {
       method: 'get',
       url: postUrl,
       headers: {
-        // 'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         accept: '*/*',
         Authorization: authToken ? `Bearer ${authToken}` : '',
       },

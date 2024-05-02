@@ -7,7 +7,7 @@ import { updateStdData, stdDataSaveHandle } from "../../../../redux/slice"; // �
 
 export default function StdPage2() {
   //为了数据状态的持久化，数据必须存在本地
-  var formData = useSelector((state) => state.coverLetter.stdDataQP1);
+  var formData = useSelector((state) => state.coverLetter.stdDataQP2);
   const textRef = useRef(null);
   const dispatch = useDispatch();
 

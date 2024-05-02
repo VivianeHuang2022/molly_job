@@ -28,7 +28,9 @@ export default function Question(props) {
     }
     if (currentQNumber === childrenCount) {
       if (localStorage.getItem("topicId") === "1") {
-        var data = generateStdDataGroup();
+        var timeStamp = new Date().getTime();
+        localStorage.setItem("stdDataUpdateTimeStamp",timeStamp);
+        var data = generateStdDataGroup(timeStamp);
         //console.log(data)
         const response = await postStdCoverLetterDataGroup(data);
         
@@ -100,7 +102,7 @@ export default function Question(props) {
   );
 }
 
-const generateStdDataGroup = () => {
+const generateStdDataGroup = (timeStamp) => {
   var stdDataQP5 = localStorage.getItem("stdDataQP5")
     ? JSON.parse(localStorage.getItem("stdDataQP5"))
     : {};
@@ -151,8 +153,8 @@ const generateStdDataGroup = () => {
     // intern Info
     internRole: stdDataQP3.internRole,
     internCompany: stdDataQP3.internCompany,
-
-    
+    //时间戳
+    timeStamp: timeStamp
   };
   return dataGroup;
 };

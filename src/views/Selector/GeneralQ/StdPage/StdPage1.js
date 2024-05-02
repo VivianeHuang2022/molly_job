@@ -10,7 +10,6 @@ import { updateStdData, stdDataSaveHandle } from "../../../../redux/slice"; // �
 export default function StdPage1() {
   const dispatch = useDispatch();
   var formData = useSelector((state) => state.coverLetter.stdDataQP1);
-  console.log(formData)
   // 使用 dispatch 更新 Redux Store
   const handleInputChange = (name, value) => {
     dispatch(updateStdData({ pNum: 1, payload: { [name]: value } }));

@@ -9,7 +9,6 @@ export const fetchThunkCreator = (type, fetchFunction) => {
   return createAsyncThunk(type, async () => {
     try {
       const response = await fetchFunction(topicId);
-      console.log(response.data.msg)
       return response.data.msg;
     } catch (error) {
       console.error('Error fetching data:', error);

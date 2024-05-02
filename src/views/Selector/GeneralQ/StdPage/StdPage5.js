@@ -9,7 +9,7 @@ import texts_CN from "../../../texts_CN";
 export default function StdPage5() {
   const dispatch = useDispatch();
 
-  var formData = useSelector((state) => state.coverLetter.stdDataQP9);
+  var formData = useSelector((state) => state.coverLetter.stdDataQP5);
   const texts = localStorage.getItem("Lan") === "CN" ? texts_CN : texts_EN;
   // 使用 dispatch 更新 Redux Store
   const handleInputChange = (name, value) => {
