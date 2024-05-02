@@ -2,14 +2,13 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import style from "./Question.module.css";
 import { postStdCoverLetterDataGroup } from "../../../utils/api";
-import {editState,hasLocalData} from "../../../utils/checkCache";
+import { editState, hasLocalData } from "../../../utils/checkCache";
 import AlertContext from "../../../components/AlertProvider/AlertContext";
 import texts_EN from "../../texts";
 import texts_CN from "../../texts_CN";
 import { checkLogin } from "../../../utils/checkLogin";
-import { fetchCoverletterData } from '../../../redux/actions/fetcDataActions';
-import { useDispatch } from 'react-redux';
-
+import { fetchCoverletterData } from "../../../redux/actions/fetcDataActions";
+import { useDispatch } from "react-redux";
 
 export default function Question(props) {
   const dispatch = useDispatch();
@@ -29,22 +28,19 @@ export default function Question(props) {
     if (currentQNumber === childrenCount) {
       if (localStorage.getItem("topicId") === "1") {
         var timeStamp = new Date().getTime();
-        localStorage.setItem("stdDataUpdateTimeStamp",timeStamp);
+        localStorage.setItem("stdDataUpdateTimeStamp", timeStamp);
         var data = generateStdDataGroup(timeStamp);
         //console.log(data)
         const response = await postStdCoverLetterDataGroup(data);
-        
+
         if (response.status === 200) {
-          editState('isEditcoverletter', false);
+          editState("isEditcoverletter", false);
           // editState('isEditcoverletter', false);
           //navigate('/layout/coverletter/edit');
-          navigate('/layout/coverletter/generate');
-        }
-        else if(response.status === 401)
-        {
-          navigate('/login')
-        }
-        else {
+          navigate("/layout/coverletter/generate");
+        } else if (response.status === 401) {
+          navigate("/login");
+        } else {
           showAlertMessage(
             "Error",
             "Post data failed!, Please check your data!",
@@ -63,14 +59,15 @@ export default function Question(props) {
     if (currentQNumber > 1) {
       const lastQ = "page" + (currentQNumber - 1);
       navigate(`/layout/generalq/${lastQ}`);
-    }else{ 
-     if(!hasLocalData('isEditcoverletter'))
-     { 
-      editState('isEditcoverletter', false);
-     navigate('/layout/coverletter');
-    }}
+    } else {
+      if (!hasLocalData("isEditcoverletter")) {
+        editState("isEditcoverletter", false);
+        navigate("/layout/coverletter");
+      }
+    }
   };
 
+  /*
   useEffect(() => {
     const checkRes = checkLogin();
     checkRes.then(result=>{
@@ -85,7 +82,7 @@ export default function Question(props) {
     
   }, []); // 注意这里是一个空依赖数组，表示这个effect仅在组件挂载时运行一次
 
-  
+  */
 
   return (
     <div className={style.container}>
@@ -154,7 +151,7 @@ const generateStdDataGroup = (timeStamp) => {
     internRole: stdDataQP3.internRole,
     internCompany: stdDataQP3.internCompany,
     //时间戳
-    timeStamp: timeStamp
+    timeStamp: timeStamp,
   };
   return dataGroup;
 };
