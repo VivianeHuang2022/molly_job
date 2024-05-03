@@ -27,6 +27,8 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
 
   const handleLanguageChange = (value) => {
     setSelectedLanguage(value);
+    localStorage.setItem('generateLan',value)
+    console.log(value)
   };
 
   // 添加用于设置 contid 的回调函数

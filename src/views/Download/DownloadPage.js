@@ -28,7 +28,7 @@ const DownloadPage = ({ topicId }) => {
   const [generationTime, setGenerationTime] = useState('暂未获取到时间');
   // const [coverLetterData] = useState({});
   const countId = localStorage.getItem('countId');
-  const lan = localStorage.getItem('lan');
+  const lan = localStorage.getItem('generateLan');
 
   useEffect(() => {
     // 在组件加载时获取图片
