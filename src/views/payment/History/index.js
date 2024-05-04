@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HistoryComp from './HistoryComp';
 
+import generateCountHistory from './generateCountHistory'
 import {
   getGenerateCountHistory,
   // getGenerateCountHistory_MOCK,
@@ -14,8 +15,13 @@ const GenerateCountHistory = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const fetchedResponse = await getGenerateCountHistory();
-        if (fetchedResponse) {
+        //const fetchedResponse = await getGenerateCountHistory();
+        const fetchedResponse = generateCountHistory;
+        
+        if (fetchedResponse.length>0) {
+          setResponse(fetchedResponse);
+        }
+        else{
           setResponse(fetchedResponse);
         }
       } catch (error) {
@@ -33,7 +39,6 @@ const GenerateCountHistory = () => {
     fetchCount();
     fetchHistory();
   }, []); // 空依赖数组确保这个effect仅在组件挂载时运行一次
-
   return (
     <div>
       <HistoryComp

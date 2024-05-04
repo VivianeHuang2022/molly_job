@@ -28,6 +28,14 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
           <CountComp content={record.count} />
         </span>
       ),
+      // render: (text, record) => (
+      //   <span>
+      //     {record.action === historyTexts.increment
+      //       ? `${historyTexts.payment} ${record.actionType}  +`
+      //       : `  ${historyTexts.generate} ${record.actionType} -`}
+      //     <CountComp content={record.count} />
+      //   </span>
+      // ),
     },
     {
       title: <ColumnShow content={historyTexts.time} />,
@@ -40,7 +48,7 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
       defaultSortOrder: 'ascend',
     },
   ];
-
+  console.log(generateCountHistory)
   return (
     <div className={styles.container}>
       <h1>

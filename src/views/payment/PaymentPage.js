@@ -15,7 +15,6 @@ const PlanCardsContainer = () => {
   const [activeTab] = useState('times');
   const plans = texts.plans;
   const [response, setResponse] = useState([]);
-
   const fetchOrderPriceAndUpdatePlans = async () => {
     try {
       //获取全部语言的价格到本地
@@ -34,19 +33,18 @@ const PlanCardsContainer = () => {
   useEffect(() => {
     fetchOrderPriceAndUpdatePlans();
   }, []);
-
   // Render plans based on selected tab
   const renderSinglePlan = (planType) => {
     const selectedPlan = plans.paymentType[planType];
-    
-    if (response[0]) {
+    if (response.length>0) {
       const selectOrder = response.find(
-        (order) => order.orderType === planType
+        (order) => order.orderLabel === planType
       );
       return (
         <PlanCard
           key={planType}
-          pricing={selectOrder.amount[currentLanguage]}
+          //pricing={selectOrder.amount[currentLanguage]}
+          pricing={selectOrder.amount}
           title={selectedPlan.label}
           info={selectedPlan.info}
           features={selectedPlan.features}

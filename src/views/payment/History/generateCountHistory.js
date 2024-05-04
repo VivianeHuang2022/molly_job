@@ -7,6 +7,7 @@ const generateCountHistory = [
     timestamp: 1648780800000,
     doucumentType: 'coverletter',
     planType: 'pro',
+    // actionType:"Pro"
   },
   {
     key: '2',
@@ -15,14 +16,16 @@ const generateCountHistory = [
     timestamp: 1679788800,
     doucumentType: 'coverletter',
     planType: 'pro',
+    // actionType:"coverletter"
   },
   {
     key: '3',
     action: 'increment',
-    count: 100,
+    count: 50,
     timestamp: 1699780800000,
     doucumentType: 'coverletter',
     planType: 'pro',
+    // actionType:"Standard"
   },
   // 更多的历史记录...
 ];

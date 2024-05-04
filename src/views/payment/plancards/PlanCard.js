@@ -14,7 +14,6 @@ const PlanCard = ({
   priceSymbol,
   timesNum,
 }) => {
-  console.log(pricing);
   const navigate = useNavigate();
 
   const paymentData = {

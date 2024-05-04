@@ -472,7 +472,7 @@ export const getOrderPrice_MOCK = async () => {
 //获取生成次数增删历史
 export const getGenerateCountHistory = async () => {
   try {
-    const postUrl = `getGenerateCountHistory`;
+    const postUrl = `api/Profile/GetUserCountHistory`;
     const jwtToken = localStorage.getItem('jwtToken');
     const response = await axios({
       method: 'get',
