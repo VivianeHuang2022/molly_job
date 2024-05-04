@@ -153,10 +153,10 @@ const texts_en = {
         P4T1: "The program at",
         P4T2: "aligns seamlessly with my academic interests, especially in courses like",
         P4T3: " that fuel my passion in",
-        P4T4: " . I'm inspired by the university's academic excellence and faculty expertise, particularly",
-        P4T5: " in ",
+        P4T4: " . I'm inspired by the university's academic excellence and faculty expertise",
+        P4T5: " . ",
         P4T6: " My long-term career goal is to ",
-        P4T7: " I will gain during my studies to make a meaningful impact in the field",
+        P4T7: " I will gain during my studies to make a meaningful impact in the field.",
       },
       Page5: {
         P5Q1: "WHAT RELEVANT EXPERIENCE AND SKILLS MAKE YOU A STRONG CANDIDATE FOR THE PROGRAM?",

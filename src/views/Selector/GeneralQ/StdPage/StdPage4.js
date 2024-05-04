@@ -78,7 +78,7 @@ export default function StdPage6() {
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">"{texts.GeberalQ.StdPage.Page4.P4T1} </span>
+              <span type="No">{texts.GeberalQ.StdPage.Page4.P4T1} </span>
             </span>
             <span
               name="profUni"
@@ -99,7 +99,7 @@ export default function StdPage6() {
             >
               <span type="No"> {texts.GeberalQ.StdPage.Page4.P4T3} </span>
             </span>
-            <span style={{ color: "black" }} onDoubleClick={handleClearText}>
+            <span style={{ color: "green" }} onDoubleClick={handleClearText}>
               [ {stdDataQP1.drMajor || "the major you applied"} ]
             </span>
             <span
@@ -108,38 +108,19 @@ export default function StdPage6() {
             >
               <span type="No"> {texts.GeberalQ.StdPage.Page4.P4T4} </span>
             </span>
-            <span
-              name="profName"
-              style={{ color: "green" }}
-              onDoubleClick={handleClearText}
-            >
-              [ {formData.profName || "Professor Name"} ]
-            </span>
+
             <span
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No"> {texts.GeberalQ.StdPage.Page4.P4T5} </span>
-            </span>
-            <span
-              name="profResearch"
-              style={{ color: "green" }}
-              onDoubleClick={handleClearText}
-            >
-              [ {formData.profResearch || "Professor's Research Area"} ]
-            </span>
-            <span
-              contentEditable={false}
-              style={{ pointerEvents: "none", userSelect: "none" }}
-            >
-              <span type="No">." </span>
+              <span type="No">. </span>
             </span>
 
             <span
               contentEditable={false}
               style={{ pointerEvents: "none", userSelect: "none" }}
             >
-              <span type="No">"{texts.GeberalQ.StdPage.Page4.P4T6} </span>
+              <span type="No">{texts.GeberalQ.StdPage.Page4.P4T6} </span>
             </span>
             <span
               name="careerOrGoal"
