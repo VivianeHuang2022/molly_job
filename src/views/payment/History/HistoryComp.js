@@ -20,29 +20,30 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
       title: <ColumnShow content={historyTexts.count} />,
       key: 'count',
       dataIndex: 'count',
-      render: (text, record) => (
-        <span>
-          {record.action === historyTexts.increment
-            ? `${historyTexts.payment} ${record.planType}  +`
-            : `  ${historyTexts.generate} ${record.doucumentType} -`}
-          <CountComp content={record.count} />
-        </span>
-      ),
       // render: (text, record) => (
       //   <span>
-      //     {record.action === historyTexts.increment
-      //       ? `${historyTexts.payment} ${record.actionType}  +`
-      //       : `  ${historyTexts.generate} ${record.actionType} -`}
+      //     {record.action === 'increment'
+      //       ? `${historyTexts.payment} ${record.planType}  +`
+      //       : `  ${historyTexts.generate} ${record.doucumentType} -`}
       //     <CountComp content={record.count} />
       //   </span>
       // ),
+      render: (text, record) => (
+        <span>
+          {record.action === historyTexts.increment
+            ? `${historyTexts.payment} ${record.actionType}  +`
+            : `  ${historyTexts.generate} ${record.actionType} -`}
+          <CountComp content={record.count} />
+        </span>
+      ),
     },
     {
       title: <ColumnShow content={historyTexts.time} />,
       dataIndex: 'timestamp',
       key: 'time',
       render: (timestamp) => (
-        <ColumnShow content={new Date(timestamp).toLocaleString()} />
+        <ColumnShow content={timestamp} />
+        // <ColumnShow content={new Date(timestamp).toLocaleString()} />
       ),
       sorter: (a, b) => b.timestamp - a.timestamp,
       defaultSortOrder: 'ascend',
@@ -60,6 +61,7 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
         scroll={{ x: 200 }}
         headerRowStyle={{ display: 'none' }}
         dataSource={generateCountHistory}
+        rowKey="key"
       />
 
       <Link to="/layout" className={styles.returnButton}>

@@ -40,6 +40,7 @@ const DownloadPage = ({ topicId }) => {
           documentType,
           topicId
         );
+        console.log(response)
         // const file = new Blob([response.data], { type: 'image/jpeg' });
 
         // const fileURL = URL.createObjectURL(file);
