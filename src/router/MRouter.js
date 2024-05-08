@@ -108,8 +108,8 @@ export default function MRouter() {
     {
       path: "/",
       //MVP版本只上线std部分,所以首页为std选择页面
-      element: <Navigate to="/home/1" />,
-      // element: <Navigate to="/start" />,
+      // element: <Navigate to="/home/1" />,
+      element: <Navigate to="/start" />,
     },
     {
       path: "/start",

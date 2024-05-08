@@ -51,6 +51,7 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
     setImageFiles(images);
     setLoading(false);
     localStorage.setItem('generateLan',localStorage.getItem('generateLan') || 'english')
+    localStorage.setItem('countId',1)
   }, []);
 
   return (
