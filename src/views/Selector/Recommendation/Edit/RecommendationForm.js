@@ -116,9 +116,7 @@ const RecommendationFormUI = ({
           };
           return (
             <Form className={styles.form}>
-              {topicId === '1' && <h1>student</h1>}
-              {topicId === '2' && <h1>worker</h1>}
-              {/* 确认学生个人信息 */}
+              {/* 确认个人信息 */}
               <h1>{title.personalInfo}:</h1>
               <FormGroup
                 formGroup={userInfo}
@@ -126,18 +124,24 @@ const RecommendationFormUI = ({
                 registerRef={registerRef}
                 handleKeyDown={handleKeyDown}
               />
-              <FormGroup
-                formGroup={dreamSchoolInfo}
-                title={dreamSchoolInfoTitle}
-                registerRef={registerRef}
-                handleKeyDown={handleKeyDown}
-              />
-              <FormGroup
-                formGroup={currentSchoolInfo}
-                title={currentSchoolInfoTitle}
-                registerRef={registerRef}
-                handleKeyDown={handleKeyDown}
-              />
+
+              {/* 学生展示学校信息 */}
+              {topicId === '1' && (
+                <>
+                  <FormGroup
+                    formGroup={dreamSchoolInfo}
+                    title={dreamSchoolInfoTitle}
+                    registerRef={registerRef}
+                    handleKeyDown={handleKeyDown}
+                  />
+                  <FormGroup
+                    formGroup={currentSchoolInfo}
+                    title={currentSchoolInfoTitle}
+                    registerRef={registerRef}
+                    handleKeyDown={handleKeyDown}
+                  />
+                </>
+              )}
 
               {/* 推荐人相关信息 */}
               <h1>{title.refereeInfo}:</h1>

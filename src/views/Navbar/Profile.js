@@ -32,6 +32,7 @@ const Profile = ({ profileItems }) => {
       switchUserType(currentUserType === 'student' ? 'work' : 'student')
     );
     localStorage.setItem('topicId', currentUserType === 'student' ? 2 : 1);
+    window.location.reload(); //0509 lily 在切换身份后重新刷新页面进行数据获取&组件UI数据更新(要重新刷新页面,加载时间较长,体验不算特别友好,由于没能解决formik表单同步刷新,暂时用这种方式实现)
   };
 
   // 根据当前语言状态，更新菜单项的文本

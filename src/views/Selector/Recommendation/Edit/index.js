@@ -16,7 +16,6 @@ import { selectCurrentTopicId } from '../../../../redux/slices/userTypeSlice';
 //整个推荐信表单
 const RecommendationFormLogic = () => {
   const topicId = useSelector(selectCurrentTopicId);
-  // const topicId = localStorage.getItem('topicId');
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState(initialValues);
   const [apiMessage, setApiMessage] = useState('');
@@ -110,7 +109,7 @@ const RecommendationFormLogic = () => {
   const sendDatatoBack = async (values) => {
     try {
       values.timeStamp = new Date().getTime();
-      const response = await updateRecommendation(values);
+      const response = await updateRecommendation(values, topicId);
       return response;
     } catch (error) {
       console.error(error);
