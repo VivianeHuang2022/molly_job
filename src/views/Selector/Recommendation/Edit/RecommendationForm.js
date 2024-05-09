@@ -116,6 +116,8 @@ const RecommendationFormUI = ({
           };
           return (
             <Form className={styles.form}>
+              {topicId === '1' && <h1>student</h1>}
+              {topicId === '2' && <h1>worker</h1>}
               {/* 确认学生个人信息 */}
               <h1>{title.personalInfo}:</h1>
               <FormGroup

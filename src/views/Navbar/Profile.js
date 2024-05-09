@@ -6,11 +6,16 @@ import {
   switchLanguage,
   selectCurrentLanguage,
 } from '../../redux/slices/languageSlice';
+import {
+  switchUserType,
+  selectCurrentUserType,
+} from '../../redux/slices/userTypeSlice';
 
 const Profile = ({ profileItems }) => {
   // 从 Redux store 中获取当前语言状态
   const dispatch = useDispatch();
   const currentLanguage = useSelector(selectCurrentLanguage);
+  const currentUserType = useSelector(selectCurrentUserType);
 
   // 切换语言的函数
   const toggleLanguage = () => {
@@ -20,6 +25,15 @@ const Profile = ({ profileItems }) => {
     localStorage.setItem('Lan', currentLanguage === 'CN' ? 'EN' : 'CN');
   };
 
+  // 切换用户身份的函数
+  const toggleUserType = () => {
+    // 发送用户身份切换的 action 到 Redux store
+    dispatch(
+      switchUserType(currentUserType === 'student' ? 'work' : 'student')
+    );
+    localStorage.setItem('topicId', currentUserType === 'student' ? 2 : 1);
+  };
+
   // 根据当前语言状态，更新菜单项的文本
   const languageMenuItem = {
     key: 'toggle-language',
@@ -27,8 +41,15 @@ const Profile = ({ profileItems }) => {
     onClick: toggleLanguage,
   };
 
-  // 将语言切换菜单项添加到下拉菜单中
-  const items = [languageMenuItem, ...profileItems];
+  // 根据当前用户身份状态，更新菜单项的文本
+  const userTypeMenuItem = {
+    key: 'toggle-user-type',
+    label: `Switch to ${currentUserType === 'student' ? 'Work' : 'Student'}`,
+    onClick: toggleUserType,
+  };
+
+  // 将语言切换菜单项和用户身份切换菜单项添加到下拉菜单中
+  const items = [languageMenuItem, userTypeMenuItem, ...profileItems];
 
   return (
     <Dropdown menu={{ items }} placement="bottomLeft">
