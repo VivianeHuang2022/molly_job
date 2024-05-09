@@ -39,14 +39,18 @@ export const ParagraphArray = ({ text }) => {
 
 export const ParagraphList = ({ text }) => {
   // 假设text是一个包含多行文本的字符串，我们按照行将其拆分
-  const lines = text.split('\n');
+  if (text) {
+    const lines = text.split('\n');
 
-  // 使用map函数为每一行文本添加Paragraph组件
-  const listItems = lines.map((line, index) => (
-    <Paragraph text={`● ${line}`} />
-  ));
+    if (lines) {
+      // 使用map函数为每一行文本添加Paragraph组件
+      const listItems = lines.map((line, index) => (
+        <Paragraph key={index} text={`● ${line}`} />
+      ));
 
-  return <div className="paragraph-list">{listItems}</div>;
+      return <div className="paragraph-list">{listItems}</div>;
+    }
+  }
 };
 
 export const MiniParagraph = ({ text }) => {
