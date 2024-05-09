@@ -4,8 +4,9 @@ import style from "./Question.module.css";
 import { postStdCoverLetterDataGroup } from "../../../utils/api";
 import { editState, hasLocalData } from "../../../utils/checkCache";
 import AlertContext from "../../../components/AlertProvider/AlertContext";
-import texts_EN from "../../texts";
-import texts_CN from "../../texts_CN";
+import { getLabels } from '../../local'; // 导入语言配置文件加载函数
+import { useSelector } from 'react-redux';
+import { selectCurrentLanguage } from '../../../redux/slices/languageSlice';
 import { checkLogin } from "../../../utils/checkLogin";
 import { fetchCoverletterData } from "../../../redux/actions/fetcDataActions";
 import { useDispatch } from "react-redux";
@@ -17,7 +18,7 @@ export default function Question(props) {
   const navigate = useNavigate();
   const location = useLocation();
   const { showAlertMessage } = useContext(AlertContext);
-  const texts = localStorage.getItem("Lan") === "CN" ? texts_CN : texts_EN;
+ const texts = getLabels(useSelector(selectCurrentLanguage));
 
   const handleToNext = async () => {
     const currentQNumber = parseInt(location.pathname.split("/page")[1], 10);

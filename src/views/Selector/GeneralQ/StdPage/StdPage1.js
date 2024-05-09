@@ -1,6 +1,6 @@
 import React from "react";
-import texts_EN from "../../../texts";
-import texts_CN from "../../../texts_CN";
+import { getLabels } from '../../../local'; // 导入语言配置文件加载函数
+import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 import styles from "./StdPage.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import QInput from "../../../../components/QInput/QInput";
@@ -16,7 +16,7 @@ export default function StdPage1() {
     //本地数据处理
     stdDataSaveHandle(name, value, 1);
   };
-  const texts = localStorage.getItem("Lan") === "CN" ? texts_CN : texts_EN;
+ const texts = getLabels(useSelector(selectCurrentLanguage));
   return (
     <div className={styles.container}>
       <div className={styles.title}>{texts.GeberalQ.StdPage.PgaeTitle}</div>
