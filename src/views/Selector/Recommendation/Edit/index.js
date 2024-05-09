@@ -3,7 +3,7 @@ import { editState } from '../../../../utils/checkCache';
 import RecommendationForm from './RecommendationForm';
 import { checkLogin } from '../../../../utils/checkLogin';
 import { updateRecommendation } from '../../../../utils/api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
   getRecommendation,
@@ -11,10 +11,11 @@ import {
 } from '../../../../utils/api';
 import { LoadingIndicator } from '../../../../components/Loading';
 import { initialValues } from './FormData';
+import { selectCurrentTopicId } from '../../../../redux/slices/userTypeSlice';
 
 //整个推荐信表单
 const RecommendationFormLogic = () => {
-  const topicId = localStorage.getItem('topicId');
+  const topicId = useSelector(selectCurrentTopicId);
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState(initialValues);
   const [apiMessage, setApiMessage] = useState('');
@@ -70,6 +71,7 @@ const RecommendationFormLogic = () => {
             setFormData(localSaved.data);
           } else {
             console.log('后端没有有效值,也没有缓存', formData);
+            setFormData(initialValues);
           }
         }
       }
@@ -101,13 +103,13 @@ const RecommendationFormLogic = () => {
     // };
     // checkLoginAndDataFetch();
     fetchAndCompareData();
-  }, [dispatch]); // 依赖 dispatch 函数
+  }, [dispatch, topicId]); // 依赖 dispatch 函数
 
   //在编辑页面只向后端存数据,不会接生成文档的api,在生成页消耗次数后才会createRecommendation
   const sendDatatoBack = async (values) => {
     try {
       values.timeStamp = new Date().getTime();
-      const response = await updateRecommendation(values);
+      const response = await updateRecommendation(values, topicId);
       return response;
     } catch (error) {
       console.error(error);
@@ -118,6 +120,8 @@ const RecommendationFormLogic = () => {
     editState('isEditrecommendation', false);
     navigate('/layout/Recommendation/generate');
   };
+
+  console.log(formData);
 
   return (
     <div>

@@ -9,6 +9,7 @@ let initialState = {
 // 根据缓存的 topicId 来确定初始的用户身份
 initialState = {
   userType: initialState.topicId === '1' ? 'student' : 'work', // 根据缓存的 topicId 确定初始的用户身份
+  topicId: initialState.topicId,
 };
 
 const userTypeSlice = createSlice({
@@ -17,6 +18,11 @@ const userTypeSlice = createSlice({
   reducers: {
     switchUserType(state, action) {
       state.userType = action.payload;
+      if (state.userType === 'student') {
+        state.topicId = '1';
+      } else {
+        state.topicId = '2';
+      }
     },
   },
 });

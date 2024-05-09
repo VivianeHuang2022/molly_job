@@ -3,14 +3,14 @@ import QInput from "../../../../components/QInput/QInput";
 import styles from "./StdPage.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { updateStdData, stdDataSaveHandle } from "../../../../redux/slice"; // 导入你的 action
-import texts_EN from "../../../texts";
-import texts_CN from "../../../texts_CN";
+import { getLabels } from '../../../local'; // 导入语言配置文件加载函数
+import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 
 export default function StdPage5() {
   const dispatch = useDispatch();
 
   var formData = useSelector((state) => state.coverLetter.stdDataQP5);
-  const texts = localStorage.getItem("Lan") === "CN" ? texts_CN : texts_EN;
+ const texts = getLabels(useSelector(selectCurrentLanguage));
   // 使用 dispatch 更新 Redux Store
   const handleInputChange = (name, value) => {
     dispatch(updateStdData({ pNum: 5, payload: { [name]: value } }));

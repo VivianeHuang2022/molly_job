@@ -7,9 +7,12 @@ import AlertContext from '../../../components/AlertProvider/AlertContext';
 import { NoticeParagraphComp } from '../../../components/Typography';
 import { saveLocalEdit } from '../../../utils/saveLocalData';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectCurrentTopicId } from '../../../redux/slices/userTypeSlice';
 
 // ResumeContainer Component
 const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
+  const topicId = useSelector(selectCurrentTopicId);
   const { showAlertMessage } = useContext(AlertContext);
   const [isSaved, setIsSaved] = useState(true);
   const navigate = useNavigate();
@@ -45,7 +48,6 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
     // 传到后端
     const formData = new FormData();
     formData.append('file', blob, fileName);
-    const topicId = localStorage.getItem('topicId');
 
     // 等待文件上传函数完成
     var response = await downloadResumePDF(formData, topicId);
@@ -81,7 +83,6 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
     const timeStamp = new Date().getTime();
     const dataGroup = { ...singleCvData, currentSectionType, timeStamp };
     //console.log(dataGroup);
-    const topicId = localStorage.getItem('topicId');
     try {
       const response = await createResume(dataGroup, topicId);
       if (response.status === 200) {

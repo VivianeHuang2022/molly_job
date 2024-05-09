@@ -13,7 +13,7 @@ export default function Home() {
     navigate("/layout/recommendation")
   }
   const handleToCoverLetter = ()=>{
-    navigate("/layout/coverletter")
+    navigate("/layout/coverletter/edit")//0509 lily 这里如果不加edit会跳转至生成页
   }
   const handleToResume = ()=>{
     navigate("/layout/resume")
