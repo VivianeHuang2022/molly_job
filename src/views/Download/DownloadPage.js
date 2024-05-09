@@ -40,7 +40,7 @@ const DownloadPage = ({ topicId }) => {
           documentType,
           topicId
         );
-        console.log(response)
+        // console.log(response)
         // const file = new Blob([response.data], { type: 'image/jpeg' });
 
         // const fileURL = URL.createObjectURL(file);
@@ -76,7 +76,7 @@ const DownloadPage = ({ topicId }) => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'file.pdf';
+      a.download = `Molly_${documentType}.pdf`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
