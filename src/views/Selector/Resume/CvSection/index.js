@@ -20,9 +20,14 @@ const componentMap = getComponentMap(
   SkillsActivitiesInterests
 );
 
-const CvSectionPage = ({ labels, singleCvData, currentSectionType }) => {
+const CvSectionPage = ({
+  labels,
+  singleCvData,
+  currentSectionType,
+  styleNum,
+}) => {
   // 从stylesArray中获取样式对象，这里假设只有一个样式对象
-  const styles = stylesArray[0];
+  const styles = stylesArray[styleNum];
 
   // 获取简历数据，这里假设singleCvData是一个包含所有简历部分的对象
   const cvData = singleCvData;

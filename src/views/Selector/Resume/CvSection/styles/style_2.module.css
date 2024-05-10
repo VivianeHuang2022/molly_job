@@ -1,0 +1,110 @@
+:root {
+  --base-font-size: 8px;
+
+  --base-heading-color: #000000;
+  --base-font-color: #000000;
+  --secondary-font-color: #000000;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.cvContainer {
+  width: 90%;
+  margin-bottom: 0.7rem;
+  /* background-color: rgb(204, 216, 203); */
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nameSection {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cvSection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* background-color: rgb(212, 254, 209); */
+}
+
+.subSection {
+  display: flex;
+  flex-direction: column;
+  /* background-color: aqua; */
+}
+
+.keyTile {
+  color: var(--base-font-color);
+  font-size: calc(var(--base-font-size) * 1.7);
+  font-weight: bold;
+}
+.heading {
+  color: var(--base-heading-color);
+  font-size: calc(var(--base-font-size) * 1.2);
+  font-weight: bold;
+  /* background-color: rgb(244, 232, 255); */
+}
+
+.heading::after {
+  content: '';
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid;
+  border-bottom-color: calc(var(--base-heading-color));
+  margin-bottom: 5px;
+}
+.subHeading {
+  color: var(--base-heading-color);
+  font-size: calc(var(--base-font-size) * 1.2);
+  /* background-color: aqua; */
+}
+
+.paragraph {
+  color: var(--base-font-color);
+  font-size: var(--base-font-size);
+  margin-bottom: 0.15rem;
+  /* background-color: rgb(196, 255, 222); */
+}
+
+.Paragraph {
+  color: var(--secondary-font-color);
+  font-size: var(--base-font-size);
+  margin-bottom: 0.15rem;
+  font-weight: 100;
+}
+
+.personalInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.personalInfoDetails {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 0.2rem;
+}
+
+.personalInfoDetails div {
+  margin-right: 15px;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.horizontalLayout {
+  display: flex; /* 使用Flexbox布局 */
+  justify-content: space-between; /* 子元素之间保持等距 */
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.lockIn {
+  background-color: aqua;
+  text-indent: 1em; /* 文本首行缩进2个字符间距 */
+}
