@@ -7,7 +7,8 @@ import { updateStdData, stdDataSaveHandle } from "../../../../redux/slice"; // �
 
 export default function StdPage2() {
   //为了数据状态的持久化，数据必须存在本地
-  var formData = useSelector((state) => state.coverLetter.stdDataQP2);
+  var formData1 = useSelector((state) => state.coverLetter.stdDataQP1);
+  var formData2 = useSelector((state) => state.coverLetter.stdDataQP2);
   const textRef = useRef(null);
   const dispatch = useDispatch();
 
@@ -97,7 +98,7 @@ export default function StdPage2() {
               style={{ color: "red" }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.drDegree || "Bachelor, Master, Phd"} ]
+              [ {formData1.drDegree || "Bachelor, Master, Phd"} ]
             </span>
             <span
               contentEditable={false}
@@ -110,7 +111,7 @@ export default function StdPage2() {
               style={{ color: "red" }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.drUni || "the University Name under Application"} ]
+              [ {formData1.drUni || "the University Name under Application"} ]
             </span>
             <span
               contentEditable={false}
@@ -123,7 +124,7 @@ export default function StdPage2() {
               style={{ color: "red" }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.drCountry || "Dream Country"} ]
+              [ {formData1.drCountry || "Dream Country"} ]
             </span>
             <span
               contentEditable={false}
@@ -136,7 +137,7 @@ export default function StdPage2() {
               style={{ color: "red" }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.drMajor || "the major you applied"} ].
+              [ {formData1.drMajor || "the major you applied"} ].
             </span>
 
             <span
@@ -150,7 +151,7 @@ export default function StdPage2() {
               style={{ color: "red" }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.curDegree || "high school, bachelor or master"} ]
+              [ {formData2.curDegree || "high school, bachelor or master"} ]
             </span>
             <span
               contentEditable={false}
@@ -163,7 +164,7 @@ export default function StdPage2() {
               style={{ color: "red" }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.curMajor || "your major"} ]
+              [ {formData2.curMajor || "your major"} ]
             </span>
             <span
               contentEditable={false}
@@ -177,7 +178,7 @@ export default function StdPage2() {
               onDoubleClick={handleClearText}
             >
               [{" "}
-              {formData.curUni || "the name of your high school or university "}
+              {formData2.curUni || "the name of your high school or university "}
               ]
             </span>
             <span
@@ -191,7 +192,7 @@ export default function StdPage2() {
               style={{ color: "red" }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.curCountry || "the country you studied"} ]
+              [ {formData2.curCountry || "the country you studied"} ]
             </span>
             <span
               contentEditable={false}
@@ -200,7 +201,7 @@ export default function StdPage2() {
               <span type="No">{texts.GeberalQ.StdPage.Page2.P2T9} </span>
             </span>
             <span style={{ color: "red" }} onDoubleClick={handleClearText}>
-              [ {formData.curMajor || "your major"} ]
+              [ {formData2.curMajor || "your major"} ]
             </span>
             <span
               contentEditable={false}
@@ -213,7 +214,7 @@ export default function StdPage2() {
               style={{ color: "green" }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.curCourses || "mention 2-3 relevant courses"} ]
+              [ {formData2.curCourses || "mention 2-3 relevant courses"} ]
             </span>
             <span
               contentEditable={false}

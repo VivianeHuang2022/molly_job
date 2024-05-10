@@ -26,7 +26,7 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
     const height = element.offsetHeight;
     const scaleFactor = 5 / width;
     //预防文件名重复
-    const fileName = 'Resume_' + getFormattedDateTime() + '.pdf';
+    const fileName = 'Molly_Resume_' + getFormattedDateTime() + '.pdf';
     // 设置 html2pdf.js 的配置选项
     const opt = {
       margin: 0.2,
