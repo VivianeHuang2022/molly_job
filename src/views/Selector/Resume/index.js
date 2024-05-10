@@ -29,7 +29,7 @@ const CvPage = () => {
     checkRes.then((result) => {
       if (!result) {
         // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
-        navigate('/login');
+        // navigate('/login');
         // console.log(window.location)
       }
     });

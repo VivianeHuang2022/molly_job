@@ -9,12 +9,17 @@ import { saveLocalEdit } from '../../../utils/saveLocalData';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCurrentTopicId } from '../../../redux/slices/userTypeSlice';
+import { Select } from 'antd';
 
 // ResumeContainer Component
 const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
   const topicId = useSelector(selectCurrentTopicId);
   const { showAlertMessage } = useContext(AlertContext);
   const [isSaved, setIsSaved] = useState(true);
+
+  const [selectedStyle, setSelectedStyle] = useState(
+    localStorage.getItem('styleNum') || 0
+  );
   const navigate = useNavigate();
   const contentRef = useRef(null);
   const downloadPDF = async () => {
@@ -112,6 +117,16 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
     //可能会需要把pdf发送给后端再发送给用户邮箱
     downloadPDF();
   };
+  const handleStyleChange = (value) => {
+    setSelectedStyle(value);
+    localStorage.setItem('styleNum', value);
+  };
+
+  const options = [
+    { value: 0, text: 'style 1' },
+    { value: 1, text: 'style 2' },
+  ];
+
   return (
     <div className={styles.resumeContainer}>
       <div className={styles.resumeShow}>
@@ -120,15 +135,33 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
             labels={labels}
             singleCvData={singleCvData}
             currentSectionType={currentSectionType}
+            styleNum={selectedStyle}
           />
         </div>
       </div>
+
       <div className={styles.saveButtonContainer}>
         {!isSaved && (
           <NoticeParagraphComp>
             Data is not saved, please try it later.
           </NoticeParagraphComp>
         )}
+
+        {isSaved && (
+          <div className={styles.selectStyle}>
+            <Select
+              value={options[selectedStyle].text}
+              onChange={handleStyleChange}
+            >
+              {options.map((option) => (
+                <Select.Option key={option.value} value={option.value}>
+                  {option.text}
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
+        )}
+
         <div>
           <DefaultButton
             label={labels.interface.saveButton}
