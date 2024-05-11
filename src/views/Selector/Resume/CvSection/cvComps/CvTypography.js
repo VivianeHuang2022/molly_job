@@ -39,14 +39,20 @@ export const ParagraphList = ({ text, styles }) => {
     const lines = text.split('\n');
 
     if (lines) {
-      // 使用map函数为每一行文本添加Paragraph组件
       const listItems = lines.map((line, index) => (
-        <Paragraph key={index} text={`● ${line}`} styles={styles} />
+        <div key={index} className={styles.listItem}>
+          <div className={styles.li}></div>
+          <div className={styles.listValue}>
+            <Paragraph text={line} styles={styles} />
+          </div>
+        </div>
       ));
 
-      return <div className="paragraph-list">{listItems}</div>;
+      return <div className={styles.ul}>{listItems}</div>;
     }
   }
+
+  return null; // 如果没有文本，则不渲染任何内容
 };
 
 export const MiniParagraph = ({ text, styles }) => {
