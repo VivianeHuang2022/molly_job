@@ -10,14 +10,14 @@ const PublicationsPresentations = ({ cvData, sectionName, styles }) => {
 
     return (
       <div className={styles.subSection}>
-        <Paragraph text={getConference} />
+        <Paragraph text={getConference} styles={styles} />
       </div>
     );
   };
 
   return (
     <main>
-      <Heading text={sectionName} />
+      <Heading text={sectionName} styles={styles} />
 
       <div className={cvSection}>
         {publicationsPresentations.map((publicationPresentation, index) => (

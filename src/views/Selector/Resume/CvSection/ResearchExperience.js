@@ -26,25 +26,25 @@ const ResearchExperience = ({ cvData, sectionName, styles }) => {
 
     return (
       <div className={styles.subSection}>
-        <HorizontalLayout>
-          <SubHeading text={researchTitle} styles={styles} />{' '}
-          <Paragraph text={`${city} ${state} ${country}`} />
+        <HorizontalLayout styles={styles}>
+          <SubHeading text={researchTitle} styles={styles} />
+          <Paragraph text={`${city} ${state} ${country}`} styles={styles} />
         </HorizontalLayout>
 
-        <HorizontalLayout>
-          <Paragraph text={schoolName} />
-          <Paragraph text={`${startDate} - ${endDate}`} />
+        <HorizontalLayout styles={styles}>
+          <Paragraph text={schoolName} styles={styles} />
+          <Paragraph text={`${startDate} - ${endDate}`} styles={styles} />
         </HorizontalLayout>
 
         <Paragraph text={researchSummary} styles={styles} />
-        <ParagraphList text={researchDetail} />
+        <ParagraphList text={researchDetail} styles={styles} />
       </div>
     );
   };
 
   return (
     <main>
-      <Heading text={sectionName} />
+      <Heading text={sectionName} styles={styles} />
       <div className={cvSection}>
         {researchExperience.map((research, index) => (
           <ResearchExperienceItem

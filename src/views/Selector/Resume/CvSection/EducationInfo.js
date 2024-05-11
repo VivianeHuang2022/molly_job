@@ -27,25 +27,29 @@ const EducationInfo = ({ cvData, sectionName, styles }) => {
     } = edu;
     return (
       <div className={styles.subSection}>
-        <HorizontalLayout>
+        <HorizontalLayout styles={styles}>
           <SubHeadingArray
             text={[currentDegree, currentUni, city, currentCountry]}
+            styles={styles}
           />
-          <Paragraph text={`${startDate} - ${graduationDate}`} />
+          <Paragraph
+            text={`${startDate} - ${graduationDate}`}
+            styles={styles}
+          />
         </HorizontalLayout>
 
         <div className={styles.lockIn}>
-          <HorizontalLayout>
-            <Paragraph text={` ${currentMajor}`} />
-            <Paragraph text={` ${state}`} />
+          <HorizontalLayout styles={styles}>
+            <Paragraph text={` ${currentMajor}`} styles={styles} />
+            <Paragraph text={` ${state}`} styles={styles} />
           </HorizontalLayout>
 
-          <HorizontalLayout>
-            <Paragraph text={achievement} />
-            <Paragraph text={` ${currentGPA}`} />
+          <HorizontalLayout styles={styles}>
+            <Paragraph text={achievement} styles={styles} />
+            <Paragraph text={` ${currentGPA}`} styles={styles} />
           </HorizontalLayout>
 
-          <Paragraph text={currentCourses} />
+          <Paragraph text={currentCourses} styles={styles} />
         </div>
       </div>
     );
@@ -53,7 +57,7 @@ const EducationInfo = ({ cvData, sectionName, styles }) => {
 
   return (
     <div>
-      <Heading text={sectionName} />
+      <Heading text={sectionName} styles={styles} />
       <div className={cvSection}>
         {educationInfo.map((edu) => (
           <EducationInfoItem key={edu.id} edu={edu} styles={styles} />

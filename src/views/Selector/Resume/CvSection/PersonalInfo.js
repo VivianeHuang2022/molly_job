@@ -9,11 +9,11 @@ const PersonalInfo = ({ cvData, sectionName, title, styles }) => {
 
   return (
     <main className={nameSection}>
-      <KeyTile text={`${firstName} ${surname}`} />
+      <KeyTile text={`${firstName} ${surname}`} styles={styles} />
       <div className={personalInfoDetails}>
-        <Paragraph text={userTel} />
-        <Paragraph text={userEmail} />
-        <Paragraph text={userLinkedln} />
+        <Paragraph text={userTel} styles={styles} />
+        <Paragraph text={userEmail} styles={styles} />
+        <Paragraph text={userLinkedln} styles={styles} />
       </div>
     </main>
   );

@@ -46,7 +46,7 @@ body {
   color: var(--base-heading-color);
   font-size: calc(var(--base-font-size) * 1.2);
   font-weight: bold;
-  /* background-color: rgb(244, 232, 255); */
+  background-color: rgb(244, 232, 255);
 }
 
 .heading::after {

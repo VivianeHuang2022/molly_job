@@ -14,16 +14,17 @@ const SkillsActivitiesInterests = ({ cvData, sectionName, styles }) => {
 
   return (
     <main>
-      <Heading text={sectionName} />
+      <Heading text={sectionName} styles={styles} />
 
       <div className={cvSection}>
         <div className={styles.subSection}>
           <Paragraph
             text={`${getSkills} ${language} ${relevantCertificates}`}
+            styles={styles}
           />
 
-          <Paragraph text={`${getAwards} ${getCompetitions}`} />
-          <Paragraph text={`${volunteerWork} ${interest}`} />
+          <Paragraph text={`${getAwards} ${getCompetitions}`} styles={styles} />
+          <Paragraph text={`${volunteerWork} ${interest}`} styles={styles} />
         </div>
       </div>
     </main>

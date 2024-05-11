@@ -21,18 +21,18 @@ const WorkExperienceItem = ({ experience, styles }) => {
 
   return (
     <div className={styles.subSection}>
-      <HorizontalLayout>
-        <SubHeading text={`${company} `} />
-        <Paragraph text={`${city} ${state} ${country}`} />
+      <HorizontalLayout styles={styles}>
+        <SubHeading text={`${company} `} styles={styles} />
+        <Paragraph text={`${city} ${state} ${country}`} styles={styles} />
       </HorizontalLayout>
 
-      <HorizontalLayout>
-        <Paragraph text={`${groupName} ${role}`} />
-        <Paragraph text={`${startDate} - ${endDate}`} />
+      <HorizontalLayout styles={styles}>
+        <Paragraph text={`${groupName} ${role}`} styles={styles} />
+        <Paragraph text={`${startDate} - ${endDate}`} styles={styles} />
       </HorizontalLayout>
 
-      <Paragraph text={workSummary} />
-      <ParagraphList text={workDetail} />
+      <Paragraph text={workSummary} styles={styles} />
+      <ParagraphList text={workDetail} styles={styles} />
     </div>
   );
 };
@@ -43,7 +43,7 @@ const WorkExperience = ({ cvData, sectionName, styles }) => {
 
   return (
     <main>
-      <Heading text={sectionName} />
+      <Heading text={sectionName} styles={styles} />
 
       <div className={cvSection}>
         {workExperience.map((experience, index) => (
