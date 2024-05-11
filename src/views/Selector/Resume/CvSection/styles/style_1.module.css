@@ -108,3 +108,35 @@ body {
   /* background-color: aqua; */
   text-indent: 1em; /* 文本首行缩进2个字符间距 */
 }
+
+.ul {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  gap: 0.2em;
+}
+
+.listItem {
+  display: flex;
+  align-items: first baseline;
+  margin: 0;
+}
+
+/* 调节列表之间的gap */
+.li {
+  line-height: 0.1;
+}
+.li::before {
+  content: '•';
+  font-size: 10px;
+  display: inline-block;
+  height: 10px; /* 设置高度 */
+  width: 20px; /* 设置宽度，确保符号垂直居中 */
+  text-align: center; /* 文本居中 */
+}
+
+.listValue {
+  padding-left: 0px;
+  /* background-color: aquamarine; */
+}
+

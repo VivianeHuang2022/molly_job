@@ -9,7 +9,7 @@ export const fetchThunkCreator = (type, fetchFunction) => {
   return createAsyncThunk(type, async () => {
     try {
       const response = await fetchFunction(topicId);
-      console.log(response.data.msg)
+      console.log(response.data.msg);
       return response.data.msg;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -18,7 +18,10 @@ export const fetchThunkCreator = (type, fetchFunction) => {
   });
 };
 
-export const fetchCVData = fetchThunkCreator('cvData/fetchCVData', getResume);
+export const fetchCVData = fetchThunkCreator(
+  'cvData/fetchCVData',
+  getResume_MOCK
+);
 
 export const fetchCoverletterData = fetchThunkCreator(
   'coverletter/fetchCoverletterData',

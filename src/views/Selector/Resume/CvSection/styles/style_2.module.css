@@ -2,7 +2,8 @@
   --base-font-size: 8px;
 
   --base-heading-color: #000000;
-  --base-font-color: #000000;
+  --base-font-color: #676767;
+
   --secondary-font-color: #000000;
 }
 body {
@@ -38,25 +39,24 @@ body {
 }
 
 .keyTile {
-  color: var(--base-font-color);
-  font-size: calc(var(--base-font-size) * 1.7);
-  font-weight: bold;
+
+  color: var(--base-heading-color);
+  font-size: calc(var(--base-font-size) * 4);
+  background-color: rgb(244, 232, 255);
+  line-height: 2;
+  letter-spacing: 0.1em;
+  width: 100%;
 }
 .heading {
+  letter-spacing: 0.2em;
   color: var(--base-heading-color);
-  font-size: calc(var(--base-font-size) * 1.2);
-  font-weight: bold;
-  /* background-color: rgb(244, 232, 255); */
+  font-size: calc(var(--base-font-size) * 1.6);
+  background-color: rgb(244, 232, 255);
+  margin-bottom: 5px;
+  display: inline;
 }
 
-.heading::after {
-  content: '';
-  display: block;
-  width: 100%;
-  border-bottom: 1px solid;
-  border-bottom-color: calc(var(--base-heading-color));
-  margin-bottom: 5px;
-}
+
 .subHeading {
   color: var(--base-heading-color);
   font-size: calc(var(--base-font-size) * 1.2);
@@ -105,6 +105,6 @@ body {
 }
 
 .lockIn {
-  background-color: aqua;
   text-indent: 1em; /* 文本首行缩进2个字符间距 */
+
 }

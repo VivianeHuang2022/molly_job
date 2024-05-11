@@ -26,25 +26,25 @@ const ProjectExperience = ({ cvData, sectionName, styles }) => {
 
     return (
       <div className={styles.subSection}>
-        <HorizontalLayout>
-          <SubHeading text={getProject} />{' '}
-          <Paragraph text={`${city} ${state} ${country}`} />
+        <HorizontalLayout styles={styles}>
+          <SubHeading text={getProject} styles={styles} />
+          <Paragraph text={`${city} ${state} ${country}`} styles={styles} />
         </HorizontalLayout>
 
-        <HorizontalLayout>
-          <Paragraph text={schoolName} />
-          <Paragraph text={`${startDate} - ${endDate}`} />
+        <HorizontalLayout styles={styles}>
+          <Paragraph text={schoolName} styles={styles} />
+          <Paragraph text={`${startDate} - ${endDate}`} styles={styles} />
         </HorizontalLayout>
 
         <Paragraph text={projectSummary} styles={styles} />
-        <ParagraphList text={projectDetail} />
+        <ParagraphList text={projectDetail} styles={styles} />
       </div>
     );
   };
 
   return (
     <main>
-      <Heading text={sectionName} />
+      <Heading text={sectionName} styles={styles} />
 
       <div className={cvSection}>
         {projectExperience.map((project, index) => (
