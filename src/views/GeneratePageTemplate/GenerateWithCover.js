@@ -29,6 +29,7 @@ const GenerateWithCover = ({ documentType }) => {
     },
     // 可以继续添加更多的文件类型和对应的图片目录
   };
+  
   const fetchImages = (selectedLanguage) => {
     const imagesContexts = imageDirectoryMapping[documentType];
 
