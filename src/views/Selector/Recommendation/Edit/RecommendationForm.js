@@ -107,7 +107,7 @@ const RecommendationFormUI = ({
               const isSaved = await saveData(values, errors);
               console.log(isSaved);
               if (isSaved) {
-                goToGenerate(values);
+                goToGenerate();
               }
             } catch (error) {
               // 处理可能发生的错误

@@ -20,22 +20,22 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorage.getItem('generateLan') || 'english'
   );
-  console.log(localStorage.getItem('generateLan'))
+  console.log(localStorage.getItem('generateLan'), documentType);
   const [countId, setCountId] = useState(
     localStorage.getItem('countId') || '1'
   ); // 新增 contid 状态
 
   const handleLanguageChange = (value) => {
     setSelectedLanguage(value);
-    localStorage.setItem('generateLan',value)
-    console.log(value)
+    localStorage.setItem('generateLan', value);
+    console.log(selectedLanguage);
   };
 
   // 添加用于设置 contid 的回调函数
   const handleContidChange = (newContid) => {
-    console.log(newContid+1)
-    setCountId(newContid+1); // 设置标志，表示countId已改变
-    localStorage.setItem('countId', newContid+1);
+    console.log(newContid + 1);
+    setCountId(newContid + 1); // 设置标志，表示countId已改变
+    localStorage.setItem('countId', newContid + 1);
   };
 
   // useEffect(() => {
@@ -50,11 +50,14 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
     const images = fetchImages(selectedLanguage);
     setImageFiles(images);
     setLoading(false);
-    localStorage.setItem('generateLan',localStorage.getItem('generateLan') || 'english')
-    localStorage.setItem('countId',1)
-  }, []);
+    localStorage.setItem(
+      'generateLan',
+      localStorage.getItem('generateLan') || 'english'
+    );
+    localStorage.setItem('countId', 1);
+  }, [selectedLanguage]);
 
-  console.log(localStorage.getItem('countId'))
+  console.log(localStorage.getItem('countId'));
   return (
     <div className={styles.pageContainer}>
       <div className={styles.previewContainer}>

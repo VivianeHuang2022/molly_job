@@ -116,7 +116,7 @@ const RecommendationFormLogic = () => {
     }
   };
 
-  const goToGenerate = (values) => {
+  const goToGenerate = () => {
     editState('isEditrecommendation', false);
     navigate('/layout/Recommendation/generate');
   };
