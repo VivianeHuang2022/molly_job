@@ -33,9 +33,9 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
 
   // 添加用于设置 contid 的回调函数
   const handleContidChange = (newContid) => {
-    // console.log(newContid)
+    console.log(newContid+1)
     setCountId(newContid+1); // 设置标志，表示countId已改变
-    localStorage.setItem('countId', newContid);
+    localStorage.setItem('countId', newContid+1);
   };
 
   // useEffect(() => {
@@ -54,6 +54,7 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
     localStorage.setItem('countId',1)
   }, []);
 
+  console.log(localStorage.getItem('countId'))
   return (
     <div className={styles.pageContainer}>
       <div className={styles.previewContainer}>

@@ -52,7 +52,6 @@ body {
   margin-bottom: 5px;
   display: inline;
 }
-
 .subHeading {
   color: var(--base-heading-color);
   font-size: calc(var(--base-font-size) * 1.2);
@@ -98,8 +97,4 @@ body {
   display: flex; /* 使用Flexbox布局 */
   justify-content: space-between; /* 子元素之间保持等距 */
   align-items: center; /* 垂直居中对齐 */
-}
-
-.lockIn {
-  /* text-indent: 1em; 文本首行缩进2个字符间距 */
 }
