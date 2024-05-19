@@ -105,6 +105,8 @@ const RecommendationFormUI = ({
             try {
               // 等待saveData完成
               const isSaved = await saveData(values, errors);
+              //mock saveData
+              // const isSaved = true;
               console.log(isSaved);
               if (isSaved) {
                 goToGenerate();

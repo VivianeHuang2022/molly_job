@@ -42,7 +42,8 @@ const PreviewImage = ({
         <Button onClick={handlePrev} icon={<LeftOutlined />}></Button>
         <ParagraphComp>
           {chooseTemplateTexts.title}: {chooseTemplateTexts.templateName}
-          {Number(currentIndex) + 1}
+          {/* 这里索引值加1是因为数组第一位从0开始 不然就会出现style0*/}
+          {currentIndex + 1}
         </ParagraphComp>
         <Button onClick={handleNext} icon={<RightOutlined />}></Button>
       </Space>
