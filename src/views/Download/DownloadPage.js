@@ -1,12 +1,12 @@
-import { useState, useEffect,useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { getDocumentImg, downloadDocumentPdf } from '../../utils/api';
-import AlertContext from "../../components/AlertProvider/AlertContext";
+import AlertContext from '../../components/AlertProvider/AlertContext';
 
 import styles from './Download.module.css';
 
 // import MockImage from '../../assets/cover/coverletterEnglish/Cover_letter_English_1.jpg';
 
-import { PrimaryButton } from '../../components/Button';
+import { PrimaryButton, DefaultButton } from '../../components/Button';
 import {
   MidTitleComp,
   ParagraphComp,
@@ -70,8 +70,12 @@ const DownloadPage = ({ topicId }) => {
         documentType,
         topicId
       );
-      if(response.status===200){
-        showAlertMessage("Success", "The Document sent successfully!", "success");
+      if (response.status === 200) {
+        showAlertMessage(
+          'Success',
+          'The Document sent successfully!',
+          'success'
+        );
       }
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const a = document.createElement('a');
@@ -83,6 +87,10 @@ const DownloadPage = ({ topicId }) => {
     } catch (error) {
       console.error('Error fetching PDF: ', error);
     }
+  };
+
+  const handleBackClick = () => {
+    window.open(`/#/layout/${documentType}`, '_blank');
   };
 
   return (
@@ -125,6 +133,13 @@ const DownloadPage = ({ topicId }) => {
         <SecParagraphComp>
           {downloadTexts.contactEmail}: viviane.huang@stu-de.org
         </SecParagraphComp>
+
+        <div className={styles.operationButtonsContainer}>
+          <DefaultButton
+            onClick={handleBackClick}
+            label={downloadTexts.backToGenerate}
+          />
+        </div>
       </div>
     </div>
   );

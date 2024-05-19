@@ -347,6 +347,7 @@ const texts_cn = {
     downloadPdf: "Download PDF",
     generationTime: "文档生成时间",
     contactEmail: "如有任何问题请联系",
+    backToGenerate: '返回生成',
   },
 
   recommendation: {
