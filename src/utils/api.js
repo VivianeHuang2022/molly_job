@@ -612,6 +612,7 @@ export const createResume = async (dataGroup, topicId = initTopicId) => {
   const postUrl = `${BASE_URL}/Resume/PostStdResumeDataGroup?topicId=${topicId}`;
    // console.log(111111111111111111111111111)
    // console.log(dataGroup)
+   const jwtToken = localStorage.getItem('jwtToken');
   try {
     const response = await axios({
       method: 'post',
@@ -621,7 +622,7 @@ export const createResume = async (dataGroup, topicId = initTopicId) => {
       headers: {
         //'Content-Type': 'multipart/form-data',
         accept: '*/*',
-        Authorization: authToken ? `Bearer ${authToken}` : '',
+        Authorization: jwtToken ? `Bearer ${jwtToken}` : '',
       },
       timeout: 10000,
       // ... 其他配置
