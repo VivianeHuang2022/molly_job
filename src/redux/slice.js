@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchCoverletterData } from './actions/fetcDataActions';
 
 //job初始化数据
 const getInitialJobData = (pNum) => {
-  const storedJobData = localStorage.getItem("jobDataQP" + pNum);
+  const storedJobData = localStorage.getItem('jobDataQP' + pNum);
   return storedJobData
     ? JSON.parse(storedJobData)
     : pNum === 5
@@ -13,32 +13,52 @@ const getInitialJobData = (pNum) => {
 
 //std初始化数据
 const getInitialStdData = (pNum) => {
-  const storedStdData = localStorage.getItem("stdDataQP" + pNum);
+  const storedStdData = localStorage.getItem('stdDataQP' + pNum);
   return storedStdData ? JSON.parse(storedStdData) : {};
 };
 
 //job数据存储
 export const jobDataSaveHandle = (name, value, pNum) => {
   const storedJobData =
-    JSON.parse(localStorage.getItem("jobDataQP" + pNum)) || {};
+    JSON.parse(localStorage.getItem('jobDataQP' + pNum)) || {};
 
   const updatedJobData = { ...storedJobData, [name]: value };
 
-  localStorage.setItem("jobDataQP" + pNum, JSON.stringify(updatedJobData));
+  localStorage.setItem('jobDataQP' + pNum, JSON.stringify(updatedJobData));
 };
 
 //std数据存储
 export const stdDataSaveHandle = (name, value, pNum) => {
+  handleRepeatData(name, value, 1);
   const storedStdData =
-    JSON.parse(localStorage.getItem("stdDataQP" + pNum)) || {};
+    JSON.parse(localStorage.getItem('stdDataQP' + pNum)) || {};
 
   const updatedStdData = { ...storedStdData, [name]: value };
 
-  localStorage.setItem("stdDataQP" + pNum, JSON.stringify(updatedStdData));
+  localStorage.setItem('stdDataQP' + pNum, JSON.stringify(updatedStdData));
+};
+
+//20240519 lily 排查到drUni、drCountry、drMajor、drDegree 这四个需要不同page共用的变量在本地缓存存储时没有更新其调用的问题，故在此处统一处理
+const handleRepeatData = (name, value, topicId) => {
+  if (
+    name === 'drUni' ||
+    name === 'drCountry' ||
+    name === 'drMajor' ||
+    name === 'drDegree'
+  ) {
+    const storedData = JSON.parse(localStorage.getItem('stdDataQP1')) || {};
+
+    const updateData = {
+      ...storedData,
+      [name]: value,
+    };
+
+    localStorage.setItem('stdDataQP1', JSON.stringify(updateData));
+  }
 };
 
 export const dataSlice = createSlice({
-  name: "localData",
+  name: 'localData',
   initialState: {
     jobDataQP1: getInitialJobData(1),
     jobDataQP2: getInitialJobData(2),
@@ -115,7 +135,7 @@ export const dataSlice = createSlice({
         default:
           break;
       }
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -124,90 +144,86 @@ export const dataSlice = createSlice({
       })
       .addCase(fetchCoverletterData.fulfilled, (state, action) => {
         state.loading = false;
-        const responseData = action.payload
-        const {timeStamp} = responseData;
-        const storedStdData = localStorage.getItem("stdDataUpdateTimeStamp");
+        const responseData = action.payload;
+        const { timeStamp } = responseData;
+        const storedStdData = localStorage.getItem('stdDataUpdateTimeStamp');
 
-        const getLocalData = ()=>{
-          state.stdDataQP1 = getInitialStdData(1)
-          state.stdDataQP2 = getInitialStdData(2)
-          state.stdDataQP3 = getInitialStdData(3)
-          state.stdDataQP4 = getInitialStdData(4)
-          state.stdDataQP5 = getInitialStdData(5)
-        }
+        const getLocalData = () => {
+          state.stdDataQP1 = getInitialStdData(1);
+          state.stdDataQP2 = getInitialStdData(2);
+          state.stdDataQP3 = getInitialStdData(3);
+          state.stdDataQP4 = getInitialStdData(4);
+          state.stdDataQP5 = getInitialStdData(5);
+        };
 
-        const getBackEndData =() =>{
+        const getBackEndData = () => {
           const stdData1 = {
-            drCountry:responseData.dreamCountry,
+            drCountry: responseData.dreamCountry,
             drUni: responseData.dreamUni,
-            drDegree:responseData.dreamDegree,
-            drMajor:responseData.dreamMajor
-          }
+            drDegree: responseData.dreamDegree,
+            drMajor: responseData.dreamMajor,
+          };
           const stdData2 = {
-            drCountry:responseData.dreamCountry,
+            drCountry: responseData.dreamCountry,
             drUni: responseData.dreamUni,
-            drDegree:responseData.dreamDegree,
-            drMajor:responseData.dreamMajor,
-            curDegree:responseData.currentDegree,
-            curMajor:responseData.currentMajor,
-            curUni:responseData.currentUni,
-            curCountry:responseData.currentCountry,
+            drDegree: responseData.dreamDegree,
+            drMajor: responseData.dreamMajor,
+            curDegree: responseData.currentDegree,
+            curMajor: responseData.currentMajor,
+            curUni: responseData.currentUni,
+            curCountry: responseData.currentCountry,
             curCourses: responseData.currentCourses,
-
-          }
+          };
           const stdData3 = {
             getAwards: responseData.getAwards,
-            getCompetitions:responseData.getCompetitions,
-            getConference:responseData.getConference,
-            getProject:responseData.getProject,
-            getSkills:responseData.getSkills,
-            internCompany:responseData.internCompany,
-            internRole:responseData.internRole
-          }
+            getCompetitions: responseData.getCompetitions,
+            getConference: responseData.getConference,
+            getProject: responseData.getProject,
+            getSkills: responseData.getSkills,
+            internCompany: responseData.internCompany,
+            internRole: responseData.internRole,
+          };
 
           const stdData4 = {
-            careerOrGoal:responseData.careerOrGoal,
-            profName:"",
-            profResearch:""
-          }
+            careerOrGoal: responseData.careerOrGoal,
+            profName: '',
+            profResearch: '',
+          };
 
           const stdData5 = {
-            FirstName:responseData.firstName,
-            Surname:responseData.surname,
-            Nationality:responseData.userNationality,
-            Birthday:responseData.userBirthday,
-            Address:responseData.userAddress,
-            Tel:responseData.userTel,
-            Email:responseData.userEmail
-          }
-          state.stdDataQP1 = stdData1
-          state.stdDataQP2 = stdData2
-          state.stdDataQP3 = stdData3
-          state.stdDataQP4 = stdData4
-          state.stdDataQP5 = stdData5
-          localStorage.setItem("stdDataQP1", JSON.stringify(stdData1));
-          localStorage.setItem("stdDataQP2", JSON.stringify(stdData2));
-          localStorage.setItem("stdDataQP3", JSON.stringify(stdData3));
-          localStorage.setItem("stdDataQP4", JSON.stringify(stdData4));
-          localStorage.setItem("stdDataQP5", JSON.stringify(stdData5));
-        }
-        if(responseData){
-          if(!storedStdData){
-            if(timeStamp>storedStdData){
-              getBackEndData()
+            FirstName: responseData.firstName,
+            Surname: responseData.surname,
+            Nationality: responseData.userNationality,
+            Birthday: responseData.userBirthday,
+            Address: responseData.userAddress,
+            Tel: responseData.userTel,
+            Email: responseData.userEmail,
+          };
+          state.stdDataQP1 = stdData1;
+          state.stdDataQP2 = stdData2;
+          state.stdDataQP3 = stdData3;
+          state.stdDataQP4 = stdData4;
+          state.stdDataQP5 = stdData5;
+          localStorage.setItem('stdDataQP1', JSON.stringify(stdData1));
+          localStorage.setItem('stdDataQP2', JSON.stringify(stdData2));
+          localStorage.setItem('stdDataQP3', JSON.stringify(stdData3));
+          localStorage.setItem('stdDataQP4', JSON.stringify(stdData4));
+          localStorage.setItem('stdDataQP5', JSON.stringify(stdData5));
+        };
+        if (responseData) {
+          if (!storedStdData) {
+            if (timeStamp > storedStdData) {
+              getBackEndData();
+            } else {
+              getLocalData();
             }
-            else{
-              getLocalData()
-            }
+          } else {
+            getBackEndData();
           }
-          else{
-            getBackEndData()
-          }
+        } else {
+          getLocalData();
         }
-        else{
-          getLocalData()
-        }
-      
+
         //这里要匹配Coverletter的数据格式
         // state = action.payload;
       })

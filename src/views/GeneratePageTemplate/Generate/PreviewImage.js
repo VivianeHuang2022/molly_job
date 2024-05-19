@@ -34,13 +34,15 @@ const PreviewImage = ({
     setDirection('prev');
     mediaRef.current.prev(); // 控制主轮播图的切换
   }, [mediaRef]);
-  // console.log(currentIndex)
+  console.log(currentIndex);
+
   return (
     <div className={styles.carouselContainer}>
       <Space className={styles.buttonsContainer} size={20}>
         <Button onClick={handlePrev} icon={<LeftOutlined />}></Button>
         <ParagraphComp>
           {chooseTemplateTexts.title}: {chooseTemplateTexts.templateName}
+          {/* 这里索引值加1是因为数组第一位从0开始 不然就会出现style0*/}
           {currentIndex + 1}
         </ParagraphComp>
         <Button onClick={handleNext} icon={<RightOutlined />}></Button>

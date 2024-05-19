@@ -372,6 +372,7 @@ const texts_en = {
     downloadPdf: "Download PDF",
     generationTime: "Document generation time",
     contactEmail: "For any questions, please contact ",
+    backToGenerate: 'Back to generate',
   },
 
   recommendation: {

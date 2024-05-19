@@ -22,8 +22,8 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
   );
   console.log(localStorage.getItem('generateLan'), documentType);
   const [countId, setCountId] = useState(
-    localStorage.getItem('countId') || '1'
-  ); // 新增 contid 状态
+    Number(localStorage.getItem(`countId_${documentType}`)) || 0
+  ); // 缓存存储的countId是string类型,不转换为数字会变成字符串拼接
 
   const handleLanguageChange = (value) => {
     setSelectedLanguage(value);
@@ -35,7 +35,7 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
   const handleContidChange = (newContid) => {
     console.log(newContid + 1);
     setCountId(newContid + 1); // 设置标志，表示countId已改变
-    localStorage.setItem('countId', newContid + 1);
+    localStorage.setItem(`countId_${documentType}`, newContid);
   };
 
   // useEffect(() => {
@@ -54,10 +54,9 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
       'generateLan',
       localStorage.getItem('generateLan') || 'english'
     );
-    localStorage.setItem('countId', 1);
   }, [selectedLanguage]);
 
-  console.log(localStorage.getItem('countId'));
+  console.log(localStorage.getItem(`countId_${documentType}`));
   return (
     <div className={styles.pageContainer}>
       <div className={styles.previewContainer}>
