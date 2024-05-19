@@ -34,14 +34,15 @@ const PreviewImage = ({
     setDirection('prev');
     mediaRef.current.prev(); // 控制主轮播图的切换
   }, [mediaRef]);
-  // console.log(currentIndex)
+  console.log(currentIndex);
+
   return (
     <div className={styles.carouselContainer}>
       <Space className={styles.buttonsContainer} size={20}>
         <Button onClick={handlePrev} icon={<LeftOutlined />}></Button>
         <ParagraphComp>
           {chooseTemplateTexts.title}: {chooseTemplateTexts.templateName}
-          {currentIndex + 1}
+          {Number(currentIndex) + 1}
         </ParagraphComp>
         <Button onClick={handleNext} icon={<RightOutlined />}></Button>
       </Space>
