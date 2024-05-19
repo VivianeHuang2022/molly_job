@@ -53,9 +53,10 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
     // 传到后端
     const formData = new FormData();
     formData.append('file', blob, fileName);
-
+    console.log("response.status")
     // 等待文件上传函数完成
     var response = await downloadResumePDF(formData, topicId);
+    console.log(response.status)
     if (response.status === 200) {
       showAlertMessage('Success', 'Resume send successfully!', 'success');
     } else if (response.status === 401) {
@@ -87,7 +88,6 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
   const handleSaveToBackend = async () => {
     const timeStamp = new Date().getTime();
     const dataGroup = { ...singleCvData, currentSectionType, timeStamp };
-    //console.log(dataGroup);
     try {
       const response = await createResume(dataGroup, topicId);
       if (response.status === 200) {
