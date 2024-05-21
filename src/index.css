@@ -64,7 +64,7 @@ justify-content: center;
   /* align-items: center; */
 }
 .largeText {
-  font-size: 60px; /* 这里可以调整字体大小 */
+  font-size: 40px; /* 这里可以调整字体大小 */
   margin: 10px 0;
   font-weight: bold;
 }
