@@ -33,8 +33,7 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
 
   // 添加用于设置 contid 的回调函数
   const handleContidChange = (newContid) => {
-    console.log(newContid + 1);
-    setCountId(newContid + 1); // 设置标志，表示countId已改变
+    setCountId(newContid); // 设置标志，表示countId已改变
     localStorage.setItem(`countId_${documentType}`, newContid);
   };
 

@@ -26,7 +26,7 @@ export const CoverletterLayout = () => {
     else{
       navigate('/layout/coverletter/generate')
     }
-  }, [navigate, location]);
+  }, []);
   return (
     <CoverLetter>
       <Outlet />
@@ -35,6 +35,18 @@ export const CoverletterLayout = () => {
 };
 
 export const RecommendationLayout = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    // 检查路由是否包含 'edit' 路径片段
+    if (location.pathname.includes('/edit')) {
+      // 导航到 '/generalq'，注意这是相对于根路径的绝对路径
+      navigate('/Layout/generalq', { replace: true });
+    }
+    else{
+      navigate('/layout/recommendation/generate')
+    }
+  }, []);
   return (
     <Recommendation>
       <Outlet />
