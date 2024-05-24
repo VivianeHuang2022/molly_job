@@ -524,7 +524,7 @@ const texts_cn = {
       state: "州",
       country: "国家",
       startDate: "开始日期",
-      graduationDate: "结束日期",
+      endDate: "结束日期",
       workSummary: "工作摘要",
       workDetail: "工作详情",
     },

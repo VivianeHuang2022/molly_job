@@ -20,7 +20,7 @@ const EducationInfo = ({ cvData, sectionName, styles }) => {
       city,
       state,
       startDate,
-      graduationDate,
+      endDate,
       currentGPA,
       achievement,
       currentCourses,
@@ -32,10 +32,7 @@ const EducationInfo = ({ cvData, sectionName, styles }) => {
             text={[currentDegree, currentUni, city, currentCountry]}
             styles={styles}
           />
-          <Paragraph
-            text={`${startDate} - ${graduationDate}`}
-            styles={styles}
-          />
+          <Paragraph text={`${startDate} - ${endDate}`} styles={styles} />
         </HorizontalLayout>
 
         <div className={styles.lockIn}>

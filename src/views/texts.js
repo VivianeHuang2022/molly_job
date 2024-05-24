@@ -545,7 +545,7 @@ const texts_en = {
       currentDegree: "Degree",
       currentMajor: "Major",
       startDate: "Start Date",
-      graduationDate: "Graduation Date",
+      endDate: "Graduation Date",
       currentGPA: "GPA",
       currentCourses: "Courses",
       achievement: "Achievement",
