@@ -1,7 +1,8 @@
 import React from 'react';
-import { Table, 
+import {
+  Table,
   // Button
- } from 'antd';
+} from 'antd';
 
 import { ColumnShow, CountComp } from '../../../components/Column/ColumnShow';
 import styles from './history.module.css';
@@ -20,22 +21,35 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
       title: <ColumnShow content={historyTexts.count} />,
       key: 'count',
       dataIndex: 'count',
-      // render: (text, record) => (
-      //   <span>
-      //     {record.action === 'increment'
-      //       ? `${historyTexts.payment} ${record.planType}  +`
-      //       : `  ${historyTexts.generate} ${record.doucumentType} -`}
-      //     <CountComp content={record.count} />
-      //   </span>
-      // ),
-      render: (text, record) => (
-        <span>
-          {record.action === historyTexts.increment
-            ? `${historyTexts.payment} ${record.actionType}  +`
-            : `  ${historyTexts.generate} ${record.actionType} -`}
-          <CountComp content={record.count} />
-        </span>
-      ),
+      render: (text, record) => {
+        const actionType = record.actionType;
+        let actionTypeText;
+        switch (actionType) {
+          case 'coverletter':
+            actionTypeText = historyTexts.coverletter;
+            break;
+          case 'recommendation':
+            actionTypeText = historyTexts.recommendation;
+            break;
+          case 'pro':
+            actionTypeText = historyTexts.pro;
+            break;
+          case 'superPro':
+            actionTypeText = historyTexts.superPro;
+            break;
+          case 'standard':
+            actionTypeText = historyTexts.standard;
+            break;
+        }
+        return (
+          <span>
+            {record.action === 'increment'
+              ? `${historyTexts.payment} ${actionTypeText}  +`
+              : `  ${historyTexts.generate} ${actionTypeText} -`}
+            <CountComp content={record.count} />
+          </span>
+        );
+      },
     },
     {
       title: <ColumnShow content={historyTexts.time} />,
@@ -49,7 +63,6 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
       defaultSortOrder: 'ascend',
     },
   ];
-  console.log(generateCountHistory)
   return (
     <div className={styles.container}>
       <h1>

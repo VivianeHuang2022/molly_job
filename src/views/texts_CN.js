@@ -489,11 +489,16 @@ const texts_cn = {
     remainingCounts: "剩余数量：",
     generateCountsHistory: "生成数量历史记录：",
     increment: "增加",
-    payment: "支付",
+    payment: "充值",
     generate: "生成",
     count: "数量",
     time: "时间",
     buttonBack: "返回",
+    coverletter:"申请信",
+    recommendation:"推荐信",
+    pro:"高级计划",
+    superPro:"超级计划",
+    standard:"标准计划"
   },
   resumeTxt: {
     personalInfo: {

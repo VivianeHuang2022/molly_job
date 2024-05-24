@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import HistoryComp from './HistoryComp';
 
-import generateCountHistory from './generateCountHistory'
+import generateCountHistory from './generateCountHistory';
 import {
   getGenerateCountHistory,
-  // getGenerateCountHistory_MOCK,
+  getGenerateCountHistory_MOCK,
   fetchRemainingCounts,
 } from '../../../utils/api';
 
@@ -16,17 +16,12 @@ const GenerateCountHistory = () => {
     const fetchHistory = async () => {
       try {
         const fetchedResponse = await getGenerateCountHistory();
-        // const fetchedResponse = generateCountHistory;
-        
-        if (fetchedResponse.msg.length>0) {
+
+        if (fetchedResponse.msg.length > 0) {
           setResponse(fetchedResponse.msg);
-        }
-        else{
-          //setResponse(fetchedResponse);
         }
       } catch (error) {
         console.error('Error fetching history:', error);
-        // 可以在这里添加更多的错误处理逻辑
       }
     };
 
@@ -39,7 +34,7 @@ const GenerateCountHistory = () => {
     fetchCount();
     fetchHistory();
   }, []); // 空依赖数组确保这个effect仅在组件挂载时运行一次
-  console.log(counts)
+  // console.log(counts);
   return (
     <div>
       <HistoryComp

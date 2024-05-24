@@ -521,6 +521,11 @@ const texts_en = {
     count: "Count",
     time: "Time",
     buttonBack: "Back",
+    coverletter:"cover letter",
+    recommendation:"recommendation",
+    pro:"pro plan",
+    superPro:"super Pro plan",
+    standard:"standard plan"
   },
   resumeTxt: {
     personalInfo: {
