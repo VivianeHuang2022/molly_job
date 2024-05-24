@@ -7,9 +7,6 @@ export const cvSection = {
       userTel: '',
       userEmail: '',
       userLinkedln: '',
-      userNationality: '',
-      userBirthday: '',
-      userAddress: '',
     },
   },
   dreamInfo: {
@@ -133,7 +130,15 @@ export const cvSection = {
   // resume其他部分的信息...
 };
 
-export const currentSectionType = ['personalInfo', 'educationInfo'];
+export const currentSectionType = [
+  'personalInfo',
+  'educationInfo',
+  'workExperience',
+  'projectExperience',
+  'researchExperience',
+  'publicationsPresentations',
+  'skillsActivitiesInterests',
+];
 
 export const allSectionType = [
   'personalInfo',
