@@ -96,7 +96,8 @@ const DownloadPage = ({ topicId }) => {
 
   const handleBackClick = () => {
     //这里用window.open是为了不在一个标签页进行跳转,0519跟@🇩🇪Viviane 聊的方案 保留之前的下载页 便于用户回溯
-    window.open(`/#/layout/${documentType}/generate`, '_blank');
+    window.open(`/#/layout/${documentType}/edit`, '_blank'); //这里按0419 规划的流程就是应该要去编辑页的,用户每次返回重新生成肯定是要对某些内容进行调整的
+
     // navigate(`/layout/${documentType}/generate`)
   };
 
