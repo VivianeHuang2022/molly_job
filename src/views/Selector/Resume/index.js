@@ -28,15 +28,13 @@ const CvPage = () => {
     const checkRes = checkLogin();
     checkRes.then((result) => {
       if (!result) {
-        // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
-        // navigate('/login');
-        // console.log(window.location)
+        navigate('/login');
       }
     });
 
     // 在组件挂载时调用异步 action creator，从后端获取数据
     dispatch(fetchCVData());
-  }, [dispatch]);
+  }, [dispatch,navigate]);
 
   // 根据当前语言设置获取对应的语言配置文件
   const labels = getLabels(currentLanguage).resumeTxt;
