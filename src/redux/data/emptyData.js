@@ -37,7 +37,7 @@ export const cvSection = {
         currentDegree: '',
         currentMajor: 'Major:Computer ',
         startDate: '',
-        graduationDate: '',
+        endDate: '',
         currentGPA: 'GPA:3.8',
         achievement: '',
         currentCourses: '',

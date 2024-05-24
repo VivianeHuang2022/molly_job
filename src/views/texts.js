@@ -521,6 +521,11 @@ const texts_en = {
     count: "Count",
     time: "Time",
     buttonBack: "Back",
+    coverletter:"cover letter",
+    recommendation:"recommendation",
+    pro:"pro plan",
+    superPro:"super Pro plan",
+    standard:"standard plan"
   },
   resumeTxt: {
     personalInfo: {
@@ -545,7 +550,7 @@ const texts_en = {
       currentDegree: "Degree",
       currentMajor: "Major",
       startDate: "Start Date",
-      graduationDate: "Graduation Date",
+      endDate: "Graduation Date",
       currentGPA: "GPA",
       currentCourses: "Courses",
       achievement: "Achievement",
