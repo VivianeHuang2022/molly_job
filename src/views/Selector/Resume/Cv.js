@@ -89,6 +89,7 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
     const timeStamp = new Date().getTime();
     const dataGroup = { ...singleCvData, currentSectionType, timeStamp };
     try {
+      console.log(dataGroup)
       const response = await createResume(dataGroup, topicId);
       if (response.status === 200) {
         setIsSaved(true);

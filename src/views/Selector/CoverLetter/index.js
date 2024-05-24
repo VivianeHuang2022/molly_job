@@ -11,6 +11,6 @@ export default function CoverLetter(props) {
     } else {
       navigate('/layout/coverletter/edit');
     }
-  }, []);
+  }, [isFromPayment,navigate]);
   return <div>{props.children}</div>;
 }

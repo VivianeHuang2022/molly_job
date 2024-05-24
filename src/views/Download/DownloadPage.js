@@ -16,6 +16,7 @@ import {
 import { getLabels } from '../local';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
+import { useNavigate } from 'react-router-dom';
 
 const DownloadPage = ({ topicId }) => {
   const { showAlertMessage } = useContext(AlertContext);
@@ -23,11 +24,13 @@ const DownloadPage = ({ topicId }) => {
   const downloadTexts = texts.download;
   const rememberEmail = localStorage.getItem('email');
   const documentType = localStorage.getItem('currentgenerate');
+  const navigate = useNavigate()
 
   const [imageSrc, setImageSrc] = useState(null);
   const [generationTime, setGenerationTime] = useState('暂未获取到时间');
   // const [coverLetterData] = useState({});
-  const countId = localStorage.getItem('countId');
+  const countId = localStorage.getItem(`countId_${documentType}`)?localStorage.getItem(`countId_${documentType}`):0
+
   const lan = localStorage.getItem('generateLan');
 
   useEffect(() => {
@@ -90,7 +93,8 @@ const DownloadPage = ({ topicId }) => {
   };
 
   const handleBackClick = () => {
-    window.open(`/#/layout/${documentType}`, '_blank');
+    //window.open(`/#/layout/${documentType}`, '_blank');
+    navigate(`/layout/${documentType}/generate`)
   };
 
   return (
