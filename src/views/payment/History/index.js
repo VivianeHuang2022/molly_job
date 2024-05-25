@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import HistoryComp from './HistoryComp';
 
-import generateCountHistory from './generateCountHistory';
 import {
   getGenerateCountHistory,
-  getGenerateCountHistory_MOCK,
+  // getGenerateCountHistory_MOCK,
   fetchRemainingCounts,
 } from '../../../utils/api';
 

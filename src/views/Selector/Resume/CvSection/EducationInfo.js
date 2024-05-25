@@ -1,7 +1,6 @@
 import {
   Heading,
   Paragraph,
-  SubHeading,
   HorizontalLayout,
   SubHeadingArray,
 } from './cvComps/CvTypography';
