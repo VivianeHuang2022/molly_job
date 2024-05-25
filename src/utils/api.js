@@ -610,8 +610,6 @@ export const updateRecommendation = async (
  */
 export const createResume = async (dataGroup, topicId = initTopicId) => {
   const postUrl = `${BASE_URL}/Resume/PostStdResumeDataGroup?topicId=${topicId}`;
-   // console.log(111111111111111111111111111)
-   // console.log(dataGroup)
    const jwtToken = localStorage.getItem('jwtToken');
   try {
     const response = await axios({
@@ -627,7 +625,6 @@ export const createResume = async (dataGroup, topicId = initTopicId) => {
       timeout: 10000,
       // ... 其他配置
     });
-
     return response;
   } catch (error) {
     throw error;

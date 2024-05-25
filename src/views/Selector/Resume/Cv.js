@@ -88,13 +88,11 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
   const handleSaveToBackend = async () => {
     const timeStamp = new Date().getTime();
     const dataGroup = { ...singleCvData, currentSectionType, timeStamp };
+
     try {
-      console.log(dataGroup)
       const response = await createResume(dataGroup, topicId);
       if (response.status === 200) {
         setIsSaved(true);
-      } else if (response.status === 401) {
-        navigate('/login');
       } else {
         setIsSaved(false);
         saveLocalEdit('resume', {
@@ -108,7 +106,9 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
         cvSections: singleCvData,
         currentSectionType,
       });
-      console.log(error);
+      if(error.response.status===401){
+        navigate('/login');
+      }
     }
   };
   const handleDownloadButton = () => {
