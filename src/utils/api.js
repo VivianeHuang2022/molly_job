@@ -682,6 +682,7 @@ export const getRegisterVerificationCode = async (request) => {
  */
 export const getRecommendation = async (topicId = initTopicId) => {
   const postUrl = `${BASE_URL}/Recommendation/GetRecommendationDataGroup?topicId=${topicId}`;
+  const jwtToken = localStorage.getItem('jwtToken');
   try {
     const response = await axios({
       method: 'get',
@@ -690,7 +691,7 @@ export const getRecommendation = async (topicId = initTopicId) => {
       headers: {
         'Content-Type': 'application/json',
         accept: '*/*',
-        Authorization: authToken ? `Bearer ${authToken}` : '',
+        Authorization: authToken ? `Bearer ${jwtToken}` : '',
       },
       timeout: 10000,
       // ... 其他配置

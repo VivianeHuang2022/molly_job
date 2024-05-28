@@ -85,24 +85,24 @@ const RecommendationFormLogic = () => {
 
   useEffect(() => {
     // 检查登录状态,未登录先去登录
-    // const checkLoginAndDataFetch = async () => {
-    //   try {
-    //     const checkRes = await checkLogin();
-    //     if (!checkRes) {
-    //       // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
-    //       navigate('/login');
-    //       // console.log(window.location
-    //     } else {
-    //       // 验证用户身份后获取最新数据
-    //       fetchAndCompareData();
-    //     }
-    //   } catch (error) {
-    //     // 处理错误
-    //     console.error('Error during checkLogin:', error);
-    //   }
-    // };
-    // checkLoginAndDataFetch();
-    fetchAndCompareData();
+    const checkLoginAndDataFetch = async () => {
+      try {
+        const checkRes = await checkLogin();
+        if (!checkRes) {
+          // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
+          navigate('/login');
+          // console.log(window.location
+        } else {
+          // 验证用户身份后获取最新数据
+          fetchAndCompareData();
+        }
+      } catch (error) {
+        // 处理错误
+        console.error('Error during checkLogin:', error);
+      }
+    };
+    checkLoginAndDataFetch();
+    //fetchAndCompareData();
   }, [dispatch, topicId]); // 依赖 dispatch 函数
 
   //在编辑页面只向后端存数据,不会接生成文档的api,在生成页消耗次数后才会createRecommendation
