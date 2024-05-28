@@ -12,7 +12,7 @@ import { selectCurrentTopicId } from '../../../redux/slices/userTypeSlice';
 import { Select } from 'antd';
 
 // ResumeContainer Component
-const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
+const CvContainer = ({ labels, singleCvData, currentSectionType, styles,templateLabels,tips }) => {
   const topicId = useSelector(selectCurrentTopicId);
   const { showAlertMessage } = useContext(AlertContext);
   const [isSaved, setIsSaved] = useState(true);
@@ -125,8 +125,8 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
   };
 
   const options = [
-    { value: 0, text: 'style 1' },
-    { value: 1, text: 'style 2' },
+    { value: 0, text: `${templateLabels.templateName} 1` },
+    { value: 1, text: `${templateLabels.templateName} 2` },
   ];
 
   return (
@@ -147,7 +147,7 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
 
         {!isSaved && (
           <NoticeParagraphComp>
-            Data is not saved, please try it later.
+            {tips.dataNotSaved}
           </NoticeParagraphComp>
         )}
       </div>

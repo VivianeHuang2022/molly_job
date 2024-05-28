@@ -34,10 +34,12 @@ const CvPage = () => {
 
     // 在组件挂载时调用异步 action creator，从后端获取数据
     dispatch(fetchCVData());
-  }, [dispatch,navigate]);
+  }, [dispatch, navigate]);
 
   // 根据当前语言设置获取对应的语言配置文件
   const labels = getLabels(currentLanguage).resumeTxt;
+  const templateLabels = getLabels(currentLanguage).chooseTemplate;
+  const tips = getLabels(currentLanguage).tips;
 
   return (
     <div className={styles.container}>
@@ -53,6 +55,8 @@ const CvPage = () => {
         singleCvData={singleCvData}
         currentSectionType={currentSectionType}
         styles={styles}
+        templateLabels={templateLabels}
+        tips={tips}
       />
     </div>
   );

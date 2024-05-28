@@ -606,6 +606,13 @@ const texts_en = {
       downloadButton: "Download",
     },
   },
+  chooseTemplate: {
+    title: "Current template",
+    templateName: "Style",
+  },
+  tips:{
+    dataNotSaved:'Data is not saved, please try it later.'
+  }
 };
 
 export default texts_en;
