@@ -40,6 +40,9 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
           case 'standard':
             actionTypeText = historyTexts.standard;
             break;
+          default:
+            // 这里可以什么都不做，或者添加一些默认行为,不加default会触发提示Expected a default case  default-case
+            break;
         }
         return (
           <span>

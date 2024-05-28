@@ -12,7 +12,7 @@ import { selectCurrentTopicId } from '../../../redux/slices/userTypeSlice';
 import { Select } from 'antd';
 
 // ResumeContainer Component
-const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
+const CvContainer = ({ labels, singleCvData, currentSectionType, styles,templateLabels,tips }) => {
   const topicId = useSelector(selectCurrentTopicId);
   const { showAlertMessage } = useContext(AlertContext);
   const [isSaved, setIsSaved] = useState(true);
@@ -36,11 +36,12 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
     const opt = {
       margin: 0.2,
       filename: fileName,
-      html2canvas: { scale: 4 },
+      html2canvas: { scale: 4, dpi: 192, letterRendering: true },
       jsPDF: {
         unit: 'in',
         format: [width * scaleFactor, height * scaleFactor],
       },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy', 'whiteline'] },
       // 其他可能需要的配置项，例如页眉页脚等
     };
 
@@ -53,10 +54,10 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
     // 传到后端
     const formData = new FormData();
     formData.append('file', blob, fileName);
-    console.log("response.status")
+    console.log('response.status');
     // 等待文件上传函数完成
     var response = await downloadResumePDF(formData, topicId);
-    console.log(response.status)
+    console.log(response.status);
     if (response.status === 200) {
       showAlertMessage('Success', 'Resume send successfully!', 'success');
     } else if (response.status === 401) {
@@ -106,7 +107,7 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
         cvSections: singleCvData,
         currentSectionType,
       });
-      if(error.response.status===401){
+      if (error.response.status === 401) {
         navigate('/login');
       }
     }
@@ -124,12 +125,32 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
   };
 
   const options = [
-    { value: 0, text: 'style 1' },
-    { value: 1, text: 'style 2' },
+    { value: 0, text: `${templateLabels.templateName} 1` },
+    { value: 1, text: `${templateLabels.templateName} 2` },
   ];
 
   return (
     <div className={styles.resumeContainer}>
+      <div className={styles.cvTop}>
+        <div className={styles.selectStyle}>
+          <Select
+            value={options[selectedStyle].text}
+            onChange={handleStyleChange}
+          >
+            {options.map((option) => (
+              <Select.Option key={option.value} value={option.value}>
+                {option.text}
+              </Select.Option>
+            ))}
+          </Select>
+        </div>
+
+        {!isSaved && (
+          <NoticeParagraphComp>
+            {tips.dataNotSaved}
+          </NoticeParagraphComp>
+        )}
+      </div>
       <div className={styles.resumeShow}>
         <div className={styles.resume} ref={contentRef}>
           <CvSection
@@ -142,27 +163,6 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles }) => {
       </div>
 
       <div className={styles.saveButtonContainer}>
-        {!isSaved && (
-          <NoticeParagraphComp>
-            Data is not saved, please try it later.
-          </NoticeParagraphComp>
-        )}
-
-        {isSaved && (
-          <div className={styles.selectStyle}>
-            <Select
-              value={options[selectedStyle].text}
-              onChange={handleStyleChange}
-            >
-              {options.map((option) => (
-                <Select.Option key={option.value} value={option.value}>
-                  {option.text}
-                </Select.Option>
-              ))}
-            </Select>
-          </div>
-        )}
-
         <div>
           <DefaultButton
             label={labels.interface.saveButton}

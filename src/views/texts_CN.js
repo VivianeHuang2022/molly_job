@@ -572,6 +572,13 @@ const texts_cn = {
       downloadButton: "下载",
     },
   },
+  chooseTemplate: {
+    title: "当前模板",
+    templateName: "样式",
+  },
+  tips:{
+    dataNotSaved:'数据暂未保存,请稍后再试.'
+  }
 };
 
 export default texts_cn;

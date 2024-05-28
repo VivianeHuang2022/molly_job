@@ -53,9 +53,6 @@
 
 /* Styling for the resume container */
 .resumeContainer {
-  height: 80vh;
-  min-width: 500px;
-  /* aspect-ratio: 21 / 29.7; */
   background-color: #f7f7f7;
   padding: calc(var(--padding) * 2);
   display: flex;
@@ -80,8 +77,9 @@
 
 /* Styling for the resume display area */
 .resumeShow {
-  aspect-ratio: 21 / 29.7;
   background-color: rgb(255, 255, 255);
+  aspect-ratio: 21 / 29.7;
+  min-width: 300px;
   padding: var(--padding);
   display: flex;
   border-radius: 10px;
@@ -123,8 +121,14 @@
   }
 }
 
+.cvTop {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
 .selectStyle {
-  width: 50%;
   display: flex;
   justify-content: start;
 }
