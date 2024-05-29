@@ -30,7 +30,7 @@ export const Paragraph = ({ text, styles }) => {
 };
 
 export const ParagraphArray = ({ text, styles }) => {
-  return <div className={styles.paragraph}>{formatItems(text)}</div>;
+  return <div className={styles.paragraphArray}>{text}</div>;
 };
 
 export const ParagraphList = ({ text, styles }) => {
@@ -43,7 +43,7 @@ export const ParagraphList = ({ text, styles }) => {
         <div key={index} className={styles.listItem}>
           <div className={styles.li}></div>
           <div className={styles.listValue}>
-            <Paragraph text={line} styles={styles} />
+            <ParagraphArray text={line} styles={styles} />
           </div>
         </div>
       ));
