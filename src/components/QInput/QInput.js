@@ -18,7 +18,7 @@ export default function QInput({
     console.log(value);
     if (isRequired && !value) {
       setTip(true);
-    }
+    } else setTip(false);
   };
 
   return (
