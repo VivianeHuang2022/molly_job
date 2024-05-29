@@ -20,6 +20,7 @@ export default function Question(props) {
   const { showAlertMessage } = useContext(AlertContext);
  const texts = getLabels(useSelector(selectCurrentLanguage));
 
+ 
   const handleToNext = async () => {
     const currentQNumber = parseInt(location.pathname.split("/page")[1], 10);
     if (currentQNumber < childrenCount) {
@@ -32,21 +33,23 @@ export default function Question(props) {
         localStorage.setItem("stdDataUpdateTimeStamp", timeStamp);
         var data = generateStdDataGroup(timeStamp);
         //console.log(data)
-        const response = await postStdCoverLetterDataGroup(data);
+        if(handleRequireData(data)){
+          const response = await postStdCoverLetterDataGroup(data);
 
-        if (response.status === 200) {
-          editState("isEditcoverletter", false);
-          // editState('isEditcoverletter', false);
-          //navigate('/layout/coverletter/edit');
-          navigate("/layout/coverletter/generate");
-        } else if (response.status === 401) {
-          navigate("/login");
-        } else {
-          showAlertMessage(
-            "Error",
-            "Post data failed!, Please check your data!",
-            "error"
-          );
+          if (response.status === 200) {
+            editState("isEditcoverletter", false);
+            // editState('isEditcoverletter', false);
+            //navigate('/layout/coverletter/edit');
+            navigate("/layout/coverletter/generate");
+          } else if (response.status === 401) {
+            navigate("/login");
+          } else {
+            showAlertMessage(
+              "Error",
+              "Post data failed!, Please check your data!",
+              "error"
+            );
+          }
         }
       } else {
         //job逻辑
@@ -155,3 +158,11 @@ const generateStdDataGroup = (timeStamp) => {
   };
   return dataGroup;
 };
+
+
+const handleRequireData = (data) => {
+
+  if(data.firstName && data.surname && data.userEmail) return true
+  else alert('you need input all required items')
+
+} 

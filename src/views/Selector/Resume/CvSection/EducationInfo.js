@@ -1,6 +1,7 @@
 import {
   Heading,
   Paragraph,
+  ParagraphArray,
   HorizontalLayout,
   SubHeadingArray,
 } from './cvComps/CvTypography';
@@ -41,11 +42,11 @@ const EducationInfo = ({ cvData, sectionName, styles }) => {
           </HorizontalLayout>
 
           <HorizontalLayout styles={styles}>
-            <Paragraph text={achievement} styles={styles} />
+            <Paragraph text={currentCourses} styles={styles} />
             <Paragraph text={` ${currentGPA}`} styles={styles} />
           </HorizontalLayout>
 
-          <Paragraph text={currentCourses} styles={styles} />
+          <ParagraphArray text={achievement} styles={styles} />
         </div>
       </div>
     );

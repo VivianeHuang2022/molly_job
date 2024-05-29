@@ -12,7 +12,14 @@ import { selectCurrentTopicId } from '../../../redux/slices/userTypeSlice';
 import { Select } from 'antd';
 
 // ResumeContainer Component
-const CvContainer = ({ labels, singleCvData, currentSectionType, styles,templateLabels,tips }) => {
+const CvContainer = ({
+  labels,
+  singleCvData,
+  currentSectionType,
+  styles,
+  templateLabels,
+  tips,
+}) => {
   const topicId = useSelector(selectCurrentTopicId);
   const { showAlertMessage } = useContext(AlertContext);
   const [isSaved, setIsSaved] = useState(true);
@@ -146,32 +153,32 @@ const CvContainer = ({ labels, singleCvData, currentSectionType, styles,template
         </div>
 
         {!isSaved && (
-          <NoticeParagraphComp>
-            {tips.dataNotSaved}
-          </NoticeParagraphComp>
+          <NoticeParagraphComp>{tips.dataNotSaved}</NoticeParagraphComp>
         )}
       </div>
-      <div className={styles.resumeShow}>
-        <div className={styles.resume} ref={contentRef}>
-          <CvSection
-            labels={labels}
-            singleCvData={singleCvData}
-            currentSectionType={currentSectionType}
-            styleNum={selectedStyle}
-          />
+      <div className={styles.resumeWithButton}>
+        <div className={styles.resumeShow}>
+          <div className={styles.resume} ref={contentRef}>
+            <CvSection
+              labels={labels}
+              singleCvData={singleCvData}
+              currentSectionType={currentSectionType}
+              styleNum={selectedStyle}
+            />
+          </div>
         </div>
-      </div>
 
-      <div className={styles.saveButtonContainer}>
-        <div>
-          <DefaultButton
-            label={labels.interface.saveButton}
-            onClick={handleSaveToBackend}
-          />
-          <PrimaryButton
-            label={labels.interface.downloadButton}
-            onClick={handleDownloadButton}
-          />
+        <div className={styles.saveButtonContainer}>
+          <div>
+            <DefaultButton
+              label={labels.interface.saveButton}
+              onClick={handleSaveToBackend}
+            />
+            <PrimaryButton
+              label={labels.interface.downloadButton}
+              onClick={handleDownloadButton}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -24,6 +24,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .cvSection {
   display: flex;
   flex-direction: column;
@@ -38,6 +39,8 @@ body {
 }
 
 .keyTile {
+  width: 100%;
+  overflow-wrap: break-word;
   color: var(--base-font-color);
   font-size: calc(var(--base-font-size) * 1.7);
   font-weight: bold;
@@ -70,11 +73,21 @@ body {
   /* background-color: rgb(196, 255, 222); */
 }
 
+.paragraphArray {
+  width: 100%;
+  overflow-wrap: break-word;
+  color: var(--base-font-color);
+  font-size: var(--base-font-size);
+  margin-bottom: 0.15rem;
+  /* background-color: rgb(62, 225, 243); */
+}
+
 .Paragraph {
   color: var(--secondary-font-color);
   font-size: var(--base-font-size);
   margin-bottom: 0.15rem;
   font-weight: 100;
+  /* background-color: aqua; */
 }
 
 .personalInfo {
@@ -83,10 +96,13 @@ body {
 }
 
 .personalInfoDetails {
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 0.2rem;
+  /* background-color: antiquewhite; */
+  justify-content: center; /* 水平居中 */
 }
 
 .personalInfoDetails div {
@@ -102,6 +118,7 @@ body {
   display: flex; /* 使用Flexbox布局 */
   justify-content: space-between; /* 子元素之间保持等距 */
   align-items: center; /* 垂直居中对齐 */
+  /* background-color: aquamarine; */
 }
 
 .lockIn {
@@ -120,6 +137,7 @@ body {
   display: flex;
   align-items: first baseline;
   margin: 0;
+  /* background-color: bisque; */
 }
 
 /* 调节列表之间的gap */
@@ -136,6 +154,7 @@ body {
 }
 
 .listValue {
+  width: 95%;
   padding-left: 0px;
   /* background-color: aquamarine; */
 }
