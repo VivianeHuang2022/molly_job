@@ -35,12 +35,16 @@ export default function StdPage5() {
           placeholder="e.g. Vivinae"
           value={formData.FirstName || ""}
           onChange={(e) => handleInputChange("FirstName", e.target.value)}
+          inputValueType={"FirstName"}
+          isRequired = {true} 
         />
         <QInput
           title={texts.GeberalQ.StdPage.Page5.P5T2}
           placeholder="e.g. Fa"
           value={formData.Surname || ""}
           onChange={(e) => handleInputChange("Surname", e.target.value)}
+          inputValueType={"Surname"}
+          isRequired = {true} 
         />
       </div>
       <div className={styles.subContainer}>
@@ -77,6 +81,8 @@ export default function StdPage5() {
           placeholder="e.g. xx@gmail.com"
           value={formData.Email || ""}
           onChange={(e) => handleInputChange("Email", e.target.value)}
+          isRequired = {true} 
+          inputValueType={"Email"}
         />
       </div>
     </div>
