@@ -81,16 +81,12 @@ const RecommendationFormUI = ({
               setMessage('Please fill in all required fields.');
               return false;
             } else {
-              const localSaved = JSON.parse(
-                localStorage.getItem(`recommendation_localEdit${topicId}`)
-              );
               const requiredFields = [
                 'recommenderEmail',
                 'firstName',
                 'surname',
               ];
 
-              // 创建一个映射，将字段名称映射到 text 结构体中的 label
               const fieldToLabelMap = {
                 recommenderEmail: recommender.email.label,
                 firstName: recommender.firstName.label,
@@ -99,7 +95,7 @@ const RecommendationFormUI = ({
               let missingFields = requiredFields.filter(
                 (field) => !values[field]
               );
-
+              // 20240605 add默认情况下不填写任何内容的必填项校验
               if (missingFields.length > 0) {
                 let message = texts.tips.fillIn;
                 const missingLabels = missingFields.map(

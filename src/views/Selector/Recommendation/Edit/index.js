@@ -12,6 +12,7 @@ import {
 import { LoadingIndicator } from '../../../../components/Loading';
 import { initialValues } from './FormData';
 import { selectCurrentTopicId } from '../../../../redux/slices/userTypeSlice';
+import { realtTime } from '../../../../utils/time';
 
 //整个推荐信表单
 const RecommendationFormLogic = () => {
@@ -51,8 +52,12 @@ const RecommendationFormLogic = () => {
             // console.log('有recommend缓存', response.data.msg);
 
             if (response.data.msg.timeStamp > localSaved?.timeStamp) {
-              console.log('后台数据更新,用后台数据', response.data.msg);
-
+              console.log(
+                '后台数据更新,用后台数据',
+                response.data.msg,
+                response.data.msg.timeStamp,
+                realtTime(localSaved?.timeStamp)
+              );
               //后台数据更新,用后台数据
               setFormData(response.data.msg);
             } else {
