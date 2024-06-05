@@ -118,6 +118,7 @@ const RecommendationFormLogic = () => {
   const sendDatatoBack = async (values) => {
     try {
       values.timeStamp = new Date().getTime();
+      console.log(values);
       const response = await updateRecommendation(values, topicId);
       return response;
     } catch (error) {
