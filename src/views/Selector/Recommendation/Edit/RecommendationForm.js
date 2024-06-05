@@ -84,12 +84,33 @@ const RecommendationFormUI = ({
               const localSaved = JSON.parse(
                 localStorage.getItem(`recommendation_localEdit${topicId}`)
               );
-              if (!localSaved) {
-                console.log('no fill');
-                setMessage('Please fill in all required fields.');
+              const requiredFields = [
+                'recommenderEmail',
+                'firstName',
+                'surname',
+              ];
+
+              // 创建一个映射，将字段名称映射到 text 结构体中的 label
+              const fieldToLabelMap = {
+                recommenderEmail: recommender.email.label,
+                firstName: recommender.firstName.label,
+                surname: recommender.lastName.label, // 假设 surname 对应 lastName
+              };
+              let missingFields = requiredFields.filter(
+                (field) => !values[field]
+              );
+
+              if (missingFields.length > 0) {
+                let message = texts.tips.fillIn;
+                const missingLabels = missingFields.map(
+                  (field) => fieldToLabelMap[field]
+                );
+                message += ' ' + missingLabels.join(', ');
+                setMessage(message);
                 return false;
               } else {
                 const isSaved = await sendDatatoBack(values);
+
                 if (isSaved) {
                   return true;
                 } else {
@@ -101,13 +122,11 @@ const RecommendationFormUI = ({
             }
           };
           const handleSubmit = async (values, errors) => {
-            console.log('yes');
             try {
               // 等待saveData完成
               const isSaved = await saveData(values, errors);
-              //mock saveData
-              // const isSaved = true;
-              console.log(isSaved);
+
+              console.log('是否成功向后台提交数据', isSaved);
               if (isSaved) {
                 goToGenerate();
               }

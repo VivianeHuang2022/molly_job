@@ -45,17 +45,21 @@ const RecommendationFormLogic = () => {
         setApiMessage('');
         // Step 1: 检查后端响应是否有有效值
         if (response && response.data.msg.timeStamp) {
-          console.log('存在后端有效值');
+          // console.log('存在后端有效值');
           // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
           if (localSaved) {
-            console.log('有recommend缓存');
+            // console.log('有recommend缓存', response.data.msg);
 
             if (response.data.msg.timeStamp > localSaved?.timeStamp) {
+              console.log('后台数据更新,用后台数据', response.data.msg);
+
               //后台数据更新,用后台数据
               setFormData(response.data.msg);
             } else {
               //后台数据没更新，用本地数据
               if (localSaved?.data) {
+                console.log('本地数据更新,用本地数据', localSaved.data);
+
                 setFormData(localSaved.data);
               }
             }
@@ -121,7 +125,7 @@ const RecommendationFormLogic = () => {
     navigate('/layout/Recommendation/generate');
   };
 
-  console.log(formData);
+  // console.log(formData);
 
   return (
     <div>
