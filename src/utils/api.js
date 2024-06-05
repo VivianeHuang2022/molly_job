@@ -46,7 +46,7 @@ export const getVerificationCode = async (request) => {
   try {
     const response = await axios({
       method: 'post',
-      url: 'api/VerificationCode/SendVerificationCode',
+      url: 'api/ResetPassword/SendVerificationCode',
       data: request,
       headers: {
         'Content-Type': 'application/json',
