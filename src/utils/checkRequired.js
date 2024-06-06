@@ -17,7 +17,7 @@ export const validateFields = (formData) => {
     'profName',
     'profResearch',
   ];
-  console.log(formData);
+  // console.log(formData);
 
   // 检查formData中的每个字段
   for (const field in formData) {

@@ -15,6 +15,7 @@ const getInitialJobData = (pNum) => {
 //std初始化数据
 const getInitialStdData = (pNum) => {
   const storedStdData = localStorage.getItem('stdDataQP' + pNum);
+  // console.log(storedStdData);
   return storedStdData ? JSON.parse(storedStdData) : {};
 };
 
@@ -35,7 +36,7 @@ export const stdDataSaveHandle = (name, value, pNum) => {
     JSON.parse(localStorage.getItem('stdDataQP' + pNum)) || {};
 
   const updatedStdData = { ...storedStdData, [name]: value };
-  console.log(updatedStdData);
+  // console.log(updatedStdData);
 
   localStorage.setItem('stdDataQP' + pNum, JSON.stringify(updatedStdData));
 };
@@ -151,6 +152,7 @@ export const dataSlice = createSlice({
         const storedStdData = localStorage.getItem('stdDataUpdateTimeStamp');
 
         const getLocalData = () => {
+          console.log('getLocalData');
           logTime(timeStamp, storedStdData);
           state.stdDataQP1 = getInitialStdData(1);
           state.stdDataQP2 = getInitialStdData(2);
@@ -160,6 +162,7 @@ export const dataSlice = createSlice({
         };
 
         const getBackEndData = () => {
+          console.log('getBackEndData');
           logTime(timeStamp, storedStdData);
 
           const stdData1 = {
@@ -216,7 +219,7 @@ export const dataSlice = createSlice({
           localStorage.setItem('stdDataQP5', JSON.stringify(stdData5));
         };
         if (responseData) {
-          if (!storedStdData) {
+          if (storedStdData) {
             if (timeStamp > storedStdData) {
               getBackEndData();
             } else {
