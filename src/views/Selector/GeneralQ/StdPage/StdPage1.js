@@ -26,6 +26,7 @@ export default function StdPage1() {
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q1_PH}
         value={formData.drCountry || ""}
         onChange={(e) => handleInputChange("drCountry", e.target.value)}
+        isRequired
       />
       <QInput
         marB="20px"
@@ -33,6 +34,8 @@ export default function StdPage1() {
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q2_PH}
         value={formData.drUni || ""}
         onChange={(e) => handleInputChange("drUni", e.target.value)}
+        isRequired
+
       />
       <QInput
         marB="20px"
@@ -40,6 +43,7 @@ export default function StdPage1() {
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q3_PH}
         value={formData.drDegree || ""}
         onChange={(e) => handleInputChange("drDegree", e.target.value)}
+        isRequired
       />
       <QInput
         marB="20px"
@@ -47,6 +51,7 @@ export default function StdPage1() {
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q4_PH}
         value={formData.drMajor || ""}
         onChange={(e) => handleInputChange("drMajor", e.target.value)}
+        isRequired
       />
     </div>
   );

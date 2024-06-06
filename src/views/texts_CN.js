@@ -579,6 +579,7 @@ const texts_cn = {
   tips: {
     dataNotSaved: '数据暂未保存,请稍后再试.',
     fillIn: '请填写全部必填项:',
+    fillInSingle: '请填写必填项',
   },
 };
 

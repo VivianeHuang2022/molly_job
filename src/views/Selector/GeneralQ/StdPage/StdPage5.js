@@ -35,7 +35,6 @@ export default function StdPage5() {
           placeholder="e.g. Vivinae"
           value={formData.FirstName || ""}
           onChange={(e) => handleInputChange("FirstName", e.target.value)}
-          inputValueType={"FirstName"}
           isRequired = {true} 
         />
         <QInput
@@ -43,7 +42,6 @@ export default function StdPage5() {
           placeholder="e.g. Fa"
           value={formData.Surname || ""}
           onChange={(e) => handleInputChange("Surname", e.target.value)}
-          inputValueType={"Surname"}
           isRequired = {true} 
         />
       </div>
@@ -82,7 +80,6 @@ export default function StdPage5() {
           value={formData.Email || ""}
           onChange={(e) => handleInputChange("Email", e.target.value)}
           isRequired = {true} 
-          inputValueType={"Email"}
         />
       </div>
     </div>
