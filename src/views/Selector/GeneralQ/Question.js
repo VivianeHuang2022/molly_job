@@ -10,6 +10,7 @@ import { selectCurrentLanguage } from '../../../redux/slices/languageSlice';
 import { checkLogin } from '../../../utils/checkLogin';
 import { fetchCoverletterData } from '../../../redux/actions/fetcDataActions';
 import { useDispatch } from 'react-redux';
+import { validateFields } from '../../../utils/checkRequired';
 
 export default function Question(props) {
   const dispatch = useDispatch();
@@ -19,24 +20,15 @@ export default function Question(props) {
   const { showAlertMessage } = useContext(AlertContext);
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const currentQNumber = parseInt(location.pathname.split('/page')[1], 10);
-  // 根据currentQNumber构建选择器的路径
+  //20240606 lily add required check---------------------------------
   const selectorPath = `stdDataQP${currentQNumber}`;
-
-  // 使用useSelector钩子来获取对应的formData
   const formData = useSelector((state) => state.coverLetter[selectorPath]);
 
-  const areAllValuesNonEmpty = (obj) => {
-    return Object.values(obj).every((value) => value !== '');
-  };
   const handleToNext = async () => {
     if (currentQNumber < childrenCount) {
       const nextQ = 'page' + (currentQNumber + 1);
-      if (currentQNumber === 1) {
-        if (areAllValuesNonEmpty(formData)) {
-          navigate(`/layout/generalq/${nextQ}`);
-        } else {
-          alert(texts.tips.fillIn);
-        }
+      if (validateFields(formData)) {
+        navigate(`/layout/generalq/${nextQ}`);
       }
     }
     if (currentQNumber === childrenCount) {
@@ -44,7 +36,8 @@ export default function Question(props) {
         const timeStamp = new Date().getTime();
         localStorage.setItem('stdDataUpdateTimeStamp', timeStamp);
         const data = generateStdDataGroup(timeStamp);
-        if (handleRequireData(data)) {
+        console.log(data);
+        if (validateFields(data)) {
           const response = await postStdCoverLetterDataGroup(data);
           if (response.status === 200) {
             editState('isEditcoverletter', false);
@@ -162,9 +155,4 @@ const generateStdDataGroup = (timeStamp) => {
     timeStamp: timeStamp,
   };
   return dataGroup;
-};
-
-const handleRequireData = (data) => {
-  if (data.firstName && data.surname && data.userEmail) return true;
-  else alert('you need input all required items');
 };
