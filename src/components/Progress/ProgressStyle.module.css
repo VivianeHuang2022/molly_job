@@ -1,10 +1,14 @@
 /* ProgressStyle.module.css */
 
 .container {
-  position: relative;
-  width: 300px; /* 根据需要调整 */
+  margin-top: 50px;
+  width: 80%;
+  max-width: 800px;
   height: 100px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: self-start;
+
+  gap: 20px;
+  /* background-color: #f5f5f5; */
 }

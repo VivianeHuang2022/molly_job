@@ -2,12 +2,17 @@
 import React from 'react';
 import styles from './CircleNumber.module.css';
 
-const CircleNumber = ({ number, index, styleType = 'light' }) => {
+const CircleNumber = ({ number, index, currentNum, title }) => {
+  let circleClass;
   // 根据styleType添加相应的类
-  const circleClass =
-    styleType === 'dark'
-      ? styles.circle + ' ' + styles.dark
-      : styles.circle + ' ' + styles.light;
+  if (currentNum === number) {
+    circleClass = styles.circle + ' ' + styles.currentChoose;
+  } else {
+    circleClass =
+      number < currentNum
+        ? styles.circle + ' ' + styles.dark
+        : styles.circle + ' ' + styles.light;
+  }
 
   return (
     <div
@@ -19,6 +24,7 @@ const CircleNumber = ({ number, index, styleType = 'light' }) => {
       }}
     >
       <div className={circleClass}>{number}</div>
+      <div className={styles.title}> {title}</div>
     </div>
   );
 };

@@ -95,7 +95,7 @@ export default function Question(props) {
   return (
     <div className={style.container}>
       {/* 进度展示区域 */}
-      <ProgressBar progress={progress} />
+      <ProgressBar currentNum={progress} />
       {/* 编辑区域 */}
       {props.children}
 
