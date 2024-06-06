@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import style from './Question.module.css';
 import { postStdCoverLetterDataGroup } from '../../../utils/api';
@@ -11,8 +11,15 @@ import { checkLogin } from '../../../utils/checkLogin';
 import { fetchCoverletterData } from '../../../redux/actions/fetcDataActions';
 import { useDispatch } from 'react-redux';
 import { validateFields } from '../../../utils/checkRequired';
+import ProgressBar from '../../../components/Progress/ProgressBar';
 
 export default function Question(props) {
+  const [progress, setProgress] = useState(0); // 初始进度为0
+
+  // 假设你有一个函数来更新进度
+  const updateProgress = (newProgress) => {
+    setProgress(newProgress);
+  };
   const dispatch = useDispatch();
   const childrenCount = props.Count;
   const navigate = useNavigate();
@@ -87,7 +94,12 @@ export default function Question(props) {
 
   return (
     <div className={style.container}>
+      {/* 进度展示区域 */}
+      <ProgressBar progress={progress} />
+      {/* 编辑区域 */}
       {props.children}
+
+      {/* 底部操作按钮 */}
       <div className={style.footer}>
         <button className={style.btnLast} onClick={handlToLast}>
           {texts.QuestionP.back}

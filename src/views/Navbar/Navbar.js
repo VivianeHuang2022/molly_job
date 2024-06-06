@@ -21,28 +21,31 @@ function Navbar(props) {
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const menuItems = getMenuItems(texts);
 
-
   const handleItemClick = (key) => {
-
-    if(key === 'coverletter'){
-      if(!hasLocalData('isEditcoverletter')){
+    if (key === 'coverletter') {
+      if (!hasLocalData('isEditcoverletter')) {
         editState('isEditcoverletter', false);
       }
       navigate('/layout/coverletter/edit');
-    }else{
+    } else {
       navigate(key);
     }
-    setActiveKey(key);    
+    setActiveKey(key);
   };
 
   const backToStart = () => {
-    navigate('/')
-};
+    navigate('/');
+  };
 
   return (
     <div>
       <div className={styles.navbarContainer}>
-        <img src={logoImage} className={styles.logo} alt="logo"  onClick={backToStart}/>
+        <img
+          src={logoImage}
+          className={styles.logo}
+          alt="logo"
+          onClick={backToStart}
+        />
 
         <CustomMenuComponent
           activeItem={activeKey}

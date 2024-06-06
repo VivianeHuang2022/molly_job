@@ -1,0 +1,26 @@
+/* CircleNumber.module.css */
+
+.circleContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.dark {
+  background-color: #333; /* 深灰色 */
+}
+
+.light {
+  background-color: #999; /* 浅灰色 */
+}
