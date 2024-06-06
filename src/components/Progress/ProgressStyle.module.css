@@ -12,3 +12,17 @@
   gap: 20px;
   /* background-color: #f5f5f5; */
 }
+
+.line {
+  width: 100%; /* 根据需要调整 */
+  height: 5px; /* 横线的厚度 */
+  background-color: rgb(218, 218, 218); /* 横线的颜色 */
+  border-radius: 10px;
+}
+
+.lineAfter {
+  width: 100%; /* 根据需要调整 */
+  height: 5px; /* 横线的厚度 */
+  background-color: rgb(163, 163, 163); /* 横线的颜色 */
+  border-radius: 10px;
+}

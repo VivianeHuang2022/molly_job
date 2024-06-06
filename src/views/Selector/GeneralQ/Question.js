@@ -14,7 +14,7 @@ import { validateFields } from '../../../utils/checkRequired';
 import ProgressBar from '../../../components/Progress/ProgressBar';
 
 export default function Question(props) {
-  const [progress, setProgress] = useState(0); // 初始进度为0
+  const [progress, setProgress] = useState(1); // 初始进度为0
 
   // 假设你有一个函数来更新进度
   const updateProgress = (newProgress) => {
