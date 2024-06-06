@@ -18,13 +18,26 @@ export default function Question(props) {
   const location = useLocation();
   const { showAlertMessage } = useContext(AlertContext);
   const texts = getLabels(useSelector(selectCurrentLanguage));
+  const currentQNumber = parseInt(location.pathname.split('/page')[1], 10);
+  // 根据currentQNumber构建选择器的路径
+  const selectorPath = `stdDataQP${currentQNumber}`;
 
+  // 使用useSelector钩子来获取对应的formData
+  const formData = useSelector((state) => state.coverLetter[selectorPath]);
+
+  const areAllValuesNonEmpty = (obj) => {
+    return Object.values(obj).every((value) => value !== '');
+  };
   const handleToNext = async () => {
-    const currentQNumber = parseInt(location.pathname.split('/page')[1], 10);
     if (currentQNumber < childrenCount) {
       const nextQ = 'page' + (currentQNumber + 1);
-      console.log(nextQ);
-      // navigate(`/layout/generalq/${nextQ}`);
+      if (currentQNumber === 1) {
+        if (areAllValuesNonEmpty(formData)) {
+          navigate(`/layout/generalq/${nextQ}`);
+        } else {
+          alert(texts.tips.fillIn);
+        }
+      }
     }
     if (currentQNumber === childrenCount) {
       if (localStorage.getItem('topicId') === '1') {
