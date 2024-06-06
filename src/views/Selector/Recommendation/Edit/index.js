@@ -12,7 +12,7 @@ import {
 import { LoadingIndicator } from '../../../../components/Loading';
 import { initialValues } from './FormData';
 import { selectCurrentTopicId } from '../../../../redux/slices/userTypeSlice';
-import { realtTime } from '../../../../utils/time';
+import { logTime } from '../../../../utils/time';
 
 //整个推荐信表单
 const RecommendationFormLogic = () => {
@@ -49,22 +49,16 @@ const RecommendationFormLogic = () => {
           // console.log('存在后端有效值');
           // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
           if (localSaved) {
-            // console.log('有recommend缓存', response.data.msg);
-
             if (response.data.msg.timeStamp > localSaved?.timeStamp) {
-              console.log(
-                '后台数据更新,用后台数据',
-                response.data.msg,
-                response.data.msg.timeStamp,
-                realtTime(localSaved?.timeStamp)
-              );
+              console.log('后台数据更新,用后台数据', response.data.msg);
+              logTime(response.data.msg.timeStamp, localSaved?.timeStamp);
               //后台数据更新,用后台数据
               setFormData(response.data.msg);
             } else {
               //后台数据没更新，用本地数据
               if (localSaved?.data) {
                 console.log('本地数据更新,用本地数据', localSaved.data);
-
+                logTime(response.data.msg.timeStamp, localSaved?.timeStamp);
                 setFormData(localSaved.data);
               }
             }

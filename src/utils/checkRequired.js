@@ -1,6 +1,5 @@
 export const validateFields = (formData) => {
   const allowedEmptyFields = [
-    'drMajor',
     'userAddress',
     'ideaArea',
     'careerOrGoal',
