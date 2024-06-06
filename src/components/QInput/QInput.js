@@ -14,7 +14,6 @@ export default function QInput({
   marB,
   name,
   isRequired,
-  inputValueType
 }) {
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const [tip, setTip] = useState(false);

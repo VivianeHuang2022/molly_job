@@ -1,91 +1,83 @@
-import React, { useContext, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import style from "./Question.module.css";
-import { postStdCoverLetterDataGroup } from "../../../utils/api";
-import { editState, hasLocalData } from "../../../utils/checkCache";
-import AlertContext from "../../../components/AlertProvider/AlertContext";
+import React, { useContext, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import style from './Question.module.css';
+import { postStdCoverLetterDataGroup } from '../../../utils/api';
+import { editState, hasLocalData } from '../../../utils/checkCache';
+import AlertContext from '../../../components/AlertProvider/AlertContext';
 import { getLabels } from '../../local'; // 导入语言配置文件加载函数
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../redux/slices/languageSlice';
-import { checkLogin } from "../../../utils/checkLogin";
-import { fetchCoverletterData } from "../../../redux/actions/fetcDataActions";
-import { useDispatch } from "react-redux";
+import { checkLogin } from '../../../utils/checkLogin';
+import { fetchCoverletterData } from '../../../redux/actions/fetcDataActions';
+import { useDispatch } from 'react-redux';
 
 export default function Question(props) {
   const dispatch = useDispatch();
-
   const childrenCount = props.Count;
   const navigate = useNavigate();
   const location = useLocation();
   const { showAlertMessage } = useContext(AlertContext);
- const texts = getLabels(useSelector(selectCurrentLanguage));
+  const texts = getLabels(useSelector(selectCurrentLanguage));
 
- 
   const handleToNext = async () => {
-    const currentQNumber = parseInt(location.pathname.split("/page")[1], 10);
+    const currentQNumber = parseInt(location.pathname.split('/page')[1], 10);
     if (currentQNumber < childrenCount) {
-      const nextQ = "page" + (currentQNumber + 1);
-      navigate(`/layout/generalq/${nextQ}`);
+      const nextQ = 'page' + (currentQNumber + 1);
+      console.log(nextQ);
+      // navigate(`/layout/generalq/${nextQ}`);
     }
     if (currentQNumber === childrenCount) {
-      if (localStorage.getItem("topicId") === "1") {
-        var timeStamp = new Date().getTime();
-        localStorage.setItem("stdDataUpdateTimeStamp", timeStamp);
-        var data = generateStdDataGroup(timeStamp);
-        //console.log(data)
-        if(handleRequireData(data)){
+      if (localStorage.getItem('topicId') === '1') {
+        const timeStamp = new Date().getTime();
+        localStorage.setItem('stdDataUpdateTimeStamp', timeStamp);
+        const data = generateStdDataGroup(timeStamp);
+        if (handleRequireData(data)) {
           const response = await postStdCoverLetterDataGroup(data);
-
           if (response.status === 200) {
-            editState("isEditcoverletter", false);
-            // editState('isEditcoverletter', false);
-            //navigate('/layout/coverletter/edit');
-            navigate("/layout/coverletter/generate");
+            editState('isEditcoverletter', false);
+            navigate('/layout/coverletter/generate');
           } else if (response.status === 401) {
-            navigate("/login");
+            navigate('/login');
           } else {
             showAlertMessage(
-              "Error",
-              "Post data failed!, Please check your data!",
-              "error"
+              'Error',
+              'Post data failed!, Please check your data!',
+              'error'
             );
           }
         }
       } else {
         //job逻辑
-        navigate("/layout/interview");
+        navigate('/layout/interview');
       }
     }
   };
 
   const handlToLast = () => {
-    const currentQNumber = parseInt(location.pathname.split("/page")[1], 10);
+    const currentQNumber = parseInt(location.pathname.split('/page')[1], 10);
     if (currentQNumber > 1) {
-      const lastQ = "page" + (currentQNumber - 1);
+      const lastQ = 'page' + (currentQNumber - 1);
       navigate(`/layout/generalq/${lastQ}`);
     } else {
-      if (!hasLocalData("isEditcoverletter")) {
-        editState("isEditcoverletter", false);
-        navigate("/layout/coverletter");
+      if (!hasLocalData('isEditcoverletter')) {
+        editState('isEditcoverletter', false);
+        navigate('/layout/coverletter');
       }
     }
   };
 
-
   useEffect(() => {
     const checkRes = checkLogin();
-    checkRes.then(result=>{
-    if(!result){
-      // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
-      navigate("/login")
-      // console.log(window.location)
-    }
-    })
+    checkRes.then((result) => {
+      if (!result) {
+        // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
+        navigate('/login');
+        // console.log(window.location)
+      }
+    });
     // 在组件加载时触发异步 action
     dispatch(fetchCoverletterData());
-    
   }, []); // 注意这里是一个空依赖数组，表示这个effect仅在组件挂载时运行一次
-
 
   return (
     <div className={style.container}>
@@ -103,20 +95,20 @@ export default function Question(props) {
 }
 
 const generateStdDataGroup = (timeStamp) => {
-  var stdDataQP5 = localStorage.getItem("stdDataQP5")
-    ? JSON.parse(localStorage.getItem("stdDataQP5"))
+  var stdDataQP5 = localStorage.getItem('stdDataQP5')
+    ? JSON.parse(localStorage.getItem('stdDataQP5'))
     : {};
-  var stdDataQP1 = localStorage.getItem("stdDataQP1")
-    ? JSON.parse(localStorage.getItem("stdDataQP1"))
+  var stdDataQP1 = localStorage.getItem('stdDataQP1')
+    ? JSON.parse(localStorage.getItem('stdDataQP1'))
     : {};
-  var stdDataQP2 = localStorage.getItem("stdDataQP2")
-    ? JSON.parse(localStorage.getItem("stdDataQP2"))
+  var stdDataQP2 = localStorage.getItem('stdDataQP2')
+    ? JSON.parse(localStorage.getItem('stdDataQP2'))
     : {};
-  var stdDataQP3 = localStorage.getItem("stdDataQP3")
-    ? JSON.parse(localStorage.getItem("stdDataQP3"))
+  var stdDataQP3 = localStorage.getItem('stdDataQP3')
+    ? JSON.parse(localStorage.getItem('stdDataQP3'))
     : {};
-  var stdDataQP4 = localStorage.getItem("stdDataQP4")
-    ? JSON.parse(localStorage.getItem("stdDataQP4"))
+  var stdDataQP4 = localStorage.getItem('stdDataQP4')
+    ? JSON.parse(localStorage.getItem('stdDataQP4'))
     : {};
 
   const dataGroup = {
@@ -143,7 +135,7 @@ const generateStdDataGroup = (timeStamp) => {
     currentUni: stdDataQP2.curUni,
     currentCountry: stdDataQP2.curCountry,
     currentCourses: stdDataQP2.curCourses,
-    currentGPA: stdDataQP2.curGPA ? stdDataQP2.curGPA : "",
+    currentGPA: stdDataQP2.curGPA ? stdDataQP2.curGPA : '',
     // get Info
     getProject: stdDataQP3.getProject,
     getConference: stdDataQP3.getConference,
@@ -159,10 +151,7 @@ const generateStdDataGroup = (timeStamp) => {
   return dataGroup;
 };
 
-
 const handleRequireData = (data) => {
-
-  if(data.firstName && data.surname && data.userEmail) return true
-  else alert('you need input all required items')
-
-} 
+  if (data.firstName && data.surname && data.userEmail) return true;
+  else alert('you need input all required items');
+};
