@@ -30,7 +30,11 @@ export default function StdPage2() {
       const span = textRef.current.querySelector(`span[name="${name}"]`);
       if (span) {
         const data = span.innerText.replace('[', '').replace(']', '').trim();
+
+        //20240606 lily 由于目前变量是按照不同页面设定的,在不同页面共用变量的情况时如果要让相同变量保持一致要同时修改共用变量,这并不是一个很好的解决方式,但限于当前的数据处理方式,可以这样处理
         dispatch(updateStdData({ pNum: 2, payload: { [name]: data } }));
+        dispatch(updateStdData({ pNum: 1, payload: { [name]: data } }));
+
         // 本地数据处理
         stdDataSaveHandle(name, data, 2);
       }
