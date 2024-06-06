@@ -1,22 +1,22 @@
-import React from "react";
+import React from 'react';
 import { getLabels } from '../../../local'; // 导入语言配置文件加载函数
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
-import styles from "./StdPage.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import QInput from "../../../../components/QInput/QInput";
-import { updateStdData, stdDataSaveHandle } from "../../../../redux/slice"; // 导入你的 action
+import styles from './StdPage.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import QInput from '../../../../components/QInput/QInput';
+import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 // import SelectBox from '../../../../components/SelectBox/SelectBox'
 
 export default function StdPage1() {
   const dispatch = useDispatch();
-  var formData = useSelector((state) => state.coverLetter.stdDataQP1);
+  const formData = useSelector((state) => state.coverLetter.stdDataQP1);
   // 使用 dispatch 更新 Redux Store
   const handleInputChange = (name, value) => {
     dispatch(updateStdData({ pNum: 1, payload: { [name]: value } }));
     //本地数据处理
     stdDataSaveHandle(name, value, 1);
   };
- const texts = getLabels(useSelector(selectCurrentLanguage));
+  const texts = getLabels(useSelector(selectCurrentLanguage));
   return (
     <div className={styles.container}>
       <div className={styles.title}>{texts.GeberalQ.StdPage.PgaeTitle}</div>
@@ -24,29 +24,33 @@ export default function StdPage1() {
         marB="20px"
         title={texts.GeberalQ.StdPage.Page1.P1Q1}
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q1_PH}
-        value={formData.drCountry || ""}
-        onChange={(e) => handleInputChange("drCountry", e.target.value)}
+        value={formData.drCountry || ''}
+        onChange={(e) => handleInputChange('drCountry', e.target.value)}
+        isRequired
       />
       <QInput
         marB="20px"
         title={texts.GeberalQ.StdPage.Page1.P1Q2}
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q2_PH}
-        value={formData.drUni || ""}
-        onChange={(e) => handleInputChange("drUni", e.target.value)}
+        value={formData.drUni || ''}
+        onChange={(e) => handleInputChange('drUni', e.target.value)}
+        isRequired
       />
       <QInput
         marB="20px"
         title={texts.GeberalQ.StdPage.Page1.P1Q3}
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q3_PH}
-        value={formData.drDegree || ""}
-        onChange={(e) => handleInputChange("drDegree", e.target.value)}
+        value={formData.drDegree || ''}
+        onChange={(e) => handleInputChange('drDegree', e.target.value)}
+        isRequired
       />
       <QInput
         marB="20px"
         title={texts.GeberalQ.StdPage.Page1.P1Q4}
         placeholder={texts.GeberalQ.StdPage.Page1.P1Q4_PH}
-        value={formData.drMajor || ""}
-        onChange={(e) => handleInputChange("drMajor", e.target.value)}
+        value={formData.drMajor || ''}
+        onChange={(e) => handleInputChange('drMajor', e.target.value)}
+        isRequired
       />
     </div>
   );

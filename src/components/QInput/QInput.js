@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import style from './QInput.module.css';
+import { getLabels } from '../../views/local'; // 导入语言配置文件加载函数
+import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
+import { useSelector } from 'react-redux';
 
 export default function QInput({
   title,
@@ -11,8 +14,8 @@ export default function QInput({
   marB,
   name,
   isRequired,
-  inputValueType
 }) {
+  const texts = getLabels(useSelector(selectCurrentLanguage));
   const [tip, setTip] = useState(false);
   const handleInputValue = (value) => {
     console.log(value);
@@ -49,7 +52,7 @@ export default function QInput({
           required
         />
       )}
-      <div className={style.tip}> {tip ? `${inputValueType} is required` : undefined}</div>
+      <div className={style.tip}> {tip ? texts.tips.fillInSingle : undefined}</div>
     </div>
   );
 }

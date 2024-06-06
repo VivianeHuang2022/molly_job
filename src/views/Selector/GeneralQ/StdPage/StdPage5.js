@@ -1,8 +1,8 @@
-import React from "react";
-import QInput from "../../../../components/QInput/QInput";
-import styles from "./StdPage.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { updateStdData, stdDataSaveHandle } from "../../../../redux/slice"; // 导入你的 action
+import React from 'react';
+import QInput from '../../../../components/QInput/QInput';
+import styles from './StdPage.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStdData, stdDataSaveHandle } from '../../../../redux/slice'; // 导入你的 action
 import { getLabels } from '../../../local'; // 导入语言配置文件加载函数
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 
@@ -10,7 +10,7 @@ export default function StdPage5() {
   const dispatch = useDispatch();
 
   var formData = useSelector((state) => state.coverLetter.stdDataQP5);
- const texts = getLabels(useSelector(selectCurrentLanguage));
+  const texts = getLabels(useSelector(selectCurrentLanguage));
   // 使用 dispatch 更新 Redux Store
   const handleInputChange = (name, value) => {
     dispatch(updateStdData({ pNum: 5, payload: { [name]: value } }));
@@ -21,10 +21,10 @@ export default function StdPage5() {
     <div className={styles.container}>
       <div
         style={{
-          fontSize: "30px",
-          fontWeight: "blod",
-          margin: "0 0 20px 0",
-          textAlign: "left",
+          fontSize: '30px',
+          fontWeight: 'blod',
+          margin: '0 0 20px 0',
+          textAlign: 'left',
         }}
       >
         {texts.GeberalQ.StdPage.Page5.P5T8}
@@ -33,56 +33,56 @@ export default function StdPage5() {
         <QInput
           title={texts.GeberalQ.StdPage.Page5.P5T1}
           placeholder="e.g. Vivinae"
-          value={formData.FirstName || ""}
-          onChange={(e) => handleInputChange("FirstName", e.target.value)}
-          inputValueType={"FirstName"}
-          isRequired = {true} 
+          value={formData.FirstName || ''}
+          onChange={(e) => handleInputChange('FirstName', e.target.value)}
+          isRequired={true}
         />
         <QInput
           title={texts.GeberalQ.StdPage.Page5.P5T2}
           placeholder="e.g. Fa"
-          value={formData.Surname || ""}
-          onChange={(e) => handleInputChange("Surname", e.target.value)}
-          inputValueType={"Surname"}
-          isRequired = {true} 
+          value={formData.Surname || ''}
+          onChange={(e) => handleInputChange('Surname', e.target.value)}
+          isRequired={true}
         />
       </div>
       <div className={styles.subContainer}>
         <QInput
           title={texts.GeberalQ.StdPage.Page5.P5T3}
           placeholder="e.g. India"
-          value={formData.Nationality || ""}
-          onChange={(e) => handleInputChange("Nationality", e.target.value)}
+          value={formData.Nationality || ''}
+          onChange={(e) => handleInputChange('Nationality', e.target.value)}
+          isRequired={true}
         />
         <QInput
           title={texts.GeberalQ.StdPage.Page5.P5T4}
           placeholder="e.g. 1992.12"
-          value={formData.Birthday || ""}
-          onChange={(e) => handleInputChange("Birthday", e.target.value)}
+          value={formData.Birthday || ''}
+          onChange={(e) => handleInputChange('Birthday', e.target.value)}
+          isRequired={true}
         />
       </div>
-      <div style={{ width: "100%" }}>
+      <div style={{ width: '100%' }}>
         <QInput
           title={texts.GeberalQ.StdPage.Page5.P5T5}
           placeholder="e.g. house number, street, city"
-          value={formData.Address || ""}
-          onChange={(e) => handleInputChange("Address", e.target.value)}
+          value={formData.Address || ''}
+          onChange={(e) => handleInputChange('Address', e.target.value)}
         />
       </div>
       <div className={styles.subContainer}>
         <QInput
           title={texts.GeberalQ.StdPage.Page5.P5T6}
           placeholder="e.g. 1234567"
-          value={formData.Tel || ""}
-          onChange={(e) => handleInputChange("Tel", e.target.value)}
+          value={formData.Tel || ''}
+          onChange={(e) => handleInputChange('Tel', e.target.value)}
+          isRequired={true}
         />
         <QInput
           title={texts.GeberalQ.StdPage.Page5.P5T7}
           placeholder="e.g. xx@gmail.com"
-          value={formData.Email || ""}
-          onChange={(e) => handleInputChange("Email", e.target.value)}
-          isRequired = {true} 
-          inputValueType={"Email"}
+          value={formData.Email || ''}
+          onChange={(e) => handleInputChange('Email', e.target.value)}
+          isRequired={true}
         />
       </div>
     </div>
