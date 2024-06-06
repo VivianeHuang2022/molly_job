@@ -1,3 +1,4 @@
+
 const realtTime = (timestampInSeconds) => {
   const date = new Date(parseInt(timestampInSeconds)); // 转换为毫秒
 
@@ -18,6 +19,7 @@ const realtTime = (timestampInSeconds) => {
     date.getMinutes();
   return formattedDate;
 };
+
 
 export const logTime = (resTime, userTime) => {
   if (resTime && userTime) {
