@@ -98,7 +98,7 @@ export const SingleField = ({
     <>
       <div>
         {label}
-        {schema && ' * '}
+        {schema && <span className={styles.requiredIcon}>{' * '}</span>}
         {CustomField}
       </div>
       {meta.touched && meta.error ? (
