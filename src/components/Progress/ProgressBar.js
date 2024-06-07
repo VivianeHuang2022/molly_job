@@ -14,24 +14,22 @@ const steps = [
 
 const ProgressBar = ({ currentNum }) => {
   const showLine = (num) => {
-    console.log(`line${num}`);
-    if (num <= currentNum) {
+    if (num < currentNum - 1) {
       return <div className={styles.lineAfter}></div>;
     } else return <div className={styles.line}></div>;
   };
   return (
     <div className={styles.container}>
       {steps.map((step, index) => (
-        <>
+        <div key={index} className={styles.reset}>
           <CircleNumber
-            key={index}
             number={step.number}
             index={step.number}
-            currentNum={currentNum + 1}
+            currentNum={currentNum}
             title={step.title}
           />
           {index < steps.length - 1 && showLine(index)}
-        </>
+        </div>
       ))}
     </div>
   );

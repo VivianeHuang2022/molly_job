@@ -16,10 +16,6 @@ import ProgressBar from '../../../components/Progress/ProgressBar';
 export default function Question(props) {
   const [progress, setProgress] = useState(1); // 初始进度为0
 
-  // 假设你有一个函数来更新进度
-  const updateProgress = (newProgress) => {
-    setProgress(newProgress);
-  };
   const dispatch = useDispatch();
   const childrenCount = props.Count;
   const navigate = useNavigate();
@@ -88,9 +84,10 @@ export default function Question(props) {
         // console.log(window.location)
       }
     });
+    setProgress(currentQNumber);
     // 在组件加载时触发异步 action
     dispatch(fetchCoverletterData());
-  }, []); // 注意这里是一个空依赖数组，表示这个effect仅在组件挂载时运行一次
+  }, [currentQNumber]);
 
   return (
     <div className={style.container}>
