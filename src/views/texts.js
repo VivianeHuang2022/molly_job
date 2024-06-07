@@ -614,6 +614,7 @@ const texts_en = {
     dataNotSaved: 'Data is not saved, please try it later.',
     fillIn: 'Please fill in the following required fields',
     fillInSingle: 'Please fill in the required field',
+    sendDatatoBackSuccess: 'Data is sent to the back-end successfully',
   },
 };
 

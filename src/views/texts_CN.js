@@ -580,6 +580,7 @@ const texts_cn = {
     dataNotSaved: '数据暂未保存,请稍后再试.',
     fillIn: '请填写全部必填项',
     fillInSingle: '请填写必填项',
+    sendDatatoBackSuccess: '成功保存数据',
   },
 };
 

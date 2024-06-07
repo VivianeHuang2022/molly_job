@@ -21,6 +21,7 @@ const RecommendationFormUI = ({
   const [message, setMessage] = useState('');
   console.log(message);
   const texts = getLabels(useSelector(selectCurrentLanguage));
+
   const formFields = getFormFields(texts);
   const { sectionTitle, buttonLabel, title } = texts.recommendation;
   const {
@@ -31,6 +32,21 @@ const RecommendationFormUI = ({
     dreamSchoolInfo,
     currentSchoolInfo,
   } = formFields;
+
+  // 定义一个映射表，将字段名映射到对应的标签
+  const fieldToLabelMap = {
+    recommenderEmail: recommender.email.label,
+    dreamCountry: dreamSchoolInfo.dreamCountry.label,
+    dreamUni: dreamSchoolInfo.dreamUni.label,
+    dreamDegree: dreamSchoolInfo.dreamDegree.label,
+    dreamMajor: dreamSchoolInfo.dreamMajor.label,
+    currentDegree: currentSchoolInfo.currentDegree.label,
+    currentMajor: currentSchoolInfo.currentMajor.label,
+    currentUni: currentSchoolInfo.currentUni.label,
+    currentCountry: currentSchoolInfo.currentCountry.label,
+    firstName: userInfo.firstName.label,
+    surname: userInfo.surname.label,
+  };
 
   const {
     recommenderInformation,
@@ -70,19 +86,6 @@ const RecommendationFormUI = ({
       </div>
       <Formik initialValues={initialValues} validationSchema={validationSchema}>
         {({ values, errors, touched, isSubmitting }) => {
-          const fieldToLabelMap = {
-            recommenderEmail: recommender.email.label,
-            dreamCountry: dreamSchoolInfo.dreamCountry.label,
-            dreamUni: dreamSchoolInfo.dreamUni.label,
-            dreamDegree: dreamSchoolInfo.dreamDegree.label,
-            dreamMajor: dreamSchoolInfo.dreamMajor.label,
-            currentDegree: currentSchoolInfo.currentDegree.label,
-            currentMajor: currentSchoolInfo.currentMajor.label,
-            currentUni: currentSchoolInfo.currentUni.label,
-            currentCountry: currentSchoolInfo.currentCountry.label,
-            firstName: userInfo.firstName.label,
-            surname: userInfo.surname.label,
-          };
           const saveData = async (values, errors) => {
             // 检查是否有必填字段未填写
             const missingFields = requiredFields.filter(
@@ -94,6 +97,8 @@ const RecommendationFormUI = ({
               );
               setMessage(`${texts.tips.fillIn} : ${missingLabels.join(', ')}`);
               return false;
+            } else {
+              setMessage('');
             }
 
             // 存储表单的值到缓存
@@ -101,8 +106,18 @@ const RecommendationFormUI = ({
 
             try {
               const isSaved = await sendDatatoBack(values);
-              if (!isSaved) {
-                throw new Error('sendDatatoBack failed');
+              if (isSaved) {
+                // 创建一个 Intl.DateTimeFormat 实例，使用默认的浏览器本地设置
+                const formatter = new Intl.DateTimeFormat();
+
+                // 获取格式化的日期时间字符串
+                const formattedDate = new Date().toLocaleString();
+
+                // 获取语言标签，例如 "en-US" 或 "zh-CN"
+                const locale = formatter.resolvedOptions().locale;
+                setMessage(
+                  `${texts.tips.sendDatatoBackSuccess} ${formattedDate},${locale}`
+                );
               }
               return true;
             } catch (error) {
