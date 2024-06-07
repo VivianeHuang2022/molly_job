@@ -1,4 +1,6 @@
+
 import React, { useContext, useEffect, useState } from 'react';
+
 import { useNavigate, useLocation } from 'react-router-dom';
 import style from './Question.module.css';
 import { postStdCoverLetterDataGroup } from '../../../utils/api';
@@ -11,11 +13,11 @@ import { checkLogin } from '../../../utils/checkLogin';
 import { fetchCoverletterData } from '../../../redux/actions/fetcDataActions';
 import { useDispatch } from 'react-redux';
 import { validateFields } from '../../../utils/checkRequired';
+
 import ProgressBar from '../../../components/Progress/ProgressBar';
 
 export default function Question(props) {
   const [progress, setProgress] = useState(1); // 初始进度为0
-
   const dispatch = useDispatch();
   const childrenCount = props.Count;
   const navigate = useNavigate();
@@ -84,10 +86,12 @@ export default function Question(props) {
         // console.log(window.location)
       }
     });
+
     setProgress(currentQNumber);
     // 在组件加载时触发异步 action
     dispatch(fetchCoverletterData());
   }, [currentQNumber]);
+
 
   return (
     <div className={style.container}>
