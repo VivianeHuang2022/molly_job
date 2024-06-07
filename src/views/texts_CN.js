@@ -581,6 +581,7 @@ const texts_cn = {
 
     fillIn: '请填写全部必填项',
     fillInSingle: '请填写必填项',
+    sendDatatoBackSuccess: '成功保存数据',
   },
 };
 

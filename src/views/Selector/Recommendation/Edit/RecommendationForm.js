@@ -6,7 +6,7 @@ import { FormSingle, FormGroup, StarInstructions } from './FormComps';
 import { PrimaryButton, DefaultButton } from '../../../../components/Button';
 import { NoticeParagraphComp } from '../../../../components/Typography';
 
-import { getFormFields, validationSchema } from './FormData';
+import { getFormFields, validationSchema, requiredFields } from './FormData';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 import { saveLocalEdit } from '../../../../utils/saveLocalData';
@@ -20,6 +20,7 @@ const RecommendationFormUI = ({
 }) => {
   const [message, setMessage] = useState('');
   const texts = getLabels(useSelector(selectCurrentLanguage));
+
   const formFields = getFormFields(texts);
   const { sectionTitle, buttonLabel, title } = texts.recommendation;
   const {
@@ -30,6 +31,21 @@ const RecommendationFormUI = ({
     dreamSchoolInfo,
     currentSchoolInfo,
   } = formFields;
+
+  // 定义一个映射表，将字段名映射到对应的标签
+  const fieldToLabelMap = {
+    recommenderEmail: recommender.email.label,
+    dreamCountry: dreamSchoolInfo.dreamCountry.label,
+    dreamUni: dreamSchoolInfo.dreamUni.label,
+    dreamDegree: dreamSchoolInfo.dreamDegree.label,
+    dreamMajor: dreamSchoolInfo.dreamMajor.label,
+    currentDegree: currentSchoolInfo.currentDegree.label,
+    currentMajor: currentSchoolInfo.currentMajor.label,
+    currentUni: currentSchoolInfo.currentUni.label,
+    currentCountry: currentSchoolInfo.currentCountry.label,
+    firstName: userInfo.firstName.label,
+    surname: userInfo.surname.label,
+  };
 
   const {
     recommenderInformation,
@@ -70,51 +86,46 @@ const RecommendationFormUI = ({
       <Formik initialValues={initialValues} validationSchema={validationSchema}>
         {({ values, errors, touched, isSubmitting }) => {
           const saveData = async (values, errors) => {
+            // 检查是否有必填字段未填写
+            const missingFields = requiredFields.filter(
+              (field) => !values[field]
+            );
+            if (missingFields.length > 0) {
+              const missingLabels = missingFields.map(
+                (field) => fieldToLabelMap[field] || field
+              );
+              setMessage(`${texts.tips.fillIn} : ${missingLabels.join(', ')}`);
+              return false;
+            } else {
+              setMessage('');
+            }
+
             // 存储表单的值到缓存
             saveLocalEdit('recommendation', values);
 
-            console.log(Object.keys(errors).length);
-            if (Object.keys(errors).length !== 0) {
-              // 存在错误，不进行保存操作
+            try {
+              const isSaved = await sendDatatoBack(values);
+              if (isSaved) {
+                // 创建一个 Intl.DateTimeFormat 实例，使用默认的浏览器本地设置
+                const formatter = new Intl.DateTimeFormat();
 
-              console.log(errors);
-              setMessage('Please fill in all required fields.');
-              return false;
-            } else {
-              const requiredFields = [
-                'recommenderEmail',
-                'firstName',
-                'surname',
-              ];
 
-              const fieldToLabelMap = {
-                recommenderEmail: recommender.email.label,
-                firstName: recommender.firstName.label,
-                surname: recommender.lastName.label, // 假设 surname 对应 lastName
-              };
-              let missingFields = requiredFields.filter(
-                (field) => !values[field]
-              );
-              // 20240605 add默认情况下不填写任何内容的必填项校验
-              if (missingFields.length > 0) {
-                let message = texts.tips.fillIn;
-                const missingLabels = missingFields.map(
-                  (field) => fieldToLabelMap[field]
+                // 获取格式化的日期时间字符串
+                const formattedDate = new Date().toLocaleString();
+
+                // 获取语言标签，例如 "en-US" 或 "zh-CN"
+                const locale = formatter.resolvedOptions().locale;
+                setMessage(
+                  `${texts.tips.sendDatatoBackSuccess} ${formattedDate},${locale}`
                 );
-                message += ' ' + missingLabels.join(', ');
-                setMessage(message);
-                return false;
-              } else {
-                const isSaved = await sendDatatoBack(values);
-
-                if (isSaved) {
-                  return true;
-                } else {
-                  console.log('sendDatatoBack failed');
-                  setMessage('sendDatatoBack failed');
-                  return false;
-                }
               }
+              return true;
+            } catch (error) {
+              console.error(error);
+              setMessage(
+                error.message || 'An error occurred while saving data.'
+              );
+              return false;
             }
           };
           const handleSubmit = async (values, errors) => {
@@ -183,7 +194,7 @@ const RecommendationFormUI = ({
                 handleKeyDown={handleKeyDown}
               />
 
-              <div className={styles.buttonContainer}>
+              <div className={styles.message}>
                 {message && (
                   <NoticeParagraphComp>{message}</NoticeParagraphComp>
                 )}
@@ -201,7 +212,7 @@ const RecommendationFormUI = ({
                 />
               </div>
 
-              {/*  由于antd才用了已被弃用的findDOMNode导致会报错提示,要么保留报错等待antd团队修复bug;要么用普通的button 改样式也可以解决*/}
+              {/*  由于antd用了已被弃用的findDOMNode导致会报错提示,要么保留报错等待antd团队修复bug;要么用普通的button 改样式也可以解决*/}
               {/* <div className={styles.buttonContainer}>
                 <button onClick={() => saveData(values, errors)} type="button">
                   save data

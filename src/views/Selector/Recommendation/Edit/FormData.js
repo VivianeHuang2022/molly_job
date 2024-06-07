@@ -1,11 +1,36 @@
 import * as Yup from 'yup';
 
-//表单规则
-const validationSchemaObj = {
-  firstName: Yup.string().required('First Name is required'),
-  surname: Yup.string().required('Sur Name is required'),
-  recommenderEmail: Yup.string().required('email is required'),
+export const requiredFields = [
+  //only recommender
+  'recommenderEmail',
+
+  //coverletter p1 value
+  'dreamCountry',
+  'dreamUni',
+  'dreamDegree',
+  'dreamMajor',
+
+  //coverletter p2 value
+  'currentDegree',
+  'currentMajor',
+  'currentUni',
+  'currentCountry',
+
+  //coverletter p5 value
+  'firstName',
+  'surname',
+];
+
+// 为每个字段创建验证规则的函数
+const createValidationRule = (fieldName) => {
+  return Yup.string().required(`${fieldName} is required`);
 };
+
+// 使用 reduce 方法从 requiredFields 数组生成 validationSchemaObj 对象
+const validationSchemaObj = requiredFields.reduce((acc, field) => {
+  acc[field] = createValidationRule(field);
+  return acc;
+}, {});
 
 export const validationSchema = Yup.object().shape(validationSchemaObj);
 
@@ -37,12 +62,12 @@ export const getFormFields = (texts) => {
       dreamDegree: {
         ...dreamSchoolInfo.dreamDegree,
         name: 'dreamDegree',
-        schema: false,
+        schema: true,
       },
       dreamUni: {
         ...dreamSchoolInfo.dreamUni,
         name: 'dreamUni',
-        schema: false,
+        schema: true,
       },
       dreamUniAddress: {
         ...dreamSchoolInfo.dreamUniAddress,
@@ -52,34 +77,34 @@ export const getFormFields = (texts) => {
       dreamMajor: {
         ...dreamSchoolInfo.dreamMajor,
         name: 'dreamMajor',
-        schema: false,
+        schema: true,
       },
       dreamCountry: {
         ...dreamSchoolInfo.dreamCountry,
         name: 'dreamCountry',
-        schema: false,
+        schema: true,
       },
     },
     currentSchoolInfo: {
       currentUni: {
         ...currentSchoolInfo.currentUni,
         name: 'currentUni',
-        schema: false,
+        schema: true,
       },
       currentCountry: {
         ...currentSchoolInfo.currentCountry,
         name: 'currentCountry',
-        schema: false,
+        schema: true,
       },
       currentDegree: {
         ...currentSchoolInfo.currentDegree,
         name: 'currentDegree',
-        schema: false,
+        schema: true,
       },
       currentMajor: {
         ...currentSchoolInfo.currentMajor,
         name: 'currentMajor',
-        schema: false,
+        schema: true,
       },
       currentGPA: {
         ...currentSchoolInfo.currentGPA,

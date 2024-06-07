@@ -615,6 +615,7 @@ const texts_en = {
 
     fillIn: 'Please fill in the following required fields',
     fillInSingle: 'Please fill in the required field',
+    sendDatatoBackSuccess: 'Data is sent to the back-end successfully',
   },
 };
 

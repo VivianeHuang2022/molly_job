@@ -1,0 +1,80 @@
+/* CircleNumber.module.css */
+
+:root {
+  --color-dark: #767676; /* 深灰色 */
+  --color-current-choose: #000; /* 深灰色 */
+  --color-light: #e5e5e5; /* 浅灰色 */
+}
+/* CircleNumber.module.css */
+
+.circleContainer {
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.dark {
+  background-color: var(--color-dark);
+}
+
+.currentChoose {
+  background-color: var(--color-current-choose);
+}
+
+.light {
+  background-color: var(--color-light);
+}
+
+.cycleContainer {
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  overflow: visible;
+}
+
+.title {
+  width: auto;
+  font-size: 10px;
+  color: var(--color-dark);
+  white-space: nowrap;
+  overflow: visible;
+  text-align: center;
+}
+
+.lineContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.line,
+.lineAfter {
+  width: 100%;
+  height: 5px;
+  position: absolute;
+  top: 25%;
+  z-index: -1;
+}
+
+.line {
+  background-color: var(--color-light);
+}
+
+.lineAfter {
+  background-color: var(--color-dark);
+}

@@ -1,0 +1,20 @@
+/* ProgressStyle.module.css */
+
+.container {
+  margin-top: 50px;
+  width: 100%;
+  padding-left: 10%;
+  max-width: 1000px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.singleContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+

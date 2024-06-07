@@ -86,3 +86,13 @@ button[type='submit']:hover {
     flex-direction: column;
   }
 }
+
+.requiredIcon {
+  color: rgb(220, 102, 102);
+}
+.message {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}

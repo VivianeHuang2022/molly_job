@@ -1,4 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+
+import React, { useContext, useEffect, useState } from 'react';
+
 import { useNavigate, useLocation } from 'react-router-dom';
 import style from './Question.module.css';
 import { postStdCoverLetterDataGroup } from '../../../utils/api';
@@ -12,7 +14,10 @@ import { fetchCoverletterData } from '../../../redux/actions/fetcDataActions';
 import { useDispatch } from 'react-redux';
 import { validateFields } from '../../../utils/checkRequired';
 
+import ProgressBar from '../../../components/Progress/ProgressBar';
+
 export default function Question(props) {
+  const [progress, setProgress] = useState(1); // 初始进度为0
   const dispatch = useDispatch();
   const childrenCount = props.Count;
   const navigate = useNavigate();
@@ -81,13 +86,21 @@ export default function Question(props) {
         // console.log(window.location)
       }
     });
+
+    setProgress(currentQNumber);
     // 在组件加载时触发异步 action
     dispatch(fetchCoverletterData());
-  }, []); // 注意这里是一个空依赖数组，表示这个effect仅在组件挂载时运行一次
+  }, [currentQNumber]);
+
 
   return (
     <div className={style.container}>
+      {/* 进度展示区域 */}
+      <ProgressBar currentNum={progress} />
+      {/* 编辑区域 */}
       {props.children}
+
+      {/* 底部操作按钮 */}
       <div className={style.footer}>
         <button className={style.btnLast} onClick={handlToLast}>
           {texts.QuestionP.back}
