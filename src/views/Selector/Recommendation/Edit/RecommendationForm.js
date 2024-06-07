@@ -103,31 +103,28 @@ const RecommendationFormUI = ({
             // 存储表单的值到缓存
             saveLocalEdit('recommendation', values);
 
-            console.log(Object.keys(errors).length);
-            if (Object.keys(errors).length !== 0) {
-              // 存在错误，不进行保存操作
+            try {
+              const isSaved = await sendDatatoBack(values);
+              if (isSaved) {
+                // 创建一个 Intl.DateTimeFormat 实例，使用默认的浏览器本地设置
+                const formatter = new Intl.DateTimeFormat();
 
-              console.log(errors);
-              setMessage('Please fill in all required fields.');
-              return false;
-            } else {
-              const localSaved = JSON.parse(
-                localStorage.getItem(`recommendation_localEdit${topicId}`)
-              );
-              if (!localSaved) {
-                console.log('no fill');
-                setMessage('Please fill in all required fields.');
-                return false;
-              } else {
-                const isSaved = await sendDatatoBack(values);
-                if (isSaved) {
-                  return true;
-                } else {
-                  console.log('sendDatatoBack failed');
-                  setMessage('sendDatatoBack failed');
-                  return false;
-                }
+                // 获取格式化的日期时间字符串
+                const formattedDate = new Date().toLocaleString();
+
+                // 获取语言标签，例如 "en-US" 或 "zh-CN"
+                const locale = formatter.resolvedOptions().locale;
+                setMessage(
+                  `${texts.tips.sendDatatoBackSuccess} ${formattedDate},${locale}`
+                );
               }
+              return true;
+            } catch (error) {
+              console.error(error);
+              setMessage(
+                error.message || 'An error occurred while saving data.'
+              );
+              return false;
             }
           };
           const handleSubmit = async (values, errors) => {
