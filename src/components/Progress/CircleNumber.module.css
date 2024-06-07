@@ -1,13 +1,12 @@
 /* CircleNumber.module.css */
 
 .circleContainer {
-  width: 80px;
+  width: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .circle {
@@ -21,7 +20,7 @@
 }
 
 .dark {
-  background-color: #b1b1b1; /* 深灰色 */
+  background-color: #9e9e9e; /* 深灰色 */
 }
 
 .currentChoose {
@@ -32,8 +31,44 @@
   background-color: #e5e5e5; /* 浅灰色 */
 }
 
+.cycleContainer {
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  overflow: visible;
+}
+
 .title {
-  margin-top: 5px;
+  width: auto; /* 根据内容自动调整宽度 */
   font-size: 10px;
   color: #767676;
+  white-space: nowrap; /* 防止文本换行 */
+  overflow: visible; /* 允许文本溢出 */
+  text-align: center; /* 文本水平居中 */
+}
+
+.lineContainer {
+  width: 100%; /* 根据需要调整 */
+  display: flex;
+  align-items: center;
+}
+.line,
+.lineAfter {
+  width: 100%;
+  height: 5px; /* 横线的厚度 */
+  position: absolute;
+  top: 25%;
+  z-index: -1;
+}
+
+/* 根据实际布局调整线条的位置，例如： */
+.line {
+  background-color: rgb(215, 215, 215); /* 横线的颜色 */
+}
+
+.lineAfter {
+  background-color: #9e9e9e; /* 横线的颜色 */
 }
