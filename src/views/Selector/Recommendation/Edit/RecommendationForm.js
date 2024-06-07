@@ -19,7 +19,6 @@ const RecommendationFormUI = ({
   apiMessage,
 }) => {
   const [message, setMessage] = useState('');
-  console.log(message);
   const texts = getLabels(useSelector(selectCurrentLanguage));
 
   const formFields = getFormFields(texts);
