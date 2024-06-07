@@ -52,12 +52,14 @@ const RecommendationFormLogic = () => {
             if (response.data.msg.timeStamp > localSaved?.timeStamp) {
               console.log('后台数据更新,用后台数据', response.data.msg);
               logTime(response.data.msg.timeStamp, localSaved?.timeStamp);
+
               //后台数据更新,用后台数据
               setFormData(response.data.msg);
             } else {
               //后台数据没更新，用本地数据
               if (localSaved?.data) {
                 console.log('本地数据更新,用本地数据', localSaved.data);
+
                 logTime(response.data.msg.timeStamp, localSaved?.timeStamp);
                 setFormData(localSaved.data);
               }

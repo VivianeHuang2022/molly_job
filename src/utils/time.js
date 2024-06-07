@@ -18,7 +18,6 @@ const realtTime = (timestampInSeconds) => {
     date.getMinutes();
   return formattedDate;
 };
-
 export const logTime = (resTime, userTime) => {
   if (resTime && userTime) {
     console.log(
