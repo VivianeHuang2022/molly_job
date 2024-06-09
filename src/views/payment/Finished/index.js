@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { DefaultButton, PrimaryButton } from '../../../components/Button';
-
-import { TitleComp, ParagraphComp } from '../../../components/Typography';
-
-import { getLabels } from '../../local';
-import { useSelector } from 'react-redux';
-import { selectCurrentLanguage } from '../../../redux/slices/languageSlice';
-
-import PaymentDetails from './PaymentDetails';
-import styles from './Finished.module.css';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { DefaultButton, PrimaryButton } from "../../../components/Button";
+import { TitleComp, ParagraphComp } from "../../../components/Typography";
+import { getLabels } from "../../local";
+import { useSelector } from "react-redux";
+import { selectCurrentLanguage } from "../../../redux/slices/languageSlice";
+import PaymentDetails from "./PaymentDetails";
+import styles from "./Finished.module.css";
 
 const PayFinishedPage = () => {
   const texts = getLabels(useSelector(selectCurrentLanguage));
@@ -23,73 +20,83 @@ const PayFinishedPage = () => {
   useEffect(() => {
     const getOrderData = () => {
       if (location.state?.orderData) {
-        // 如果在useLocation中获取到，则直接使用
         setOrderResult(location.state.orderData);
       } else {
-        // 否则尝试从本地存储中获取
-        const savedOrderData = localStorage.getItem('orderData');
+        const savedOrderData = localStorage.getItem("orderData");
         if (savedOrderData) {
-          setOrderResult(savedOrderData);
+          setOrderResult(JSON.parse(savedOrderData));
         }
       }
     };
 
     getOrderData();
 
-    // 存储订单数据
     if (orderResult) {
-      localStorage.setItem('orderData', orderResult);
+      localStorage.setItem("orderData", JSON.stringify(orderResult));
     }
   }, [location.state?.orderData, orderResult]);
 
   const handleReturnPayment = () => {
-    navigate('/payment');
+    navigate("/payment");
   };
 
   const backToGeneration = () => {
-    const documentType = localStorage.getItem('currentgenerate');
+    const documentType = localStorage.getItem("currentgenerate");
     navigate(`/layout/${documentType}`);
   };
 
   const checkPayment = () => {
-    navigate('/generateCounts_history');
+    navigate("/generateCounts_history");
   };
 
   return (
     <div className={styles.pageContainer}>
-      {orderResult?.msg === 'SUCCESS' ? (
-        <div>
-          <TitleComp>{orderResultTexts.success}</TitleComp>
-          <PaymentDetails
-            paymentInfo={orderResult}
-            detailTexts={orderResultTexts.details}
-          />
-          <div>
-            <DefaultButton
-              onClick={checkPayment}
-              label={orderResultTexts.checkOrder}
+      <div className={styles.card}>
+        <h1 style={{ fontWeight: "bold" }}>Success</h1>{" "}
+        {/* Make the text bold 每12个词分一次段落*/}
+        <p style={{ fontWeight: "bold", color: "#FFFFFF" }}>
+          {texts.orderResult.purchaseRequest.message}
+        </p>
+        <br />
+        <p style={{ fontWeight: "bold", color: "#FFFFFF" }}>
+          {texts.orderResult.purchaseRequest.contact}
+        </p>
+        {orderResult?.msg === "SUCCESS" ? (
+          <>
+            {/* Remove the upper-side and lower-side divs */}
+            <PaymentDetails
+              paymentInfo={orderResult}
+              detailTexts={orderResultTexts.details}
             />
-            <PrimaryButton
-              onClick={backToGeneration}
-              label={orderResultTexts.continueGenerate}
-            />
-          </div>
-          <DefaultButton
-            onClick={handleReturnPayment}
-            label={orderResultTexts.backToPlan}
-          />
-        </div>
-      ) : (
-        <>
-          <TitleComp>Payment Failed!</TitleComp>
-          <ParagraphComp>
-            {orderResultTexts.fail}: {orderResult?.errorMessage}
-          </ParagraphComp>
-          <ParagraphComp>
-            {orderResultTexts.contact}viviane.huang@stu-de.org。
-          </ParagraphComp>
-        </>
-      )}
+            <div className={styles.buttonsContainer}>
+              <DefaultButton
+                onClick={checkPayment}
+                label={orderResultTexts.checkOrder}
+              />
+              <PrimaryButton
+                onClick={backToGeneration}
+                label={orderResultTexts.continueGenerate}
+              />
+              <DefaultButton
+                onClick={handleReturnPayment}
+                label={orderResultTexts.backToPlan}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <TitleComp>{orderResultTexts.fail}</TitleComp>
+            <ParagraphComp>
+              <b>{orderResultTexts.failMessage}:</b> {orderResult?.errorMessage}{" "}
+              {/* Make the text bold */}
+            </ParagraphComp>
+            <ParagraphComp>
+              <b>{orderResultTexts.contact}</b> viviane.huang@stu-de.org{" "}
+              {/* Make the text bold */}
+            </ParagraphComp>
+          </>
+        )}
+      </div>
     </div>
   );
 };

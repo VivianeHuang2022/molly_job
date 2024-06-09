@@ -1,7 +1,102 @@
 .pageContainer {
-  display: flex;
-  justify-content: center;
+  margin: 0;
+  padding: 0 !important;
+  background-color: #ffffff;
+}
+
+.backgroundImage {
+  background-image: url("https://i.imgur.com/CqufJUk.jpeg");
+  background-size: cover;
+  height: 400px;
+  position: relative;
+  background-repeat: no-repeat;
+}
+
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+.content {
+  padding: 0 3em;
   text-align: center;
-  flex-direction: column;
-  margin-top: 200px;
+  color: #ffffff;
+}
+
+.content h2 {
+  color: #ffffff;
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
+.content p {
+  color: #ffffff;
+}
+
+.playButton {
+  width: 60px;
+  max-width: 600px;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.services,
+.contactInfo,
+.otherInfo {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.services h3,
+.contactInfo h3,
+.otherInfo h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.services p,
+.contactInfo ul,
+.otherInfo ul {
+  color: #666666;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.contactInfo ul,
+.otherInfo ul {
+  padding: 0;
+  margin: 0;
+}
+
+.contactInfo ul li,
+.otherInfo ul li {
+  margin-bottom: 10px;
+  color: #666666;
+}
+
+.otherInfo ul li a {
+  color: #666666;
+}
+
+/* 添加特效 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.playButton {
+  animation: fadeIn 1s ease-in-out;
 }
