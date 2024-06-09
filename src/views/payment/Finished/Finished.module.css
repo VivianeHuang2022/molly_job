@@ -1,4 +1,61 @@
 .pageContainer {
+  background: linear-gradient(135deg, #666 25%, #000 50%, #666 75%, #000 100%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* 居中对齐 */
+  height: 100vh;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.card {
+  position: relative;
+  width: 320px;
   text-align: center;
-  margin: 20px;
+  font-family: "Source Sans Pro", sans-serif;
+  background: #5e5e5e; /* 调整背景颜色为深灰色 */
+  color: #fff;
+  border-radius: 15px; /* 添加圆角 */
+  overflow: hidden;
+  padding-top: 10px;
+  margin: 40px auto;
+}
+
+h1 {
+  color: #000000; /* 设置标题颜色 */
+  text-shadow: 2px 2px 4px #e1e1e1;
+}
+#message {
+  margin-top: -0.5em;
+  color: #757575;
+  letter-spacing: 1px;
+}
+
+button {
+  background: #333;
+  color: #fff;
+  padding: 0.8em 3em;
+  border-radius: 25px;
+  margin: 0.5em 0; /* 调整按钮之间的间距 */
+}
+
+button:hover {
+  box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  transition: all 0.4s ease;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
 }

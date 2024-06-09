@@ -1,55 +1,56 @@
-.logo,.subLogo{
-    height: 120px;
-    width: 120px;
+.logo,
+.subLogo {
+  height: 120px;
+  width: 120px;
 }
-.logo{
-    margin: 20px 0 0 20px;
+.logo {
+  margin: 20px 0 0 20px;
 }
-.title{
-    text-align: center;
-    font-size: 50px;
-    font-weight: bold;
-}
-
-.paragraph{
-    text-align: center;
-    font-size: 25px;
+.title {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
 }
 
-.containerStyle{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    cursor: pointer;
+.paragraph {
+  text-align: center;
+  font-size: 25px;
+}
+
+.containerStyle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  cursor: pointer;
 }
 .containerStyle > div {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 5%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5%;
 }
-.footLine{
-    /* position: fixed; */
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    /* bottom: 50px;
+.footLine {
+  /* position: fixed; */
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  /* bottom: 50px;
     width: 100%; */
 }
 
 /* 添加样式来对齐logo和语言切换按钮 */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .languageButton {
-    background: transparent;
-    padding: 10px;
-    margin-right: 20px;
-    cursor: pointer;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.languageButton {
+  background: transparent;
+  color: black;
+  padding: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+}

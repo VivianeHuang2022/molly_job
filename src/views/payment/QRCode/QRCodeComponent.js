@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import styles from './QRCode.module.css';
-import CountdownTimer from '../../../components/CountdownTimer';
+import React, { useState, useEffect } from "react";
+import styles from "./QRCode.module.css";
+import CountdownTimer from "../../../components/CountdownTimer";
 
-import { ImageWithOverlay } from '../../../components/ImageWithOverlay';
+import { ImageWithOverlay } from "../../../components/ImageWithOverlay";
 
-import { Image } from 'antd';
+import { Image } from "antd";
 
 const QRCodeComponent = ({
   texts,
@@ -64,7 +64,9 @@ const QRCodeComponent = ({
               onClick={refreshImage}
               buttonText={texts.QRCode.buttonLabel}
             />
-          ): (<Image src={qrCodeImage} preview={false} alt="QR Code" />)}
+          ) : (
+            <Image src={qrCodeImage} preview={false} alt="QR Code" />
+          )}
         </div>
 
         <div className={styles.timer}>
