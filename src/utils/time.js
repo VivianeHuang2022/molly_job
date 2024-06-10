@@ -1,4 +1,3 @@
-
 const realtTime = (timestampInSeconds) => {
   const date = new Date(parseInt(timestampInSeconds)); // 转换为毫秒
 
@@ -19,8 +18,6 @@ const realtTime = (timestampInSeconds) => {
     date.getMinutes();
   return formattedDate;
 };
-
-
 export const logTime = (resTime, userTime) => {
   if (resTime && userTime) {
     console.log(
@@ -39,6 +36,4 @@ export const logTime = (resTime, userTime) => {
   if (!resTime && userTime) {
     console.log('只有前端数据:', realtTime(userTime));
   }
-
 };
-

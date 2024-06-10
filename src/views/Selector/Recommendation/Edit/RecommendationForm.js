@@ -109,7 +109,6 @@ const RecommendationFormUI = ({
                 // 创建一个 Intl.DateTimeFormat 实例，使用默认的浏览器本地设置
                 const formatter = new Intl.DateTimeFormat();
 
-
                 // 获取格式化的日期时间字符串
                 const formattedDate = new Date().toLocaleString();
 

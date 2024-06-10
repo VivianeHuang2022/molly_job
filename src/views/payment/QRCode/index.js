@@ -41,18 +41,17 @@ const QRCodePage = () => {
           setPlanType(savedPlanType);
         }
       }
-      
       if (planType) {
         localStorage.setItem('planType', planType);
+
         // 调用API函数来获取QRCode图片
         try {
-          
           const qrCodeData = await fetchQRCodeImage(planType);
-          console.log(qrCodeData.data);
-          if (qrCodeData.status===200) {
+          console.log(qrCodeData);
+          if (qrCodeData.status === 200) {
             setQRState('show');
             setQRCodeImage(qrCodeData.data.qrCode); // Assuming qrCodeData contains the image data
-            setOrderNumber(qrCodeData.data.orderNumber)
+            setOrderNumber(qrCodeData.data.orderNumber);
           } else {
             setQRState('error');
           }
@@ -72,8 +71,8 @@ const QRCodePage = () => {
     const fetchOrder = async () => {
       try {
         const orderData = await fetchOrderStatus(orderNumber);
-        console.log(orderData.msg)
-        if (orderData.code === 0&&orderData.msg==="SUCCESS") {
+        console.log(orderData.msg);
+        if (orderData.code === 0 && orderData.msg === 'SUCCESS') {
           clearInterval(intervalId);
           navigate('/payment/complete', { state: { orderData } });
         }
@@ -91,7 +90,6 @@ const QRCodePage = () => {
     return () => clearInterval(intervalId); // 在组件卸载或者状态改变时清除interval
   }, [qrState, navigate]);
 
-
   // 如果未找到planType，则不展示QRCodeComponent
   if (!planType) {
     ///console.log(planType)
@@ -107,30 +105,18 @@ const QRCodePage = () => {
     try {
       const qrCodeData = await fetchQRCodeImage(planType);
       console.log(qrCodeData);
-      if (qrCodeData.status===200) {
+      if (qrCodeData.status === 401) {
+        navigate('/login');
+      }
+      if (qrCodeData.status === 200) {
         setQRState('show');
-        setQRCodeImage(qrCodeData.data);
+        setQRCodeImage(qrCodeData.data.qrCode);
       } else {
         setQRState('error');
       }
     } catch (error) {
       setQRState('error');
     }
-  };
-
-  const testFinish = () => {
-    //mock data
-    const orderData = {
-      orderStatus: 'success', //订单状态：成功success,失败faild,已过期expired,已取消canceled...
-      plan: planType, //金额plan类型
-      generateCount: 1,
-      orderAmount: 99,
-      orderId: 1,
-      fileType: 'cv', //文件类型
-      finishedTime: '2021-09-01T00:00:00.000Z',
-      errorMessage: '',
-    };
-    navigate('/payment/complete', { state: { orderData } });
   };
 
   return (

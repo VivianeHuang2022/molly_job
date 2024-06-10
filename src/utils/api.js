@@ -380,7 +380,7 @@ export const fetchQRCodeImage = async (orderLabel) => {
   } catch (error) {
     // console.error('获取二维码失败：', error);
     const errormessage = {
-      status: 0,
+      status: error.response.status,
       message: error.message || '获取二维码失败。',
     };
     return errormessage;
@@ -610,7 +610,7 @@ export const updateRecommendation = async (
  */
 export const createResume = async (dataGroup, topicId = initTopicId) => {
   const postUrl = `${BASE_URL}/Resume/PostStdResumeDataGroup?topicId=${topicId}`;
-   const jwtToken = localStorage.getItem('jwtToken');
+  const jwtToken = localStorage.getItem('jwtToken');
   try {
     const response = await axios({
       method: 'post',

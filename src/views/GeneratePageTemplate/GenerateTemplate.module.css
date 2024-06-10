@@ -37,7 +37,8 @@
   display: flex;
   justify-content: center;
   margin: 20px;
-  gap: 20px;
+  /* 20240610 lily check调整后样式时 发现生成页模板图片变大了 在自适应的窄屏幕时覆盖了文字,因此增大的间距*/
+  gap: 40px;
 }
 
 .previewContainer {

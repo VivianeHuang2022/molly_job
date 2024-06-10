@@ -1,6 +1,4 @@
-
 import React, { useContext, useEffect, useState } from 'react';
-
 import { useNavigate, useLocation } from 'react-router-dom';
 import style from './Question.module.css';
 import { postStdCoverLetterDataGroup } from '../../../utils/api';
@@ -86,12 +84,10 @@ export default function Question(props) {
         // console.log(window.location)
       }
     });
-
     setProgress(currentQNumber);
     // 在组件加载时触发异步 action
     dispatch(fetchCoverletterData());
   }, [currentQNumber]);
-
 
   return (
     <div className={style.container}>
