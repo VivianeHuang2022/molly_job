@@ -6,7 +6,7 @@ import { createResume, downloadResumePDF } from '../../../utils/api';
 import AlertContext from '../../../components/AlertProvider/AlertContext';
 import { NoticeParagraphComp } from '../../../components/Typography';
 import { saveLocalEdit } from '../../../utils/saveLocalData';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCurrentTopicId } from '../../../redux/slices/userTypeSlice';
 import { Select } from 'antd';
@@ -20,6 +20,7 @@ const CvContainer = ({
   templateLabels,
   tips,
 }) => {
+  const location = useLocation();
   const topicId = useSelector(selectCurrentTopicId);
   const { showAlertMessage } = useContext(AlertContext);
   const [isSaved, setIsSaved] = useState(true);
@@ -68,7 +69,7 @@ const CvContainer = ({
     if (response.status === 200) {
       showAlertMessage('Success', 'Resume send successfully!', 'success');
     } else if (response.status === 401) {
-      navigate('/login');
+      navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
     } else {
     }
   };
@@ -115,7 +116,7 @@ const CvContainer = ({
         currentSectionType,
       });
       if (error.response.status === 401) {
-        navigate('/login');
+        navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
       }
     }
   };

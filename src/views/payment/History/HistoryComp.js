@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Table,
-  // Button
-} from 'antd';
+import { Table } from 'antd';
 
 import { ColumnShow, CountComp } from '../../../components/Column/ColumnShow';
 import styles from './history.module.css';
@@ -25,23 +22,24 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
         const actionType = record.actionType;
         let actionTypeText;
         switch (actionType) {
-          case 'coverletter':
+          case 'Coverletter':
             actionTypeText = historyTexts.coverletter;
             break;
-          case 'recommendation':
+          case 'Recommendation':
             actionTypeText = historyTexts.recommendation;
             break;
-          case 'pro':
+          case 'Pro':
             actionTypeText = historyTexts.pro;
             break;
-          case 'superPro':
+          case 'Super Pro':
             actionTypeText = historyTexts.superPro;
             break;
-          case 'standard':
+          case 'Standard':
             actionTypeText = historyTexts.standard;
             break;
           default:
             // 这里可以什么都不做，或者添加一些默认行为,不加default会触发提示Expected a default case  default-case
+            actionTypeText = actionType;
             break;
         }
         return (

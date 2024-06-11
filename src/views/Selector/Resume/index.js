@@ -11,13 +11,15 @@ import {
 } from '../../../redux/slices/cvDataSlice';
 import { fetchCVData } from '../../../redux/actions/fetcDataActions';
 import { selectCurrentLanguage } from '../../../redux/slices/languageSlice';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { checkLogin } from '../../../utils/checkLogin';
 
 // 导出组件------------------------------------------------
 const CvPage = () => {
-  // 使用 useSelector 钩子选择 Redux store 中的当前语言设置
+  const location = useLocation();
   const navigate = useNavigate();
+
+  // 使用 useSelector 钩子选择 Redux store 中的当前语言设置
   const currentLanguage = useSelector(selectCurrentLanguage);
   const singleCvData = useSelector(selectCvData);
   const currentSectionType = useSelector(selectCurrentSectionType);
@@ -28,7 +30,7 @@ const CvPage = () => {
     const checkRes = checkLogin();
     checkRes.then((result) => {
       if (!result) {
-        navigate('/login');
+        navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
       }
     });
 

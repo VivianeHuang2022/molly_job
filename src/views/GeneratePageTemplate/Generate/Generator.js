@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  getDocumentStatus,
-  fetchRemainingCounts,
-} from '../../../utils/api';
-import { useNavigate } from 'react-router-dom';
+import { getDocumentStatus, fetchRemainingCounts } from '../../../utils/api';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './generate.module.css';
 import {
   PrimaryButton,
@@ -25,6 +22,7 @@ const Generator = ({
   const [currentState, setCurrentState] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     fetchData();
@@ -33,11 +31,10 @@ const Generator = ({
   /*-------------操作-----------------*/
   const fetchData = async () => {
     try {
-
       const response = await fetchRemainingCounts();
-        setAccountInfo(response.data.msg);
-        let state;
-      
+      setAccountInfo(response.data.msg);
+      let state;
+
       if (response.data.msg.firstTime) {
         state = 'newUser'; // 首次生成
       } else if (response.data.msg.remainingCount > 0) {
@@ -47,13 +44,12 @@ const Generator = ({
       }
       setCurrentState(state);
     } catch (error) {
-      if(error.response.status===401){
-        navigate('/login')
+      if (error.response.status === 401) {
+        navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
       }
       setErrorMessage(generateDocumentTexts.errorMessage + error.message);
     }
   };
-
 
   // 生成文件
   const handleGenerateClick = async () => {
@@ -69,8 +65,7 @@ const Generator = ({
       if (response.status === 200) {
         navigate(`/download`);
         localStorage.setItem('currentgenerate', documentType);
-      }else if(response.status === 401)
-      {
+      } else if (response.status === 401) {
         navigate(`/login`);
       }
     } catch (error) {
@@ -84,12 +79,10 @@ const Generator = ({
     navigate(`/layout/payment`);
   };
   const handleBacktoEdit = () => {
-    
     editState(`isEdit${documentType}/edit`, true);
-    if(documentType==='coverletter'){
+    if (documentType === 'coverletter') {
       navigate(`/layout/generalq`);
-    }
-    else{
+    } else {
       navigate(`/layout/${documentType}/edit`);
     }
   };

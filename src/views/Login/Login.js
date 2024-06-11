@@ -1,71 +1,71 @@
-import React, { useContext } from "react";
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
-import styles from "../Login/Login.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { loginRequset } from "../../utils/api";
-import AlertContext from "../../components/AlertProvider/AlertContext";
+import React, { useContext } from 'react';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { Button, Checkbox, Form, Input } from 'antd';
+import styles from '../Login/Login.module.css';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { loginRequset } from '../../utils/api';
+import AlertContext from '../../components/AlertProvider/AlertContext';
 
 export default function Login() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams(); // 在React Router v6中，推荐用 useSearchParams 来处理查询参数
+  const returnUrl = searchParams.get('returnUrl');
+
   const { showAlertMessage } = useContext(AlertContext);
   // const [showModal, setShowModal] = useState(false);
 
-  // const queryParams = new URLSearchParams(window.location.search);
-  // console.log(queryParams)
-  // const returnUrl = queryParams.get('returnUrl') || '/';
-  // console.log(returnUrl)
-  const rememberEmail = localStorage.getItem("email");
-  const rememberPassword = localStorage.getItem("password");
-  const id = localStorage.getItem("topicId");
+  const rememberEmail = localStorage.getItem('email');
+  const rememberPassword = localStorage.getItem('password');
+  const id = localStorage.getItem('topicId');
   //输入完成请求后端
   const onFinish = async (formData) => {
     let { email, password, remember } = formData;
     const request = {
       email: email.trim(),
-      pwd: password.trim()
+      pwd: password.trim(),
     };
     if (remember) {
-      localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
     } else {
-      localStorage.removeItem("email", email);
-      localStorage.removeItem("password", password);
+      localStorage.removeItem('email', email);
+      localStorage.removeItem('password', password);
     }
     try {
       const result = await loginRequset(request);
       //成功之后跳转到Login界面
       if (result.status === 200) {
-        showAlertMessage("Success", "Login successfully!", "success");
-
-        // id === 2 ? setShowModal(true) : navigate("/home/1");
+        showAlertMessage('Success', 'Login successfully!', 'success');
         const token = result.data.msg;
         //把token存在localStorage中
-        localStorage.setItem("jwtToken", token);
-        navigate(`/home/${id}`);
-        // const isInternalUrl = returnUrl.startsWith('/') && !returnUrl.startsWith('//');
-        // navigate(isInternalUrl ? decodeURIComponent(returnUrl) : `/home/${id}`);
+        localStorage.setItem('jwtToken', token);
+
+        // 登录成功后，根据returnUrl进行重定向
+        if (returnUrl) {
+          console.log(returnUrl);
+          navigate(returnUrl);
+        } else {
+          navigate(`/home/${id}`);
+        }
       } else {
         //alert("unknown error!")
-        showAlertMessage("Error", "unknown error!", "error");
+        showAlertMessage('Error', 'unknown error!', 'error');
       }
     } catch (error) {
       // console.log("herr")
       if (error.response) {
-        if(error.response.data.msg){
-          showAlertMessage("Warning", error.response.data.msg, "warning");
+        if (error.response.data.msg) {
+          showAlertMessage('Warning', error.response.data.msg, 'warning');
+        } else {
+          showAlertMessage('Warning', error.response.statusText, 'warning');
         }
-        else{
-          showAlertMessage("Warning", error.response.statusText, "warning");
+
+        if (error.response.data.code === 1006) {
+          navigate('/register');
         }
-        
-        if(error.response.data.code===1006){
-          navigate("/register");
-        }
-        
       } else {
         // alert(`Error:${error.message}`)
-        showAlertMessage("Error", error.message, "error");
+        showAlertMessage('Error', error.message, 'error');
       }
     }
   };
@@ -83,13 +83,13 @@ export default function Login() {
             className="login-form"
             initialValues={{
               remember: true,
-              email: rememberEmail ? rememberEmail : "",
-              password: rememberPassword ? rememberPassword : "",
+              email: rememberEmail ? rememberEmail : '',
+              password: rememberPassword ? rememberPassword : '',
             }}
             onFinish={onFinish}
           >
             <div className="smallSubText">EMAIL</div>
-            <Form.Item name="email" rules={[{ required: true, type: "email" }]}>
+            <Form.Item name="email" rules={[{ required: true, type: 'email' }]}>
               <Input
                 prefix={<MailOutlined className="site-form-item-icon" />}
                 placeholder="Email"
@@ -99,7 +99,7 @@ export default function Login() {
             <Form.Item
               name="password"
               rules={[
-                { required: true, message: "Please input your Password!" },
+                { required: true, message: 'Please input your Password!' },
               ]}
             >
               {/*  */}
@@ -124,19 +124,16 @@ export default function Login() {
                 htmlType="submit"
                 className="login-form-button"
                 onMouseOver={(e) =>
-                  (e.currentTarget.style.backgroundColor = "gray")
+                  (e.currentTarget.style.backgroundColor = 'gray')
                 }
                 onMouseOut={(e) =>
-                  (e.currentTarget.style.backgroundColor = "black")
+                  (e.currentTarget.style.backgroundColor = 'black')
                 }
               >
                 Log in
               </Button>
-              Or{" "}
-              <Link
-                className="login-form-register"
-                to={`/register`}
-              >
+              Or{' '}
+              <Link className="login-form-register" to={`/register`}>
                 register now!
               </Link>
             </Form.Item>

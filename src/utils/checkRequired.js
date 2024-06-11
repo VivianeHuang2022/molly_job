@@ -1,23 +1,29 @@
-export const validateFields = (formData) => {
-  const allowedEmptyFields = [
-    'userAddress',
-    'ideaArea',
-    'careerOrGoal',
-    //page2
-    'currentGPA',
-    //page3
-    'getAwards',
-    'getCompetitions',
-    'getConference',
-    'getProject',
-    'getSkills',
-    'internCompany',
-    'internRole',
-    //page4
-    'profName',
-    'profResearch',
-  ];
-  // console.log(formData);
+export const validateFields = (formData, topicId) => {
+  // 根据topicId定义不同的允许为空的字段数组
+  const allowedEmptyFieldsByTopicId = {
+    1: [
+      'userAddress',
+      'ideaArea',
+      'careerOrGoal',
+      //page2
+      'currentGPA',
+      //page3
+      'getAwards',
+      'getCompetitions',
+      'getConference',
+      'getProject',
+      'getSkills',
+      'internCompany',
+      'internRole',
+      //page4
+      'profName',
+      'profResearch',
+    ],
+    2: [],
+  };
+
+  // 获取当前topicId对应的允许为空的字段数组
+  const allowedEmptyFields = allowedEmptyFieldsByTopicId[topicId] || [];
 
   // 检查formData中的每个字段
   for (const field in formData) {

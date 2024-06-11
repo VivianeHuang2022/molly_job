@@ -23,30 +23,49 @@ export default function Question(props) {
   const { showAlertMessage } = useContext(AlertContext);
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const currentQNumber = parseInt(location.pathname.split('/page')[1], 10);
+
+  const handleProgressChange = (newNum) => {
+    const newPage = `/layout/generalq/page${newNum}`; // 根据新的进度计算新的页面路径
+    if (newNum > currentQNumber) {
+      if (validateFields(formData, topicId)) {
+        setProgress(newNum);
+        navigate(newPage);
+      }
+    } else {
+      navigate(newPage);
+    }
+  };
+
+  const topicId = localStorage.getItem('topicId');
   //20240606 lily add required check---------------------------------
-  const selectorPath = `stdDataQP${currentQNumber}`;
+  const selectorPath =
+    topicId === '1'
+      ? `stdDataQP${currentQNumber}`
+      : `jobDataQP${currentQNumber}`;
   const formData = useSelector((state) => state.coverLetter[selectorPath]);
 
   const handleToNext = async () => {
     if (currentQNumber < childrenCount) {
       const nextQ = 'page' + (currentQNumber + 1);
-      if (validateFields(formData)) {
+      if (validateFields(formData, topicId)) {
         navigate(`/layout/generalq/${nextQ}`);
       }
     }
     if (currentQNumber === childrenCount) {
-      if (localStorage.getItem('topicId') === '1') {
+      if (topicId === '1') {
         const timeStamp = new Date().getTime();
         localStorage.setItem('stdDataUpdateTimeStamp', timeStamp);
         const data = generateStdDataGroup(timeStamp);
         console.log(data);
-        if (validateFields(data)) {
+        if (validateFields(data, topicId)) {
           const response = await postStdCoverLetterDataGroup(data);
           if (response.status === 200) {
             editState('isEditcoverletter', false);
             navigate('/layout/coverletter/generate');
           } else if (response.status === 401) {
-            navigate('/login');
+            navigate(
+              `/login?returnUrl=${encodeURIComponent(location.pathname)}`
+            );
           } else {
             showAlertMessage(
               'Error',
@@ -74,14 +93,11 @@ export default function Question(props) {
       }
     }
   };
-
   useEffect(() => {
     const checkRes = checkLogin();
     checkRes.then((result) => {
       if (!result) {
-        // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
-        navigate('/login');
-        // console.log(window.location)
+        navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
       }
     });
     setProgress(currentQNumber);
@@ -92,7 +108,11 @@ export default function Question(props) {
   return (
     <div className={style.container}>
       {/* 进度展示区域 */}
-      <ProgressBar currentNum={progress} />
+      <ProgressBar
+        currentNum={progress}
+        onProgressChange={handleProgressChange}
+        topicId={topicId}
+      />
       {/* 编辑区域 */}
       {props.children}
 

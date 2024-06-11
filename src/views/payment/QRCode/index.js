@@ -71,7 +71,7 @@ const QRCodePage = () => {
     const fetchOrder = async () => {
       try {
         const orderData = await fetchOrderStatus(orderNumber);
-        console.log(orderData.msg);
+        console.log(orderData.msg, orderData);
         if (orderData.code === 0 && orderData.msg === 'SUCCESS') {
           clearInterval(intervalId);
           navigate('/payment/complete', { state: { orderData } });
@@ -106,7 +106,7 @@ const QRCodePage = () => {
       const qrCodeData = await fetchQRCodeImage(planType);
       console.log(qrCodeData);
       if (qrCodeData.status === 401) {
-        navigate('/login');
+        navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
       }
       if (qrCodeData.status === 200) {
         setQRState('show');
