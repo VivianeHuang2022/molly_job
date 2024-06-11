@@ -18,6 +18,14 @@ export const getMenuItems = (texts) => {
     },
   ];
 };
+
+const handleLogout = () => {
+  // 清除本地存储中的令牌
+  localStorage.removeItem('jwtToken');
+
+  // 重定向到登录页面或主页
+  window.location.href = '/login'; // 假设登录页面的路径是 '/login'
+};
 export const profileItems = [
   {
     key: 'generateCounts_history',
@@ -42,7 +50,12 @@ export const profileItems = [
   {
     key: 'logout',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="/">
+      <a
+        target="_blank"
+        onClick={handleLogout}
+        rel="noopener noreferrer"
+        href="/"
+      >
         Logout
       </a>
     ),
