@@ -1,5 +1,5 @@
 // ProgressBar.js
-import React from 'react';
+import React, { useState } from 'react';
 import CircleNumber from './CircleNumber';
 import styles from './ProgressStyle.module.css';
 
@@ -12,7 +12,10 @@ const steps = [
   { number: 5, title: 'PERSONAL' },
 ];
 
-const ProgressBar = ({ currentNum }) => {
+const ProgressBar = ({ currentNum, onProgressChange }) => {
+  const updateProgress = (newProgress) => {
+    onProgressChange(newProgress);
+  };
   return (
     <div className={styles.container}>
       {steps.map((step, index) => (
@@ -24,6 +27,7 @@ const ProgressBar = ({ currentNum }) => {
             currentNum={currentNum}
             title={step.title}
             steps={steps}
+            onProgressChange={updateProgress} // 传递更新进度的回调函数
           />
         </div>
       ))}

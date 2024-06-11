@@ -24,6 +24,18 @@ export default function Question(props) {
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const currentQNumber = parseInt(location.pathname.split('/page')[1], 10);
 
+  const handleProgressChange = (newNum) => {
+    const newPage = `/layout/generalq/page${newNum}`; // 根据新的进度计算新的页面路径
+    if (newNum > currentQNumber) {
+      if (validateFields(formData, topicId)) {
+        setProgress(newNum);
+        navigate(newPage);
+      }
+    } else {
+      navigate(newPage);
+    }
+  };
+
   const topicId = localStorage.getItem('topicId');
   //20240606 lily add required check---------------------------------
   const selectorPath =
@@ -45,7 +57,7 @@ export default function Question(props) {
         localStorage.setItem('stdDataUpdateTimeStamp', timeStamp);
         const data = generateStdDataGroup(timeStamp);
         console.log(data);
-        if (validateFields(data)) {
+        if (validateFields(data, topicId)) {
           const response = await postStdCoverLetterDataGroup(data);
           if (response.status === 200) {
             editState('isEditcoverletter', false);
@@ -96,7 +108,10 @@ export default function Question(props) {
   return (
     <div className={style.container}>
       {/* 进度展示区域 */}
-      <ProgressBar currentNum={progress} />
+      <ProgressBar
+        currentNum={progress}
+        onProgressChange={handleProgressChange}
+      />
       {/* 编辑区域 */}
       {props.children}
 
