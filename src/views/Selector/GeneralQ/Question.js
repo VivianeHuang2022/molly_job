@@ -111,6 +111,7 @@ export default function Question(props) {
       <ProgressBar
         currentNum={progress}
         onProgressChange={handleProgressChange}
+        topicId={topicId}
       />
       {/* 编辑区域 */}
       {props.children}
