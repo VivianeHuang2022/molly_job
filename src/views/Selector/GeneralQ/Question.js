@@ -23,19 +23,24 @@ export default function Question(props) {
   const { showAlertMessage } = useContext(AlertContext);
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const currentQNumber = parseInt(location.pathname.split('/page')[1], 10);
+
+  const topicId = localStorage.getItem('topicId');
   //20240606 lily add required check---------------------------------
-  const selectorPath = `stdDataQP${currentQNumber}`;
+  const selectorPath =
+    topicId === '1'
+      ? `stdDataQP${currentQNumber}`
+      : `jobDataQP${currentQNumber}`;
   const formData = useSelector((state) => state.coverLetter[selectorPath]);
 
   const handleToNext = async () => {
     if (currentQNumber < childrenCount) {
       const nextQ = 'page' + (currentQNumber + 1);
-      if (validateFields(formData)) {
+      if (validateFields(formData, topicId)) {
         navigate(`/layout/generalq/${nextQ}`);
       }
     }
     if (currentQNumber === childrenCount) {
-      if (localStorage.getItem('topicId') === '1') {
+      if (topicId === '1') {
         const timeStamp = new Date().getTime();
         localStorage.setItem('stdDataUpdateTimeStamp', timeStamp);
         const data = generateStdDataGroup(timeStamp);
