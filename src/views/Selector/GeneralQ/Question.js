@@ -46,7 +46,9 @@ export default function Question(props) {
             editState('isEditcoverletter', false);
             navigate('/layout/coverletter/generate');
           } else if (response.status === 401) {
-            navigate('/login');
+            navigate(
+              `/login?returnUrl=${encodeURIComponent(location.pathname)}`
+            );
           } else {
             showAlertMessage(
               'Error',
@@ -74,14 +76,11 @@ export default function Question(props) {
       }
     }
   };
-
   useEffect(() => {
     const checkRes = checkLogin();
     checkRes.then((result) => {
       if (!result) {
-        // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
-        navigate('/login');
-        // console.log(window.location)
+        navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
       }
     });
     setProgress(currentQNumber);

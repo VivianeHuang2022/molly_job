@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { editState } from '../../../../utils/checkCache';
 import RecommendationForm from './RecommendationForm';
 import { checkLogin } from '../../../../utils/checkLogin';
@@ -20,7 +20,7 @@ const RecommendationFormLogic = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState(initialValues);
   const [apiMessage, setApiMessage] = useState('');
-
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -94,9 +94,7 @@ const RecommendationFormLogic = () => {
       try {
         const checkRes = await checkLogin();
         if (!checkRes) {
-          // navigate(`/login?returnUrl=${encodeURIComponent(window.location.pathname)}`)
-          navigate('/login');
-          // console.log(window.location
+          navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
         } else {
           // 验证用户身份后获取最新数据
           fetchAndCompareData();

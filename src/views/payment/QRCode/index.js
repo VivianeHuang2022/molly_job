@@ -106,7 +106,7 @@ const QRCodePage = () => {
       const qrCodeData = await fetchQRCodeImage(planType);
       console.log(qrCodeData);
       if (qrCodeData.status === 401) {
-        navigate('/login');
+        navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
       }
       if (qrCodeData.status === 200) {
         setQRState('show');
