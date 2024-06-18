@@ -5,10 +5,7 @@ import { checkLogin } from '../../../../utils/checkLogin';
 import { updateRecommendation } from '../../../../utils/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {
-  getRecommendation,
-  getRecommendation_MOCK,
-} from '../../../../utils/api';
+import { getRecommendation } from '../../../../utils/api';
 import { LoadingIndicator } from '../../../../components/Loading';
 import { initialValues } from './FormData';
 import { selectCurrentTopicId } from '../../../../redux/slices/userTypeSlice';

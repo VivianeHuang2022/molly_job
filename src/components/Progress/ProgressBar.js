@@ -1,5 +1,5 @@
 // ProgressBar.js
-import React, { useState } from 'react';
+import React from 'react';
 import CircleNumber from './CircleNumber';
 import styles from './ProgressStyle.module.css';
 

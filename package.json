@@ -2,7 +2,7 @@
   "name": "molly_job",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://localhost:7051",
+  "proxy": "https://localhost:7051",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "antd": "^5.16.4",

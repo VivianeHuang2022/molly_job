@@ -15,7 +15,7 @@ const {
   researchExperience,
   publicationsPresentations,
   skillsActivitiesInterests,
-  dreamInfo,
+  // dreamInfo,
 } = cvSection;
 
 const getInitialState = () => {

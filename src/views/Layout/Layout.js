@@ -25,7 +25,7 @@ export const CoverletterLayout = () => {
     } else {
       navigate('/layout/coverletter/generate');
     }
-  }, [navigate, location]); //20240523 lily第二项数组内容不能删除，否则在组件非首次渲染时,进行导航menu切换的时候会跳到edit那个测试页面
+  }, [navigate, location.pathname]); //20240523 lily第二项数组内容不能删除，否则在组件非首次渲染时,进行导航menu切换的时候会跳到edit那个测试页面
   return (
     <CoverLetter>
       <Outlet />
