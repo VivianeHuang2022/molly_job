@@ -28,7 +28,7 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
   const handleLanguageChange = (value) => {
     setSelectedLanguage(value);
     localStorage.setItem('generateLan', value);
-    console.log(selectedLanguage);
+    // console.log(selectedLanguage);
   };
 
   // 添加用于设置 contid 的回调函数
@@ -55,7 +55,7 @@ const GenerateTemplate = ({ fetchImages, documentType }) => {
     );
   }, [selectedLanguage]);
 
-  console.log(localStorage.getItem(`countId_${documentType}`));
+  // console.log(localStorage.getItem(`countId_${documentType}`));
   return (
     <div className={styles.pageContainer}>
       <div className={styles.previewContainer}>

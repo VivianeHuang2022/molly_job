@@ -36,7 +36,7 @@ const RecommendationFormLogic = () => {
           console.log(localSaved);
           setFormData(localSaved.data);
         } else {
-          console.log('没有获取到后端数据,也没有缓存', formData);
+          console.log('没有获取到后端数据,也没有缓存');
         }
       } else {
         //成功获取到后端数据则消除apiMessage提示
@@ -47,7 +47,7 @@ const RecommendationFormLogic = () => {
           // Step 2: 如果后端响应中有有效值且更新了，比较时间戳
           if (localSaved) {
             if (response.data.msg.timeStamp > localSaved?.timeStamp) {
-              console.log('后台数据更新,用后台数据', response.data.msg);
+              console.log('后台数据更新,用后台数据');
               logTime(response.data.msg.timeStamp, localSaved?.timeStamp);
 
               //后台数据更新,用后台数据
@@ -55,7 +55,7 @@ const RecommendationFormLogic = () => {
             } else {
               //后台数据没更新，用本地数据
               if (localSaved?.data) {
-                console.log('本地数据更新,用本地数据', localSaved.data);
+                console.log('本地数据更新,用本地数据');
 
                 logTime(response.data.msg.timeStamp, localSaved?.timeStamp);
                 setFormData(localSaved.data);
@@ -72,7 +72,7 @@ const RecommendationFormLogic = () => {
             console.log(localSaved);
             setFormData(localSaved.data);
           } else {
-            console.log('后端没有有效值,也没有缓存', formData);
+            console.log('后端没有有效值,也没有缓存');
             setFormData(initialValues);
           }
         }
@@ -109,7 +109,7 @@ const RecommendationFormLogic = () => {
   const sendDatatoBack = async (values) => {
     try {
       values.timeStamp = new Date().getTime();
-      console.log(values);
+      // console.log(values);
       const response = await updateRecommendation(values, topicId);
       return response;
     } catch (error) {
