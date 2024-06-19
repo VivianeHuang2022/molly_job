@@ -512,7 +512,6 @@ export const getGenerateCountHistory_MOCK = async () => {
 
 //20240416 api
 /*-------------公共模块----------------*/
-const authToken = localStorage.getItem('jwtToken');
 const BASE_URL = 'api'; // API的基本URL
 const initTopicId = 1; // 不传类型时，默认为学生
 
@@ -524,6 +523,7 @@ const initTopicId = 1; // 不传类型时，默认为学生
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const createCoverletter = async (dataGroup, topicId = initTopicId) => {
+  const authToken = localStorage.getItem('jwtToken');
   const postUrl = `${BASE_URL}/createCoverletter/topicId=${topicId}`;
   try {
     const response = await axios({
@@ -555,6 +555,7 @@ export const createRecommendation = async (
   dataGroup,
   topicId = initTopicId
 ) => {
+  const authToken = localStorage.getItem('jwtToken');
   const postUrl = `${BASE_URL}/Recommendation/PostRecommendationDataGroup?topicId=${topicId}`;
   try {
     const response = await axios({
@@ -581,6 +582,7 @@ export const updateRecommendation = async (
   dataGroup,
   topicId = initTopicId
 ) => {
+  const authToken = localStorage.getItem('jwtToken');
   const postUrl = `${BASE_URL}/Recommendation/PostRecommendationDataGroup?topicId=${topicId}`;
   try {
     const response = await axios({
@@ -636,6 +638,7 @@ export const createResume = async (dataGroup, topicId = initTopicId) => {
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const getCoverletter = async (topicId = initTopicId) => {
+  const authToken = localStorage.getItem('jwtToken');
   const postUrl = `${BASE_URL}/CoverLetter/GetStdCoverLetterDataGroup`;
   try {
     const response = await axios({
@@ -691,29 +694,7 @@ export const getRecommendation = async (topicId = initTopicId) => {
       headers: {
         'Content-Type': 'application/json',
         accept: '*/*',
-        Authorization: authToken ? `Bearer ${jwtToken}` : '',
-      },
-      timeout: 10000,
-      // ... 其他配置
-    });
-
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const getRecommendation_MOCK = async (topicId = initTopicId) => {
-  const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/168725474`;
-  try {
-    const response = await axios({
-      method: 'get',
-      url: postUrl,
-      // responseType: 'application/json', // Important
-      headers: {
-        'Content-Type': 'application/json',
-        accept: '*/*',
-        Authorization: authToken ? `Bearer ${authToken}` : '',
+        Authorization: jwtToken ? `Bearer ${jwtToken}` : '',
       },
       timeout: 10000,
       // ... 其他配置
@@ -730,6 +711,7 @@ export const getRecommendation_MOCK = async (topicId = initTopicId) => {
  * @param {number} [topicId=1] - 身份类型，默认为学生。
  */
 export const getResume = async (topicId = initTopicId) => {
+  const authToken = localStorage.getItem('jwtToken');
   const postUrl = `${BASE_URL}/Resume/GetResumeDataGroup?topicId=${topicId}`;
   try {
     const response = await axios({
@@ -740,27 +722,6 @@ export const getResume = async (topicId = initTopicId) => {
         'Content-Type': 'application/json',
         accept: '*/*',
         Authorization: authToken ? `Bearer ${authToken}` : '',
-      },
-      timeout: 10000,
-      // ... 其他配置
-    });
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const getResume_MOCK = async (topicId = initTopicId) => {
-  const postUrl = `https://mock.apifox.com/m2/4308331-3951008-default/168294019`;
-  try {
-    const response = await axios({
-      method: 'get',
-      url: postUrl,
-      // responseType: 'blob', // Important
-      headers: {
-        'Content-Type': 'application/json',
-        accept: '*/*',
-        // Authorization: authToken ? `Bearer ${authToken}` : '',
       },
       timeout: 10000,
       // ... 其他配置
@@ -786,6 +747,7 @@ export const getDocumentStatus = async (
   documentType,
   topicId = initTopicId
 ) => {
+  const authToken = localStorage.getItem('jwtToken');
   const postUrl = `${BASE_URL}/${documentType}/getDocumentStatus?countId=${countId}&lan=${lan}&topicId=${topicId}`;
   try {
     const response = await axios({
@@ -820,6 +782,7 @@ export const getDocumentImg = async (
   documentType,
   topicId = initTopicId
 ) => {
+  const authToken = localStorage.getItem('jwtToken');
   const postUrl = `${BASE_URL}/${documentType}/getDocumentImg/?countId=${countId}&lan=${lan}&topicId=${topicId}`;
 
   try {
@@ -867,6 +830,8 @@ export const downloadDocumentPdf = async (
   documentType,
   topicId = initTopicId
 ) => {
+  const authToken = localStorage.getItem('jwtToken');
+
   const postUrl = `${BASE_URL}/${documentType}/downloadDocumentPdf?countId=${countId}&lan=${lan}&topicId=${topicId}`;
   try {
     const response = await axios({

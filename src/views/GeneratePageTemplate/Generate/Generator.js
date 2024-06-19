@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getDocumentStatus, fetchRemainingCounts } from '../../../utils/api';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './generate.module.css';
@@ -24,12 +24,8 @@ const Generator = ({
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   /*-------------操作-----------------*/
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await fetchRemainingCounts();
       setAccountInfo(response.data.msg);
@@ -49,7 +45,11 @@ const Generator = ({
       }
       setErrorMessage(generateDocumentTexts.errorMessage + error.message);
     }
-  };
+  }, [generateDocumentTexts.errorMessage, location.pathname, navigate]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   // 生成文件
   const handleGenerateClick = async () => {
@@ -61,16 +61,34 @@ const Generator = ({
         documentType,
         topicId
       );
-      // console.log(response)
+      console.log(response.status);
       if (response.status === 200) {
         navigate(`/download`);
         localStorage.setItem('currentgenerate', documentType);
-      } else if (response.status === 401) {
-        navigate(`/login`);
+      } else {
+        // 处理非200状态码的逻辑
+        console.log(`Received unexpected status code: ${response.status}`);
+        // 可以根据不同的状态码进行不同的处理
+        // ...
       }
     } catch (error) {
-      console.log(error);
-      alert(error.message);
+      // 检查是否有响应对象，如果有，检查状态码
+      if (error.response) {
+        const statusCode = error.response.status;
+        console.log(`Server responded with status code: ${statusCode}`);
+
+        // 根据状态码进行不同的处理
+        if (statusCode === 401) {
+          // 处理未授权的情况
+          navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
+        } else {
+          // 处理其他状态码的情况
+          alert(`Server responded with status code: ${statusCode}`);
+        }
+      } else {
+        // 处理没有响应对象的情况，例如网络错误或请求被阻止
+        alert(`Network error or request was blocked: ${error.message}`);
+      }
     }
   };
   // 去支付页面
