@@ -1,13 +1,14 @@
 import { test, expect } from '@playwright/test';
+require('dotenv').config();
 
 test('recommendor', async ({ page }) => {
   await page.goto('http://localhost:3000/');
   await page.getByRole('img', { name: 's_logo' }).click();
   await page.getByRole('button', { name: 'Recommendation Letter' }).click();
   await page.getByPlaceholder('Email').click();
-  await page.getByPlaceholder('Email').fill('zonlily@outlook.com');
+  await page.getByPlaceholder('Email').fill(process.env.REACT_APP_TEST_EMAIL);
   await page.getByPlaceholder('Password').click();
-  await page.getByPlaceholder('Password').fill('123456');
+  await page.getByPlaceholder('Password').fill(process.env.REACT_APP_TEST_KEY);
   await page.getByRole('button', { name: 'Log in' }).click();
   await page.getByPlaceholder('Enter your first name').click();
   await page.getByPlaceholder('Enter your first name').fill('11');

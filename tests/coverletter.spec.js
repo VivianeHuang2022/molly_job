@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+require('dotenv').config();
+
+console.log(process.env.REACT_APP_TEST_EMAIL, process.env.REACT_APP_TEST_KEY);
 
 test('coverletterSTD', async ({ page }) => {
   await page.goto('http://localhost:3000/');
@@ -7,9 +10,9 @@ test('coverletterSTD', async ({ page }) => {
 
   // login(需要替换邮箱和密码为当前数据库可用的邮箱和密码)
   await page.getByPlaceholder('Email').click();
-  await page.getByPlaceholder('Email').fill('zonlily@outlook.com');
+  await page.getByPlaceholder('Email').fill(process.env.REACT_APP_TEST_EMAIL);
   await page.getByPlaceholder('Password').click();
-  await page.getByPlaceholder('Password').fill('123456');
+  await page.getByPlaceholder('Password').fill(process.env.REACT_APP_TEST_KEY);
   await page.getByRole('button', { name: 'Log in' }).click();
 
   //第1页
