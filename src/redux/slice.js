@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchCoverletterData } from './actions/fetcDataActions';
 import { logTime } from '../utils/time';
+import { emptyCoverletterData } from './data/emptyCoverletter';
 
 //job初始化数据
 const getInitialJobData = (pNum) => {
@@ -9,14 +10,16 @@ const getInitialJobData = (pNum) => {
     ? JSON.parse(storedJobData)
     : pNum === 5
     ? { years: 0 }
-    : {};
+    : emptyCoverletterData['jobDataQP' + pNum];
 };
 
 //std初始化数据
 const getInitialStdData = (pNum) => {
   const storedStdData = localStorage.getItem('stdDataQP' + pNum);
   // console.log(storedStdData);
-  return storedStdData ? JSON.parse(storedStdData) : {};
+  return storedStdData
+    ? JSON.parse(storedStdData)
+    : emptyCoverletterData['stdDataQP' + pNum];
 };
 
 //job数据存储

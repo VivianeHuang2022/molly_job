@@ -7,6 +7,7 @@
     "@reduxjs/toolkit": "^2.2.3",
     "antd": "^5.16.4",
     "axios": "^1.5.1",
+    "dotenv": "^16.4.5",
     "draft-js": "^0.11.7",
     "formik": "^2.4.6",
     "html2pdf.js": "0.9.3",
@@ -47,7 +48,9 @@
     ]
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.1",
     "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^15.0.4"
+    "@testing-library/react": "^15.0.4",
+    "@types/node": "^20.14.7"
   }
 }
