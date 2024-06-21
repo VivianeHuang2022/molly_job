@@ -24,12 +24,45 @@ test('coverletterSTD', async ({ page }) => {
   await page.getByRole('button', { name: 'Next' }).click();
 
   //第2页
+  await page.getByText('[ high sc4hool, bachelor or').click();
   await page
     .getByText(
-      "I am enthusiastic about pursuing my [ Bachelor's Degree ] degree at [ Harvard"
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its'
     )
     .fill(
-      "I am enthusiastic about pursuing my [ Bachelor's Degree ] degree at [ Harvard University ] in [ United States ] due to its distinguished reputation in [ Computer Science].I hold a [ high school, bachelor or master ] degree in[Data Science ] from [shanghai uni] in[ the country you studied ]. where I gained a solid foundation in my major and developed a strong background in [ Data Science ] . Moreover, my coursework in [ Machine Learning, Data Analysis ]  have deepened my interest in this field "
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its distinguished reputation in [ 1 . . . . . . ].I hold a [s high sc4hool, bachelor or master ] degree in[ your m1ajor ] from [ the name of your high school 1or university] in[ the country you stud1ied ]. where I gained a solid foundation in my major and developed a strong background in [ your m1ajor ] . Moreover, my coursework in [ mentio1n 2-3 relevant courses ]  have deepened my interest in this field '
+    );
+  await page.getByText('[ the name of your high').click();
+  await page
+    .getByText(
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its'
+    )
+    .fill(
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its distinguished reputation in [ 1 . . . . . . . ].I hold a [s s high sc4hool, bachelor or master ] degree in[ your m1ajor ] from [s the name of your high school 1or university] in[ the country you stud1ied ]. where I gained a solid foundation in my major and developed a strong background in [ your m1ajor ] . Moreover, my coursework in [ mentio1n 2-3 relevant courses ]  have deepened my interest in this field '
+    );
+  await page.getByText('[ the country you stud1ied ]').click();
+  await page
+    .getByText(
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its'
+    )
+    .fill(
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its distinguished reputation in [ 1 . . . . . . . . ].I hold a [s s s high sc4hool, bachelor or master ] degree in[ your m1ajor ] from [s s the name of your high school 1or university] in[s the country you stud1ied ]. where I gained a solid foundation in my major and developed a strong background in [ your m1ajor ] . Moreover, my coursework in [ mentio1n 2-3 relevant courses ]  have deepened my interest in this field '
+    );
+  await page.getByText('[ your m1ajor ]').nth(1).click();
+  await page
+    .getByText(
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its'
+    )
+    .fill(
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its distinguished reputation in [ 1 . . . . . . . . . ].I hold a [s s s s high sc4hool, bachelor or master ] degree in[ your m1ajor ] from [s s s the name of your high school 1or university] in[s s the country you stud1ied ]. where I gained a solid foundation in my major and developed a strong background in [s your m1ajor ] . Moreover, my coursework in [ mentio1n 2-3 relevant courses ]  have deepened my interest in this field '
+    );
+  await page.getByText('[ mentio1n 2-3 relevant').click();
+  await page
+    .getByText(
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its'
+    )
+    .fill(
+      'I am enthusiastic about pursuing my [ 1 ] degree at [ 1 ] in [ 1 ] due to its distinguished reputation in [ 1 . . . . . . . . . . ].I hold a [s s s s s high sc4hool, bachelor or master ] degree in[ your m1ajor ] from [s s s s the name of your high school 1or university] in[s s s the country you stud1ied ]. where I gained a solid foundation in my major and developed a strong background in [s your m1ajor ] . Moreover, my coursework in [s mentio1n 2-3 relevant courses ]  have deepened my interest in this field '
     );
   await page.getByRole('button', { name: 'Next' }).click();
 
