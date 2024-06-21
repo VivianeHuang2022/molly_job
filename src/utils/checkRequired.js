@@ -1,5 +1,5 @@
 export const validateFields = (formData, topicId) => {
-  // 根据topicId定义不同的允许为空的字段数组
+  // 根据身份topicId定义不同的允许为空的字段数组
   const allowedEmptyFieldsByTopicId = {
     1: [
       'userAddress',
@@ -7,7 +7,7 @@ export const validateFields = (formData, topicId) => {
       'careerOrGoal',
       //page2
       'currentGPA',
-      //page3
+      //page3 这页都可以为空
       'getAwards',
       'getCompetitions',
       'getConference',
