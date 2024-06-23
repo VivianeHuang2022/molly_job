@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { getDocumentImg, downloadDocumentPdf } from '../../utils/api';
+import { getDocumentImg, downloadDocumentPdf,getDocumentPdf } from '../../utils/api';
 import AlertContext from '../../components/AlertProvider/AlertContext';
 
 import styles from './Download.module.css';
@@ -26,7 +26,8 @@ const DownloadPage = ({ topicId }) => {
   const documentType = localStorage.getItem('currentgenerate');
   // const navigate = useNavigate();
 
-  const [imageSrc, setImageSrc] = useState(null);
+  //const [imageSrc, setImageSrc] = useState(null);
+  const [pdfSrc, setPdfSrc] = useState(null);
   const [generationTime, setGenerationTime] = useState('暂未获取到时间');
   // const [coverLetterData] = useState({});
   const countId = localStorage.getItem(`countId_${documentType}`)
@@ -39,20 +40,42 @@ const DownloadPage = ({ topicId }) => {
     // 在组件加载时获取图片
     const fetchImage = async () => {
       try {
-        const response = await getDocumentImg(
+        // const response = await getDocumentImg(
+        //   countId,
+        //   lan,
+        //   documentType,
+        //   topicId
+        // );
+        // console.log(response)
+        // const file = new Blob([response.data], { type: 'image/jpeg' });
+
+        // const fileURL = URL.createObjectURL(file);
+        //setImageSrc(response.data.msg.img);
+
+        const response = await getDocumentPdf(
           countId,
           lan,
           documentType,
           topicId
         );
-        // console.log(response)
-        // const file = new Blob([response.data], { type: 'image/jpeg' });
+        if(response.status===200){
+          const {pdf, generationTime} = response.data.msg;
 
-        // const fileURL = URL.createObjectURL(file);
-        setImageSrc(response.data.msg.img);
+          const byteCharacters = atob(pdf);
+          const byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+          }
+          const byteArray = new Uint8Array(byteNumbers);
 
-        //生成时间在这里更新
-        setGenerationTime(response.data.msg.generationTime);
+          const blob = new Blob([byteArray], { type: 'application/pdf' });
+          const url = URL.createObjectURL(blob);
+          console.log(url)
+          setPdfSrc(url);
+          //生成时间在这里更新
+          setGenerationTime(generationTime);
+        }
+        
       } catch (error) {
         console.error('Failed to fetch image:', error);
       }
@@ -105,19 +128,27 @@ const DownloadPage = ({ topicId }) => {
     <div className={styles.pageContainer}>
       <div className={styles.previewContainer}>
         {/* 替换实际的src */}
-        {imageSrc && (
+        {/* {imageSrc && (
           <img
             src={imageSrc}
             alt="preview img"
             className={styles.showImage}
           ></img>
-        )}
+        )} */}
         {/* mock img */}
         {/* <img
           src={MockImage}
           alt="preview img"
           className={styles.showImage}
         ></img> */}
+        {pdfSrc && (
+        <iframe
+          src={pdfSrc}
+          width="100%"
+          height="100%"
+          title="PDF Viewer"
+        ></iframe>
+      )}
       </div>
       <div className={styles.operationContainer}>
         <MidTitleComp>{downloadTexts.documentGenerated}</MidTitleComp>

@@ -805,6 +805,35 @@ export const getDocumentImg = async (
   }
 };
 
+export const getDocumentPdf = async (
+  countId,
+  lan,
+  documentType,
+  topicId = initTopicId
+) => {
+  const authToken = localStorage.getItem('jwtToken');
+  const postUrl = `${BASE_URL}/${documentType}/getDocumentPdf/?countId=${countId}&lan=${lan}&topicId=${topicId}`;
+
+  try {
+    const response = await axios({
+      method: 'get',
+      url: postUrl,
+      responseType: 'json', // Important
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // export const downloadDocumentPdf = async (
 //   countId,
 //   lan,
