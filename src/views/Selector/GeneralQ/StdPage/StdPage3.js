@@ -96,7 +96,7 @@ export default function StdPage3() {
               style={{ color: 'green' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.getProject || 'If available, describe the project'} ]
+              [ {formData.getProject || texts.GeberalQ.StdPage.Page3.Project} ]
             </span>
             <span
               contentEditable={false}
@@ -109,7 +109,9 @@ export default function StdPage3() {
               style={{ color: 'green' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.getConference || 'mention the journal or conference'}{' '}
+              [{' '}
+              {formData.getConference ||
+                texts.GeberalQ.StdPage.Page3.Conference}{' '}
               ]
             </span>
             <span
@@ -123,7 +125,10 @@ export default function StdPage3() {
               style={{ color: 'green' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.getAwards || 'mention any awards or recognition'} ]
+              [{' '}
+              {formData.getAwards ||
+                texts.GeberalQ.StdPage.Page3.AwardsAndRecognitions}{' '}
+              ]
             </span>
             <span
               contentEditable={false}
@@ -138,7 +143,7 @@ export default function StdPage3() {
             >
               [{' '}
               {formData.getCompetitions ||
-                'mention volunteer work or competitions'}{' '}
+                texts.GeberalQ.StdPage.Page3.VolunteerWork}{' '}
               ]
             </span>
             <span
@@ -152,7 +157,10 @@ export default function StdPage3() {
               style={{ color: 'green' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.getSkills || 'specific research area or skill'} ]
+              [{' '}
+              {formData.getSkills ||
+                texts.GeberalQ.StdPage.Page3.ResearchAndSkill}{' '}
+              ]
             </span>
             <span
               contentEditable={false}
@@ -176,7 +184,8 @@ export default function StdPage3() {
               style={{ color: 'green' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.internRole || 'Previous Internship Role'} ]
+              [ {formData.internRole || texts.GeberalQ.StdPage.Page3.InternRole}{' '}
+              ]
             </span>
             <span
               contentEditable={false}
@@ -189,7 +198,10 @@ export default function StdPage3() {
               style={{ color: 'green' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData.internCompany || 'Previous Internship Company'} ]
+              [{' '}
+              {formData.internCompany ||
+                texts.GeberalQ.StdPage.Page3.InternCompany}{' '}
+              ]
             </span>
             <span
               contentEditable={false}

@@ -116,46 +116,46 @@ export const getFormFields = (texts) => {
       firstName: {
         ...recommender.firstName,
         name: 'recommenderFirstName',
-        schema: false,
+        schema: true,
       },
       lastName: {
         ...recommender.lastName,
         name: 'recommenderLastName',
-        schema: false,
+        schema: true,
       },
       relationship: {
         ...recommender.relationship,
         name: 'recommenderRelationship',
-        schema: false,
+        schema: true,
       },
       institution: {
         ...recommender.institution,
         name: 'recommenderInstitution',
-        schema: false,
+        schema: true,
       },
       position: {
         ...recommender.position,
         name: 'recommenderPosition',
-        schema: false,
+        schema: true,
       },
 
       email: {
         ...recommender.email,
         name: 'recommenderEmail',
-        schema: true,
+        schema: false,
       },
     },
     intro: {
       ...intro,
       name: 'recommenderIntro',
       component: 'textarea', // 标记为使用 TextArea 组件
-      schema: false,
+      schema: true,
     },
     activity: {
       ...activity,
       name: 'recommenderActivity',
       component: 'textarea', // 标记为使用 TextArea 组件
-      schema: false,
+      schema: true,
     },
   };
 };

@@ -64,7 +64,7 @@ export default function StdPage5() {
       <div style={{ width: '100%' }}>
         <QInput
           title={texts.GeberalQ.StdPage.Page5.P5T5}
-          placeholder="e.g. house number, street, city"
+          placeholder="地址填英文，e.g. house number, street, city"
           value={formData.Address || ''}
           onChange={(e) => handleInputChange('Address', e.target.value)}
         />

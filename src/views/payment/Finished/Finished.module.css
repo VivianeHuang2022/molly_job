@@ -1,11 +1,18 @@
 .pageContainer {
-  background: linear-gradient(135deg, #666 25%, #000 50%, #666 75%, #000 100%);
-  background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; /* 居中对齐 */
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #fffefe 25%,
+    #d9f8ee 50%,
+    #cecece 75%,
+    #000 100%
+  ); /* Create a gradient background */
+  background-size: 100vw 100vh !important; /* 使用!important确保优先级 */
+  animation: gradientAnimation 10s ease infinite; /* Apply the animation */
   height: 100vh;
 }
 
@@ -22,7 +29,7 @@
   position: relative;
   width: 320px;
   text-align: center;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   background: #5e5e5e; /* 调整背景颜色为深灰色 */
   color: #fff;
   border-radius: 15px; /* 添加圆角 */

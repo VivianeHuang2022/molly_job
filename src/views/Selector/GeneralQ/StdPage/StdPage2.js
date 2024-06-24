@@ -102,7 +102,9 @@ export default function StdPage2() {
               style={{ color: 'red' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData1.drDegree || 'Bachelor, Master, Phd'} ]
+              [{' '}
+              {formData1.drDegree || texts.GeberalQ.StdPage.Page2.AppliedDegree}{' '}
+              ]
             </span>
             <span
               contentEditable={false}
@@ -115,7 +117,7 @@ export default function StdPage2() {
               style={{ color: 'red' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData1.drUni || 'the University Name under Application'} ]
+              [ {formData1.drUni || texts.GeberalQ.StdPage.Page2.AppliedUni} ]
             </span>
             <span
               contentEditable={false}
@@ -128,7 +130,10 @@ export default function StdPage2() {
               style={{ color: 'red' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData1.drCountry || 'Dream Country'} ]
+              [{' '}
+              {formData1.drCountry ||
+                texts.GeberalQ.StdPage.Page2.AppliedCountry}{' '}
+              ]
             </span>
             <span
               contentEditable={false}
@@ -141,7 +146,8 @@ export default function StdPage2() {
               style={{ color: 'red' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData1.drMajor || 'the major you applied'} ].
+              [ {formData1.drMajor || texts.GeberalQ.StdPage.Page2.AppliedMajor}{' '}
+              ].
             </span>
 
             <span
@@ -155,7 +161,10 @@ export default function StdPage2() {
               style={{ color: 'red' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData2.curDegree || 'high school, bachelor or master'} ]
+              [{' '}
+              {formData2.curDegree ||
+                texts.GeberalQ.StdPage.Page2.CurrentDegree}{' '}
+              ]
             </span>
             <span
               contentEditable={false}
@@ -168,7 +177,9 @@ export default function StdPage2() {
               style={{ color: 'red' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData2.curMajor || 'your major'} ]
+              [{' '}
+              {formData2.curMajor || texts.GeberalQ.StdPage.Page2.CurrentMajor}{' '}
+              ]
             </span>
             <span
               contentEditable={false}
@@ -181,10 +192,7 @@ export default function StdPage2() {
               style={{ color: 'red' }}
               onDoubleClick={handleClearText}
             >
-              [{' '}
-              {formData2.curUni ||
-                'the name of your high school or university '}
-              ]
+              [ {formData2.curUni || texts.GeberalQ.StdPage.Page2.CurrentUni}]
             </span>
             <span
               contentEditable={false}
@@ -197,7 +205,10 @@ export default function StdPage2() {
               style={{ color: 'red' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData2.curCountry || 'the country you studied'} ]
+              [{' '}
+              {formData2.curCountry ||
+                texts.GeberalQ.StdPage.Page2.CurrentCountry}{' '}
+              ]
             </span>
             <span
               contentEditable={false}
@@ -206,7 +217,9 @@ export default function StdPage2() {
               <span type="No">{texts.GeberalQ.StdPage.Page2.P2T9} </span>
             </span>
             <span style={{ color: 'red' }} onDoubleClick={handleClearText}>
-              [ {formData2.curMajor || 'your major'} ]
+              [{' '}
+              {formData2.curMajor || texts.GeberalQ.StdPage.Page2.CurrentMajor}{' '}
+              ]
             </span>
             <span
               contentEditable={false}
@@ -219,7 +232,10 @@ export default function StdPage2() {
               style={{ color: 'red' }}
               onDoubleClick={handleClearText}
             >
-              [ {formData2.curCourses || 'mention 2-3 relevant courses'} ]
+              [{' '}
+              {formData2.curCourses ||
+                texts.GeberalQ.StdPage.Page2.CurrentCourses}{' '}
+              ]
             </span>
             <span
               contentEditable={false}

@@ -1,14 +1,18 @@
 /* QRCodeComponent.module.css */
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .qrPageContainer {
   background: linear-gradient(
     135deg,
-    #666 25%,
-    #000 50%,
-    #666 75%,
+    #fffefe 25%,
+    #d9f8ee 50%,
+    #cecece 75%,
     #000 100%
   ); /* Create a gradient background */
-  background-size: 400% 400%; /* Increase the background size for smoother animation */
+  background-size: 100vw 100vh !important; /* 使用!important确保优先级 */
   animation: gradientAnimation 10s ease infinite; /* Apply the animation */
   display: flex;
   height: 100vh;
@@ -33,7 +37,7 @@
 
 .qrcodeTitle {
   font-size: 1.375rem; /* 将字体大小改为rem单位以适应不同屏幕尺寸 */
-  font-family: "Outfit", sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-weight: 700;
   color: hsl(218, 44%, 22%);
   text-align: center;
@@ -76,5 +80,16 @@
   }
   100% {
     background-position: 100% 50%; /* End position of the gradient */
+  }
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

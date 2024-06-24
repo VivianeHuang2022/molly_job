@@ -2,26 +2,30 @@
 import React from 'react';
 import CircleNumber from './CircleNumber';
 import styles from './ProgressStyle.module.css';
-
-// 定义不同topicId对应的steps数据
-const topicStepsMap = {
-  1: [
-    { number: 1, title: 'DREAM' },
-    { number: 2, title: 'REASON' },
-    { number: 3, title: 'BACKGROUND' },
-    { number: 4, title: 'INTERESTS' },
-    { number: 5, title: 'PERSONAL' },
-  ],
-  2: [
-    { number: 1, title: 'PERSONAL' },
-    { number: 2, title: 'JOB' },
-    { number: 3, title: 'SKILLS' },
-    { number: 4, title: 'ACHIEVEMENT' },
-    { number: 5, title: 'EXPERIENCE' },
-  ],
-};
+import { getLabels } from '../../views/local'; // 导入语言配置文件加载函数
+import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
+import { useSelector } from 'react-redux';
 
 const ProgressBar = ({ currentNum, onProgressChange, topicId }) => {
+  const texts = getLabels(useSelector(selectCurrentLanguage));
+  // 定义不同topicId对应的steps数据
+  const topicStepsMap = {
+    1: [
+      { number: 1, title: texts.GeberalQ.StdPage.Processbar.DREAM },
+      { number: 2, title: texts.GeberalQ.StdPage.Processbar.REASON },
+      { number: 3, title: texts.GeberalQ.StdPage.Processbar.BACKGROUND },
+      { number: 4, title: texts.GeberalQ.StdPage.Processbar.INTERESTS },
+      { number: 5, title: texts.GeberalQ.StdPage.Processbar.PERSONAL },
+    ],
+    2: [
+      { number: 1, title: texts.GeberalQ.StdPage.Processbar.PERSONAL },
+      { number: 2, title: texts.GeberalQ.StdPage.Processbar.JOB },
+      { number: 3, title: texts.GeberalQ.StdPage.Processbar.SKILLS },
+      { number: 4, title: texts.GeberalQ.StdPage.Processbar.ACHIEVEMENT },
+      { number: 5, title: texts.GeberalQ.StdPage.Processbar.EXPERIENCE },
+    ],
+  };
+
   const steps = topicStepsMap[topicId] || [];
   const updateProgress = (newProgress) => {
     onProgressChange(newProgress);

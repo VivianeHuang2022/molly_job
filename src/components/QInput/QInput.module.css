@@ -10,39 +10,59 @@
   color: black;
   font-weight: bold;
 }
-
 .input {
-  height: auto;
   font-size: 20px;
   border-radius: 30px;
-  padding: 10px 10px;
-  /* background-color: rgb(190, 188, 188); */
+  padding: 12px 16px; /* 调整上下内边距 */
   background-color: #f2f2f2;
   border: 1px solid #d9d9d9;
-  /* border: none; */
   transition: border-color 0.3s, box-shadow 0.3s;
-}
-.input::placeholder {
-  font-size: 20px;
+  height: auto; /* 让高度自适应内容 */
+  width: 100%; /* 宽度拉长至父容器宽度 *
 }
 
-.input:hover {
-  border-color: black;
+.input::placeholder {
+  font-size: 20px; /* 调整 placeholder 字体大小 */
 }
+
+/* Small devices (phones, 600px and down) */
+@media (max-width: 600px) {
+  .input {
+    font-size: 14px;
+    padding: 8px 12px; /* 调整上下内边距 */
+  }
+
+  .input::placeholder {
+    font-size: 14px; /* 调整小设备的 placeholder 大小 */
+  }
+}
+
+/* Medium devices (landscape tablets, 600px to 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .input {
+    font-size: 18px;
+    padding: 9px 13px; /* 调整上下内边距 */
+  }
+
+  .input::placeholder {
+    font-size: 18px; /* 调整中等设备的 placeholder 大小 */
+  }
+}
+
+/* Large devices (laptops/desktops, 900px and up) */
+@media (min-width: 901px) {
+  .input {
+    font-size: 22px;
+    padding: 10px 14px; /* 调整上下内边距 */
+    line-height: 1.6; /* 调整行高以使文本垂直居中 */
+  }
+
+  .input::placeholder {
+    font-size: 22px; /* 保持大设备的 placeholder 大小 */
+  }
+}
+
+.input:hover,
 .input:focus {
   border-color: black;
-}
-
-.TextInput {
-  height: 130px;
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 5px;
-  padding: 10px 10px;
-  background-color: rgb(190, 188, 188);
-  border: none;
-}
-
-.tip {
-  color: rgb(217, 89, 89);
 }
