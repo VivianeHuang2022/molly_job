@@ -2,12 +2,10 @@ export const validateFields = (formData, topicId) => {
   // 根据身份topicId定义不同的允许为空的字段数组
   const allowedEmptyFieldsByTopicId = {
     1: [
-      'userAddress',
-      'ideaArea',
-      'careerOrGoal',
+      //page1 四个都是必填项 无需跳过
       //page2
       'currentGPA',
-      //page3 这页都可以为空
+      //page3 这页都是非必填
       'getAwards',
       'getCompetitions',
       'getConference',
@@ -18,6 +16,10 @@ export const validateFields = (formData, topicId) => {
       //page4
       'profName',
       'profResearch',
+      //page5
+      'userAddress',
+      'ideaArea',
+      'careerOrGoal',
     ],
     2: [],
   };

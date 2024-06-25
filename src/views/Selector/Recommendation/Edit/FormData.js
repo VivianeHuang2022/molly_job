@@ -1,9 +1,6 @@
 import * as Yup from 'yup';
 
 export const requiredFields = [
-  //only recommender
-  'recommenderEmail',
-
   //coverletter p1 value
   'dreamCountry',
   'dreamUni',
@@ -19,6 +16,16 @@ export const requiredFields = [
   //coverletter p5 value
   'firstName',
   'surname',
+
+  //only recommender
+  'recommenderFirstName',
+  'recommenderLastName',
+  'recommenderRelationship',
+
+  'recommenderInstitution',
+  'recommenderPosition',
+  'recommenderIntro',
+  'recommenderActivity',
 ];
 
 // 为每个字段创建验证规则的函数
