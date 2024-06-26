@@ -628,6 +628,7 @@ const texts_cn = {
     success: '成功',
     error: '失败',
     warn: '请注意',
+    required: '是必填项',
   },
   AboutUsPage: {
     pageTitle: '我们是谁？',

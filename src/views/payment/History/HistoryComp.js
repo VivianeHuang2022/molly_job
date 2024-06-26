@@ -22,7 +22,7 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
         const actionType = record.actionType;
         let actionTypeText;
         switch (actionType) {
-          case 'Coverletter':
+          case 'Cover Letter':
             actionTypeText = historyTexts.coverletter;
             break;
           case 'Recommendation':
@@ -78,9 +78,11 @@ const HistoryComp = ({ remainingCounts, generateCountHistory }) => {
         rowKey="key"
       />
 
-      <Link to="/layout" className={styles.returnButton}>
-        {historyTexts.buttonBack}
-      </Link>
+      <div>
+        <Link to="/layout" className={styles.returnButton}>
+          {historyTexts.buttonBack}
+        </Link>
+      </div>
     </div>
   );
 };

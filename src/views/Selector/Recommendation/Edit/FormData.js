@@ -153,10 +153,18 @@ export const getFormFields = (curLan) => {
 export const { requiredFields } = getFormFields();
 
 // 为每个字段创建验证规则的函数,每个字段的报错也是这里写
-const createValidationRule = (fieldName, texts) => {
+const createValidationRule = (fieldName, curText) => {
+  let texts;
+  if (curText) {
+    texts = curText;
+  } else {
+    texts = getLabels(localStorage.getItem('Lan'));
+  }
   const { requiredLabels } = getFormFields(texts);
 
-  return Yup.string().required(`${requiredLabels[fieldName]} is required`);
+  return Yup.string().required(
+    `${requiredLabels[fieldName]} ${texts.tips.required}`
+  );
 };
 
 // 使用 reduce 方法从 requiredFields 数组生成 validationSchemaObj 对象

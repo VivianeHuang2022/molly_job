@@ -660,6 +660,7 @@ const texts_en = {
     success: 'Success',
     error: 'Error',
     warn: 'Warning',
+    required: 'is required',
   },
   AboutUsPage: {
     pageTitle: 'Who Are We?',
