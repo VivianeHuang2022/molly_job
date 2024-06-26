@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 export const getRequiredLabels = (texts) => {
+  if (!texts) return {};
   const {
     recommender,
     intro,
@@ -26,11 +27,11 @@ export const getRequiredLabels = (texts) => {
     firstName: userInfo.firstName,
     surname: userInfo.surname,
     //only recommender : recommender
-    recommenderIntro: recommender.intro,
+    recommenderIntro: intro,
     recommenderPosition: recommender.position,
     recommenderInstitution: recommender.institution,
     recommenderRelationship: recommender.relationship,
-    recommenderActivity: recommender.activity,
+    recommenderActivity: activity,
     recommenderFirstName: recommender.firstName,
     recommenderLastName: recommender.lastName,
   };
@@ -65,8 +66,10 @@ export const requiredFields = [
 ];
 
 // 为每个字段创建验证规则的函数
-const createValidationRule = (fieldName) => {
-  return Yup.string().required(`${fieldName} is required`);
+const createValidationRule = (fieldName, texts) => {
+  return Yup.string().required(
+    `${getRequiredLabels(texts)[fieldName]?.label} is required`
+  );
 };
 
 // 使用 reduce 方法从 requiredFields 数组生成 validationSchemaObj 对象
@@ -76,6 +79,15 @@ const validationSchemaObj = requiredFields.reduce((acc, field) => {
 }, {});
 
 export const validationSchema = Yup.object().shape(validationSchemaObj);
+
+export const getValidationSchema = (texts) => {
+  return Yup.object().shape(
+    requiredFields.reduce((acc, field) => {
+      acc[field] = createValidationRule(field, texts);
+      return acc;
+    }, {})
+  );
+};
 
 // 定义表单字段
 export const getFormFields = (texts) => {

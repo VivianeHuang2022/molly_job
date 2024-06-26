@@ -11,6 +11,7 @@ import {
   validationSchema,
   requiredFields,
   getRequiredLabels,
+  getValidationSchema,
 } from './FormData';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
@@ -36,21 +37,6 @@ const RecommendationFormUI = ({
     dreamSchoolInfo,
     currentSchoolInfo,
   } = formFields;
-
-  // 定义一个映射表，将字段名映射到对应的标签
-  const fieldToLabelMap = {
-    recommenderEmail: recommender.email.label,
-    dreamCountry: dreamSchoolInfo.dreamCountry.label,
-    dreamUni: dreamSchoolInfo.dreamUni.label,
-    dreamDegree: dreamSchoolInfo.dreamDegree.label,
-    dreamMajor: dreamSchoolInfo.dreamMajor.label,
-    currentDegree: currentSchoolInfo.currentDegree.label,
-    currentMajor: currentSchoolInfo.currentMajor.label,
-    currentUni: currentSchoolInfo.currentUni.label,
-    currentCountry: currentSchoolInfo.currentCountry.label,
-    firstName: userInfo.firstName.label,
-    surname: userInfo.surname.label,
-  };
 
   const {
     recommenderInformation,
@@ -88,7 +74,10 @@ const RecommendationFormUI = ({
       <div className={styles.apiMessage}>
         {apiMessage && <NoticeParagraphComp>{apiMessage}</NoticeParagraphComp>}
       </div>
-      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={getValidationSchema(texts)}
+      >
         {({ values, errors, touched, isSubmitting }) => {
           const saveData = async (values, errors) => {
             // 检查是否有必填字段未填写
@@ -96,15 +85,12 @@ const RecommendationFormUI = ({
               (field) => !values[field]
             );
             if (missingFields.length > 0) {
-              const missingLabels = missingFields.map(
-                (field) => fieldToLabelMap[field] || field
-              );
-              console.log(getRequiredLabels(texts));
-              setMessage(
-                `${texts.tips.fillIn} : ${getRequiredLabels(
-                  texts
-                ).missingLabels?.join(', ')}`
-              );
+              const missingLabels = missingFields.map((field) => {
+                const fieldLabel = getRequiredLabels(texts)[field].label;
+                console.log(field);
+                return fieldLabel || field;
+              });
+              setMessage(`${texts.tips.fillIn} : ${missingLabels?.join(', ')}`);
               return false;
             } else {
               setMessage('');
