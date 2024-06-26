@@ -1,96 +1,14 @@
 import * as Yup from 'yup';
-
-export const getRequiredLabels = (texts) => {
-  if (!texts) return {};
-  const {
-    recommender,
-    intro,
-    activity,
-    userInfo,
-    dreamSchoolInfo,
-    currentSchoolInfo,
-  } = texts.recommendation;
-
-  //这里同时匹配了label和placeholder 后面调用的时候要加label
-  return {
-    //coverletter p1 value : dreamSchoolInfo
-    dreamCountry: dreamSchoolInfo.dreamCountry,
-    dreamUni: dreamSchoolInfo.dreamUni,
-    dreamDegree: dreamSchoolInfo.dreamDegree,
-    dreamMajor: dreamSchoolInfo.dreamMajor,
-    //coverletter p2 value : currentSchoolInfo
-    currentDegree: currentSchoolInfo.currentDegree,
-    currentMajor: currentSchoolInfo.currentMajor,
-    currentUni: currentSchoolInfo.currentUni,
-    currentCountry: currentSchoolInfo.currentCountry,
-    //coverletter p5 value : userInfo
-    firstName: userInfo.firstName,
-    surname: userInfo.surname,
-    //only recommender : recommender
-    recommenderIntro: intro,
-    recommenderPosition: recommender.position,
-    recommenderInstitution: recommender.institution,
-    recommenderRelationship: recommender.relationship,
-    recommenderActivity: activity,
-    recommenderFirstName: recommender.firstName,
-    recommenderLastName: recommender.lastName,
-  };
-};
-
-export const requiredFields = [
-  //coverletter p1 value
-  'dreamCountry',
-  'dreamUni',
-  'dreamDegree',
-  'dreamMajor',
-
-  //coverletter p2 value
-  'currentDegree',
-  'currentMajor',
-  'currentUni',
-  'currentCountry',
-
-  //coverletter p5 value
-  'firstName',
-  'surname',
-
-  //only recommender
-  'recommenderFirstName',
-  'recommenderLastName',
-  'recommenderRelationship',
-
-  'recommenderInstitution',
-  'recommenderPosition',
-  'recommenderIntro',
-  'recommenderActivity',
-];
-
-// 为每个字段创建验证规则的函数
-const createValidationRule = (fieldName, texts) => {
-  return Yup.string().required(
-    `${getRequiredLabels(texts)[fieldName]?.label} is required`
-  );
-};
-
-// 使用 reduce 方法从 requiredFields 数组生成 validationSchemaObj 对象
-const validationSchemaObj = requiredFields.reduce((acc, field) => {
-  acc[field] = createValidationRule(field);
-  return acc;
-}, {});
-
-export const validationSchema = Yup.object().shape(validationSchemaObj);
-
-export const getValidationSchema = (texts) => {
-  return Yup.object().shape(
-    requiredFields.reduce((acc, field) => {
-      acc[field] = createValidationRule(field, texts);
-      return acc;
-    }, {})
-  );
-};
+import { getLabels } from '../../../local';
 
 // 定义表单字段
-export const getFormFields = (texts) => {
+export const getFormFields = (curLan) => {
+  let texts;
+  if (curLan) {
+    texts = curLan;
+  } else {
+    texts = getLabels(localStorage.getItem('Lan'));
+  }
   const {
     recommender,
     intro,
@@ -99,8 +17,10 @@ export const getFormFields = (texts) => {
     dreamSchoolInfo,
     currentSchoolInfo,
   } = texts.recommendation;
+  const requiredFields = [];
+  const requiredLabels = {};
 
-  return {
+  const formFields = {
     userInfo: {
       firstName: {
         ...userInfo.firstName,
@@ -213,6 +133,47 @@ export const getFormFields = (texts) => {
       schema: true,
     },
   };
+
+  // 遍历getFormFields的结果
+  Object.values(formFields).forEach((categoryFields) => {
+    Object.values(categoryFields).forEach((field) => {
+      // 检查schema属性
+      if (field.schema) {
+        // 添加到requiredFields数组
+        requiredFields.push(field.name);
+        // 添加到requiredLabels对象，假设字段的值存储在value属性中
+        requiredLabels[field.name] = field.label;
+      }
+    });
+  });
+
+  return { formFields, requiredLabels, requiredFields };
+};
+
+export const { requiredFields } = getFormFields();
+
+// 为每个字段创建验证规则的函数,每个字段的报错也是这里写
+const createValidationRule = (fieldName, texts) => {
+  const { requiredLabels } = getFormFields(texts);
+
+  return Yup.string().required(`${requiredLabels[fieldName]} is required`);
+};
+
+// 使用 reduce 方法从 requiredFields 数组生成 validationSchemaObj 对象
+const validationSchemaObj = requiredFields.reduce((acc, field) => {
+  acc[field] = createValidationRule(field);
+  return acc;
+}, {});
+
+export const validationSchema = Yup.object().shape(validationSchemaObj);
+
+export const getValidationSchema = (texts) => {
+  return Yup.object().shape(
+    requiredFields.reduce((acc, field) => {
+      acc[field] = createValidationRule(field, texts);
+      return acc;
+    }, {})
+  );
 };
 
 //当fetchData没有有效值的时候使用initialValues

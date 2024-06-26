@@ -6,13 +6,7 @@ import { FormSingle, FormGroup, StarInstructions } from './FormComps';
 import { PrimaryButton, DefaultButton } from '../../../../components/Button';
 import { NoticeParagraphComp } from '../../../../components/Typography';
 
-import {
-  getFormFields,
-  validationSchema,
-  requiredFields,
-  getRequiredLabels,
-  getValidationSchema,
-} from './FormData';
+import { getFormFields, requiredFields, getValidationSchema } from './FormData';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 import { saveLocalEdit } from '../../../../utils/saveLocalData';
@@ -27,7 +21,7 @@ const RecommendationFormUI = ({
   const [message, setMessage] = useState('');
   const texts = getLabels(useSelector(selectCurrentLanguage));
 
-  const formFields = getFormFields(texts);
+  const { formFields } = getFormFields(texts);
   const { sectionTitle, buttonLabel, title } = texts.recommendation;
   const {
     recommender,
@@ -86,8 +80,9 @@ const RecommendationFormUI = ({
             );
             if (missingFields.length > 0) {
               const missingLabels = missingFields.map((field) => {
-                const fieldLabel = getRequiredLabels(texts)[field].label;
-                console.log(field);
+                const { requiredLabels } = getFormFields(texts);
+
+                const fieldLabel = requiredLabels[field];
                 return fieldLabel || field;
               });
               setMessage(`${texts.tips.fillIn} : ${missingLabels?.join(', ')}`);
