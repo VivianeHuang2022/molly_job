@@ -834,18 +834,6 @@ export const getDocumentPdf = async (
   }
 };
 
-// export const downloadDocumentPdf = async (
-//   countId,
-//   lan,
-//   documentType,
-//   topicId = initTopicId
-// ) => {
-//   return get(
-//     `${documentType}/downloadDocumentPdf?countId=${countId}&lan=${lan}&topicId=${topicId}`,
-//     null,
-//     'blob'
-//   );
-// };
 /**
  * 下载生成的PDF文件。
  * @param {string} countId - 模板类型。
@@ -869,6 +857,41 @@ export const downloadDocumentPdf = async (
       responseType: 'blob', // Important
       headers: {
         // 'Content-Type': 'multipart/form-data',
+        accept: '*/*',
+        Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
+      timeout: 10000,
+      // ... 其他配置
+    });
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/**
+ * 发送生成的文件到用户邮箱。
+ * @param {string} countId - 模板类型。
+ * @param {string} lan - 选择生成的语言。
+ * @param {string} documentType - 文件类型。
+ * @param {number} [topicId=1] - 身份类型，默认为学生。
+ */
+export const sendFilesToEmail = async (
+  countId,
+  lan,
+  documentType,
+  topicId = initTopicId
+) => {
+  const authToken = localStorage.getItem('jwtToken');
+
+  const postUrl = `${BASE_URL}/${documentType}/sendFilesToEmail?countId=${countId}&lan=${lan}&topicId=${topicId}`;
+  try {
+    const response = await axios({
+      method: 'post',
+      url: postUrl,
+      responseType: 'json', // Important
+      headers: {
         accept: '*/*',
         Authorization: authToken ? `Bearer ${authToken}` : '',
       },

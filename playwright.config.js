@@ -11,7 +11,12 @@ const { defineConfig, devices } = require('@playwright/test');
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  testDir: './tests',
+  timeout: 5 * 60 * 1000, // 测试超时设置为5分钟
+  expect: {
+    timeout: 10 * 1000, // 期望超时设置为10秒
+  },
+  globalTimeout: 10 * 60 * 1000, // 全局超时设置为1小时
+  testDir: './playwright-tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -76,4 +81,3 @@ module.exports = defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-

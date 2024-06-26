@@ -5,8 +5,15 @@ import styles from '../Login/Login.module.css';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { loginRequset } from '../../utils/api';
 import AlertContext from '../../components/AlertProvider/AlertContext';
+import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
+import { useSelector } from 'react-redux';
+import { getLabels } from '../local';
 
 export default function Login() {
+  // 从 Redux store 中获取当前语言状态
+  const currentLanguage = useSelector(selectCurrentLanguage);
+  const texts = getLabels(currentLanguage);
+
   const navigate = useNavigate();
   const [searchParams] = useSearchParams(); // 在React Router v6中，推荐用 useSearchParams 来处理查询参数
   const returnUrl = searchParams.get('returnUrl');
@@ -35,7 +42,7 @@ export default function Login() {
       const result = await loginRequset(request);
       //成功之后跳转到Login界面
       if (result.status === 200) {
-        showAlertMessage('Success', 'Login successfully!', 'success');
+        showAlertMessage(texts.tips.success, 'Login successfully!', 'success');
         const token = result.data.msg;
         //把token存在localStorage中
         localStorage.setItem('jwtToken', token);
@@ -49,15 +56,19 @@ export default function Login() {
         }
       } else {
         //alert("unknown error!")
-        showAlertMessage('Error', 'unknown error!', 'error');
+        showAlertMessage(texts.tips.error, 'unknown error!', 'error');
       }
     } catch (error) {
       // console.log("herr")
       if (error.response) {
         if (error.response.data.msg) {
-          showAlertMessage('Warning', error.response.data.msg, 'warning');
+          showAlertMessage(texts.tips.warn, error.response.data.msg, 'warning');
         } else {
-          showAlertMessage('Warning', error.response.statusText, 'warning');
+          showAlertMessage(
+            texts.tips.warn,
+            error.response.statusText,
+            'warning'
+          );
         }
 
         if (error.response.data.code === 1006) {
@@ -65,7 +76,7 @@ export default function Login() {
         }
       } else {
         // alert(`Error:${error.message}`)
-        showAlertMessage('Error', error.message, 'error');
+        showAlertMessage(texts.tips.error, error.message, 'error');
       }
     }
   };
@@ -75,46 +86,48 @@ export default function Login() {
       <div className={styles.containerStyle}>
         <div className={styles.formStyle}>
           <div className="titleBox">
-            <div className="largeText">Login</div>
-            <div className="smallText">Sign in to continue</div>
+            <div className="largeText">{texts.login.title}</div>
+            <div className="smallText">{texts.login.subTitle}</div>
           </div>
           <Form
             name="normal_login"
             className="login-form"
             initialValues={{
               remember: true,
-              email: rememberEmail ? rememberEmail : '',
-              password: rememberPassword ? rememberPassword : '',
+              email: rememberEmail || '',
+              password: rememberPassword || '',
             }}
             onFinish={onFinish}
           >
-            <div className="smallSubText">EMAIL</div>
+            <div className="smallSubText">{texts.login.emailLabel}</div>
             <Form.Item name="email" rules={[{ required: true, type: 'email' }]}>
               <Input
                 prefix={<MailOutlined className="site-form-item-icon" />}
-                placeholder="Email"
+                placeholder={texts.login.emailPlaceholder}
               />
             </Form.Item>
-            <div className="smallSubText">PASSWORD</div>
+            <div className="smallSubText">{texts.login.passwordLabel}</div>
             <Form.Item
               name="password"
               rules={[
-                { required: true, message: 'Please input your Password!' },
+                {
+                  required: true,
+                  message: texts.login.passwordRequiredMessage,
+                },
               ]}
             >
-              {/*  */}
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
-                placeholder="Password"
+                placeholder={texts.login.passwordPlaceholder}
               />
             </Form.Item>
             <Form.Item>
               <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
+                <Checkbox>{texts.login.rememberMe}</Checkbox>
               </Form.Item>
               <Link className="login-form-forgot" to="/resetpassword">
-                Forgot password
+                {texts.login.forgotPassword}
               </Link>
             </Form.Item>
 
@@ -130,11 +143,11 @@ export default function Login() {
                   (e.currentTarget.style.backgroundColor = 'black')
                 }
               >
-                Log in
-              </Button>
-              Or{' '}
-              <Link className="login-form-register" to={`/register`}>
-                register now!
+                {texts.login.loginButton}
+              </Button>{' '}
+              <span>{texts.login.or}</span> /
+              <Link className="login-form-register" to="/register">
+                {texts.login.registerNow}
               </Link>
             </Form.Item>
           </Form>

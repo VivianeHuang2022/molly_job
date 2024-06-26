@@ -1,12 +1,13 @@
 import { Formik, Form } from 'formik';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './Recommendation.module.css';
 import { getLabels } from '../../../local';
 import { FormSingle, FormGroup, StarInstructions } from './FormComps';
 import { PrimaryButton, DefaultButton } from '../../../../components/Button';
 import { NoticeParagraphComp } from '../../../../components/Typography';
+import AlertContext from '../../../../components/AlertProvider/AlertContext';
 
-import { getFormFields, validationSchema, requiredFields } from './FormData';
+import { getFormFields, requiredFields, getValidationSchema } from './FormData';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 import { saveLocalEdit } from '../../../../utils/saveLocalData';
@@ -18,10 +19,11 @@ const RecommendationFormUI = ({
   topicId,
   apiMessage,
 }) => {
+  const { showAlertMessage } = useContext(AlertContext);
   const [message, setMessage] = useState('');
   const texts = getLabels(useSelector(selectCurrentLanguage));
 
-  const formFields = getFormFields(texts);
+  const { formFields } = getFormFields(texts);
   const { sectionTitle, buttonLabel, title } = texts.recommendation;
   const {
     recommender,
@@ -31,21 +33,6 @@ const RecommendationFormUI = ({
     dreamSchoolInfo,
     currentSchoolInfo,
   } = formFields;
-
-  // 定义一个映射表，将字段名映射到对应的标签
-  const fieldToLabelMap = {
-    recommenderEmail: recommender.email.label,
-    dreamCountry: dreamSchoolInfo.dreamCountry.label,
-    dreamUni: dreamSchoolInfo.dreamUni.label,
-    dreamDegree: dreamSchoolInfo.dreamDegree.label,
-    dreamMajor: dreamSchoolInfo.dreamMajor.label,
-    currentDegree: currentSchoolInfo.currentDegree.label,
-    currentMajor: currentSchoolInfo.currentMajor.label,
-    currentUni: currentSchoolInfo.currentUni.label,
-    currentCountry: currentSchoolInfo.currentCountry.label,
-    firstName: userInfo.firstName.label,
-    surname: userInfo.surname.label,
-  };
 
   const {
     recommenderInformation,
@@ -83,7 +70,10 @@ const RecommendationFormUI = ({
       <div className={styles.apiMessage}>
         {apiMessage && <NoticeParagraphComp>{apiMessage}</NoticeParagraphComp>}
       </div>
-      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={getValidationSchema(texts)}
+      >
         {({ values, errors, touched, isSubmitting }) => {
           const saveData = async (values, errors) => {
             // 检查是否有必填字段未填写
@@ -91,10 +81,16 @@ const RecommendationFormUI = ({
               (field) => !values[field]
             );
             if (missingFields.length > 0) {
-              const missingLabels = missingFields.map(
-                (field) => fieldToLabelMap[field] || field
-              );
-              setMessage(`${texts.tips.fillIn} : ${missingLabels.join(', ')}`);
+              const missingLabels = missingFields.map((field) => {
+                const { requiredLabels } = getFormFields(texts);
+
+                const fieldLabel = requiredLabels[field];
+                return fieldLabel || field;
+              });
+
+              showAlertMessage(texts.tips.error, texts.tips.fillIn, 'error');
+
+              setMessage(`${texts.tips.fillIn} : ${missingLabels?.join(', ')}`);
               return false;
             } else {
               setMessage('');
@@ -201,7 +197,7 @@ const RecommendationFormUI = ({
 
               <div className={styles.buttonContainer}>
                 <DefaultButton
-                  label={'save data'}
+                  label={texts.button.save}
                   onClick={() => saveData(values, errors)}
                 />
 

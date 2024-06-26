@@ -21,8 +21,6 @@ const Profile = ({ profileItems }) => {
   const toggleLanguage = () => {
     // 发送语言切换的 action 到 Redux store
     dispatch(switchLanguage(currentLanguage === 'CN' ? 'EN' : 'CN'));
-    // 更新本地存储的语言
-    localStorage.setItem('Lan', currentLanguage === 'CN' ? 'EN' : 'CN');
   };
 
   // 切换用户身份的函数

@@ -408,7 +408,10 @@ const texts_en = {
   download: {
     documentGenerated: 'Document has been generated, click to download',
     downloadNotice: 'Download will also be automatically sent to your email',
-    downloadPdf: 'Download PDF',
+    downloadPdf: 'Download PDF & Word',
+    downloadSuccess: 'Download Success',
+    failed:
+      'There is an issue with your download URL. Please refresh and try again or contact us',
     generationTime: 'Document generation time',
     contactEmail: 'For any questions, please contact ',
     backToGenerate: 'Back to generate',
@@ -654,6 +657,10 @@ const texts_en = {
     fillIn: 'Please fill in the following required fields',
     fillInSingle: 'Please fill in the required field',
     sendDatatoBackSuccess: 'Data is sent to the back-end successfully',
+    success: 'Success',
+    error: 'Error',
+    warn: 'Warning',
+    required: 'is required',
   },
   AboutUsPage: {
     pageTitle: 'Who Are We?',
@@ -697,6 +704,39 @@ const texts_en = {
       ],
       moreLink: 'Learn More',
     },
+  },
+  button: {
+    save: 'Save Data',
+  },
+  login: {
+    title: 'Login',
+    subTitle: 'Sign in to continue',
+    emailLabel: 'EMAIL',
+    passwordLabel: 'PASSWORD',
+    rememberMe: 'Remember me',
+    forgotPassword: 'Forgot password',
+    loginButton: 'Log in',
+    or: 'Or',
+    registerNow: 'register now!',
+    emailPlaceholder: 'Email', // 假设这是占位符文本
+    passwordPlaceholder: 'Password', // 假设这是占位符文本
+    passwordRequiredMessage: 'Please input your Password!', // 表单验证消息
+  },
+  register: {
+    title: 'Create New Account',
+    backToLogin: 'Already registered? ',
+    emailLabel: 'EMAIL',
+    passwordLabel: 'PASSWORD',
+    confirmPasswordLabel: 'CONFIRM',
+    newPasswordPlaceholder: 'New Password',
+    confirmPasswordPlaceholder: 'Confirm Password',
+    verificationCodePlaceholder: 'Verification code',
+    verificationCodeInfo:
+      'Please input the Verification code you got from Email!',
+    captchaButton: 'Get Captcha',
+    signUpButton: 'Sign up',
+    emailTip: 'Please input your Email!',
+    passwordTip: 'Please input your Password',
   },
 };
 

@@ -1,15 +1,22 @@
-import React, { useRef, useContext, useState } from "react";
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Col, Form, Input, Row } from "antd";
-import { SafetyCertificateOutlined } from "@ant-design/icons";
-import styles from "../Register/Register.module.css";
-import logoImage from "../../assets/images/Logo.PNG";
-import { Link, useNavigate } from "react-router-dom";
-import { registerRequset } from "../../utils/api";
-import AlertContext from "../../components/AlertProvider/AlertContext";
-import { getRegisterVerificationCode } from "../../utils/api";
+import React, { useRef, useContext, useState } from 'react';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { Button, Col, Form, Input, Row } from 'antd';
+import { SafetyCertificateOutlined } from '@ant-design/icons';
+import styles from '../Register/Register.module.css';
+import logoImage from '../../assets/images/Logo.PNG';
+import { Link, useNavigate } from 'react-router-dom';
+import { registerRequset } from '../../utils/api';
+import AlertContext from '../../components/AlertProvider/AlertContext';
+import { getRegisterVerificationCode } from '../../utils/api';
+import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
+import { useSelector } from 'react-redux';
+import { getLabels } from '../local';
 
 export default function Register() {
+  // 从 Redux store 中获取当前语言状态
+  const currentLanguage = useSelector(selectCurrentLanguage);
+  const texts = getLabels(currentLanguage);
+
   const { showAlertMessage } = useContext(AlertContext);
   // const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
@@ -27,40 +34,39 @@ export default function Register() {
     // console.log(emailValue)
     // console.log(pwdValue)
     if (!emailValue) {
-      setEmailError("Please input your Email!");
-    } else{
-      setEmailError(null)
+      setEmailError(texts.register.emailTip);
+    } else {
+      setEmailError(null);
     }
     if (!pwdValue) {
-      setPwdError("Please input your Password!");
+      setPwdError(texts.register.passwordTip);
+    } else {
+      setPwdError(null);
     }
-    else{
-      setPwdError(null)
-    } 
     try {
       const request = {
-        email:emailValue.trim(),
-        pwd:pwdValue.trim()
-      }
-      const result = await getRegisterVerificationCode(request)
+        email: emailValue.trim(),
+        pwd: pwdValue.trim(),
+      };
+      const result = await getRegisterVerificationCode(request);
       if (result.status === 200) {
-        console.log(result.data.msg)
-        showAlertMessage("Success",result.data.msg,"success")
-      }else{
-        showAlertMessage("Error","unknown error!","error")
+        console.log(result.data.msg);
+        showAlertMessage(texts.tips.success, result.data.msg, 'success');
+      } else {
+        showAlertMessage(texts.tips.error, 'unknown error!', 'error');
       }
     } catch (error) {
       if (error.response) {
-        showAlertMessage("Error",error.response.data.msg,"error")
+        showAlertMessage(texts.tips.error, error.response.data.msg, 'error');
       } else {
-        showAlertMessage("Error", error.message,"error")
+        showAlertMessage(texts.tips.error, error.message, 'error');
       }
     }
   };
 
   //验证验证码
   const onFinish = async (formData) => {
-    console.log("Received values of form: ", formData);
+    console.log('Received values of form: ', formData);
     let { email, password, captcha } = formData;
     const request = {
       email: email.trim(),
@@ -70,14 +76,14 @@ export default function Register() {
     try {
       const result = await registerRequset(request);
       if (result.status === 200) {
-        showAlertMessage("Success", result.data.msg, "success");
-        navigate("/login");
+        showAlertMessage(texts.tips.success, result.data.msg, 'success');
+        navigate('/login');
       } else {
-        showAlertMessage("Error", "unknown error!", "error");
+        showAlertMessage(texts.tips.error, 'unknown error!', 'error');
       }
     } catch (error) {
       if (error.response) {
-        showAlertMessage("Warning", error.response.data.msg, "warning");
+        showAlertMessage(texts.tips.warn, error.response.data.msg, 'warning');
       } else {
         alert(`Error:${error.message}`);
       }
@@ -89,9 +95,10 @@ export default function Register() {
       <div className={styles.containerStyle}>
         <div className={styles.formStyle}>
           <div className="titleBox">
-            <div className="largeText">Create New Account</div>
+            <div className="largeText">{texts.register.title}</div>
             <div className="smallText">
-              Already registered? <Link to="/login">Login</Link>
+              {`${texts.register.backToLogin} `}
+              <Link to="/login">{texts.login.title}</Link>
             </div>
           </div>
           <Form
@@ -100,49 +107,54 @@ export default function Register() {
             initialValues={{ remember: true }}
             onFinish={onFinish}
           >
-            <div className="smallSubText">EMAIL</div>
-            <Form.Item name="email" rules={[{ required: true, type: "email" }]} help={emailError} // 显示错误信息
-              validateStatus={emailError ? "error" : ""}>
+            <div className="smallSubText">{texts.login.emailLabel}</div>
+            <Form.Item
+              name="email"
+              rules={[{ required: true, type: 'email' }]}
+              help={emailError} // 显示错误信息
+              validateStatus={emailError ? 'error' : ''}
+            >
               <Input
                 ref={emailRef} // 设置引用
                 prefix={<MailOutlined className="site-form-item-icon" />}
-                placeholder="Email"
+                placeholder={texts.login.emailPlaceholder}
               />
             </Form.Item>
-            <div className="smallSubText">PASSWORD</div>
+            <div className="smallSubText">{texts.login.passwordLabel}</div>
             <Form.Item
               name="password"
               rules={[
-                { required: true, message: "Please input your Password!" },
+                { required: true, message: 'Please input your Password!' },
               ]}
             >
-              {/*  */}
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
-                placeholder="New Password"
+                placeholder={texts.register.newPasswordPlaceholder}
               />
             </Form.Item>
-            <div className="smallSubText">CONFIRM</div>
+            <div className="smallSubText">
+              {texts.register.confirmPasswordLabel}
+            </div>
             <Form.Item
               name="confirm"
-              dependencies={["password"]}
+              dependencies={['password']}
               hasFeedback
               help={pwdError} // 显示错误信息
-              validateStatus={pwdError ? "error" : ""}
+              validateStatus={pwdError ? 'error' : ''}
               rules={[
                 {
                   required: true,
-                  message: "Please confirm your password!",
+                  message: 'Please confirm your password!',
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
+                    if (!value || getFieldValue('password') === value) {
                       return Promise.resolve();
                     }
                     return Promise.reject(
                       new Error(
-                        "The new password that you entered do not match!"
+                        'The new password that you entered do not match!'
                       )
                     );
                   },
@@ -152,12 +164,11 @@ export default function Register() {
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
-                placeholder="Confirm Password"
+                placeholder={texts.register.confirmPasswordPlaceholder}
                 ref={pwdRef} // 设置引用
               />
             </Form.Item>
-            <Form.Item
-            >
+            <Form.Item>
               <Row gutter={8}>
                 <Col span={12}>
                   <Form.Item
@@ -166,28 +177,33 @@ export default function Register() {
                     rules={[
                       {
                         required: true,
-                        message: "Please input the Verification code you got from Eamil!",
+                        message: texts.register.verificationCodeInfo,
                       },
                     ]}
                   >
-                    <Input 
-                    prefix={<SafetyCertificateOutlined className="site-form-item-icon" />}
-                    type="text"
-                    placeholder="Verification code"/>
+                    <Input
+                      prefix={
+                        <SafetyCertificateOutlined className="site-form-item-icon" />
+                      }
+                      type="text"
+                      placeholder={texts.register.verificationCodePlaceholder}
+                    />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
-                  <Button type="primary"
-                className="login-form-button"
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.backgroundColor = "gray")
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.backgroundColor = "black")
-                }
-                onClick={handleGetCode}
-                >Get Captcha
-                </Button>
+                  <Button
+                    type="primary"
+                    className="login-form-button"
+                    onMouseOver={(e) =>
+                      (e.currentTarget.style.backgroundColor = 'gray')
+                    }
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.backgroundColor = 'black')
+                    }
+                    onClick={handleGetCode}
+                  >
+                    {texts.register.captchaButton}
+                  </Button>
                 </Col>
               </Row>
             </Form.Item>
@@ -197,13 +213,13 @@ export default function Register() {
                 htmlType="submit"
                 className="login-form-button"
                 onMouseOver={(e) =>
-                  (e.currentTarget.style.backgroundColor = "gray")
+                  (e.currentTarget.style.backgroundColor = 'gray')
                 }
                 onMouseOut={(e) =>
-                  (e.currentTarget.style.backgroundColor = "black")
+                  (e.currentTarget.style.backgroundColor = 'black')
                 }
               >
-                Sign up
+                {texts.register.signUpButton}
               </Button>
             </Form.Item>
           </Form>

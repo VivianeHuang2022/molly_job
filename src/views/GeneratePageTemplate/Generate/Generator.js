@@ -10,6 +10,7 @@ import {
 import { SecParagraphComp } from '../../../components/Typography';
 import { MidTitleComp } from '../../../components/Typography';
 import { editState } from '../../../utils/checkCache';
+import { CON_EMAIL } from '../../../utils/constant';
 
 const Generator = ({
   lan,
@@ -68,14 +69,16 @@ const Generator = ({
       } else {
         // 处理非200状态码的逻辑
         console.log(`Received unexpected status code: ${response.status}`);
-        // 可以根据不同的状态码进行不同的处理
-        // ...
+        setCurrentState('');
+        setErrorMessage(generateDocumentTexts.errorMessage + response.status);
       }
     } catch (error) {
+      setCurrentState('');
+      setErrorMessage(generateDocumentTexts.errorMessage + error.message);
+
       // 检查是否有响应对象，如果有，检查状态码
       if (error.response) {
         const statusCode = error.response.status;
-        console.log(`Server responded with status code: ${statusCode}`);
 
         // 根据状态码进行不同的处理
         if (statusCode === 401) {
@@ -83,11 +86,15 @@ const Generator = ({
           navigate(`/login?returnUrl=${encodeURIComponent(location.pathname)}`);
         } else {
           // 处理其他状态码的情况
-          alert(`Server responded with status code: ${statusCode}`);
+          setErrorMessage(
+            `有响应Server responded with status code: ${statusCode}`
+          );
         }
       } else {
         // 处理没有响应对象的情况，例如网络错误或请求被阻止
-        alert(`Network error or request was blocked: ${error.message}`);
+        setErrorMessage(
+          `处理没有响应对象的情况，例如网络错误或请求被阻止Network error or request was blocked: ${error.message}`
+        );
       }
     }
   };
@@ -106,20 +113,21 @@ const Generator = ({
   };
 
   /*-------------渲染UI-----------------*/
-  const renderError = () => (
-    <div className={styles.error}>
-      <MidTitleComp>{errorMessage}</MidTitleComp>
-      <PrimaryButton
-        label={generateDocumentTexts.buttonLabel.tryAgain}
-        onClick={fetchData}
-      />
-      <div className={styles.contact}>
-        <SecParagraphComp>
-          contact email: viviane.huang@stu-de.org
-        </SecParagraphComp>
+  const renderError = () => {
+    console.log(errorMessage);
+    return (
+      <div className={styles.error}>
+        <MidTitleComp>{errorMessage}</MidTitleComp>
+        <PrimaryButton
+          label={generateDocumentTexts.buttonLabel.tryAgain}
+          onClick={fetchData}
+        />
+        <div className={styles.contact}>
+          <SecParagraphComp>contact email: {CON_EMAIL}</SecParagraphComp>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderNewUser = () => (
     <div className={styles.buttonMidContainer}>
