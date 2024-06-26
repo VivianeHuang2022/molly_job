@@ -1,10 +1,11 @@
 import { Formik, Form } from 'formik';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './Recommendation.module.css';
 import { getLabels } from '../../../local';
 import { FormSingle, FormGroup, StarInstructions } from './FormComps';
 import { PrimaryButton, DefaultButton } from '../../../../components/Button';
 import { NoticeParagraphComp } from '../../../../components/Typography';
+import AlertContext from '../../../../components/AlertProvider/AlertContext';
 
 import { getFormFields, requiredFields, getValidationSchema } from './FormData';
 import { useSelector } from 'react-redux';
@@ -18,6 +19,7 @@ const RecommendationFormUI = ({
   topicId,
   apiMessage,
 }) => {
+  const { showAlertMessage } = useContext(AlertContext);
   const [message, setMessage] = useState('');
   const texts = getLabels(useSelector(selectCurrentLanguage));
 
@@ -85,6 +87,9 @@ const RecommendationFormUI = ({
                 const fieldLabel = requiredLabels[field];
                 return fieldLabel || field;
               });
+
+              showAlertMessage('Error', texts.tips.fillIn, 'error');
+
               setMessage(`${texts.tips.fillIn} : ${missingLabels?.join(', ')}`);
               return false;
             } else {
