@@ -625,6 +625,9 @@ const texts_cn = {
     fillIn: '请填写全部必填项',
     fillInSingle: '请填写必填项',
     sendDatatoBackSuccess: '成功保存数据',
+    success: '成功',
+    error: '失败',
+    warn: '请注意',
   },
   AboutUsPage: {
     pageTitle: '我们是谁？',
@@ -688,6 +691,8 @@ const texts_cn = {
     verificationCodeInfo: '请输入您从邮箱收到的验证码！',
     captchaButton: '获取验证码',
     signUpButton: '注册',
+    emailTip: '请输入您的密码',
+    passwordTip: '请输入您的密码',
   },
 };
 

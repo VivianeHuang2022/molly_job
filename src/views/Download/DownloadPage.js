@@ -92,7 +92,7 @@ const DownloadPage = ({ topicId }) => {
       setDownloadStatus('success');
     } else {
       setDownloadStatus('failed');
-      showAlertMessage('Error', '文件url失效', 'error');
+      showAlertMessage(texts.tips.error, '文件url失效', 'error');
     }
 
     //发送邮件,如果发送不成功将不提示发送邮箱的提示
@@ -105,7 +105,7 @@ const DownloadPage = ({ topicId }) => {
       );
       if (response.status === 200) {
         showAlertMessage(
-          'Success',
+          texts.tips.success,
           '生成的文件同时发送到了你的邮箱中',
           'success'
         );

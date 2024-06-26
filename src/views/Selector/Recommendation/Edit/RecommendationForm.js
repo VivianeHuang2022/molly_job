@@ -88,7 +88,7 @@ const RecommendationFormUI = ({
                 return fieldLabel || field;
               });
 
-              showAlertMessage('Error', texts.tips.fillIn, 'error');
+              showAlertMessage(texts.tips.error, texts.tips.fillIn, 'error');
 
               setMessage(`${texts.tips.fillIn} : ${missingLabels?.join(', ')}`);
               return false;

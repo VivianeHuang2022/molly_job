@@ -34,12 +34,12 @@ export default function Register() {
     // console.log(emailValue)
     // console.log(pwdValue)
     if (!emailValue) {
-      setEmailError('Please input your Email!');
+      setEmailError(texts.register.emailTip);
     } else {
       setEmailError(null);
     }
     if (!pwdValue) {
-      setPwdError('Please input your Password!');
+      setPwdError(texts.register.passwordTip);
     } else {
       setPwdError(null);
     }
@@ -51,15 +51,15 @@ export default function Register() {
       const result = await getRegisterVerificationCode(request);
       if (result.status === 200) {
         console.log(result.data.msg);
-        showAlertMessage('Success', result.data.msg, 'success');
+        showAlertMessage(texts.tips.success, result.data.msg, 'success');
       } else {
-        showAlertMessage('Error', 'unknown error!', 'error');
+        showAlertMessage(texts.tips.error, 'unknown error!', 'error');
       }
     } catch (error) {
       if (error.response) {
-        showAlertMessage('Error', error.response.data.msg, 'error');
+        showAlertMessage(texts.tips.error, error.response.data.msg, 'error');
       } else {
-        showAlertMessage('Error', error.message, 'error');
+        showAlertMessage(texts.tips.error, error.message, 'error');
       }
     }
   };
@@ -76,14 +76,14 @@ export default function Register() {
     try {
       const result = await registerRequset(request);
       if (result.status === 200) {
-        showAlertMessage('Success', result.data.msg, 'success');
+        showAlertMessage(texts.tips.success, result.data.msg, 'success');
         navigate('/login');
       } else {
-        showAlertMessage('Error', 'unknown error!', 'error');
+        showAlertMessage(texts.tips.error, 'unknown error!', 'error');
       }
     } catch (error) {
       if (error.response) {
-        showAlertMessage('Warning', error.response.data.msg, 'warning');
+        showAlertMessage(texts.tips.warn, error.response.data.msg, 'warning');
       } else {
         alert(`Error:${error.message}`);
       }
@@ -95,9 +95,10 @@ export default function Register() {
       <div className={styles.containerStyle}>
         <div className={styles.formStyle}>
           <div className="titleBox">
-            <div className="largeText">Create New Account</div>
+            <div className="largeText">{texts.register.title}</div>
             <div className="smallText">
-              Already registered? <Link to="/login">Login</Link>
+              {`${texts.register.backToLogin} `}
+              <Link to="/login">{texts.login.title}</Link>
             </div>
           </div>
           <Form
@@ -106,7 +107,7 @@ export default function Register() {
             initialValues={{ remember: true }}
             onFinish={onFinish}
           >
-            <div className="smallSubText">EMAIL</div>
+            <div className="smallSubText">{texts.login.emailLabel}</div>
             <Form.Item
               name="email"
               rules={[{ required: true, type: 'email' }]}
@@ -116,24 +117,25 @@ export default function Register() {
               <Input
                 ref={emailRef} // 设置引用
                 prefix={<MailOutlined className="site-form-item-icon" />}
-                placeholder="Email"
+                placeholder={texts.login.emailPlaceholder}
               />
             </Form.Item>
-            <div className="smallSubText">PASSWORD</div>
+            <div className="smallSubText">{texts.login.passwordLabel}</div>
             <Form.Item
               name="password"
               rules={[
                 { required: true, message: 'Please input your Password!' },
               ]}
             >
-              {/*  */}
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
-                placeholder="New Password"
+                placeholder={texts.register.newPasswordPlaceholder}
               />
             </Form.Item>
-            <div className="smallSubText">CONFIRM</div>
+            <div className="smallSubText">
+              {texts.register.confirmPasswordLabel}
+            </div>
             <Form.Item
               name="confirm"
               dependencies={['password']}
@@ -162,7 +164,7 @@ export default function Register() {
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
-                placeholder="Confirm Password"
+                placeholder={texts.register.confirmPasswordPlaceholder}
                 ref={pwdRef} // 设置引用
               />
             </Form.Item>
@@ -175,8 +177,7 @@ export default function Register() {
                     rules={[
                       {
                         required: true,
-                        message:
-                          'Please input the Verification code you got from Eamil!',
+                        message: texts.register.verificationCodeInfo,
                       },
                     ]}
                   >
@@ -185,7 +186,7 @@ export default function Register() {
                         <SafetyCertificateOutlined className="site-form-item-icon" />
                       }
                       type="text"
-                      placeholder="Verification code"
+                      placeholder={texts.register.verificationCodePlaceholder}
                     />
                   </Form.Item>
                 </Col>
@@ -201,7 +202,7 @@ export default function Register() {
                     }
                     onClick={handleGetCode}
                   >
-                    Get Captcha
+                    {texts.register.captchaButton}
                   </Button>
                 </Col>
               </Row>
@@ -218,7 +219,7 @@ export default function Register() {
                   (e.currentTarget.style.backgroundColor = 'black')
                 }
               >
-                Sign up
+                {texts.register.signUpButton}
               </Button>
             </Form.Item>
           </Form>

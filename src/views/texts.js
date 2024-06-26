@@ -657,6 +657,9 @@ const texts_en = {
     fillIn: 'Please fill in the following required fields',
     fillInSingle: 'Please fill in the required field',
     sendDatatoBackSuccess: 'Data is sent to the back-end successfully',
+    success: 'Success',
+    error: 'Error',
+    warn: 'Warning',
   },
   AboutUsPage: {
     pageTitle: 'Who Are We?',
@@ -731,6 +734,8 @@ const texts_en = {
       'Please input the Verification code you got from Email!',
     captchaButton: 'Get Captcha',
     signUpButton: 'Sign up',
+    emailTip: 'Please input your Email!',
+    passwordTip: 'Please input your Password',
   },
 };
 

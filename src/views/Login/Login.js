@@ -42,7 +42,7 @@ export default function Login() {
       const result = await loginRequset(request);
       //成功之后跳转到Login界面
       if (result.status === 200) {
-        showAlertMessage('Success', 'Login successfully!', 'success');
+        showAlertMessage(texts.tips.success, 'Login successfully!', 'success');
         const token = result.data.msg;
         //把token存在localStorage中
         localStorage.setItem('jwtToken', token);
@@ -56,15 +56,19 @@ export default function Login() {
         }
       } else {
         //alert("unknown error!")
-        showAlertMessage('Error', 'unknown error!', 'error');
+        showAlertMessage(texts.tips.error, 'unknown error!', 'error');
       }
     } catch (error) {
       // console.log("herr")
       if (error.response) {
         if (error.response.data.msg) {
-          showAlertMessage('Warning', error.response.data.msg, 'warning');
+          showAlertMessage(texts.tips.warn, error.response.data.msg, 'warning');
         } else {
-          showAlertMessage('Warning', error.response.statusText, 'warning');
+          showAlertMessage(
+            texts.tips.warn,
+            error.response.statusText,
+            'warning'
+          );
         }
 
         if (error.response.data.code === 1006) {
@@ -72,7 +76,7 @@ export default function Login() {
         }
       } else {
         // alert(`Error:${error.message}`)
-        showAlertMessage('Error', error.message, 'error');
+        showAlertMessage(texts.tips.error, error.message, 'error');
       }
     }
   };
