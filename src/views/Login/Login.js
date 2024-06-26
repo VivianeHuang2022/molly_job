@@ -5,16 +5,12 @@ import styles from '../Login/Login.module.css';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { loginRequset } from '../../utils/api';
 import AlertContext from '../../components/AlertProvider/AlertContext';
-import {
-  switchLanguage,
-  selectCurrentLanguage,
-} from '../../redux/slices/languageSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
+import { useSelector } from 'react-redux';
 import { getLabels } from '../local';
 
 export default function Login() {
   // 从 Redux store 中获取当前语言状态
-  const dispatch = useDispatch();
   const currentLanguage = useSelector(selectCurrentLanguage);
   const texts = getLabels(currentLanguage);
 

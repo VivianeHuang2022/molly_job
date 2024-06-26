@@ -676,6 +676,19 @@ const texts_cn = {
     passwordPlaceholder: '输入密码',
     passwordRequiredMessage: '请输入您的密码！',
   },
+  register: {
+    title: '创建新账户',
+    backToLogin: '已有账号？登录',
+    emailLabel: '邮箱',
+    passwordLabel: '密码',
+    confirmPasswordLabel: '确认密码',
+    newPasswordPlaceholder: '新密码',
+    confirmPasswordPlaceholder: '确认密码',
+    verificationCodePlaceholder: '验证码',
+    verificationCodeInfo: '请输入您从邮箱收到的验证码！',
+    captchaButton: '获取验证码',
+    signUpButton: '注册',
+  },
 };
 
 export default texts_cn;

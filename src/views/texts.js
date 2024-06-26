@@ -718,6 +718,20 @@ const texts_en = {
     passwordPlaceholder: 'Password', // 假设这是占位符文本
     passwordRequiredMessage: 'Please input your Password!', // 表单验证消息
   },
+  register: {
+    title: 'Create New Account',
+    backToLogin: 'Already registered? ',
+    emailLabel: 'EMAIL',
+    passwordLabel: 'PASSWORD',
+    confirmPasswordLabel: 'CONFIRM',
+    newPasswordPlaceholder: 'New Password',
+    confirmPasswordPlaceholder: 'Confirm Password',
+    verificationCodePlaceholder: 'Verification code',
+    verificationCodeInfo:
+      'Please input the Verification code you got from Email!',
+    captchaButton: 'Get Captcha',
+    signUpButton: 'Sign up',
+  },
 };
 
 export default texts_en;
