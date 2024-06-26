@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import {
   getDocumentImg,
   downloadDocumentPdf,
-  getDocumentPdf,
+  getDocumentFiles,
   sendFilesToEmail,
 } from '../../utils/api';
 import AlertContext from '../../components/AlertProvider/AlertContext';
@@ -47,15 +47,16 @@ const DownloadPage = ({ topicId }) => {
     // 在组件加载时获取展示的预览pdf
     const fetchPreview = async () => {
       try {
-        const response = await getDocumentPdf(
+        const response = await getDocumentFiles(
           countId,
           lan,
           documentType,
           topicId
         );
         if (response.status === 200) {
-          const { pdf, generationTime } = response.data.msg;
-          console.log(response);
+          const { pdf,word,generationTime } = response.data.msg;
+          
+          console.log(word);
 
           const byteCharacters = atob(pdf);
           const byteNumbers = new Array(byteCharacters.length);

@@ -805,14 +805,14 @@ export const getDocumentImg = async (
   }
 };
 
-export const getDocumentPdf = async (
+export const getDocumentFiles = async (
   countId,
   lan,
   documentType,
   topicId = initTopicId
 ) => {
   const authToken = localStorage.getItem('jwtToken');
-  const postUrl = `${BASE_URL}/${documentType}/getDocumentPdf/?countId=${countId}&lan=${lan}&topicId=${topicId}`;
+  const postUrl = `${BASE_URL}/${documentType}/getDocumentFiles/?countId=${countId}&lan=${lan}&topicId=${topicId}`;
 
   try {
     const response = await axios({
