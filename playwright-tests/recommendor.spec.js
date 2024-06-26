@@ -100,8 +100,7 @@ test('recommendor_Chinese', async ({ page }) => {
   await page.getByRole('button', { name: 'right' }).click();
   await page.getByRole('button', { name: '生成文档' }).click();
   await page.goto('http://localhost:3000/#/download');
-  // 在特定等待函数中设置超时时间 90s
-  const downloadPromise = page.waitForEvent('download', { timeout: 90000 });
+
   await page.getByRole('button', { name: '下载 PDF & Word' }).click();
   const download = await downloadPromise;
   await page.getByRole('heading', { name: '下载成功' }).click();
