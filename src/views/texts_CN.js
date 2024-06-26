@@ -662,6 +662,20 @@ const texts_cn = {
   button: {
     save: '保存数据',
   },
+  login: {
+    title: '登录',
+    subTitle: '继续登陆',
+    emailLabel: '邮箱',
+    passwordLabel: '密码',
+    rememberMe: '记住我',
+    forgotPassword: '忘记密码',
+    loginButton: '登录',
+    or: '或',
+    registerNow: '立即注册',
+    emailPlaceholder: '邮箱地址',
+    passwordPlaceholder: '输入密码',
+    passwordRequiredMessage: '请输入您的密码！',
+  },
 };
 
 export default texts_cn;

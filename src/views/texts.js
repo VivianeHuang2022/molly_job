@@ -704,6 +704,20 @@ const texts_en = {
   button: {
     save: 'Save Data',
   },
+  login: {
+    title: 'Login',
+    subTitle: 'Sign in to continue',
+    emailLabel: 'EMAIL',
+    passwordLabel: 'PASSWORD',
+    rememberMe: 'Remember me',
+    forgotPassword: 'Forgot password',
+    loginButton: 'Log in',
+    or: 'Or',
+    registerNow: 'register now!',
+    emailPlaceholder: 'Email', // 假设这是占位符文本
+    passwordPlaceholder: 'Password', // 假设这是占位符文本
+    passwordRequiredMessage: 'Please input your Password!', // 表单验证消息
+  },
 };
 
 export default texts_en;

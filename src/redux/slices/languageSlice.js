@@ -11,6 +11,7 @@ const languageSlice = createSlice({
   reducers: {
     switchLanguage: (state, action) => {
       state.currentLanguage = action.payload;
+      localStorage.setItem('Lan', state.currentLanguage);
     },
   },
 });

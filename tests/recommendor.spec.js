@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 require('dotenv').config();
 
-test('recommendor', async ({ page }) => {
+test('recommendor_English', async ({ page }) => {
   await page.goto('http://localhost:3000/');
   await page.getByRole('img', { name: 's_logo' }).click();
   await page.getByRole('button', { name: 'Recommendation Letter' }).click();
@@ -35,3 +35,5 @@ test('recommendor', async ({ page }) => {
   await page.getByRole('button', { name: 'Submit' }).click();
   await page.getByRole('button', { name: 'Generate Document' }).click();
 });
+
+test('recommendor_Chinese', async ({ page }) => {});
