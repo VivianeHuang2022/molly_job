@@ -385,8 +385,10 @@ const texts_cn = {
   },
   download: {
     documentGenerated: '文档已生成，点击下载获取',
-    downloadNotice: '下载同时会自动发送至您的邮箱',
-    downloadPdf: 'Download PDF',
+    downloadNotice: '也可以在您的邮箱中查看生成的文件',
+    downloadPdf: '下载 PDF & Word',
+    downloadSuccess: '下载成功',
+    failed: '您的下载url出现问题,请刷新重试或者联系',
     generationTime: '文档生成时间',
     contactEmail: '如有任何问题请联系',
     backToGenerate: '返回生成',
@@ -656,6 +658,9 @@ const texts_cn = {
       details: ['🥇签证申请要求，留学工作签证', '🥇自保金', '🥇医疗保险'],
       moreLink: '了解更多',
     },
+  },
+  button: {
+    save: '保存数据',
   },
 };
 

@@ -1,5 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { getDocumentImg, downloadDocumentPdf,getDocumentPdf } from '../../utils/api';
+import {
+  getDocumentImg,
+  downloadDocumentPdf,
+  getDocumentPdf,
+  sendFilesToEmail,
+} from '../../utils/api';
 import AlertContext from '../../components/AlertProvider/AlertContext';
 
 import styles from './Download.module.css';
@@ -16,6 +21,7 @@ import {
 import { getLabels } from '../local';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../redux/slices/languageSlice';
+import { CON_EMAIL } from '../../utils/constant';
 // import { useNavigate } from 'react-router-dom';
 
 const DownloadPage = ({ topicId }) => {
@@ -23,10 +29,11 @@ const DownloadPage = ({ topicId }) => {
   const texts = getLabels(useSelector(selectCurrentLanguage));
   const downloadTexts = texts.download;
   const rememberEmail = localStorage.getItem('email');
-  const documentType = localStorage.getItem('currentgenerate');
-  // const navigate = useNavigate();
+  const [sentEmail, setSentEmail] = useState(false);
+  const [downloadStatus, setDownloadStatus] = useState('notStart'); //三种状态:未开始notStart、下载成功success、下载失败failed
 
-  //const [imageSrc, setImageSrc] = useState(null);
+  const documentType = localStorage.getItem('currentgenerate');
+
   const [pdfSrc, setPdfSrc] = useState(null);
   const [generationTime, setGenerationTime] = useState('暂未获取到时间');
   // const [coverLetterData] = useState({});
@@ -37,29 +44,18 @@ const DownloadPage = ({ topicId }) => {
   const lan = localStorage.getItem('generateLan');
 
   useEffect(() => {
-    // 在组件加载时获取图片
-    const fetchImage = async () => {
+    // 在组件加载时获取展示的预览pdf
+    const fetchPreview = async () => {
       try {
-        // const response = await getDocumentImg(
-        //   countId,
-        //   lan,
-        //   documentType,
-        //   topicId
-        // );
-        // console.log(response)
-        // const file = new Blob([response.data], { type: 'image/jpeg' });
-
-        // const fileURL = URL.createObjectURL(file);
-        //setImageSrc(response.data.msg.img);
-
         const response = await getDocumentPdf(
           countId,
           lan,
           documentType,
           topicId
         );
-        if(response.status===200){
-          const {pdf, generationTime} = response.data.msg;
+        if (response.status === 200) {
+          const { pdf, generationTime } = response.data.msg;
+          console.log(response);
 
           const byteCharacters = atob(pdf);
           const byteNumbers = new Array(byteCharacters.length);
@@ -70,29 +66,38 @@ const DownloadPage = ({ topicId }) => {
 
           const blob = new Blob([byteArray], { type: 'application/pdf' });
           const url = URL.createObjectURL(blob);
-          console.log(url)
+          console.log(url);
           setPdfSrc(url);
           //生成时间在这里更新
           setGenerationTime(generationTime);
         }
-        
       } catch (error) {
         console.error('Failed to fetch image:', error);
       }
     };
 
-    fetchImage();
+    fetchPreview();
   }, [countId, documentType, lan, topicId]);
 
   const handleDownloadClick = async () => {
-    // let { countId, language } = coverLetterData;
+    //20240626 lily 这里pdf下载不需要再请求接口,直接用前面fetchpreview获取的文件即可
+    if (pdfSrc) {
+      const url = pdfSrc;
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Molly_${documentType}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      setDownloadStatus('success');
+    } else {
+      setDownloadStatus('failed');
+      showAlertMessage('Error', '文件url失效', 'error');
+    }
 
-    // console.log(countId);
-    // console.log(language);
-    //add generate & regenerate button
-
+    //发送邮件,如果发送不成功将不提示发送邮箱的提示
     try {
-      const response = await downloadDocumentPdf(
+      const response = await sendFilesToEmail(
         countId,
         lan,
         documentType,
@@ -101,17 +106,11 @@ const DownloadPage = ({ topicId }) => {
       if (response.status === 200) {
         showAlertMessage(
           'Success',
-          'The Document sent successfully!',
+          '生成的文件同时发送到了你的邮箱中',
           'success'
         );
+        setSentEmail(true);
       }
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Molly_${documentType}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error fetching PDF: ', error);
     }
@@ -124,37 +123,38 @@ const DownloadPage = ({ topicId }) => {
     // navigate(`/layout/${documentType}/generate`)
   };
 
+  const renderTitleWithDownloadStatus = (downloadStatus) => {
+    switch (downloadStatus) {
+      case 'success':
+        return <MidTitleComp>{downloadTexts.downloadSuccess}</MidTitleComp>;
+      case 'failed':
+        return (
+          <MidTitleComp>
+            {downloadTexts.failed}:{CON_EMAIL}
+          </MidTitleComp>
+        );
+      default:
+        return <MidTitleComp>{downloadTexts.documentGenerated}</MidTitleComp>;
+    }
+  };
+
   return (
     <div className={styles.pageContainer}>
       <div className={styles.previewContainer}>
-        {/* 替换实际的src */}
-        {/* {imageSrc && (
-          <img
-            src={imageSrc}
-            alt="preview img"
-            className={styles.showImage}
-          ></img>
-        )} */}
-        {/* mock img */}
-        {/* <img
-          src={MockImage}
-          alt="preview img"
-          className={styles.showImage}
-        ></img> */}
         {pdfSrc && (
-        <iframe
-          src={pdfSrc}
-          width="100%"
-          height="100%"
-          title="PDF Viewer"
-        ></iframe>
-      )}
+          <iframe
+            src={pdfSrc}
+            width="100%"
+            height="100%"
+            title="PDF Viewer"
+          ></iframe>
+        )}
       </div>
       <div className={styles.operationContainer}>
-        <MidTitleComp>{downloadTexts.documentGenerated}</MidTitleComp>
+        {renderTitleWithDownloadStatus(downloadStatus)}
 
         {/* 如果有邮箱会发邮箱，没有邮箱暂时隐藏了 */}
-        {rememberEmail && (
+        {sentEmail && rememberEmail && (
           <ParagraphComp>
             {downloadTexts.downloadNotice}:{rememberEmail}
           </ParagraphComp>
@@ -169,9 +169,9 @@ const DownloadPage = ({ topicId }) => {
         <SecParagraphComp>
           {downloadTexts.generationTime} : {generationTime}
         </SecParagraphComp>
-        <SecParagraphComp>
-          {downloadTexts.contactEmail}: viviane.huang@stu-de.org
-        </SecParagraphComp>
+        {/* <SecParagraphComp>
+          {downloadTexts.contactEmail}: {CON_EMAIL}
+        </SecParagraphComp> */}
 
         <div className={styles.operationButtonsContainer}>
           <DefaultButton

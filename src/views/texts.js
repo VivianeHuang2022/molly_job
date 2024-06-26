@@ -408,7 +408,10 @@ const texts_en = {
   download: {
     documentGenerated: 'Document has been generated, click to download',
     downloadNotice: 'Download will also be automatically sent to your email',
-    downloadPdf: 'Download PDF',
+    downloadPdf: 'Download PDF & Word',
+    downloadSuccess: 'Download Success',
+    failed:
+      'There is an issue with your download URL. Please refresh and try again or contact us',
     generationTime: 'Document generation time',
     contactEmail: 'For any questions, please contact ',
     backToGenerate: 'Back to generate',
@@ -697,6 +700,9 @@ const texts_en = {
       ],
       moreLink: 'Learn More',
     },
+  },
+  button: {
+    save: 'Save Data',
   },
 };
 

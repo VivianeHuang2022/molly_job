@@ -6,7 +6,12 @@ import { FormSingle, FormGroup, StarInstructions } from './FormComps';
 import { PrimaryButton, DefaultButton } from '../../../../components/Button';
 import { NoticeParagraphComp } from '../../../../components/Typography';
 
-import { getFormFields, validationSchema, requiredFields } from './FormData';
+import {
+  getFormFields,
+  validationSchema,
+  requiredFields,
+  getRequiredLabels,
+} from './FormData';
 import { useSelector } from 'react-redux';
 import { selectCurrentLanguage } from '../../../../redux/slices/languageSlice';
 import { saveLocalEdit } from '../../../../utils/saveLocalData';
@@ -94,7 +99,12 @@ const RecommendationFormUI = ({
               const missingLabels = missingFields.map(
                 (field) => fieldToLabelMap[field] || field
               );
-              setMessage(`${texts.tips.fillIn} : ${missingLabels.join(', ')}`);
+              console.log(getRequiredLabels(texts));
+              setMessage(
+                `${texts.tips.fillIn} : ${getRequiredLabels(
+                  texts
+                ).missingLabels?.join(', ')}`
+              );
               return false;
             } else {
               setMessage('');
@@ -201,7 +211,7 @@ const RecommendationFormUI = ({
 
               <div className={styles.buttonContainer}>
                 <DefaultButton
-                  label={'save data'}
+                  label={texts.button.save}
                   onClick={() => saveData(values, errors)}
                 />
 

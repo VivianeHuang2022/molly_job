@@ -1,5 +1,41 @@
 import * as Yup from 'yup';
 
+export const getRequiredLabels = (texts) => {
+  const {
+    recommender,
+    intro,
+    activity,
+    userInfo,
+    dreamSchoolInfo,
+    currentSchoolInfo,
+  } = texts.recommendation;
+
+  //这里同时匹配了label和placeholder 后面调用的时候要加label
+  return {
+    //coverletter p1 value : dreamSchoolInfo
+    dreamCountry: dreamSchoolInfo.dreamCountry,
+    dreamUni: dreamSchoolInfo.dreamUni,
+    dreamDegree: dreamSchoolInfo.dreamDegree,
+    dreamMajor: dreamSchoolInfo.dreamMajor,
+    //coverletter p2 value : currentSchoolInfo
+    currentDegree: currentSchoolInfo.currentDegree,
+    currentMajor: currentSchoolInfo.currentMajor,
+    currentUni: currentSchoolInfo.currentUni,
+    currentCountry: currentSchoolInfo.currentCountry,
+    //coverletter p5 value : userInfo
+    firstName: userInfo.firstName,
+    surname: userInfo.surname,
+    //only recommender : recommender
+    recommenderIntro: recommender.intro,
+    recommenderPosition: recommender.position,
+    recommenderInstitution: recommender.institution,
+    recommenderRelationship: recommender.relationship,
+    recommenderActivity: recommender.activity,
+    recommenderFirstName: recommender.firstName,
+    recommenderLastName: recommender.lastName,
+  };
+};
+
 export const requiredFields = [
   //coverletter p1 value
   'dreamCountry',
